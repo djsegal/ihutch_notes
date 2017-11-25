@@ -1,0 +1,1354 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
+    img {     max-width: 100%;
+    max-height: 40vh; } p { line-height: 1.5em; } body {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 18px;
+    }
+  </style>
+<
+<title>chap1.html</title>
+<table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+ <a href="index.html">PREVIOUS
+</a></td></tr></table>
+ <a id="tth_chAp1"></a><h1>
+Chapter 1 <br />Fitting Functions to Data</h1>
+
+</p><p>
+ <a id="tth_sEc1.1"></a><h2>
+1.1&nbsp;&nbsp;Exact fitting</h2>
+
+</p><p>
+     <a id="tth_sEc1.1.1"></a><h3>
+1.1.1&nbsp;&nbsp;Introduction</h3>
+
+</p><p>
+Suppose we have a set of real-number data pairs x<sub>i</sub>,y<sub>i</sub>,&nbsp;i=1,2,... N. These can be considered to be a set of points in the
+xy-plane. They can also be thought of as a set of values y of a
+function of x; see Fig.&nbsp;<a href="chap1.html#fitpoints">1.1</a>.
+
+</p><p>
+<a id="tth_fIg1.1">
+</a> <img src="figures/spacedpoints.png" alt="figures/spacedpoints.png" /><a id="spacedpoints">
+</a>
+
+<div style="text-align:center">Figure 1.1: Example of data to be fitted with a curve.<a id="fitpoints">
+</a></div>
+
+</p><p>
+A frequent challenge is to find some kind of function that
+represents a "best fit" to the data in some sense. If the data were
+fitted perfectly, then clearly the function f would have the property
+<a id="fit1">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  f(x<sub>i</sub>)=y<sub>i</sub>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="roman">for</span> <span class="roman">all</span>  i=1,...,N.</td></tr></table>
+</td><td width="1%">(1.1)</td></tr></table>
+
+
+When the number of pairs is small and they are reasonably spaced out
+in x, then it may be reasonable to do an exact fit that satisfies this
+equation.
+
+</p><p>
+     <a id="tth_sEc1.1.2"></a><h3>
+1.1.2&nbsp;&nbsp;Representing an exact fitting function linearly</h3>
+
+</p><p>
+We have an infinite choice of possible fitting functions.<a
+id="fit_function111"></a> Those functions must have a number of different adjustable
+parameters that are set so as to adjust the function to fit the
+data. One example is a polynomial.<a
+id="polynomial112"></a><a
+id="fit_polynomial113"></a>
+<a id="fit2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  f(x) = c<sub>1</sub> + c<sub>2</sub> x + c<sub>3</sub> x<sup>2</sup> + ... + c<sub>N</sub> x<sup>N&#8722;1</sup></td></tr></table>
+</td><td width="1%">(1.2)</td></tr></table>
+
+
+Here the c<sub>i</sub> are the coefficients that must be adjusted to make the
+function fit the data. A polynomial whose coefficients are the
+adjustable parameters has a very useful property that it is linearly
+dependent upon the coefficients.<a
+id="fit_linear114"></a>
+
+</p><p>
+In order to fit eqs.&nbsp;(<a href="chap1.html#fit1">1.1</a>) with the form of eq.&nbsp;(<a href="chap1.html#fit2">1.2</a>)
+requires that N simultaneous equations be satisfied. Those equations
+can be written as an N&times;N matrix equation as
+follows:<a
+id="simultaneous_equations115"></a>
+
+</p><p>
+<a id="fit3">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+x<sub>1</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+x<sub>1</sub><sup>2</sup> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+x<sub>1</sub><sup>N&#8722;1</sup> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+x<sub>2</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+x<sub>2</sub><sup>2</sup> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+x<sub>2</sub><sup>N&#8722;1</sup> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+x<sub>N</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+x<sub>N</sub><sup>2</sup> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+x<sub>N</sub><sup>N&#8722;1</sup> </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c<sub>1</sub> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c<sub>N</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>1</sub> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>N</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(1.3)</td></tr></table>
+
+
+Here we notice that in order for this to be a square matrix system we
+need the number of coefficients to be equal to the number of data
+pairs, N.
+
+</p><p>
+We also see that we could have used any set of N functions f<sub>i</sub> as
+fitting functions, and written the representation:<a
+id="fit_function116"></a>
+<a id="fit4">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  f(x) = c<sub>1</sub>f<sub>1</sub>(x) + c<sub>2</sub> f<sub>2</sub>(x) + c<sub>3</sub> f<sub>3</sub>(x) + ... + c<sub>N</sub> f<sub>N</sub>(x)</td></tr></table>
+</td><td width="1%">(1.4)</td></tr></table>
+
+
+and then we would have obtained the matrix equation
+<a id="fit5">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>1</sub>(x<sub>1</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>2</sub>(x<sub>1</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>3</sub>(x<sub>1</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>N</sub>(x<sub>1</sub>) </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>1</sub>(x<sub>2</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>2</sub>(x<sub>2</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>3</sub>(x<sub>2</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>N</sub>(x<sub>2</sub>) </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>1</sub>(x<sub>N</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>2</sub>(x<sub>N</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>3</sub>(x<sub>N</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>N</sub>(x<sub>N</sub>) </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c<sub>1</sub> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c<sub>N</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>1</sub> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>N</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(1.5)</td></tr></table>
+
+
+This is the most general form of representation of a fitting
+function that varies linearly with the unknown coefficients. The
+matrix<a
+id="matrix_notation117"></a><a href="footnote.html#tthFtNtAAB" id="tthFrefAAB"><sup>1</sup></a> we will call <b>S</b>. It has elements S<sub>ij</sub>=f<sub>j</sub>(x<sub>i</sub>)
+
+</p><p>
+     <a id="tth_sEc1.1.3"></a><h3>
+1.1.3&nbsp;&nbsp;Solving for the coefficients</h3>
+
+</p><p>
+When we have a matrix equation<a
+id="matrix_equation118"></a> of the form
+<b>Sc</b><b> = </b><b>y</b>, where <b>S</b> is a square matrix, then provided
+that the matrix is non-singular, that is, provided its
+determinant<a
+id="determinant119"></a> is
+non-zero, &#124;<b>S</b>&#124; &#8800; 0, it possesses an inverse<a
+id="matrix_inverse1110"></a> <b>S</b><sup>&#8722;1</sup>. Multiplying on the left by this inverse we
+get:
+<a id="fit6">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>S</b><sup>&#8722;1</sup> <b>S</b> <b>c</b> = <b>c</b> = <b>S</b><sup>&#8722;1</sup> <b>y</b>.</td></tr></table>
+</td><td width="1%">(1.6)</td></tr></table>
+
+
+In other words, we can solve for <b>c</b>, the unknown coefficients,
+by inverting the function matrix, and multiplying the values to be
+fitted, <b>y</b> by that inverse<a
+id="matrix_solution1111"></a><a
+id="solving___simultaneous_equations1112"></a>.
+
+</p><p>
+Once we have the values of <b>c</b> we can evaluate the function
+f(x)
+(eq.&nbsp;<a href="chap1.html#fit2">1.2</a>) at any x-value we like.
+Fig.&nbsp;<a href="chap1.html#fittedfig">1.2</a> shows the result of fitting a 5th order
+
+</p><p>
+<a id="tth_fIg1.2">
+</a> <img src="figures/fittedspaced.png" alt="figures/fittedspaced.png" /><a id="fittedspaced">
+</a>
+
+<div style="text-align:center">Figure 1.2: Result of the polynomial fit.<a id="fittedfig">
+</a></div>
+
+</p><p>
+polynomial (with 6 terms including the 1) to the six points of our
+data. The line goes exactly through every point. But there's a
+significant problem that the line is unconvincingly curvy near its
+ends<a
+id="polynomial_fit1113"></a><a
+id="Runge_s_phenomenon1114"></a><a href="footnote.html#tthFtNtAAC" id="tthFrefAAC"><sup>2</sup></a>. It's not a terribly good fit.
+
+</p><p>
+ <a id="tth_sEc1.2"></a><h2>
+1.2&nbsp;&nbsp;Approximate Fitting</h2>
+
+</p><p>
+If we have lots of data which has scatter in it, arising from
+uncertainties or noise<a
+id="noisy_data1215"></a>, then we almost certainly
+<em>do not</em> want to fit a curve so that it goes exactly through
+every point. For example see Fig.&nbsp;<a href="chap1.html#lpointcloud">1.3</a>.
+
+</p><p>
+<a id="tth_fIg1.3">
+</a> <img src="figures/pointcloud.png" alt="figures/pointcloud.png" /><a id="pointcloud">
+</a>
+
+<div style="text-align:center">Figure 1.3: A cloud of points with uncertainties and noise, to be fitted
+  with a function.<a id="lpointcloud">
+</a></div>
+
+</p><p>
+What do we do then? Well, it turns out that we can use almost exactly
+the same approach, except with <em>different</em> number of points (N)
+and terms (M) in our linear fit<a
+id="matrix_non-square1216"></a>. In other
+words we use a representation
+<a id="fit7">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  f(x) = c<sub>1</sub>f<sub>1</sub>(x) + c<sub>2</sub> f<sub>2</sub>(x) + c<sub>3</sub> f<sub>3</sub>(x) + ... + c<sub>M</sub> f<sub>M</sub>(x)</td></tr></table>
+</td><td width="1%">(1.7)</td></tr></table>
+
+
+in which usually M &lt; N. We know now that we <em>can't</em> fit the data
+exactly. The set of equations we would have to satisfy to do so would
+be
+<a id="fit8">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>1</sub>(x<sub>1</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>2</sub>(x<sub>1</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>3</sub>(x<sub>1</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>M</sub>(x<sub>1</sub>) </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>1</sub>(x<sub>2</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>2</sub>(x<sub>2</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>3</sub>(x<sub>2</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>M</sub>(x<sub>2</sub>) </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>1</sub>(x<sub>N</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>2</sub>(x<sub>N</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>3</sub>(x<sub>N</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>M</sub>(x<sub>N</sub>) </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c<sub>1</sub> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c<sub>M</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>1</sub> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>N</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(1.8)</td></tr></table>
+
+
+in which the function matrix <b>S</b> is now not square but has
+dimensions N&times;M. There are not enough coefficients c<sub>j</sub> to be
+able to satisfy these equations exactly. They are<a
+id="over-specified1217"></a>
+over-specified. Moreover, a non-square matrix doesn't have an inverse.
+
+</p><p>
+But we are not interested in fitting this data exactly. We want to fit
+some sort of line through the points that best-fits them.
+
+</p><p>
+     <a id="tth_sEc1.2.1"></a><h3>
+1.2.1&nbsp;&nbsp;Linear Least Squares</h3>
+
+</p><p>
+<a
+id="least_squares1218"></a><a
+id="linear_least_squares1219"></a>What do we mean by "best fit"<a
+id="best_fit1220"></a><a
+id="fit_best1221"></a>?
+Especially when fitting a function of the linear form eq.&nbsp;(<a href="chap1.html#fit7">1.7</a>), we usually mean that we want to minimize the vertical
+distance between the points and the line. If we had a fitted function
+f(x), then for each data pair (x<sub>i</sub>,y<sub>i</sub>), the square of the
+vertical distance between the line and the point is
+(y<sub>i</sub>&#8722;f(x<sub>i</sub>))<sup>2</sup>. So the sum, over all the points, of the square
+distance from the line is
+<a id="fit9">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#967;<sup>2</sup> = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i=1,N</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+(y<sub>i</sub>&#8722;f(x<sub>i</sub>))<sup>2</sup> .</td></tr></table>
+</td><td width="1%">(1.9)</td></tr></table>
+
+
+We use the square of the distances in part because they are
+always positive. We don't want to add positive and negative distances,
+because a negative distance is just as bad as a positive one and we
+don't want them to cancel out.<a
+id="residual1222"></a><a
+id="chi-squared1223"></a>
+We generally call &#967;<sup>2</sup> the "residual", or more simply
+  the "chi-squared". It is an inverse measure of
+goodness of fit. The smaller it is the better. A linear least squares
+problem is: find the coefficients of our function f that minimize
+the residual &#967;<sup>2</sup>.
+
+</p><p>
+     <a id="tth_sEc1.2.2"></a><h3>
+1.2.2&nbsp;&nbsp;SVD and the Moore-Penrose Pseudo-inverse</h3>
+
+</p><p>
+<a
+id="pseudo-inverse1224"></a><a
+id="Moore-Penrose___pseudo-inverse1225"></a><a
+id="SVD1226"></a><a
+id="Singular_Value_Decomposition1227"></a>We seem to have gone off in a different direction from our original
+way to solve for the fitting coefficients by inverting the square
+matrix <b>S</b>. How is that related to the finding of the
+least-squares solution to the over-specified set of equations (<a href="chap1.html#fit8">1.8</a>)?
+
+</p><p>
+The answer is a piece of matrix magic! It turns out that there
+<em>is</em> (contrary to what one is taught in an elementary matrix
+course) a way to define the inverse of a non-square matrix or of a
+singular square matrix. It is called the (Moore-Penrose) pseudo-inverse.
+And once found it can be used in essentially exactly the way we did for the
+non-singular square matrix in the earlier treatment. That is, we solve
+for the coefficients using <b>c</b> = <b>S</b><sup>&#8722;1</sup> <b>y</b>, except
+that <b>S</b><sup>&#8722;1</sup> is now the pseudo-inverse.
+
+</p><p>
+The pseudo-inverse is best understood from a consideration of what is
+called the Singular Value Decomposition (SVD) of a matrix. This is the
+embodiment of a theorem in matrix mathematics that states that any
+N&times;M matrix can always be expressed as the product
+of three other matrices with very special properties. For our N&times;M matrix <b>S</b> this expression is:
+<a id="fit10">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<b>S</b> = <b>U</b><b>D</b><b>V</b><sup>T</sup> ,</td></tr></table>
+</td><td width="1%">(1.10)</td></tr></table>
+
+
+where <sup>T</sup> denotes transpose, and
+
+<ul>
+<li> <b>U</b> is an N&times;N  orthonormal matrix
+</p><p>
+</li>
+
+<li> <b>V</b> is an M&times;M  orthonormal matrix
+</p><p>
+</li>
+
+<li> <b>D</b> is an N&times;M  diagonal matrix
+</p><p>
+</li>
+</ul>
+<a
+id="orthonormal1228"></a><a
+id="orthogonal___matrix1229"></a><a
+id="matrix_orthogonal1230"></a><a
+id="unitary___matrix1231"></a>Orthonormal<a href="footnote.html#tthFtNtAAD" id="tthFrefAAD"><sup>3</sup></a>  means that the dot product of any
+column (regarded as a vector) with any other column is zero, and the
+dot product of a column with itself is unity. The inverse of an
+orthonormal matrix is its transpose. So
+<a id="fit11">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br /><b>U</b><sup>T</sup><hr /><small>N&times;N</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br /><b>U</b><hr /><small>N&times;N</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br /><b>I</b><hr /><small>N&times;N</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="roman">and</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br /><b>V</b><sup>T</sup><hr /><small>M&times;M</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br /><b>V</b><hr /><small>M&times;M</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br /><b>I</b><hr /><small>M&times;M</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(1.11)</td></tr></table>
+
+
+A diagonal matrix<a
+id="matrix_diagonal1232"></a><a
+id="diagonal_matrix1233"></a> has
+non-zero elements only on the diagonal. But if it is non-square, as it
+is if M &lt; N, then it is padded with extra rows of zeros (or extra
+columns if N &lt; M).
+<a id="fit12">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>D</b> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d<sub>1</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d<sub>2</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d<sub>M</sub> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(1.12)</td></tr></table>
+
+
+A sense of what the SVD is can be gained from by thinking<a href="footnote.html#tthFtNtAAE" id="tthFrefAAE"><sup>4</sup></a> in terms of the
+eigenanalysis<a
+id="eigenanalysis1234"></a> of the matrix
+<b>S</b><sup>T</sup><b>S</b>. Its eigenvalues are d<sub>i</sub><sup>2</sup>.
+
+</p><p>
+The pseudo-inverse<a
+id="pseudo-inverse1235"></a> can be considered to be
+<a id="fit13">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>S</b><sup>&#8722;1</sup> = <b>V</b><b>D</b><sup>&#8722;1</sup><b>U</b><sup>T</sup>.</td></tr></table>
+</td><td width="1%">(1.13)</td></tr></table>
+
+
+Here <b>D</b><sup>&#8722;1</sup> is a M&times;N diagonal matrix whose entries are
+the inverse of those of <b>D</b>, i.e.&nbsp;1/d<sub>j</sub>:
+<a id="fit12a">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>D</b><sup>&#8722;1</sup> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1/d<sub>1</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1/d<sub>2</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+...</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1/d<sub>M</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(1.14)</td></tr></table>
+
+
+It's clear that eq.&nbsp;(<a href="chap1.html#fit13">1.13</a>)
+is in some sense an inverse of <b>S</b>, because formally
+<a id="fit14">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>S</b><sup>&#8722;1</sup> <b>S</b> = (<b>V</b><b>D</b><sup>&#8722;1</sup><b>U</b><sup>T</sup>)( <b>U</b><b>D</b><b>V</b><sup>T</sup>) = <b>V</b><b>D</b><sup>&#8722;1</sup><b>D</b><b>V</b><sup>T</sup> = <b>V</b><b>V</b><sup>T</sup> = <b>I</b> .</td></tr></table>
+</td><td width="1%">(1.15)</td></tr></table>
+
+
+If M &#8804; N and  none of the d<sub>j</sub> is zero, then all the
+operations in this matrix multiplication reduction are valid, because
+<a id="fit15">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br /><b>D</b><sup>&#8722;1</sup><hr /><small>M&times;N</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br /><b>D</b><hr /><small>N&times;M</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br /><b>I</b><hr /><small>M&times;M</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(1.16)</td></tr></table>
+
+
+But see the enrichment section<a href="footnote.html#tthFtNtAAF" id="tthFrefAAF"><sup>5</sup></a>  for detailed discussion
+of other cases.
+
+</p><p>
+The most important thing for our present purposes is that if M &#8804; N
+then we can find a solution of the over-specified<a
+id="over-specified1236"></a> (rectangular matrix)
+fitting problem <b>S</b><b>c</b> = <b>y</b> as
+<b>c</b>=<b>S</b><sup>&#8722;1</sup><b>y</b>, using the pseudo-inverse. The set of
+coefficients <b>c</b> we get corresponds to more than one possible
+set of y<sub>i</sub>-values, but that does not matter.
+
+</p><p>
+Also, one can show<a href="footnote.html#tthFtNtAAG" id="tthFrefAAG"><sup>6</sup></a>, that the specific solution that is obtained by this
+matrix product is in fact the <em>least squares solution</em> for
+<b>c</b>; i.e.&nbsp;the solution that minimizes the residual<a
+id="residual1237"></a>
+&#967;<sup>2</sup>. And if there is any freedom in the choice of <b>c</b>, such
+that the residual is at its minimum for a range of different
+<b>c</b>, then the solution which minimizes &#124;<b>c</b>&#124;<sup>2</sup> is the one
+found.
+
+</p><p>
+The beauty of this fact is that one can implement a simple code, which
+calls a function <tt>pinv</tt> to find the
+pseudo-inverse<a
+id="pseudo-inverse1238"></a>, and it will work just fine if
+the matrix <b>S</b> is singular or even rectangular.
+
+</p><p>
+As a matter of computational efficiency, one should note that in
+Octave<a
+id="Octave1239"></a> the backslash operator<a
+id="backslash_operator1240"></a>,
+is equivalent to multiplying by the pseudo-inverse
+(i.e.&nbsp;<tt>pinv(S)*y&nbsp;=&nbsp;S\y</tt>), but calculated far more efficiently<a
+id="QR___decomposition1241"></a><a href="footnote.html#tthFtNtAAH" id="tthFrefAAH"><sup>7</sup></a>. So backslash is
+preferable in computationally costly code, because it is roughly 5
+times faster. You probably won't notice the difference for matrix
+dimensions smaller than a few hundred.
+
+</p><p>
+
+</p><p>
+<a id="tth_fIg1.4">
+</a> <img src="figures/fittedcloud.png" alt="figures/fittedcloud.png" /><a id="fittedcloud">
+</a>
+
+<div style="text-align:center">Figure 1.4: The cloud of points fitted with linear, quadratic, and cubic
+    polynomials.<a id="lfittedcloud">
+</a></div>
+
+</p><p>
+     <a id="tth_sEc1.2.3"></a><h3>
+1.2.3&nbsp;&nbsp;Smoothing and Regularization</h3>
+
+</p><p>
+<a
+id="smoothing1242"></a><a
+id="regularization1243"></a> As we illustrate in Fig.&nbsp;<a href="chap1.html#lfittedcloud">1.4</a>, by choosing the number of degrees of
+freedom<a
+id="degrees_of_freedom1244"></a> of the fitting function one can
+adjust the smoothness of the fit to the data. However, the choice of
+basis functions<a
+id="basis_function1245"></a> then constrains one in a way
+that has been pre-specified.  It might not in fact be the best way to
+smooth the data to fit it by (say) a straight line or a parabola.
+
+</p><p>
+A better way to smooth is by "regularization" in which we add some
+measure of roughness<a
+id="roughness1246"></a> to the residual we are seeking
+to minimize. The roughness (which is the inverse of the smoothness) is
+a measure of how wiggly the fit line is. It can in principle be pretty
+much anything that can be written in the form of a matrix times the
+fit coefficients. I'll give an example in a moment. Let's assume the
+roughness measure is homogeneous, in the sense that we are trying to
+make it as near zero as possible. Such a target would be <b>R</b><b>c</b> = 0, where <b>R</b> is a matrix of dimension N<sub>R</sub>&times;M,
+where N<sub>R</sub> is the number of distinct roughness
+constraints. Presumably we can't satisfy this equation perfectly
+because a fully smooth function would have no variation, and be unable
+to fit the data. But we want to minimize the square of the roughness
+(<b>R</b><b>c</b>)<sup>T</sup><b>R</b> <b>c</b>. We can try to fulfil the
+requirement to fit the data, and to minimize the roughness, in a
+least-squares sense by constructing an expanded compound matrix system
+combining the original equations and the regularization,
+thus<a href="footnote.html#tthFtNtAAI" id="tthFrefAAI"><sup>8</sup></a>
+<a id="fit16">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<b>S</b> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#955;<b>R</b> </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<b>c</b> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<b>y</b> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<b>0</b> </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(1.17)</td></tr></table>
+
+
+If we solve this system in a least-squares sense by using the pseudo
+inverse of the compound matrix <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b>S</b><br />
+&#955;<b>R</b><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />, then we will have found the coefficients
+that "best" make the roughness zero as well as fitting the data: in
+the sense that the total residual
+<a id="fit17">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#967;<sup>2</sup> = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i=1,N</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+(y<sub>i</sub>&#8722;f(x<sub>i</sub>))<sup>2</sup> + &#955;<sup>2</sup></td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>k=1,N<sub>R</sub></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+(</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+R<sub>kj</sub>c<sub>j</sub>)<sup>2</sup></td></tr></table>
+</td><td width="1%">(1.18)</td></tr></table>
+
+
+is minimized. The value of &#955; controls the weight of the
+smoothing. If it is large, then we prefer smoother solutions. If it is
+small or zero we do negligible smoothing.
+
+</p><p>
+As a specific one-dimensional example, we might decide that the
+roughness we want to minimize is represented by the second derivative
+of the function: d<sup>2</sup>f/dx<sup>2</sup>. Making this quantity on average small
+has the effect of minimizing the wiggles in the function, so it is an
+appropriate roughness measure. We could therefore choose <b>R</b> such that it
+represented that derivative at a set of chosen points x<sub>k</sub>,&nbsp;k=1,N<sub>R</sub>
+(not the same as the data points x<sub>i</sub>) in which case:
+<a id="fit18">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  R<sub>kj</sub> = </td><td nowrap="nowrap" align="center">
+d<sup>2</sup>f<sub>j</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>x<sub>k</sub></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(1.19)</td></tr></table>
+
+
+The x<sub>k</sub> might, for example, be equally spaced over the x-interval
+of interest, in which case<a
+id="smoothing_spline1247"></a><a href="footnote.html#tthFtNtAAJ" id="tthFrefAAJ"><sup>9</sup></a> the squared roughness measure could be
+considered a discrete approximation to the integral, over the interval, of
+the quantity (d<sup>2</sup>f/dx<sup>2</sup>)<sup>2</sup>.
+
+</p><p>
+ <a id="tth_sEc1.3"></a><h2>
+1.3&nbsp;&nbsp;Tomographic Image Reconstruction</h2>
+
+</p><p>
+<a
+id="tomography1348"></a><a
+id="image_reconstruction1349"></a><a
+id="inverse_problem1350"></a>Consider the problem of x-ray tomography. We make many measurements of
+the integrated density of matter along chords in a plane section
+through some object whose interior we wish to reconstruct. These are
+generally done by measuring the attenuation of x-rays<a
+id="x-ray1351"></a>
+along each chord, but the mathematical technique is independent of the
+physics. We seek a representation of the density<a
+id="density1352"></a> of the
+object in the form
+<a id="fit19">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#961;(x,y) = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1,M</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+c<sub>j</sub> &#961;<sub>j</sub>(x,y),</td></tr></table>
+</td><td width="1%">(1.20)</td></tr></table>
+
+
+where &#961;<sub>j</sub>(x,y) are basis functions<a
+id="basis_function1353"></a> over the
+plane. They might actually be as simple as
+pixels<a
+id="pixel1354"></a> over mesh x<sub>k</sub> and y<sub>l</sub>, such that
+&#961;<sub>j</sub>(x,y)&#8594; &#961;<sub>kl</sub>(x,y) = 1 when x<sub>k</sub> &lt; x &lt; x<sub>k+1</sub> and
+y<sub>l</sub> &lt; y &lt; y<sub>l+1</sub>, and zero otherwise. However, the form of basis
+function that won Alan Cormack<a
+id="Cormack__A.__M.1355"></a><a
+id="CT_scanning1356"></a> the Nobel
+prize for medicine in his implementation of "computerized tomography"
+(the CT scan) was much more
+cleverly chosen to build the smoothing into the basis functions. Be
+careful thinking about multidimensional fitting. For constructing
+fitting matrices, the list of basis functions should be considered to
+be logically arranged from 1 to M in a single index j so that the
+coefficients are a single column vector. But the physical arrangement
+of the basis functions might more naturally be expressed using two
+indices k,l referring to the different spatial dimensions. If so
+then they must be mapped in some consistent manner to the vector
+column.
+
+</p><p>
+
+</p><p>
+<a id="tth_fIg1.5">
+</a>   <img src="figures/tomochords.png" alt="figures/tomochords.png" /><a id="tomochords">
+</a>
+
+<div style="text-align:center">Figure 1.5: Illustrative layout of
+ tomographic reconstruction of density in a plane
+    using multiple fans of chordal observations.</div>
+
+</p><p>
+Each chord along which measurements are made, passes through the basis
+functions (e.g. the pixels), and for a particular set of coefficients
+c<sub>j</sub> we therefore get a chordal measurement<a
+id="chordal_measurement1357"></a> value
+<a id="fit20">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  v<sub>i</sub> = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>l<sub>i</sub></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#961;d<i>l</i> =  </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>l<sub>i</sub></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1,M</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+c<sub>j</sub> &#961;<sub>j</sub>(x,y) d<i>l</i> = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1,M</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>l<sub>i</sub></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#961;<sub>j</sub>(x,y) d<i>l</i>&nbsp;c<sub>j</sub> = <b>S</b><b>c</b>,</td></tr></table>
+</td><td width="1%">(1.21)</td></tr></table>
+
+
+where the N&times;M matrix <b>S</b> is formed from the integrals
+along each of the N lines of sight l<sub>i</sub>, so that
+S<sub>ij</sub>=&#8747;<sub>l<sub>i</sub></sub> &#961;<sub>j</sub>(x,y) d<i>l</i>. It represents the contribution of
+basis function j to measurement i.  Our fitting problem is thus
+rendered into the standard form:
+<a id="fit21">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>S</b><b>c</b> = <b>v</b>,</td></tr></table>
+</td><td width="1%">(1.22)</td></tr></table>
+
+
+in which a rather large number M of basis functions might be involved.
+We can solve this by pseudo-inverse:
+<b>c</b>=<b>S</b><sup>&#8722;1</sup><b>v</b>, and if the system is overdetermined,
+such that the effective number of different chords is larger than the
+number of basis functions, it will probably work.
+
+</p><p>
+The problem is, however, usually
+<em>under-determined</em><a
+id="under-determined_problem1358"></a>, in the sense that we
+don't really have enough independent chordal measurements to determine
+the density in each pixel (for example). This is true even if we
+apparently have more measurements than pixels, because generally there
+is a finite noise<a
+id="noise1359"></a> or uncertainty level in the chordal measurements
+that becomes amplified by the inversion process. This is illustrated
+by a simple test as shown in Fig.&nbsp;<a href="chap1.html#tomocomp">1.6</a>.
+
+</p><p>
+<a id="tth_fIg1.6">
+</a>   <img src="figures/tomoorig.png" alt="figures/tomoorig.png" /><a id="tomoorig">
+</a>  <img src="figures/tomorecon.png" alt="figures/tomorecon.png" /><a id="tomorecon">
+</a>
+
+<div style="text-align:center">Figure 1.6: Contour plots of the initial test  &#961;-function (left) used to
+    calculate the chordal integrals, and its reconstruction based upon
+    inversion of the chordal data (right). The number of pixels (100)
+    exceeds the number of views (49), and the number of singular
+    values used in the pseudo inverse is restricted to 30.  Still they
+    do not agree well, because various artifacts appear. Reducing the
+    number of singular values does not help.<a id="tomocomp">
+</a></div>
+
+</p><p>
+We then almost certainly want to smooth the representation
+otherwise all sorts of meaningless artifacts<a
+id="artifacts_in_fitting1360"></a> will
+appear in our reconstruction that have no physical existence.  If we
+try to do this by forming a pseudo-inverse in which a smaller number
+of singular values are retained, and the others put to zero, there is
+no guarantee that this will get rid of the roughness.  Fig.&nbsp;<a href="chap1.html#tomocomp">1.6</a> gives an example.
+
+</p><p>
+If we instead smooth the reconstruction by regularization, using as
+our measure of roughness the discrete (2-D) Laplacian<a
+id="Laplacian1361"></a>
+(&#8711;<sup>2</sup>&#961;) evaluated at each pixel. We get a far better result,
+as shown in Fig.&nbsp;<a href="chap1.html#ltomoregu">1.7</a>. It turns out that this good result
+is rather insensitive to the value of &#955;<sup>2</sup> over two or three
+orders of magnitude.
+
+</p><p>
+<a id="tth_fIg1.7">
+</a>   <img src="figures/tomoregu.png" alt="figures/tomoregu.png" /><a id="tomoregu">
+</a>
+
+<div style="text-align:center">Figure 1.7: Reconstruction using a regularization smoothing based upon
+    &#8711;<sup>2</sup>&#961;. The contours are much nearer to reality.<a id="ltomoregu">
+</a></div>
+
+</p><p>
+ <a id="tth_sEc1.4"></a><h2>
+1.4&nbsp;&nbsp;Efficiency and Nonlinearity</h2>
+
+</p><p>
+<a
+id="efficiency_inversion1462"></a> Using the inverse or
+pseudo-inverse to solve for the coefficients of a fitting function is
+intuitive and straight-forward.  However, in many cases it is
+<em>not</em> the most computationally efficient approach. For moderate
+size problems, modern computers have more than enough power to
+overcome the inefficiencies, but in a situation with multiple
+dimensions, such as tomography, it is easy for the matrix that needs
+to be inverted to become enormous, because that matrix's side length
+is the <em>total number</em> of pixels or elements in the fit, which may
+be, for example, the product of the side lengths
+<tt>nx</tt>&times;<tt>ny</tt>. The giant matrix that has to be inverted,
+may be very "sparse"<a
+id="sparse1463"></a><a
+id="matrix_sparse1464"></a>, meaning
+that all but a very few of its elements are zero. It can then become
+overwhelming in terms of storage and cpu to use the direct inversion
+methods we have discussed here. We'll see other approaches later.
+
+</p><p>
+Some fitting problems are
+<em>nonlinear</em><a
+id="nonlinear1465"></a><a
+id="fit_nonlinear1466"></a>. For example,
+suppose one had a photon<a
+id="photon1467"></a><a
+id="spectrum1468"></a> spectrum of a
+particular spectral line to which one wished to fit a
+Gaussian<a
+id="Gaussian1469"></a><a
+id="fit_Gaussian1470"></a> function of particular
+center, width, and height. That's a problem that cannot be expressed
+as a linear sum of functions. In that case fitting becomes more
+elaborate<a href="footnote.html#tthFtNtABA" id="tthFrefABA"><sup>10</sup></a>, and less
+reliable. There are some potted fitting programs out there, but it's
+usually better if you can avoid them.
+
+</p><p>
+
+<h2>Worked Example: Fitting sinusoidal functions</h2>
+
+</p><p>
+Suppose we wish to fit a set of data x<sub>i</sub>,y<sub>i</sub> spread over the range
+of independent variable a &#8804; x  &#8804; b. And suppose we know the
+function is zero at the boundaries of the range, at x=a and
+x=b<a
+id="fit_with_boundaries1471"></a>. It makes sense to incorporate our
+knowledge of the boundary values<a
+id="boundary_condition1472"></a> into the
+choice of functions to fit, and choose those functions f<sub>n</sub> to be
+zero at x=a and x=b. There are numerous well known sets of
+functions that have the property of being zero at two separated
+points. The points where standard functions are zero are of course not
+some arbitrary a and b. But we can scale the independent variable
+x so that a and b are mapped to the appropriate points for any
+choice of function set.
+
+</p><p>
+Suppose the functions that we decide to use for fitting are
+sinusoids<a href="footnote.html#tthFtNtABB" id="tthFrefABB"><sup>11</sup></a>: f<sub>n</sub>=sin(n&#952;) all of which are zero at &#952; = 0
+and &#952; = &#960;. We can make this set fit our x range by using the
+scaling
+<a id="thetascale">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#952; =  &#960;(x&#8722;a)/(b&#8722;a),</td></tr></table>
+</td><td width="1%">(1.23)</td></tr></table>
+
+
+so that &#952; ranges from 0 to &#960; as x ranges from a to b.
+Now we want to find the best fit to our data in the form
+<a id="sinfuncform">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ f(x) = c<sub>1</sub>sin(&#952;)+c<sub>2</sub>sin(2&#952;)+c<sub>3</sub>sin(3&#952;)+...+c<sub>M</sub>sin(M&#952;).</td></tr></table>
+</td><td width="1%">(1.24)</td></tr></table>
+
+
+We therefore want the least-squares solution for the c<sub>i</sub> of
+<a id="sinmatrix">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<b>S</b><b>c</b> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+sin(1&#952;<sub>1</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+sin(2&#952;<sub>1</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+sin(M&#952;<sub>1</sub>) </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+sin(1&#952;<sub>2</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+sin(2&#952;<sub>2</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+sin(M&#952;<sub>2</sub>) </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+sin(1&#952;<sub>N</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+sin(2&#952;<sub>N</sub>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+sin(M&#952;<sub>N</sub>) </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c<sub>1</sub> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c<sub>M</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>1</sub> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>N</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+=<b>y</b></td></tr></table>
+</td><td width="1%">(1.25)</td></tr></table>
+
+
+
+</p><p>
+We find this solution by the following procedure.
+
+</p><p>
+1. If necessary, construct column vectors <b>x</b> and <b>y</b> from the data.
+
+</p><p>
+2. Calculate the scaled vector &#952; from <b>x</b>.
+
+</p><p>
+3. Construct the matrix <b>S</b> whose ijth entry is sin(j&#952;<sub>i</sub>)
+
+</p><p>
+4. Least-squares-solve <b>S</b><b>c</b>=<b>y</b> (e.g.&nbsp;by
+pseudo-inverse) to find <b>c</b>.
+
+</p><p>
+5. Evaluate the fit at any x by substituting the expression
+for &#952;, <a href="chap1.html#thetascale">1.23</a>, into <a href="chap1.html#sinfuncform">1.24</a>.
+
+</p><p>
+This process may be programmed in a mathematical system like
+Matlab or Octave<a
+id="Matlab1473"></a><a
+id="Octave1474"></a>, which has built-in matrix
+multiplication, very concisely<a href="footnote.html#tthFtNtABC" id="tthFrefABC"><sup>12</sup></a> as follows (entries
+following % are comments).
+
+</p><p>
+
+<pre>
+&nbsp;&nbsp;%&nbsp;Suppose&nbsp;x&nbsp;and&nbsp;y&nbsp;exist&nbsp;as&nbsp;column&nbsp;vectors&nbsp;of&nbsp;length&nbsp;N.&nbsp;(Nx1&nbsp;matrices)&nbsp;
+j=[1:M];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%&nbsp;Create&nbsp;a&nbsp;1xM&nbsp;matrix&nbsp;containing&nbsp;numbers&nbsp;1&nbsp;to&nbsp;M.
+theta=pi*(x-a)/(b-a);&nbsp;&nbsp;%&nbsp;Scale&nbsp;x&nbsp;to&nbsp;obtain&nbsp;the&nbsp;column&nbsp;vector&nbsp;theta.
+S=sin(theta*j);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%&nbsp;Construct&nbsp;the&nbsp;matrix&nbsp;S&nbsp;using&nbsp;an&nbsp;outer&nbsp;product.
+Sinv=pinv(S);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%&nbsp;Pseudo&nbsp;invert&nbsp;it.
+c=Sinv*y;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%&nbsp;Matrix&nbsp;multiply&nbsp;y&nbsp;to&nbsp;find&nbsp;the&nbsp;coefficients&nbsp;c.
+
+</pre>
+
+</p><p>
+The fit can then be evaluated for any x value (or array) <tt>xfit</tt>, in the
+form effectively of a scalar product of sin(&#952;<b>j</b>) with
+<b>c</b>. The code is likewise astonishingly brief, and will need
+careful thought (especially noting what the dimensions of the matrices
+are) to understand what is actually happening.
+
+</p><p>
+
+<pre>
+yfit=sin(pi*(xfit-a)/(b-a)*j)*c;&nbsp;%&nbsp;Evaluate&nbsp;the&nbsp;yfit&nbsp;at&nbsp;any&nbsp;xfit
+
+</pre>
+</p><p>
+An example is shown in Fig.&nbsp;<a href="chap1.html#sinefitl">1.8</a>.
+
+</p><p>
+<a id="tth_fIg1.8">
+</a> <img src="figures/sinefit.png" alt="figures/sinefit.png" /><a id="sinefit">
+</a>
+
+<div style="text-align:center">Figure 1.8: The result of the fit of sinusoids up to M=5 to a noisy
+  dataset of size N=20. The points are the input data. The curve is
+  constructed by using the <tt>yfit</tt> expression on an
+  <tt>xfit</tt> array of some convenient length spanning the x-range, and
+  then simply plotting <tt>yfit</tt> versus
+  <tt>xfit</tt>.<a id="sinefitl">
+</a></div>
+
+</p><p>
+
+<h2>Exercise 1. Data fitting</h2>
+
+</p><p>
+  1. Given a set of N values y<sub>i</sub> of a function y(x) at the positions
+x<sub>i</sub>, write a short code to fit a polynomial having order one less
+than N (so there are N coefficients of the polynomial) to the data.
+
+</p><p>
+Obtain a set of (N=) 6 numbers from
+
+</p><p>
+<a href="http://silas.psfc.mit.edu/22.15/15numbers.html"><tt>http://silas.psfc.mit.edu/22.15/15numbers.html</tt></a>
+
+</p><p>
+(or if that is not accessible use y<sub>i</sub>=[0.892,1.44,1.31,1.66,1.10,1.19]).
+Take the values y<sub>i</sub> to be at the positions
+x<sub>i</sub>=[0.0,0.2,0.4,0.6,0.8,1.0]. Run your code on this data and find the
+coefficients c<sub>j</sub>.
+
+</p><p>
+Plot together (on the same plot) the resulting fitted polynomial
+representing y(x) (with sufficient resolution to give a smooth
+curve) and the original data points, over the domain 0 &#8804; x  &#8804; 1.
+
+</p><p>
+Submit the following as your solution:
+
+<ol type="1">
+<li> Your code in a computer format that is capable of being
+  executed.
+</p><p>
+</li>
+
+<li> The numeric values of your coefficients c<sub>j</sub>,&nbsp;j=1,N.
+</p><p>
+</li>
+
+<li> Your plot.
+</p><p>
+</li>
+
+<li> Brief commentary ( &lt;  300 words) on what problems you faced and how you solved them.
+</p><p>
+</li>
+</ol>
+
+</p><p>
+<br /><br />2. Save your code from part 1. Make a copy of it with a new name and
+change the new code as needed to fit (in the linear least squares sense) a
+polynomial of order possibly lower than N&#8722;1 to a set of data x<sub>i</sub>,
+y<sub>i</sub> (for which the points are in no particular order).
+
+</p><p>
+Obtain a pair of data sets of length (N=) 20 numbers x<sub>i</sub>, y<sub>i</sub>
+from the same URL by changing the entry in the "Number of Numbers"
+box. (Or if that is inaccessible, generate your own data set from random
+numbers added to a line.) Run your code on that data to produce the fitting
+coefficients c<sub>j</sub> when the number of coefficients of the polynomial
+is (M=) (a) 1, (b) 2, (c) 3. That is: constant, linear, quadratic.
+
+</p><p>
+Plot the fitted curves
+and the original data points on the same plot(s) for all three cases.
+
+</p><p>
+Submit the following as your solution:
+
+<ol type="1">
+<li> Your code in a computer format that is capable of being
+  executed.
+</p><p>
+</li>
+
+<li> Your coefficients c<sub>j</sub>,&nbsp;j=1,M, for three cases (a), (b), (c).
+</p><p>
+</li>
+
+<li> Your plot(s).
+</p><p>
+</li>
+
+<li> Very brief remarks on the extent to which the coefficients are
+  the same for the three cases.
+</p><p>
+</li>
+
+<li> Can your code from this part also solve the problem of part 1?
+</p><p>
+</li>
+</ol>
+
+</p><p>
+
+
+<hr /><table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+<a href="chap2.html">NEXT
+</a></td></tr></table>
+</div></body></html>

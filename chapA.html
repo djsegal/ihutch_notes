@@ -1,0 +1,703 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
+    img {     max-width: 100%;
+    max-height: 40vh; } p { line-height: 1.5em; } body {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 18px;
+    }
+  </style>
+<
+<title>chapA.html</title>
+<table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+ <a href="chap13.html">PREVIOUS
+</a></td></tr></table>
+ <a id="tth_chApA"></a><h1>
+Appendix A <br />Summary of Matrix Algebra</h1>
+
+</p><p>
+ <a id="tth_sEcA.1"></a><h2>
+A.1&nbsp;&nbsp;Vector and Matrix Multiplication</h2>
+
+</p><p>
+<a
+id="matrix_multiplicationA1783"></a>We consider a vector <b>v</b> of length J (in an abstract vector
+space of dimensions J) to be an ordered sequence of J
+numbers<a href="footnote.html#tthFtNtBAD" id="tthFrefBAD"><sup>103</sup></a>. The vector can be
+displayed either as a column
+<a id="columnvector">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>v</b>=</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>J</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(A.1)</td></tr></table>
+
+
+or as a row, which we regard as the <em>transpose</em>, denoted <sup>T</sup>, of
+the column vector:
+<a id="rowvector">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>v</b><sup>T</sup>=(v<sub>1</sub>, v<sub>2</sub>, ..., v<sub>J</sub>).</td></tr></table>
+</td><td width="1%">(A.2)</td></tr></table>
+
+
+Vectors of the same dimensions can be added together so that the
+j<sup>th</sup> entry of <b>u</b>+<b>v</b> is u<sub>j</sub>+v<sub>j</sub>.
+
+</p><p>
+The scalar product of two vectors <b>u</b>, <b>v</b>, in
+vector notation is indicated by a dot, but in matrix notation the dot
+is usually omitted. Instead we write it
+<a id="scalarprod">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>u</b><sup>T</sup><b>v</b> = </td><td nowrap="nowrap" align="center">
+<small>J</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+u<sub>j</sub>v<sub>j</sub>.</td></tr></table>
+</td><td width="1%">(A.3)</td></tr></table>
+
+
+
+</p><p>
+If we have a set of k column vectors <b>v</b><sub>k</sub>, for k=1,...,K, the
+j<sup>th</sup> element of the k<sup>th</sup> vector
+can be written, V<sub>jk</sub>, and they can be arrayed compactly
+one after the other as
+<a id="matrixcol">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <b>V</b> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+V<sub>11</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+V<sub>12</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+V<sub>1K</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+V<sub>21</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+V<sub>22</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+V<sub>2K</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+V<sub>J1</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+V<sub>J2</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+V<sub>JK</sub></td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(A.4)</td></tr></table>
+
+
+This is a matrix. We can consider matrix multiplication to be a
+generalization of the scalar product. So premultiplying a J&times;K matrix
+<b>V</b>, by a length J row vector <b>u</b><sup>T</sup> gives a new row
+vector of length K
+<a id="vecmatmul">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>u</b><sup>T</sup><b>V</b> = (</td><td nowrap="nowrap" align="center">
+<small>J</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+u<sub>j</sub>V<sub>j1</sub>,</td><td nowrap="nowrap" align="center">
+<small>J</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+u<sub>j</sub>V<sub>j2</sub>,...,</td><td nowrap="nowrap" align="center">
+<small>J</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+u<sub>j</sub>V<sub>jK</sub>).</td></tr></table>
+</td><td width="1%">(A.5)</td></tr></table>
+
+
+If we further have a set of M row vectors, we can display them as a
+matrix
+<a id="matrixrow">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <b>U</b> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+U<sub>11</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+U<sub>12</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+U<sub>1J</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+U<sub>21</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+U<sub>22</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+U<sub>2J</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+U<sub>M1</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+U<sub>M2</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+U<sub>MJ</sub></td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(A.6)</td></tr></table>
+
+
+(dispensing with the transpose notation for brevity and consistency). And
+multiplication of the matrices <b>U</b> (M&times;J) and <b>V</b>
+(J&times;K) can be
+considered to give an M&times;K matrix:
+<a id="matmult">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <b>U</b><b>V</b>=</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small>J</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+U<sub>1j</sub>V<sub>j1</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small>J</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+U<sub>1j</sub>V<sub>j2</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+...</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small>J</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+U<sub>1j</sub>V<sub>jK</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small>J</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+U<sub>2j</sub>V<sub>j1</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small>J</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+U<sub>2j</sub>V<sub>j2</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+...</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small>J</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+U<sub>2j</sub>V<sub>jK</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small>J</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+U<sub>Mj</sub>V<sub>j1</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small>J</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+U<sub>Mj</sub>V<sub>j2</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+...</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small>J</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+U<sub>Mj</sub>V<sub>jK</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(A.7)</td></tr></table>
+
+
+This is the definition of matrix multiplication.
+A matrix (or vector) can also be multiplied by a single number: a <em>scalar</em>,
+&#955; (say). The (jk)th element of &#955;<b>V</b> is
+&#955;V<sub>jk</sub>.
+
+</p><p>
+<a
+id="matrix_transposeA1784"></a>The transpose of a matrix <b>A</b>=(A<sub>ij</sub>) is simply the matrix
+formed from reversing the order of suffixes<a href="footnote.html#tthFtNtBAE" id="tthFrefBAE"><sup>104</sup></a>:
+<b>A</b><sup>T</sup>=(A<sup>T</sup><sub>ij</sub>)=(A<sub>ji</sub>). The transpose of a product of two
+matrices is therefore the reverse of the product of the transposes:
+<a id="transpprod">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  (<b>A</b><b>B</b>)<sup>T</sup> = <b>B</b><sup>T</sup><b>A</b><sup>T</sup>.</td></tr></table>
+</td><td width="1%">(A.8)</td></tr></table>
+
+
+
+</p><p>
+ <a id="tth_sEcA.2"></a><h2>
+A.2&nbsp;&nbsp;Determinants</h2>
+
+</p><p>
+<a
+id="determinantA2785"></a><a
+id="matrix_determinantA2786"></a>The determinant of a square matrix is a single scalar that is an
+important measure of its character. Determinants may be defined
+inductively. Suppose we know the definition of determinants of
+matrices of size (M&#8722;1)&times;(M&#8722;1). Define the determinant of an
+M&times;M matrix <b>A</b> whose ij<sup>th</sup> entry is A<sub>ij</sub>, as the
+expression
+<a id="detdef">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+det<br />
+</td><td nowrap="nowrap">(<b>A</b>)=&#124;<b>A</b>&#124; = </td><td nowrap="nowrap" align="center">
+<small>M</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+A<sub>1j</sub> <span class="roman">Co</span><sub>1j</sub>(<b>A</b>)</td></tr></table>
+</td><td width="1%">(A.9)</td></tr></table>
+
+
+where <span class="roman">Co</span><sub>ij</sub>(<b>A</b>) is the ij<sup>th</sup> <em>cofactor</em> of the matrix
+<b>A</b>. The ij<sup>th</sup> cofactor of an M&times;M matrix is
+(&#8722;1)<sup>i+j</sup> times the
+determinant of the (M&#8722;1)&times;(M&#8722;1) matrix obtained by removing the
+i<sup>th</sup> row and the j<sup>th</sup> column of the original matrix:
+<a id="cofactor">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<span class="roman">Co</span><sub>ij</sub>(<b>A</b>)=(&#8722;1)<sup>i+j</sup></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />
+&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;
+ </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>11</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>1j&#8722;1</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>1j+1</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>1M</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>i&#8722;1,1</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>i&#8722;1,j&#8722;1</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>i&#8722;1,j+1</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>i&#8722;1,M</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>i+1,1</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>i+1,j&#8722;1</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>i+1,j+1</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>i+1,M</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>M1</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>Mj&#8722;1</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>Mj+1</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+A<sub>MM</sub></td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td align="left" class="cl">&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />
+&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(A.10)</td></tr></table>
+
+
+The inductive definition is completed by defining the determinant of a
+1&times;1 matrix to be equal to its single element. The determinant
+of a 2&times;2 matrix is then A<sub>11</sub>A<sub>22</sub>&#8722;A<sub>12</sub>A<sub>21</sub>, and of a
+3&times;3 matrix is
+A<sub>11</sub>(A<sub>22</sub>A<sub>33</sub>&#8722;A<sub>23</sub>A<sub>32</sub>)+A<sub>12</sub>(A<sub>23</sub>A<sub>31</sub>&#8722;A<sub>21</sub>A<sub>13</sub>)+A<sub>13</sub>(A<sub>21</sub>A<sub>32</sub>&#8722;A<sub>22</sub>A<sub>31</sub>).
+
+</p><p>
+The
+determinant of an M&times;M matrix may equivalently be defined as
+the sum over
+all the M! possible permutations P of the integers 1,...,M, of
+the product of the entries <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8719;<br />
+</span><small>i</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+A<sub>i,P(i)</sub>
+</td></tr></table><br /> times the signum of P
+(plus or minus 1 according to whether P is even or odd):
+<a id="permut">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#124;<b>A</b>&#124; = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>P</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+<span class="roman">sgn</span>(P) A<sub>1,P(1)</sub> A<sub>2,P(2)</sub> ... A<sub>M,P(M)</sub> .</td></tr></table>
+</td><td width="1%">(A.11)</td></tr></table>
+
+
+This expression shows that there is nothing special about the first
+row in eq.&nbsp;(<a href="chapA.html#detdef">A.9</a>). One could equally well have used any row,
+i, giving <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#124;<b>A</b>&#124; = </td><td nowrap="nowrap" align="center">
+<small>M</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+A<sub>ij</sub> <span class="roman">Co</span><sub>ij</sub>(<b>A</b>)
+</td></tr></table><br />;
+or one could have used any column, j,  <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#124;<b>A</b>&#124; = </td><td nowrap="nowrap" align="center">
+<small>M</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+A<sub>ij</sub><span class="roman">Co</span><sub>ij</sub>(<b>A</b>)
+</td></tr></table><br />. All the results are the same.
+
+</p><p>
+The determinant of the transpose of a matrix <b>A</b> is equal to its
+determinant: &#124;<b>A</b><sup>T</sup>&#124;=&#124;<b>A</b>&#124;. The determinant of a product of
+two matrices is the product of the determinants: &#124;<b>A</b><b>B</b>&#124; = &#124;<b>A</b>&#124;&#124;<b>B</b>&#124;.  A matrix is said to be <em>singular</em> if its
+determinant is zero, otherwise it is nonsingular. If a matrix has two
+identical (or proportional, i.e.&nbsp;dependent) rows or two identical
+columns, then its determinant is zero and it is
+singular<a href="footnote.html#tthFtNtBAF" id="tthFrefBAF"><sup>105</sup></a>.
+
+</p><p>
+ <a id="tth_sEcA.3"></a><h2>
+A.3&nbsp;&nbsp;Inverses</h2>
+
+</p><p>
+The <em>unit matrix</em> is square,
+<a id="unitmatrix">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>I</b>=(&#948;<sub>ij</sub>) = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+...</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+...</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+...</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(A.12)</td></tr></table>
+
+
+with ones on the diagonal and zeroes elsewhere. It may be of any size, N,
+and if need be then denoted <b>I</b><sub>N</sub>. For any M&times;N matrix <b>A</b>,
+<a id="identity">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>I</b><sub>M</sub> <b>A</b> = <b>A</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="roman">and</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>A</b><b>I</b><sub>N</sub> = <b>A</b>.</td></tr></table>
+</td><td width="1%">(A.13)</td></tr></table>
+
+
+
+</p><p>
+<a
+id="matrix_inverseA3787"></a><a
+id="inverseA3788"></a>The <em>inverse</em> of a square matrix <b>A</b>, if it exists, is
+another matrix written <b>A</b><sup>&#8722;1</sup> such that<a href="footnote.html#tthFtNtBAG" id="tthFrefBAG"><sup>106</sup></a>
+<a id="inverse">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>A</b><sup>&#8722;1</sup><b>A</b> = <b>A</b><b>A</b><sup>&#8722;1</sup> = <b>I</b>.</td></tr></table>
+</td><td width="1%">(A.14)</td></tr></table>
+
+
+
+</p><p>
+A nonsingular square matrix possesses an inverse. A singular
+matrix does not.
+
+</p><p>
+The inverse of a matrix may be identified by considering the identity
+<a id="invexpand">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+<small>M</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+A<sub>ij</sub> <span class="roman">Co</span><sub>kj</sub>(<b>A</b>) = &#948;<sub>ik</sub>&#124;<b>A</b>&#124;.</td></tr></table>
+</td><td width="1%">(A.15)</td></tr></table>
+
+
+For i=k, this equality arises as the expansion of the determinant by
+row i. For i &#8800; k, the sum represents the determinant, expanded
+by row k, of a matrix in which the row k has been replaced by a
+copy of row i. The modified matrix has two rows identical, so its
+determinant is zero, as is &#948;<sub>ij</sub>,&nbsp;i &#8800; j. Now if we regard  <span class="roman">Co</span>(<b>A</b>) as a matrix, consisting of all the cofactors. Then we
+can consider <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<small>M</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+A<sub>ij</sub> <span class="roman">Co</span><sub>kj</sub>(<b>A</b>)
+</td></tr></table><br /> as being the
+matrix product of <b>A</b> by the transpose of the cofactor matrix,
+<b>A</b><span class="roman">Co</span>(<b>A</b>)<sup>T</sup>. So if &#124;<b>A</b>&#124; is nonzero we may
+divide (<a href="chapA.html#invexpand">A.15</a>) through by it and find
+  <a id="inversCo">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>A</b>[<span class="roman">Co</span>(<b>A</b>)<sup>T</sup>/&#124;<b>A</b>&#124;] = <b>I</b>. </td></tr></table>
+</td><td width="1%">(A.16)</td></tr></table>
+
+
+This equality shows that
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <b>A</b><sup>&#8722;1</sup> = <span class="roman">Co</span>(<b>A</b>)<sup>T</sup>/&#124;<b>A</b>&#124;.</td></tr></table>
+</td><td width="1%">(A.17)</td></tr></table>
+
+
+Consequently the solution of the nonsingular matrix equation
+<b>A</b><b>x</b>=<b>b</b> is
+<a id="Cramer">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>x</b> = </td><td nowrap="nowrap" align="center">
+<span class="roman">Co</span>(<b>A</b>)<sup>T</sup> <b>b</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#124;<b>A</b>&#124;<br /></td><td nowrap="nowrap" align="center">
+,</td></tr></table>
+</td><td width="1%">(A.18)</td></tr></table>
+
+
+which for column vectors <b>x</b> and <b>b</b> is Cramer's rule.
+
+</p><p>
+The inverse of the product of two nonsingular matrices is the reversed
+product of their inverses:
+<a id="revinv">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  (<b>A</b><b>B</b>)<sup>&#8722;1</sup>=<b>B</b><sup>&#8722;1</sup><b>A</b><sup>&#8722;1</sup>.</td></tr></table>
+</td><td width="1%">(A.19)</td></tr></table>
+
+
+
+</p><p>
+ <a id="tth_sEcA.4"></a><h2>
+A.4&nbsp;&nbsp;Eigenanalysis</h2>
+
+</p><p>
+<a
+id="eigenanalysisA4789"></a>A square matrix <b>A</b> maps the linear space of column vectors onto
+itself via <b>A</b> <b>x</b> = <b>y</b>, with <b>y</b> the vector onto
+which <b>x</b> is mapped. An <em>eigenvector</em> is a vector which is
+mapped onto a multiple of itself. That is
+<a id="eigeneq">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>A</b><b>x</b> = &#955;<b>x</b>,</td></tr></table>
+</td><td width="1%">(A.20)</td></tr></table>
+
+
+where &#955; is a scalar called the <em>eigenvalue</em>. In general a
+square matrix of dimension N has N different
+eigenvectors. Obviously an eigenvector times any scalar is still an
+eigenvector, which is not considered to be different.
+
+</p><p>
+Since eq.&nbsp;(<a href="chapA.html#eigeneq">A.20</a>), which is
+(<b>A</b>&#8722;&#955;<b>I</b>)<b>x</b>=0, is a homogeneous equation for the
+elements of <b>x</b>, in order for there to be a non-zero solution,
+<b>x</b>, the determinant of the coefficients must be zero:
+<a id="eigendet">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#124;<b>A</b>&#8722;&#955;<b>I</b>&#124;=0.</td></tr></table>
+</td><td width="1%">(A.21)</td></tr></table>
+
+
+For an N&times;N matrix, this determinant gives a polynomial of
+order N for &#955;,<a
+id="eigenvalueA4790"></a> whose N roots are the
+N eigenvalues.
+
+</p><p>
+If <b>A</b> is symmetric, that is if <b>A</b><sup>T</sup>=<b>A</b>, then the
+eigenvectors corresponding to different eigenvalues are orthogonal,
+that is, their scalar product is zero. See this by considering two
+eigenvectors <b>e</b><sub>1</sub> and <b>e</b><sub>2</sub>, corresponding to different
+eigenvalues &#955;<sub>1</sub>, &#955;<sub>2</sub>, and using the respective
+versions of eq.&nbsp;(<a href="chapA.html#eigeneq">A.20</a>) and the properties of the transpose.
+<a id="ortheig">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>e</b><sup>T</sup><sub>2</sub><b>A</b><b>e</b><sub>1</sub> = <b>e</b><sub>2</sub><sup>T</sup>&#955;<sub>1</sub><b>e</b><sub>1</sub>, &nbsp;&nbsp;&nbsp;<b>e</b><sub>2</sub><sup>T</sup><b>A</b><sup>T</sup><b>e</b><sub>1</sub>=(<b>e</b><sup>T</sup><sub>1</sub><b>A</b><b>e</b><sub>2</sub>)<sup>T</sup> = (<b>e</b><sub>1</sub><sup>T</sup>&#955;<sub>2</sub><b>e</b><sub>2</sub>)<sup>T</sup>=<b>e</b><sub>2</sub><sup>T</sup>&#955;<sub>2</sub><b>e</b><sub>1</sub>.</td></tr></table>
+</td><td width="1%">(A.22)</td></tr></table>
+
+
+So by subtraction
+<a id="ortheig2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  0=<b>e</b><sub>2</sub><sup>T</sup>(<b>A</b>&#8722;<b>A</b><sup>T</sup>)<b>e</b><sub>1</sub> = (&#955;<sub>1</sub>&#8722;&#955;<sub>2</sub>)<b>e</b><sub>2</sub><sup>T</sup><b>e</b><sub>1</sub>.</td></tr></table>
+</td><td width="1%">(A.23)</td></tr></table>
+
+
+If there are multiple independent eigenvectors<a
+id="eigenvectorA4791"></a> with identical
+eigenvalues, they can be chosen to be orthogonal. In that standard
+case, the eigenvectors are all orthogonal: <b>e</b><sub>i</sub><sup>T</sup><b>e</b><sub>j</sub>=0 for
+i &#8800; j.
+
+</p><p>
+If we then take the eigenvectors also to be normalized such that
+<b>e</b><sub>j</sub><sup>T</sup><b>e</b><sub>j</sub>=1, we can construct a square matrix <b>U</b>
+whose columns are equal to these eigenvectors (as in eq.&nbsp;(<a href="chapA.html#matrixcol">A.4</a>)). The matrix <b>U</b> whose columns are orthonormal
+is said to be an <em>orthonormal</em> matrix (sometimes just called
+orthogonal). The inverse of <b>U</b> is its transpose: <b>U</b><sup>&#8722;1</sup> = <b>U</b><sup>T</sup>. This <b>U</b> is a unitary basis transformation which
+diagonalizes <b>A</b>. This fact follows from the observation that
+<b>A</b><b>U</b>=<b>D</b><b>U</b>=<b>U</b><b>D</b> where <b>D</b> is the
+diagonal matrix constructed from the eigenvalues:
+<a id="eigendiag">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>D</b> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#955;<sub>1</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+...</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#955;<sub>2</sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+...</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+...</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#955;<sub>N</sub></td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(A.24)</td></tr></table>
+
+
+Therefore
+<a id="diagonz">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>U</b><sup>T</sup><b>A</b><b>U</b> = <b>U</b><sup>T</sup> <b>U</b><b>D</b> = <b>D</b>.</td></tr></table>
+</td><td width="1%">(A.25)</td></tr></table>
+
+
+
+</p><p>
+
+
+<hr /><table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+<a href="docindex.html">NEXT
+</a></td></tr></table>
+</div></body></html>

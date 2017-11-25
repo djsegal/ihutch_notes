@@ -1,0 +1,2025 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
+    img {     max-width: 100%;
+    max-height: 40vh; } p { line-height: 1.5em; } body {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 18px;
+    }
+  </style>
+<
+<title>chap7.html</title>
+<table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+ <a href="chap6.html">PREVIOUS
+</a></td></tr></table>
+ <a id="tth_chAp7"></a><h1>
+Chapter 7 <br />Fluid Dynamics and Hyperbolic Equations</h1>
+<a id="FluidChapter">
+</a>
+
+</p><p>
+ <a id="tth_sEc7.1"></a><h2>
+7.1&nbsp;&nbsp;The fluid momentum equation</h2>
+
+</p><p>
+<a
+id="fluid71393"></a><a
+id="fluid_continuity71394"></a><a
+id="continuity71395"></a>In section <a href="chap4.html#fluidcontinuity">4.1.1</a> we introduced the continuity or
+mass-conservation equation of fluid flow.
+<a id="fluidcont">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;&#961;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
++&#8711;.(&#961;<b><i>v</i></b>) = S.</td></tr></table>
+</td><td width="1%">(7.1)</td></tr></table>
+
+
+Now we want to discuss the second important equation governing fluid
+dynamics, the momentum conservation<a
+id="momentum_conservation71396"></a>
+equation. Like mass conservation, momentum conservation simply
+identifies all the sources of momentum within a particular volume V
+and the fluxes of momentum inward across the boundary &#8706;V of
+that volume, and sets their sum equal to the rate of change of the
+total momentum in the volume. Momentum is of course a vector quantity
+whose density (momentum per unit volume) is &#961;<b><i>v</i></b>. The total
+rate of change of momentum is the integral of this quantity over the
+volume.
+
+</p><p>
+<a
+id="fluid_momentum_conservation71397"></a> The sources of momentum within a
+volume consist of any <em>body forces</em> that might be acting upon the
+fluid. This, of course, is what Newton's second law of motion tells
+us. Rate of change of momentum is equal to force. However, like the
+momentum, the force must be expressed in terms of <em>force
+  density</em><a
+id="force_density71398"></a>, <b><i>F</i></b>, the force per unit volume
+acting on the fluid. For example, gravity<a
+id="gravity71399"></a> gives rise to
+a force per unit volume &#961;<b><i>g</i></b>, where <b><i>g</i></b> is the
+gravitational acceleration vector (downwards on earth). Or again, if
+the fluid is electrically charged with a charge
+density<a
+id="density_charge71400"></a><a
+id="charge_density71401"></a> &#961;<sub>q</sub>, then
+the body force density<a
+id="electric_force71402"></a> arising from an electric field <b><i>E</i></b> is
+&#961;<sub>q</sub><b><i>E</i></b>.  The force density <b><i>F</i></b> is the sum of all such
+forces that happen to be present. There might be none.
+
+</p><p>
+The flux of momentum<a
+id="flux_of_momentum71403"></a><a
+id="momentum_flux___density71404"></a> across the surface is the more tricky part. Some of that
+flux arises because of fluid motion. The fluid momentum, density
+&#961;<b><i>v</i></b>, is being carried along, "convected", with the fluid
+at velocity <b><i>v</i></b>. Consequently, across any stationary surface
+element <b><i>dA</i></b> there is a convective flux of momentum equal to
+&#961;<b><i>v</i></b> <b><i>v</i></b>.<b><i>dA</i></b>. We may therefore identify the
+convective<a
+id="convection71405"></a> momentum flux density as the quantity
+whose dot product with <b><i>dA</i></b> gives the flux across <b><i>dA</i></b>. It
+is &#961;<b><i>v</i></b> <b><i>v</i></b>, which is a
+tensor<a
+id="tensor71406"></a><a
+id="dyadic71407"></a> (or dyadic in this notation), it
+has two sets of coordinate indices, and can be thought of as a
+3&times;3 matrix:
+<a id="momndensity">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#961;<b><i>v</i></b><b><i>v</i></b> = &#961;v<sub>i</sub> v<sub>j</sub> = &#961; </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>1</sub>v<sub>1</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>1</sub>v<sub>2</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>1</sub>v<sub>3</sub> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>2</sub>v<sub>1</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>2</sub>v<sub>2</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>2</sub>v<sub>3</sub> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>3</sub>v<sub>1</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>3</sub>v<sub>2</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>3</sub>v<sub>3</sub> </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(7.2)</td></tr></table>
+
+
+
+</p><p>
+In addition to this convective momentum flux, carried by the local
+mean fluid velocity, there may be momentum flux that arises from other
+effects. One such effect is pressure<a
+id="pressure71408"></a>. Another is viscosity<a
+id="viscosity71409"></a>. Another
+(in non-Newtonian fluids like gels or of course solids) might be
+shear<a
+id="shear_stress71410"></a>
+stress<a
+id="stress71411"></a> arising from elasticity. All of these can be lumped together
+into another tensor that is usually called simply the <em>stress</em>
+tensor<a
+id="stress_tensor71412"></a>, or the <em>pressure</em>
+tensor<a
+id="pressure_tensor71413"></a>. We'll write it <b>P</b>. It is
+a 3&times;3 matrix with coefficients P<sub>ij</sub>. We assume that just as
+<b><i>F</i></b> is the sum of all possible body force densities, <b>P</b>
+is the sum of all non-convective momentum flux densities.
+
+</p><p>
+<a id="tth_fIg7.1">
+</a>   <img src="figures/pvolumeint.png" alt="figures/pvolumeint.png" /><a id="pvolumeint">
+</a>
+
+<div style="text-align:center">Figure 7.1: Integral of momentum flux density across the boundary surface
+    &#8706;V is equal to minus the integral of  rate of change of
+    momentum minus force density over the volume V. The momentum
+    flux density includes convective flux and stress tensor parts.<a id="lpvolumeint">
+</a></div>
+
+</p><p>
+The conservation of momentum is then
+<a id="momnconsv">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#961;<b><i>v</i></b> d<sup>3</sup>x = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+<b><i>F</i></b> d<sup>3</sup>x &#8722; </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>&#8706;V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+(&#961;<b><i>v</i></b><b><i>v</i></b> +<b>P</b>).<b><i>dA</i></b>.</td></tr></table>
+</td><td width="1%">(7.3)</td></tr></table>
+
+
+applied to an arbitrary volume and surface, as illustrated in Fig.&nbsp;<a href="chap7.html#lpvolumeint">7.1</a>.
+Just as with mass conservation, we can use Gauss's
+divergence<a
+id="Gauss_theorem71414"></a> theorem
+to turn the surface integral into a volume integral, and gather the
+terms together:
+<a id="momnvol">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+(&#961;<b><i>v</i></b>) &#8722; <b><i>F</i></b>  +&#8711;.(&#961;<b><i>v</i></b><b><i>v</i></b>+<b>P</b>) d<sup>3</sup>x = 0.</td></tr></table>
+</td><td width="1%">(7.4)</td></tr></table>
+
+
+This equation must hold for any volume V, and the only way for that
+to be true is for the integrand to be zero everywhere:
+<a id="momngen">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+(&#961;<b><i>v</i></b>) &#8722; <b><i>F</i></b>  +&#8711;.(&#961;<b><i>v</i></b><b><i>v</i></b>+<b>P</b>)=0.</td></tr></table>
+</td><td width="1%">(7.5)</td></tr></table>
+
+
+This is the general form of the fluid momentum conservation equation.
+If we know what <b>P</b> is, then this equation is enough to solve
+for <b><i>v</i></b>. But really we are in the same situation as we were with
+the continuity equation. There, we could solve the equation for
+&#961;, but only if we knew <b><i>v</i></b>. Now we've got an equation for
+<b><i>v</i></b>, but it depends upon knowing <b>P</b>. Intuitively you can
+see that this heirarchical process might go on for ever. We can get an
+equation for <b>P</b> from the conservation of <em>energy</em>, but
+that equation will contain a third-order tensor governing the energy
+flux<a
+id="energy_flux71415"></a> (conduction etc.). Solving for that requires yet another
+equation, and so on. In general, to get a soluble problem we have to
+call a halt at some point - a process called
+"closure"<a
+id="closure71416"></a>. How and
+when we do that decides what sort of fluid equations we end up with.
+This closure generally invokes a "constitutive
+relation"<a
+id="constitutive_relation71417"></a> between a
+property such as stress and the other variables of the fluid such as
+density or velocity gradient.
+
+</p><p>
+The kinds of fluids we encounter most in everyday life are
+isotropic<a
+id="isotropic71418"></a>. They have no intrinsically preferred
+direction.  There are fluids that are anisotropic<a
+id="anisotropic71419"></a>,
+for example plasmas or other electrically conducting fluids in
+magnetic fields<a
+id="magnetic_field71420"></a>. But for now we set them
+aside. Isotropic fluids generally give rise to nearly
+symmetric<a
+id="symmetric_stress71421"></a> stress tensors <b>P</b>. It is then
+helpful to separate out the total stress tensor into a part that is
+simply a scalar p times the unit matrix <b>I</b> (that's the
+isotropic part), and a part &#963; that has zero
+<em>trace</em><a
+id="trace__of_matrix71422"></a><a
+id="matrix_trace71423"></a>,
+i.e.&nbsp;the sum of its diagonal elements is zero <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#963;<sub>ii</sub>=0
+</td></tr></table><br />. Thus we write <b>P</b>=p<b>I</b>+ &#963;.  Then p
+is the <em>pressure</em>.
+
+</p><p>
+<a id="tth_fIg7.2">
+</a>   <img src="figures/rateofstrain.png" alt="figures/rateofstrain.png" /><a id="rateofstrain">
+</a>
+
+<div style="text-align:center">Figure 7.2: The transfer in the y-direction of x-momentum arises
+    from the rate of strain dv<sub>x</sub>/dy. The rate of strain tensor is
+    the symmetric generalization of this form.<a id="lrateofstrain">
+</a></div>
+
+</p><p>
+The traceless stress tensor &#963;
+for simple fluids arises from viscosity, which relates stress to the
+rate of strain tensor<a
+id="rate_of_strain71424"></a>, see Fig.&nbsp;<a href="chap7.html#lrateofstrain">7.2</a>. The rate of strain tensor
+is <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"> <sup>1</sup>/<sub>2</sub></td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8706;v<sub>i</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sub>j</sub><br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+&#8706; v<sub>j</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sub>i</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />. And &#963; is proportional to
+its traceless part
+<a id="sigmavisc">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#963;<sub>ij</sub> = &#956;</td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8706;v<sub>i</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sub>j</sub><br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+&#8706; v<sub>j</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sub>i</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+&#8722; </td><td nowrap="nowrap" align="center">
+2
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>3<br /></td><td nowrap="nowrap" align="center">
+&#8711;.<b><i>v</i></b> &#948;<sub>ij</sub></td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+ = &#956;</td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+((&#8711;<b><i>v</i></b>)+(&#8711;<b><i>v</i></b>)<sup>T</sup>) &#8722; </td><td nowrap="nowrap" align="center">
+2
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>3<br /></td><td nowrap="nowrap" align="center">
+(&#8711;.<b><i>v</i></b>)<b>I</b></td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>ij</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(7.6)</td></tr></table>
+
+
+The constant of proportionality, &#956; is the (shear)
+<em>viscosity</em><a
+id="viscosity_shear71425"></a>. Here (&#8711;<b><i>v</i></b>) is a
+tensor (dyadic) whose transpose is indicated with a superscript
+T. Substituting this expression into the general momentum
+conservation equation gives what is called the Navier-Stokes
+equation<a
+id="Navier_Stokes71426"></a>.
+<a id="NavierStokes">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+(&#961; <b><i>v</i></b>)+&#8711;.(&#961;<b><i>v</i></b><b><i>v</i></b>) = &#8722;&#8711;.(p<b>I</b>+&#963;)+<b><i>F</i></b> = &#8722;&#8711;p &#8722;&#956;&#8711;<sup>2</sup> <b><i>v</i></b>&#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>3<br /></td><td nowrap="nowrap" align="center">
+&#956;&#8711;(&#8711;.<b><i>v</i></b>) + <b><i>F</i></b>.</td></tr></table>
+</td><td width="1%">(7.7)</td></tr></table>
+
+
+
+</p><p>
+The closure for the pressure (and viscosity) must generally be
+determined by equations of state relating pressure, p, to density, &#961;. For example
+for an ideal isothermal gas p &#8733; &#961;. Liquids<a
+id="liquid71427"></a>
+have an equation of state that amounts approximately to
+incompressibility<a
+id="incompressible71428"></a><a
+id="fluid_incompressible71429"></a>,
+&#961; = const., and they generally have zero volumetric source S. For
+such a fluid, the continuity equation shows that the velocity
+divergence is zero, &#8711;.<b><i>v</i></b>=0. The divergenceless fluid
+momentum equation is then simpler.
+<a id="Divirgenceless">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+(&#961; <b><i>v</i></b>)+&#8711;.(&#961;<b><i>v</i></b><b><i>v</i></b>) = &#8722;&#8711;p &#8722;&#956;&#8711;<sup>2</sup> <b><i>v</i></b> + <b><i>F</i></b>.</td></tr></table>
+</td><td width="1%">(7.8)</td></tr></table>
+
+
+And of course if viscosity and body forces are negligible it becomes
+even simpler yet.
+
+</p><p>
+The left hand side of these equations is often
+rewritten using the continuity equation with S=0 to demonstrate
+<a id="convectivederiv">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+(&#961; <b><i>v</i></b>)+&#8711;.(&#961;<b><i>v</i></b><b><i>v</i></b>) = &#961;</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+<b><i>v</i></b>+<b><i>v</i></b>.&#8711;<b><i>v</i></b></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(7.9)</td></tr></table>
+
+
+Then the second form is recognized as &#961; times the convective
+derivative &#8706;/&#8706;t + <b><i>v</i></b>.&#8711; of
+<b><i>v</i></b>. However, the first form is what is called "conservative"
+form<a
+id="conservative_form71430"></a>, and it is by far the better form to use
+for discrete representation and numerical solution on fixed meshes.
+
+</p><p>
+ <a id="tth_sEc7.2"></a><h2>
+7.2&nbsp;&nbsp;Hyperbolic Equations</h2>
+
+</p><p>
+Fluid equations are generally hyperbolic.
+Let's start our analysis of such hyperbolic equations<a
+id="hyperbolic72431"></a> by
+considering a problem where body force is zero; sources are zero;
+viscosity is zero; pressure is related to density by an adiabatic law
+p &#961;<sup>&#8722;&#947;</sup>=const.; and the configuration is one-dimensional in
+space. This is governed then by the following equations.
+<a id="onedcompressive">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+Continuity:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;&#961;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+(&#961;v) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+=</td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ 0 </td></tr></table></td></tr>
+<tr><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+Momentum:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+ &#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+(&#961;v)+</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+(&#961;v<sup>2</sup>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+=</td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ &#8722;</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+p </td></tr></table></td></tr>
+<tr><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+State:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ p&#961;<sup>&#8722;&#947;</sup></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+=</td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+const.</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(7.10)</td></tr></table>
+
+
+These are three equations for three unknowns &#961;, v, and
+p. They<a
+id="fluid_compressible72432"></a> represent a
+compressible<a
+id="compressible_fluid72433"></a> fluid (gas) in a pipe, for
+example.  We can eliminate p immediately by writing
+p=p<sub>0</sub>&#961;<sup>&#947;</sup>/&#961;<sub>0</sub><sup>&#947;</sup>. To retain the conservation
+properties, we regard the density, &#961;, and <em>momentum
+  density</em>, &#961;v = &#915;, as the independent variables, in which
+case the equations become
+<a id="1dc2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;&#961;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ = </td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ &#8722;</td><td nowrap="nowrap" align="center">
+&#8706;&#915;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+ &#8706;&#915;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+=</td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ &#8722;</td><td nowrap="nowrap" align="center">
+ &#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+(&#915;<sup>2</sup>/&#961;+(p<sub>0</sub>/&#961;<sub>0</sub><sup>&#947;</sup>)&#961;<sup>&#947;</sup>)</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(7.11)</td></tr></table>
+
+
+
+</p><p>
+We might well want to solve these nonlinear equations
+numerically. They are now expressed in a form that is actually the
+same for all types of fluid conservation<a
+id="conservation_equation72434"></a> equations:
+<a id="hypergeneric">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;<b>u</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+ = &#8722;</td><td nowrap="nowrap" align="center">
+&#8706;<b>f</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(7.12)</td></tr></table>
+
+
+In our particular case
+<a id="hypervectors">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <b>u</b> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#961;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="roman">and</span> &nbsp;&nbsp;&nbsp;<b>f</b> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;<sup>2</sup>/&#961;+(p<sub>0</sub>/&#961;<sub>0</sub><sup>&#947;</sup>)&#961;<sup>&#947;</sup></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(7.13)</td></tr></table>
+
+
+are the state vector<a
+id="state_vector72435"></a> and the flux
+vector<a
+id="flux_vector72436"></a> respectively. Since the flux vector is a
+function of the state vector, we can use the chain rule to write the
+equations as
+<a id="hypermatrix">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;<b>u</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+ = &#8722;</td><td nowrap="nowrap" align="center">
+&#8706;<b>f</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; <b>u</b><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;<b>u</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+ = &#8722;</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>m=1,M</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;<b>f</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; u<sub>m</sub><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;u<sub>m</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+ = &#8722;<b>J</b> </td><td nowrap="nowrap" align="center">
+&#8706;<b>u</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(7.14)</td></tr></table>
+
+
+Here, the Jacobian<a
+id="Jacobian_matrix72437"></a><a
+id="matrix_Jacobian72438"></a> matrix
+<b>J</b>=&#8706;<b>f</b>/&#8706;<b>u</b> has size M&times;M=2&times;2 and is explicitly
+<a id="hyperjac">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>J</b> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;&#915;<sup>2</sup>/&#961;<sup>2</sup>+&#947;(p<sub>0</sub>/&#961;<sub>0</sub><sup>&#947;</sup>)&#961;<sup>&#947;&#8722;1</sup> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+2&#915;/&#961;</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(7.15)</td></tr></table>
+
+
+The Jacobian matrix quite generally embodies the differential equation
+by relating time-derivates to space-derivatives of the state vector,
+through eq.&nbsp;(<a href="chap7.html#hypermatrix">7.14</a>): <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+&#8706;<b>u</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+ = &#8722;<b>J</b> </td><td nowrap="nowrap" align="center">
+&#8706;<b>u</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />.
+
+</p><p>
+Writing for convenience
+&#915;/&#961; = v, and &#947;(p<sub>0</sub>/&#961;<sub>0</sub><sup>&#947;</sup>)&#961;<sup>&#947;&#8722;1</sup>=c<sub>s</sub><sup>2</sup>,
+the eigenvalues<a
+id="eigenvalue_of_Jacobian72439"></a> of <b>J</b> are then solutions of
+<a id="Jeigen">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#x23A2;<br />&#x23A2;<br />
+&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;&#955;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;v<sup>2</sup> +c<sub>s</sub><sup>2</sup> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;&#955;+ 2v</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x23A2;<br />&#x23A2;<br />
+&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+ = &#955;<sup>2</sup> &#8722; 2v &#955;+v<sup>2</sup> &#8722; c<sub>s</sub><sup>2</sup>=0,</td></tr></table>
+</td><td width="1%">(7.16)</td></tr></table>
+
+
+which are
+<a id="Jeigensol">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#955; =  v &#177;c<sub>s</sub>.</td></tr></table>
+</td><td width="1%">(7.17)</td></tr></table>
+
+
+For small density perturbations, c<sub>s</sub><sup>2</sup>=&#947;(p<sub>0</sub>/&#961;<sub>0</sub><sup>&#947;</sup>)&#961;<sup>&#947;&#8722;1</sup> &#8776; &#947;p<sub>0</sub>/&#961;<sub>0</sub>, which
+gives the usual definition of the (small-amplitude) sound speed
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">c<sub>s</sub>=</td><td align="left" class="cl"><br /><span class="larger">&#8730;</span><br />
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm">&#947;p<sub>0</sub>/&#961;<sub>0</sub><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />.
+
+</p><p>
+The fact that the eigenvalues are real<a
+id="eigenvalue_real72440"></a> is a
+demonstration that the system of equations is
+<em>hyperbolic</em><a
+id="hyperbolic_Jacobian_eigenvalue72441"></a>. The
+eigenvalues indicate the speed<a
+id="wave_propagation72442"></a> of
+propagation of disturbances. In this fluid they propagate at the speed
+of sound<a
+id="speed_of_sound72443"></a> measured in the rest-frame of the fluid.
+
+</p><p>
+ <a id="tth_sEc7.3"></a><h2>
+7.3&nbsp;&nbsp;Finite Differences and Stability</h2>
+
+</p><p>
+Now let's consider possible finite difference representations of the
+equations<a
+id="hyperbolic_finite_difference73444"></a>. We notice that the
+simplest time differences give the time derivative
+(<b>u</b><sup>(n+1)</sup><sub>j</sub>&#8722;<b>u</b><sup>(n)</sup><sub>j</sub>)/&#8710;t effectively at time
+n+1/2 but position j, and the simplest space difference gives a derivative
+(<b>f</b><sup>(n)</sup><sub>j+1</sub>&#8722;<b>f</b><sup>(n)</sup><sub>j</sub>)/&#8710;x at position
+j+1/2. These expressions don't line up with one another so if we use
+them, we'll certainly have only first order accuracy. See Fig.&nbsp;<a href="chap7.html#fluidmeshl">7.3</a>.
+
+</p><p>
+<a id="tth_fIg7.3">
+</a>    <img src="figures/fluidmesh.png" alt="figures/fluidmesh.png" /><a id="fluidmesh">
+</a>
+
+<div style="text-align:center">Figure 7.3: Derivatives in time (n) and space (j) implemented as
+    finite differences give rise to values at the half-mesh points
+    <b>x</b>.<a id="fluidmeshl">
+</a></div>
+
+</p><p>
+We could try to
+fix that by taking centered derivatives; but it turns out that may
+make things worse. The scheme may become unstable. But how do we
+analyse stability for this fluid? We have multiple
+coupled<a
+id="coupled_equations73445"></a> dependent
+variables. How do we deal with that?
+The answer, in summary, is that we find the combinations of dependent
+variables that behave in a way that is approximately uncoupled from
+the other combinations of dependent variables - in other words, the
+characteristic <em>modes</em> of the system. Then we analyse the Von
+Neumann stability<a
+id="Von_Neumann_stability73446"></a> of those modes separately.
+
+</p><p>
+If the Jacobian matrix is independent of position, then it is possible
+to change the dependent variables to new combinations of variables,
+each of which is <em>uncoupled</em><a
+id="uncoupled_representation73447"></a> from the other
+combinations<a href="footnote.html#tthFtNtAEC" id="tthFrefAEC"><sup>42</sup></a>. The new combination to use consists of the
+<em>eigenvectors</em> of the matrix <b>J</b>.
+
+</p><p>
+Let's illustrate this with our fluid. Consider the
+eigenvalues<a
+id="eigenvalue73448"></a> &#955; = v&#177;c<sub>s</sub>. For each eigenvalue,
+the eigenvector<a
+id="eigenvector73449"></a>, which is the solution of the
+homogeneous equation (<b>J</b>&#8722;&#955;<b>I</b>)<b>e</b>=0, must give
+zero when multiplied by any of the rows of the combined matrix
+(<b>J</b>&#8722;&#955;<b>I</b>). Using the top row, which becomes (&#8722;[v&#177;c<sub>s</sub>],1) we find that the eigenvector is proportional to
+<a id="Jeigenvec">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <b>e</b><sub>&#177;</sub> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v&#177;c<sub>s</sub> </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(7.18)</td></tr></table>
+
+
+Now we can express any vector state as the sum of two coefficients
+q<sub>&#177;</sub> times the two eigenvectors<a href="footnote.html#tthFtNtAED" id="tthFrefAED"><sup>43</sup></a>
+<b>u</b>=q<sub>+</sub><b>e</b><sub>+</sub>+q<sub>&#8722;</sub><b>e</b><sub>&#8722;</sub> or written out
+<a id="eigendecomp">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#961;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = q<sub>+</sub> </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v+ c<sub>s</sub> </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
++q<sub>&#8722;</sub> </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v&#8722; c<sub>s</sub> </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(7.19)</td></tr></table>
+
+
+[The coefficient values are q<sub>&#177;</sub>=[&#961;(v&#177;c<sub>s</sub>)&#8722;&#915;]/(&#177;2c<sub>s</sub>) but we don't need to know that.] The quantities q<sub>&#177;</sub>
+can be considered to be the coefficients of the new
+vector representation <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"><b>q</b>=</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+q<sub>+</sub><br />
+q<sub>&#8722;</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />, by which
+the state can be expressed.
+Then the result of multiplying <b>u</b> by the Jacobian matrix<a
+id="matrix_Jacobian73450"></a> can be
+written in terms of the new set of q-coefficients as follows,
+<a id="Jtimeseig">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>J</b><b>u</b>=q<sub>+</sub><b>J</b><b>e</b><sub>+</sub>+q<sub>&#8722;</sub><b>J</b><b>e</b><sub>&#8722;</sub> = q<sub>+</sub>&#955;<sub>+</sub><b>e</b><sub>+</sub>+q<sub>&#8722;</sub>&#955;<sub>&#8722;</sub><b>e</b><sub>&#8722;</sub>&nbsp;&nbsp;.</td></tr></table>
+</td><td width="1%">(7.20)</td></tr></table>
+
+
+This shows that the vector of eigenvalue coefficients giving
+<b>J</b><b>u</b> is <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+q<sub>+</sub>&#955;<sub>+</sub><br />
+q<sub>&#8722;</sub>&#955;<sub>&#8722;</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />.  So
+in terms of the new q-representation
+<a id="NewJ">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm"><b>J</b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<b>q</b> = </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+q<sub>+</sub>&#955;<sub>+</sub><br />
+q<sub>&#8722;</sub>&#955;<sub>&#8722;</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#955;<sub>+</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#955;<sub>&#8722;</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+q<sub>+</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+q<sub>&#8722;</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(7.21)</td></tr></table>
+
+
+In this q-representation, the operator <b>J</b>, is represented by
+a different matrix <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm"><b>J</b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> which is
+<em>diagonal</em><a
+id="diagonal_representation73451"></a> having coefficients
+equal to the eigenvalues. Consequently the equations governing the
+evolution of the coefficients <b>q</b> of the eigenvectors separates
+into two independent equations
+<a id="NewRep">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;q<sub>&#177;</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+ = &#8722;&#955;<sub>&#177;</sub> </td><td nowrap="nowrap" align="center">
+&#8706;q<sub>&#177;</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+,</td></tr></table>
+</td><td width="1%">(7.22)</td></tr></table>
+
+
+in place of the previously coupled equations governing <b>u</b>.
+This process is totally general and will work for vectors of any
+dimensionality, corresponding to any order differential
+equations.  We can now analyse each scalar equation
+separately for stability.  Recognize, though, that the eigenvalues are
+<em>not</em> necessarily uniform in space, therefore this separation of
+the equations applies really only locally. So the stability analysis
+we now do is an approximate local analysis, not a precise global
+analysis.
+
+</p><p>
+     <a id="tth_sEc7.3.1"></a><h3>
+7.3.1&nbsp;&nbsp;FTCS is unstable</h3>
+
+</p><p>
+<a
+id="hyperbolic_FTCS73452"></a><a
+id="FTCS73453"></a><a
+id="forward_in_time73454"></a><a
+id="centered_in_space73455"></a>
+A forward time centered space difference scheme might spring to mind
+as a natural one, illustrated in Fig.&nbsp;<a href="chap7.html#fluidFTCSl">7.4</a>.
+
+</p><p>
+<a id="tth_fIg7.4">
+</a>   <img src="figures/fluidFTCS.png" alt="figures/fluidFTCS.png" /><a id="fluidFTCS">
+</a>
+
+<div style="text-align:center">Figure 7.4: Forward derivative in Time (n) and Centered in Space (j) (FTCS)
+    finite differences give rise to an unstable scheme for hyperbolic problems.<a id="fluidFTCSl">
+</a></div>
+
+</p><p>
+ For stability<a
+id="hyperbolic_stability73456"></a>
+analysis<a
+id="stability_hyperbolic73457"></a> purposes, we can suppose that
+we are using the new representation (in other words u stands for
+each q which we can consider separately in scalar equations).
+But we
+don't actually do the transformation to that new representation when
+implementing the scheme (only when analysing its stability). The first
+time through we'll do things explicitly but then take short cuts
+thereafter not bringing q in explicitly. We write
+out the difference equation as
+<a id="FTCShyper">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>u</b><sup>(n+1)</sup><sub>j</sub>&#8722;<b>u</b><sup>(n)</sup><sub>j</sub> = &#8722; </td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#8710;x<br /></td><td nowrap="nowrap" align="center">
+(<b>f</b><sup>(n)</sup><sub>j+1</sub>&#8722;<b>f</b><sup>(n)</sup><sub>j&#8722;1</sub>) = &#8722; </td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#8710;x<br /></td><td nowrap="nowrap" align="center">
+<b>J</b>(<b>u</b><sup>(n)</sup><sub>j+1</sub>&#8722;<b>u</b><sup>(n)</sup><sub>j&#8722;1</sub>),</td></tr></table>
+</td><td width="1%">(7.23)</td></tr></table>
+
+
+which in the new representation is
+<a id="FTCShyperalt">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  q<sup>(n+1)</sup><sub>j</sub>&#8722;q<sup>(n)</sup><sub>j</sub> = &#8722; </td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#8710;x<br /></td><td nowrap="nowrap" align="center">
+&#955;(q<sup>(n)</sup><sub>j+1</sub>&#8722;q<sup>(n)</sup><sub>j&#8722;1</sub>)</td></tr></table>
+</td><td width="1%">(7.24)</td></tr></table>
+
+
+and consider a single spatial Fourier mode of u and f and hence of q
+<a id="uFourier">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  q<sub>j</sub> = q exp(ik<sub>x</sub> j&#8710;x),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f<sub>j</sub> = f exp(ik<sub>x</sub> j&#8710;x) .</td></tr></table>
+</td><td width="1%">(7.25)</td></tr></table>
+
+
+Substituting for the spatial dependence, the advancing equation becomes
+<a id="FTCShyperIt">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  q<sup>(n+1)</sup><sub>j</sub> = [1&#8722; </td><td nowrap="nowrap" align="center">
+&#8710;t &#955;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#8710;x<br /></td><td nowrap="nowrap" align="center">
+(<span class="roman">e</span><sup>ik<sub>x</sub> &#8710;x</sup> &#8722; <span class="roman">e</span><sup>&#8722;ik<sub>x</sub>&#8710;x</sup>) ]q<sup>(n)</sup><sub>j</sub> = [1&#8722;i</td><td nowrap="nowrap" align="center">
+&#8710;t &#955;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+sin(k<sub>x</sub> &#8710;x)]q<sup>(n)</sup><sub>j</sub>.</td></tr></table>
+</td><td width="1%">(7.26)</td></tr></table>
+
+
+Now we see immediately that the temporal amplification factor is
+<a id="FTCShyperamp">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  A = 1&#8722;i</td><td nowrap="nowrap" align="center">
+&#8710;t &#955;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+sin(k<sub>x</sub> &#8710;x).</td></tr></table>
+</td><td width="1%">(7.27)</td></tr></table>
+
+
+Because the second term is imaginary, the magnitude of the
+amplification factor<a
+id="amplification_factor73458"></a> is always greater
+than 1, regardless of the (real) value of &#955;. All modes are
+unstable, growing with time!  FTCS does not work for hyperbolic
+equations.
+
+</p><p>
+     <a id="tth_sEc7.3.2"></a><h3>
+7.3.2&nbsp;&nbsp;Lax-Friedrichs and the CFL condition</h3>
+
+</p><p>
+<a
+id="Lax-Friedrichs_method73459"></a>One tiny change works to stabilize the scheme. That is to replace
+u<sup>(n)</sup><sub>j</sub> on the left hand side of eq.&nbsp;(<a href="chap7.html#FTCShyper">7.23</a>) with
+(u<sup>(n)</sup><sub>j&#8722;1</sub>+u<sup>(n)</sup><sub>j+1</sub>)/2, as illustrated in Fig.&nbsp;<a href="chap7.html#LaxFried">7.5</a>.
+
+</p><p>
+<a id="tth_fIg7.5">
+</a>   <img src="figures/LaxFriedrichs.png" alt="figures/LaxFriedrichs.png" /><a id="LaxFriedrichs">
+</a>
+
+<div style="text-align:center">Figure 7.5: Forward derivative in Time (n) but from the mean of the
+    adjacent points  and Centered in Space (j) is the Lax Friedrichs
+    finite difference scheme, which is stable provided &#8710;t  &#8804;  &#8710;x/&#124;&#955;&#124;.<a id="LaxFried">
+</a></div>
+
+</p><p>
+ This is then called the
+Lax-Friedrichs method.
+<a id="LaxFriedrichsl">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>u</b><sup>(n+1)</sup><sub>j</sub>&#8722;(<b>u</b><sup>(n)</sup><sub>j&#8722;1</sub>+<b>u</b><sup>(n)</sup><sub>j+1</sub>)/2 = &#8722; </td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#8710;x<br /></td><td nowrap="nowrap" align="center">
+(<b>f</b><sup>(n)</sup><sub>j+1</sub>&#8722;<b>f</b><sup>(n)</sup><sub>j&#8722;1</sub>) = &#8722; </td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#8710;x<br /></td><td nowrap="nowrap" align="center">
+<b>J</b>(<b>u</b><sup>(n)</sup><sub>j+1</sub>&#8722;<b>u</b><sup>(n)</sup><sub>j&#8722;1</sub>).</td></tr></table>
+</td><td width="1%">(7.28)</td></tr></table>
+
+
+The student should verify that replacing <b>J</b> with &#955; for
+a scalar version of these equations, the resulting
+amplification factor<a
+id="amplification_factor73460"></a> is
+<a id="LaxFriedrichsamp">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  A = cos(k<sub>x</sub>&#8710;x)&#8722;i</td><td nowrap="nowrap" align="center">
+&#8710;t &#955;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+sin(k<sub>x</sub> &#8710;x).</td></tr></table>
+</td><td width="1%">(7.29)</td></tr></table>
+
+
+As k<sub>x</sub> varies, this is the equation of an ellipse in the complex plane. For
+stability, this ellipse must be entirely inside the unit circle, which
+requires the imaginary coefficient's magnitude to be less than or equal to 1
+<a id="CFL">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8710;t  &#8804; &#8710;x/&#124;&#955;&#124; .</td></tr></table>
+</td><td width="1%">(7.30)</td></tr></table>
+
+
+For our fluid example this is  &#8710;t  &#8804; &#8710;x/&#124;v&#177;c<sub>s</sub>&#124;.
+Equation (<a href="chap7.html#CFL">7.30</a>) is called the
+Courant-Friedrichs-Lewy<a
+id="Courant-Friedrichs-Lewy73461"></a><a
+id="CFL___condition73462"></a> (CFL) condition. It applies to essentially all explicit
+schemes for hyperbolic equations. It says that &#8710;t must be less
+than the time it takes for influence to propagate at the
+characteristic speed(s) (given by the eigenvalues of <b>J</b>) from
+the prior adjacent nodes. If it were greater, then influence from
+other nodes, not taken into account in the difference scheme, would
+influence the solution.
+
+</p><p>
+     <a id="tth_sEc7.3.3"></a><h3>
+7.3.3&nbsp;&nbsp;Lax-Wendroff achieves second order accuracy</h3>
+
+</p><p>
+<a
+id="Lax-Wendroff_method73463"></a>The low order errors of the Lax-Friedrichs scheme make it of little
+practical value. It has a substantial level of spurious
+<em>numerical diffusion</em><a
+id="numerical___diffusion73464"></a><a
+id="diffusion_numerical73465"></a>
+that damps out perturbations that should
+not be damped. For example the simple fluid we've used to illustrate
+the issues has no physical dissipation, yet for some modes
+Lax-Friedrichs gives &#124;A&#124; substantially less than one. They are
+damped.  A better scheme, which is second order in time and still stable, is the
+Lax-Wendroff scheme. The advance is implemented in two steps:
+<a id="LaxW1">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>u</b><sup>(n+1/2)</sup><sub>j+1/2</sub> = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+(<b>u</b><sup>(n)</sup><sub>j+1</sub>+<b>u</b><sup>(n)</sup><sub>j</sub>) &#8722;</td><td nowrap="nowrap" align="center">
+&#8710; t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#8710;x<br /></td><td nowrap="nowrap" align="center">
+(<b>f</b><sup>(n)</sup><sub>j+1</sub>&#8722;<b>f</b><sup>(n)</sup><sub>j</sub>)</td></tr></table>
+</td><td width="1%">(7.31)</td></tr></table>
+
+
+<a id="LaxW2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>u</b><sup>(n+1)</sup><sub>j</sub> = <b>u</b><sup>(n)</sup><sub>j</sub> &#8722; </td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710; x<br /></td><td nowrap="nowrap" align="center">
+(<b>f</b><sup>(n+1/2)</sup><sub>j+1/2</sub>&#8722;<b>f</b><sup>(n+1/2)</sup><sub>j&#8722;1/2</sub>).</td></tr></table>
+</td><td width="1%">(7.32)</td></tr></table>
+
+
+Fig.&nbsp;<a href="chap7.html#LaxWend">7.6</a> shows the schematic.
+
+</p><p>
+<a id="tth_fIg7.6">
+</a>   <img src="figures/LaxWendroff.png" alt="figures/LaxWendroff.png" /><a id="LaxWendroff">
+</a>
+
+<div style="text-align:center">Figure 7.6: The Lax-Wendroff two-step scheme first (dashed lines)
+    generates u and hence f values at the half-time-step n+<sup>1</sup>/<sub>2</sub>,
+    by a Lax-Friedrichs advance to (<b>X</b>). Then it uses a centered time,
+    centered space full step advance based upon <b>f</b><sup>(n+1/2)</sup>,
+    from the <b>u</b><sup>(n)</sup>.<a id="LaxWend">
+</a></div>
+
+</p><p>
+The first step is like a Lax-Friedrichs half-step to the half-way
+positions. Then the fluxes are evaluated again, at the half-step
+times and positions using the <b>u</b><sup>(n+1/2)</sup> values, to find the
+<b>f</b><sup>(n+1/2)</sup>. Those are used in the second step to advance all
+the way from n to n+1 in a properly centered manner.
+The amplification factor for the combined step can be shown to be
+<a id="LaxWA">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  A = 1 &#8722; i</td><td nowrap="nowrap" align="center">
+&#8710;t &#955;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+sin(k<sub>x</sub>&#8710;x) +</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8710;t &#955;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+[cos(k<sub>x</sub>&#8710;x)&#8722;1]</td></tr></table>
+</td><td width="1%">(7.33)</td></tr></table>
+
+
+which gives stability if <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+&#8710;t &#124;&#955;&#124;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+ &#8804; 1
+</td></tr></table><br />: the CFL
+condition, the same as before.
+
+</p><p>
+There are several other schemes in regular use for solving first order
+hyperbolic problems to second order
+accuracy<a
+id="second-order_accuracy73466"></a>. They practically all use
+multi-step approaches like the Lax-Wendroff method.
+
+</p><p>
+
+<h2>Worked Example. Stability of Lax-Wendroff scheme.</h2>
+
+</p><p>
+Derive the amplification factor<a
+id="Lax-Wendroff_method73467"></a> for the
+Lax-Wendroff scheme and verify the stability condition <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+&#8710; t&#124;&#955;&#124;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+ &#8804; 1
+</td></tr></table><br />.
+</p><p>
+<br />Start with the formula for the first time half-step: eq.&nbsp;(<a href="chap7.html#LaxW1">7.31</a>). For stability analysis (but not in implementing an
+actual numerical scheme), approximate the Jacobian matrix locally as
+uniform, and substitute <b>f</b> = <b>J</b><b>u</b> at all the required
+mesh positions,
+deriving
+<a id="wk7eq1">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<b>u</b><sup>(n+1/2)</sup><sub>j+1/2</sub> </td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ =  </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+(<b>u</b><sup>(n)</sup><sub>j+1</sub>+<b>u</b><sup>(n)</sup><sub>j</sub>) &#8722;</td><td nowrap="nowrap" align="center">
+&#8710; t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#8710;x<br /></td><td nowrap="nowrap" align="center">
+<b>J</b>(<b>u</b><sup>(n)</sup><sub>j+1</sub>&#8722;<b>u</b><sup>(n)</sup><sub>j</sub>)</td></tr></table></td></tr>
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+=</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+(<b>I</b>&#8722;</td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710; x<br /></td><td nowrap="nowrap" align="center">
+<b>J</b>)<b>u</b><sup>(n)</sup><sub>j+1</sub>+(<b>I</b>+</td><td nowrap="nowrap" align="center">
+&#8710; t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+<b>J</b>)<b>u</b><sup>(n)</sup><sub>j</sub></td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(7.34)</td></tr></table>
+
+
+Similarly, the second half-step can be written:
+<a id="wk7eq0">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>u</b><sup>(n+1)</sup><sub>j</sub> = <b>u</b><sup>(n)</sup><sub>j</sub> &#8722; </td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710; x<br /></td><td nowrap="nowrap" align="center">
+<b>J</b>(<b>u</b><sup>(n+1/2)</sup><sub>j+1/2</sub>&#8722;<b>u</b><sup>(n+1/2)</sup><sub>j&#8722;1/2</sub>).</td></tr></table>
+</td><td width="1%">(7.35)</td></tr></table>
+
+
+Substitute for the half-step values from eq.&nbsp;(<a href="chap7.html#wk7eq1">7.34</a>) to find:
+<a id="wk7eq2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+  <b>u</b><sup>(n+1)</sup><sub>j</sub> &#8722; <b>u</b><sup>(n)</sup><sub>j</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+&#8722; </td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2 &#8710;x<br /></td><td nowrap="nowrap" align="center">
+<b>J</b></td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+ (<b>I</b>&#8722;</td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+<b>J</b>)<b>u</b><sup>(n)</sup><sub>j+1</sub>+(<b>I</b>+</td><td nowrap="nowrap" align="center">
+&#8710; t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+<b>J</b>)<b>u</b><sup>(n)</sup><sub>j</sub></td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8722;(<b>I</b>&#8722;</td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710; x<br /></td><td nowrap="nowrap" align="center">
+<b>J</b>)<b>u</b><sup>(n)</sup><sub>j</sub>&#8722;(<b>I</b>+</td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710; x<br /></td><td nowrap="nowrap" align="center">
+<b>J</b>)<b>u</b><sup>(n)</sup><sub>j&#8722;1</sub></td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td><td width="1" align="right">(7.36)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1">&#8722; </td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2 &#8710;x<br /></td><td nowrap="nowrap" align="center">
+<b>J</b></td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+(<b>u</b><sup>(n)</sup><sub>j+1</sub>&#8722;<b>u</b><sup>(n)</sup><sub>j&#8722;1</sub>)&#8722;</td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+<b>J</b>(<b>u</b><sup>(n)</sup><sub>j+1</sub>&#8722;2<b>u</b><sup>(n)</sup><sub>j</sub>+<b>u</b><sup>(n)</sup><sub>j&#8722;1</sub>)</td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td width="50%"></td></tr></table>
+</td></tr></table>
+
+
+Now we consider an eigenmode of <b>J</b>, so we can substitute
+the eigenvalue &#955; for <b>J</b>, everywhere in the above expression.
+And we consider a spatial Fourier mode, for which <b>u</b><sub>j</sub> &#8733; <span class="roman">e</span><sup>ik<sub>x</sub>j&#8710;x</sup>. The equation can then be written
+<a id="wk7eq4">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>u</b><sup>(n+1)</sup><sub>j</sub> &#8722; <b>u</b><sup>(n)</sup><sub>j</sub> = &#8722;</td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2 &#8710;x<br /></td><td nowrap="nowrap" align="center">
+&#955;</td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+(<span class="roman">e</span><sup>ik<sub>x</sub>&#8710;x</sup>&#8722;<span class="roman">e</span><sup>&#8722;ik<sub>x</sub>&#8710;x</sup>)+</td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710; x<br /></td><td nowrap="nowrap" align="center">
+&#955;(<span class="roman">e</span><sup>ik<sub>x</sub>&#8710;x</sup>&#8722;2+<span class="roman">e</span><sup>&#8722;ik<sub>x</sub>&#8710;x</sup>)</td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+<b>u</b><sup>(n)</sup><sub>j</sub>,</td></tr></table>
+</td><td width="1%">(7.37)</td></tr></table>
+
+
+or in other words
+<a id="wk7eq5">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>u</b><sup>(n+1)</sup><sub>j</sub> = </td><td align="left" class="cl">&#x23A7;<br />&#x23A8;<br />
+&#x23A9;
+</td><td nowrap="nowrap" align="center">
+1&#8722;</td><td nowrap="nowrap" align="center">
+&#8710;t&#955;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+isin (k<sub>x</sub>&#8710;x) +</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8710;t &#955;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+[cos(k<sub>x</sub>&#8710;x)&#8722;1]</td><td align="left" class="cl">&#x23AB;<br />&#x23AC;<br />
+&#x23AD;
+</td><td nowrap="nowrap" align="center">
+<b>u</b><sup>(n)</sup><sub>j</sub>.</td></tr></table>
+</td><td width="1%">(7.38)</td></tr></table>
+
+
+The coefficient of <b>u</b><sup>(n)</sup><sub>j</sub> is the amplification factor,
+A.
+Its squared absolute value is
+<a id="wk7eq6">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+  &#124;A&#124;<sup>2</sup> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td><td align="left" class="cl">&#x23A7;<br />&#x23A8;<br />
+&#x23A9;
+</td><td nowrap="nowrap" align="center">
+1+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8710;t &#955;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+[cos(k<sub>x</sub>&#8710;x)&#8722;1]</td><td align="left" class="cl">&#x23AB;<br />&#x23AC;<br />
+&#x23AD;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
++ </td><td align="left" class="cl">&#x23A7;<br />&#x23A8;<br />
+&#x23A9;
+</td><td nowrap="nowrap" align="center">
+&#8710; t&#955;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+sin( k<sub>x</sub>&#8710;x)</td><td align="left" class="cl">&#x23AB;<br />&#x23AC;<br />
+&#x23AD;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+1 +</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8710;t &#955;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+[2cos (k<sub>x</sub>&#8710;x)&#8722;2+sin<sup>2</sup>(k<sub>x</sub>&#8710;x) ]</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8710;t &#955;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>4</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+[cos(k<sub>x</sub>&#8710;x)&#8722;1]<sup>2</sup></td></tr></table></td><td width="50%"></td><td width="1" align="right">(7.39)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1">1+ </td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+&#8722;</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8710;t &#955;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
++</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8710;t &#955;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>4</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+[cos(k<sub>x</sub>&#8710;x)&#8722;1]<sup>2</sup>.</td></tr></table></td><td width="50%"></td></tr></table>
+</td></tr></table>
+
+
+Thus &#124;A&#124;<sup>2</sup> &#8804; 1 provided <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+&#8710;t &#124;&#955;&#124;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+ &#8804; 1
+</td></tr></table><br />, which
+is the stability criterion.
+
+</p><p>
+ <a id="tth_sEc7.4"></a><h2>
+7.4&nbsp;&nbsp;Worked Example: Three-dimensional fluids</h2>
+
+</p><p>
+<a
+id="multiple_dimensions74468"></a><a
+id="CFL74469"></a><a
+id="hyperbolic_finite_difference74470"></a>Formulate a finite difference representation of the hyperbolic
+equations for a source-free, inviscid, isotropic fluid in three-dimensions
+plus time, when the equation of state is p=p(&#961;). Assume the
+eigenvalue of the Jacobian of the linearized system (perturbation
+propagation speed) is known, &#955;, and that the eigenmode is
+longitudinal; deduce the condition governing the stable explicit timestep
+for centered spatial differences on a uniform cartesian grid spaced unequally
+in the different axis directions.
+</p><p>
+<br />We use the density &#961; and the flux density &#915;
+as the elements of the state vector <b>u</b>. In 3-dimensions, a
+vector quantity like
+&#915; has three components, &#915;<sub>&#945;</sub>,&nbsp;&#945; = 1,2,3. So the state vector has a total of
+four.
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <b>u</b> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#961;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#961;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;<sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;<sub>3</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(7.40)</td></tr></table>
+
+
+The continuity (<a href="chap7.html#fluidcont">7.1</a>) and
+momentum (<a href="chap7.html#momngen">7.5</a>) equations are written with the time and space differentials
+separated on the left and the right hand sides, and we replace
+&#961;<b><i>v</i></b> everywhere with &#915;.
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;&#961;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+=&#8722;&#8711;.(&#961;<b><i>v</i></b>)=&#8722;&#8711;.&#915;,</td></tr></table>
+</td><td width="1%">(7.41)</td></tr></table>
+
+
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;&#915;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+ = &#8722;&#8711;.(&#961;<b><i>v</i></b><b><i>v</i></b>) &#8722;&#8711;p = &#8722;&#8711;.(&#915;&#915;/&#961;&#8722; <b>I</b>p).</td></tr></table>
+</td><td width="1%">(7.42)</td></tr></table>
+
+
+In 3-dimensions, these are four scalar equations in total. The
+combined state-space form is
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;<b>u</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+ = &#8722; &#8711;. <b>f</b>, </td></tr></table>
+</td><td width="1%">(7.43)</td></tr></table>
+
+
+where <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#8711;.=</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>&#945;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>x</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>&#945;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+.</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sub>&#945;</sub><br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />, the
+spatial-3-vector divergence, operates separately on each of the four
+ (3-vector) entries of the state-space column-vector
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <b>f</b> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;&#915;<sub>1</sub>/&#961;+ p</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>x</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;&#915;<sub>2</sub>/&#961;+ p</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>x</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>2</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;&#915;<sub>3</sub>/&#961;+ p</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>x</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>3</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;&#915;/&#961;+ p<b>I</b></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(7.44)</td></tr></table>
+
+
+
+</p><p>
+The spatial discrete difference
+scheme may be written in terms of three cartesian indices i, j,
+k, of the mesh, as
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+&#8711;. <b>f</b></td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>x</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>1</small>&nbsp;<br /></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#8710;x<sub>1</sub><br /></td><td nowrap="nowrap" align="center">
+. (<b>f</b><sup>(n)</sup><sub>(i+1)jk</sub>&#8722;<b>f</b><sup>(n)</sup><sub>(i&#8722;1)jk</sub>) +</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>x</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>2</small>&nbsp;<br /></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#8710;x<sub>2</sub><br /></td><td nowrap="nowrap" align="center">
+. (<b>f</b><sup>(n)</sup><sub>i(j+1)k</sub>&#8722;<b>f</b><sup>(n)</sup><sub>i(j&#8722;1)k</sub>)</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>x</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>3</small>&nbsp;<br /></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#8710;x<sub>3</sub><br /></td><td nowrap="nowrap" align="center">
+. (<b>f</b><sup>(n)</sup><sub>ij(k+1)</sub>&#8722;<b>f</b><sup>(n)</sup><sub>ij(k&#8722;1)</sub>).</td></tr></table></td><td width="50%"></td><td width="1" align="right">(7.45)</td></tr></table>
+</td></tr></table>
+
+
+We are told that the eigenvalue of the state system is &#955; and
+the eigenmode is longitudinal<a href="footnote.html#tthFtNtAEE" id="tthFrefAEE"><sup>44</sup></a>.  Therefore, for a plane wave
+proportional to exp(i<b><i>k</i></b>.<b><i>x</i></b>) that is an eigenmode of the
+state, each state-component of <b>f</b> is oriented in the
+spatial-direction <b><i>k</i></b>. Write the unit vector
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>k</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+=(</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+,</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>3</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+,</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>3</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+)
+</td></tr></table><br />, and
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"><b><i>k</i></b>=k</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>k</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />. Then for this plane wave we can replace each
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>x</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>&#945;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+. <b>f</b>
+</td></tr></table><br /> with <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#955;</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>&#945;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+<b>u</b>
+</td></tr></table><br /> to obtain
+
+</p><p>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+&#8711;.<b>f</b> = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x23A1;<br />&#x23A2;<br />
+&#x23A3;
+</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#955;</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>1</small>&nbsp;<br /></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sub>1</sub><br /></td><td nowrap="nowrap" align="center">
+(<b>u</b><sup>(n)</sup><sub>(i+1)jk</sub>&#8722;<b>u</b><sup>(n)</sup><sub>(i&#8722;1)jk</sub>) &#8722;</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#955;</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>2</small>&nbsp;<br /></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sub>2</sub><br /></td><td nowrap="nowrap" align="center">
+(<b>u</b><sup>(n)</sup><sub>i(j+1)k</sub>&#8722;<b>u</b><sup>(n)</sup><sub>i(j&#8722;1)k</sub>) &#8722;</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#955;</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>3</small>&nbsp;<br /></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sub>3</sub><br /></td><td nowrap="nowrap" align="center">
+(<b>u</b><sup>(n)</sup><sub>ij(k+1)</sub>&#8722;<b>u</b><sup>(n)</sup><sub>ij(k&#8722;1)</sub>)</td><td align="left" class="cl">&#x23A4;<br />&#x23A5;<br />
+&#x23A6;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(7.46)</td></tr></table>
+
+
+Substituting for the variation of <b>u</b> with spatial index, e.g.&nbsp;(<b>u</b><sup>(n)</sup><sub>ij(k+1)</sub>&#8722;<b>u</b><sup>(n)</sup><sub>ij(k&#8722;1)</sub>) =exp(ik<sub>3</sub>&#8710;x<sub>3</sub>)&#8722;exp(&#8722;ik<sub>3</sub>&#8710;x<sub>3</sub>) = 2isin(k<sub>3</sub>&#8710;x<sub>3</sub>), this form reduces
+the finite difference equations to
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<b>u</b><sup>(n+1)</sup><sub>ijk</sub>&#8722;<b>u</b><sup>(n)</sup><sub>s</sub> = &#8722;&#8710;t &#8711;.<b>f</b> = &#8722;</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>&#945;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+i&#8710;t&#955; </td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>&#945;</small>&nbsp;<br /></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sub>&#945;</sub><br /></td><td nowrap="nowrap" align="center">
+sin(k</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>&#945;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8710; x<sub>&#945;</sub>) <b>u</b><sub>ijk</sub>,</td></tr></table>
+</td><td width="1%">(7.47)</td></tr></table>
+
+
+where <b>u</b><sup>(n)</sup><sub>s</sub> denotes the mesh expression used for the
+current time (n).  For example, a
+Lax-Friedrichs<a
+id="Lax-Friedrichs_method74471"></a> choice <b>u</b><sup>(n)</sup><sub>s</sub>=<sup>1</sup>/<sub>6</sub>(<b>u</b><sup>(n)</sup><sub>(i&#8722;1)jk</sub>+<b>u</b><sup>(n)</sup><sub>(i+1)jk</sub>+<b>u</b><sup>(n)</sup><sub>i(j&#8722;1)k</sub>+<b>u</b><sup>(n)</sup><sub>i(j+1)k</sub>+<b>u</b><sup>(n)</sup><sub>ij(k&#8722;1)</sub>+<b>u</b><sup>(n)</sup><sub>ij(k+1)</sub>) leads to an
+amplification factor
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+A = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>&#945;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x23A1;<br />&#x23A2;<br />
+&#x23A3;
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>3<br /></td><td nowrap="nowrap" align="center">
+cos(k</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>&#945;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8710;x<sub>&#945;</sub>)&#8722;</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+i&#8710;t&#955;</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>&#945;</small>&nbsp;<br /></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sub>&#945;</sub><br /></td><td nowrap="nowrap" align="center">
+sin(k</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>&#945;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8710;x<sub>&#945;</sub>)</td><td align="left" class="cl">&#x23A4;<br />&#x23A5;<br />
+&#x23A6;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(7.48)</td></tr></table>
+
+
+We require &#124;A&#124;<sup>2</sup> &#8804; 1 for all modes to avoid instability.  The
+worst case for stability occurs when all <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>&#945;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8710;x<sub>&#945;</sub>
+</td></tr></table><br /> have the same value, which we'll denote <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#8710; = (</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>&#945;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+1/&#8710;x<sub>&#945;</sub><sup>2</sup>)<sup>&#8722;1/2</sup>
+</td></tr></table><br />.
+Avoiding instability in this case requires that
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+&#8710;t &#124;&#955;&#124; </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>&#945;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><small>&#945;</small>&nbsp;<br /></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm">k<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><small>&#945;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8710;x<sub>&#945;</sub></td></tr></table></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+&#8710;t &#124;&#955;&#124;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;<br /></td><td nowrap="nowrap" align="center">
+ &#8804; 1.</td></tr></table>
+</td><td width="1%">(7.49)</td></tr></table>
+
+
+Notice, by considering k&#8710; = &#960;/2, that the criterion must be
+satisfied for stability, regardless of
+the precise form chosen for <b>u</b><sub>s</sub>, so long as that form is
+symmetric in each coordinate direction, and hence gives rise to a <em>real</em>
+contribution to A. The criterion is thus universally <em>necessary</em> for any
+symmetric centered spatial difference scheme, when time differences
+are explicit, but it is not always <em>sufficient</em>.
+
+</p><p>
+When all the &#8710;x<sub>&#945;</sub> are equal, then &#8710; =  &#8710;x/&#8730;3, and the CFL<a
+id="CFL74472"></a> condition for stability when v
+is small (so &#955; = c<sub>s</sub>) is <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#8710;t  &#8804; </td><td nowrap="nowrap" align="center">
+&#8710;x
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>c<sub>s</sub>&#8730;3<br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />. If, by contrast, for some direction &#946;, &#8710;x<sub>&#946;</sub> is much smaller than the other two grid spacings, then
+&#8710; &#8776; &#8710;x<sub>&#946;</sub> and stability requires <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#8710;t  &#8804; </td><td nowrap="nowrap" align="center">
+&#8710;x<sub>&#946;</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>c<sub>s</sub><br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />.
+
+</p><p>
+
+<h2>Exercise 7. Fluids and Hyperbolic Equations.</h2>
+
+</p><p>
+<br /><br />1. Prove equation 7.29, the amplification factor for the Lax
+Friedrichs scheme.
+
+</p><p>
+<br /><br />2. Consider an isothermal gas in one dimension. It obeys the equations
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+Continuity:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;&#961;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+(&#961;v) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+=</td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ 0 </td></tr></table></td></tr>
+<tr><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+Momentum:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+ &#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+(&#961;v)+</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+(&#961;v<sup>2</sup>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+=</td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ &#8722;</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+p </td></tr></table></td></tr>
+<tr><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+State:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ p</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+=</td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#961;(kT/m)</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+with kT/m simply a constant equal to the ratio of the temperature in
+energy units to the gas molecule mass m.
+
+</p><p>
+(a) Convert this into the form of a state and flux vector equation
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;<b>u</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+ = &#8722;</td><td nowrap="nowrap" align="center">
+&#8706;<b>f</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+where
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<b>u</b> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#961;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#915;</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+is the state vector (&#915; = &#961;v) and you should give the flux
+vector <b>f</b>.
+
+</p><p>
+(b) Calculate the Jacobian matrix
+<b>J</b>=&#8706;<b>f</b>/&#8706;<b>u</b>.
+
+</p><p>
+(c) Find its eigenvalues.
+
+</p><p>
+<br /><br />3. Find the finite difference form and CFL stability when the linearized
+eigenmode is longitudinal with eigenvalue &#955;, for the
+Lax-Wendroff scheme in two space-dimensions.
+
+</p><p>
+
+
+<hr /><table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+<a href="chap8.html">NEXT
+</a></td></tr></table>
+</div></body></html>

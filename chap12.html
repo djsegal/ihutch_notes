@@ -1,0 +1,946 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
+    img {     max-width: 100%;
+    max-height: 40vh; } p { line-height: 1.5em; } body {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 18px;
+    }
+  </style>
+<
+<title>chap12.html</title>
+<table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+ <a href="chap11.html">PREVIOUS
+</a></td></tr></table>
+ <a id="tth_chAp12"></a><h1>
+Chapter 12 <br />Monte Carlo Radiation Transport</h1>
+
+
+
+</p><p>
+ <a id="tth_sEc12.1"></a><h2>
+12.1&nbsp;&nbsp;Transport and Collisions</h2>
+
+</p><p>
+<a
+id="transport121662"></a>Consider the passage of uncharged particles through matter. The
+particles might be neutrons, or photons such as gamma rays. The matter
+might be solid, liquid, or gas, and contain multiple species with
+which the particles can interact in different ways. We might be
+interested in the penetration of the particles into the matter from
+the source, for example what is the particle flux at a certain place,
+and we might want to know the extent to which certain types of
+interaction with the matter have taken place, for example radiation
+damage or ionization. This sort of problem lends itself to modelling
+by Monte Carlo methods.<a
+id="radiation_transport121663"></a>
+
+</p><p>
+Since the particles are uncharged, they travel in straight lines at
+constant speed between collisions with the matter. Actually the
+technique can be generalized to treat particles that experience
+significant forces so that their tracks are curved. However, charged
+particles generally experience many collisions that perturb their
+velocity only very slightly. Those small-angle collisions are not so
+easily or efficiently treated by Monte Carlo techniques, so we
+simplify the treatment by ignoring particle acceleration between
+collisions.
+
+</p><p>
+<a id="tth_fIg12.1">
+</a>   <img src="figures/randomwalk.png" alt="figures/randomwalk.png" /><a id="randomwalk">
+</a>
+
+<div style="text-align:center">Figure 12.1: A random walk is executed by a particle with
+    variable-length steps between individual scatterings or
+    collisions. Eventually it is permanently absorbed. The statistical
+    distribution of the angle of
+    scattering is determined by the details of the collision
+    process.<a id="randomwalkl">
+</a></div>
+
+</p><p>
+A particle executes a random walk<a
+id="random_walk121664"></a> through the
+matter, illustrated in Fig.&nbsp;<a href="chap12.html#randomwalkl">12.1</a>. It travels a certain
+distance in a straight line, then collides. After the collision it has
+a different direction and speed. It takes another step in the new
+direction, generally with a different distance, to the next
+collision. Eventually the particle has an absorbing collision, or
+leaves the system, or becomes so degraded (for example in energy) that
+it need no-longer be tracked. The walk ends.
+
+</p><p>
+     <a id="tth_sEc12.1.1"></a><h3>
+12.1.1&nbsp;&nbsp;Random walk step length</h3>
+
+</p><p>
+The length of any of the steps between collisions is random. For any
+collision process, the average number of collisions a particle has per
+unit length corresponding to that process, which we'll label j, is n<sub>j</sub>&#963;<sub>j</sub>, where &#963;<sub>j</sub> is the cross-section, and n<sub>j</sub> is the
+density in the matter of the target species that has collisions of
+type j. For example, if the particles are neutrons and the process
+is uranium nuclear fission, n<sub>j</sub> would be the density of uranium
+nuclei. The average total number of collisions of all types per unit
+path length is therefore<a
+id="step_length121665"></a>
+<a id="colperlen">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#931;<sub>t</sub> = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+n<sub>j</sub> &#963;<sub>j</sub>,</td></tr></table>
+</td><td width="1%">(12.1)</td></tr></table>
+
+
+where the sum is over all possible collision processes. Once again
+&#931;<sub>t</sub><a
+id="macroscopic_cross-section121666"></a> is an inverse
+attenuation-length<a
+id="attenuation-length121667"></a>.
+
+</p><p>
+How far does a particle go before having a collision?  Well, even for
+particles with identical position and velocity, it varies
+statistically in an unpredictable way. However, the probability of
+having a collision in the small distance <i>l</i>&#8594; <i>l</i>+d<i>l</i>, given that the
+particle started at <i>l</i> (in other words, earlier collisions are
+excluded), is &#931;<sub>t</sub> dl. This incremental collision probability
+&#931;<sub>t</sub>d<i>l</i> is independent of prior events.
+
+</p><p>
+<a id="tth_fIg12.2">
+</a>   <img src="figures/survivalprob.png" alt="figures/survivalprob.png" /><a id="survivalprob">
+</a>
+
+<div style="text-align:center">Figure 12.2: The probability, <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+(l)
+</td></tr></table><br />, of survival without a
+    collision to position l decreases by a multiplicative factor
+    1&#8722;&#931;<sub>t</sub>dl in an increment dl. <a id="survivalprobl">
+</a></div>
+
+</p><p>
+ Therefore (refer to Fig.&nbsp;<a href="chap12.html#survivalprobl">12.2</a>) if the
+probability that the particle survives at least as far as <i>l</i> <em>without</em>
+a collision is <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+(<i>l</i>)
+</td></tr></table><br />, then the probability that it survives at
+least as far as <i>l</i>+d<i>l</i> is the product of <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+(<i>l</i>)
+</td></tr></table><br /> times the
+probability 1&#8722;&#931;<sub>t</sub>d<i>l</i> that it <em>does not</em> have a collision in
+d<i>l</i>:
+<a id="probdiff">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+(<i>l</i>+d<i>l</i>) = </td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+(<i>l</i>)(1&#8722;&#931;<sub>t</sub>d<i>l</i>)</td></tr></table>
+</td><td width="1%">(12.2)</td></tr></table>
+
+
+Hence
+<a id="diffprob">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+(<i>l</i>+d<i>l</i>) &#8722; </td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+(<i>l</i>)</td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d<i>l</i><br /></td><td nowrap="nowrap" align="center">
+&nbsp; </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br />&#8594;<br />
+<small>dl&#8594;0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&nbsp;</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d<i>l</i><br /></td><td nowrap="nowrap" align="center">
+ = &#8722;&#931;<sub>t</sub> </td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(12.3)</td></tr></table>
+
+
+The solution of this differential equation is
+<a id="Pexpsigma">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+(<i>l</i>) = exp(&#8722;</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>l</small><!--sup
+--><br /><br />
+<small>0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#931;<sub>t</sub> d<i>l</i>),</td></tr></table>
+</td><td width="1%">(12.4)</td></tr></table>
+
+
+where <i>l</i> is measured from the starting position, so <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+(0)=1
+</td></tr></table><br />. Another equivalent way to define <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+(<i>l</i>)
+</td></tr></table><br /> is: the
+probability that the first collision is <em>not</em> in the interval
+0&#8594;<i>l</i>.  The complement <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">P(<i>l</i>)=1&#8722;</td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+(<i>l</i>)
+</td></tr></table><br /> is therefore the
+probability that the first collision <em>is</em> in 0&#8594;<i>l</i>. In other
+words, <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">P(<i>l</i>)=1&#8722;</td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+(<i>l</i>)
+</td></tr></table><br /> is a cumulative probability. It is the
+integral of the probability distribution p(<i>l</i>)d<i>l</i> that the (first)
+collision takes place in d<i>l</i> at <i>l</i>; so:
+<a id="colpdist">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  p(<i>l</i>) = </td><td nowrap="nowrap" align="center">
+dP
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d<i>l</i><br /></td><td nowrap="nowrap" align="center">
+ = &#8722;</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d<i>l</i><br /></td><td nowrap="nowrap" align="center">
+ = &#931;<sub>t</sub></td><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm">P<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+ = &#931;<sub>t</sub> exp(&#8722;</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>l</small><!--sup
+--><br /><br />
+<small>0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#931;<sub>t</sub> d<i>l</i>) .</td></tr></table>
+</td><td width="1%">(12.5)</td></tr></table>
+
+
+To decide statistically where the first
+collision<a
+id="collision_first121668"></a> takes place for any specific
+particle, therefore, we simply draw a random number (uniform variate)
+and select <i>l</i> from the cumulative distribution P(<i>l</i>) as
+explained in section <a href="chap11.html#comprandsel">11.2</a> and illustrated in Fig.&nbsp;<a href="chap11.html#Pselect">11.1</a>.  If we are dealing with a step in which &#931;<sub>t</sub> can
+be taken as uniform, then P(<i>l</i>) = 1&#8722;exp(&#8722;&#931;<sub>t</sub> <i>l</i>), and the
+cumulative function can be inverted analytically as
+<i>l</i>(P)=&#8722;ln(1&#8722;P)/&#931;<sub>t</sub>.
+
+</p><p>
+     <a id="tth_sEc12.1.2"></a><h3>
+12.1.2&nbsp;&nbsp;Collision type and parameters</h3>
+
+</p><p>
+Having decided where the next collision happens, we need to decide
+what sort of collision<a
+id="collision_type121669"></a> it is. The local rate at
+which each type j of collision is occuring is n<sub>j</sub>&#963;<sub>j</sub> and the
+sum of all n<sub>j</sub>&#963;<sub>j</sub> is &#931;<sub>t</sub>. Therefore the fraction of
+collisions that is of type j is n<sub>j</sub>&#963;<sub>j</sub>/&#931;<sub>t</sub>.
+
+</p><p>
+<a id="tth_fIg12.3">
+</a>   <img src="figures/typelist.png" alt="figures/typelist.png" /><a id="typelist">
+</a>
+
+<div style="text-align:center">Figure 12.3: Deciding the collision type based upon a random number x.<a id="typelistl">
+</a></div>
+
+</p><p>
+If we regard all the
+possible types of collisions as arrayed in a long list, illustrated in
+Fig.&nbsp;<a href="chap12.html#typelistl">12.3</a>, and to each
+type is assigned a real number x<sub>j</sub> such that
+x<sub>j+1</sub>=x<sub>j</sub>+n<sub>j</sub>&#963;<sub>j</sub> /&#931;<sub>t</sub>, i.e.
+<a id="xpsum">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  x<sub>j</sub> = </td><td nowrap="nowrap" align="center">
+<small>j&#8722;1</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+n<sub>i</sub>&#963;<sub>i</sub> /&#931;<sub>t</sub>,</td></tr></table>
+</td><td width="1%">(12.6)</td></tr></table>
+
+
+then a single random draw x determines j by the condition x<sub>j</sub> &#8804; x  &lt;  x<sub>j+1</sub>. This is just the process of drawing from a discrete
+probability distribution. Our previous examples were the Poisson
+distribution, and the weighting of discrete particles for flux injection.
+
+</p><p>
+Once having decided upon the collision process j, there are
+(usually) other parameters of the collision to be decided. For
+example, if the collision is a scattering event, what is the
+scattering angle and the corresponding new scattered velocity
+<b><i>v</i></b> which serves<a href="footnote.html#tthFtNtAHI" id="tthFrefAHI"><sup>78</sup></a> to determine the starting condition of the next
+step?  These random parameters are also determined by statistical
+choice from the appropriate probability distributions, for example the
+normalized differential<a
+id="scattering_angle121670"></a> cross-section per unit scattering angle.
+
+</p><p>
+     <a id="tth_sEc12.1.3"></a><h3>
+12.1.3&nbsp;&nbsp;Iteration and New Particles</h3>
+
+</p><p>
+Once the collision parameters have been decided, unless the event was an
+absorption, the particle is restarted from the position of collision
+with the new velocity and the next step is calculated. If the particle
+is absorbed<a
+id="absorption121671"></a>, or escapes from the modelled region,
+then instead we start a completely new particle. Where and how it is
+started depends upon the sort of radiation transport problem we are
+solving. If it is transport from a localized known source, then that
+determines the initialization position, and its direction is
+appropriately chosen.  If the matter is emitting, new particles can be
+generated spread throughout the volume. Spontaneous
+emission<a
+id="spontaneous_emission121672"></a>, arising independent of the level
+of<a
+id="emission_spontaneous121673"></a> radiation in the medium, is simply a
+distributed source. It serves to determine the distribution of brand
+new particles, which are launched once all active particles have been
+followed till absorbed or escaped. Examples of spontaneous emission
+include radiation from excited atoms, spontaneous radioactive decays
+giving gammas, or spontaneous fissions giving neutrons.  However,
+often the new particles are "stimulated"<a
+id="emission_stimulated121674"></a>
+by collisions from the transporting particles. Fig.&nbsp;<a href="chap12.html#lstimulated">12.4</a>
+illustrates this process. The classic nuclear example is induced
+fission producing additional neutrons. Stimulated emission arises as a
+product of a certain type of collision.
+
+</p><p>
+<a id="tth_fIg12.4">
+</a> <img src="figures/generations.png" alt="figures/generations.png" /><a id="generations">
+</a>
+
+<div style="text-align:center">Figure 12.4: "Stimulated" emission is a source of new particles caused
+    by the collisions of the old ones. It can multiply the particles
+    through succeeding generations, as the new particles (different
+    line styles) give rise themselves to additional
+    emissions.<a id="lstimulated">
+</a></div>
+
+</p><p>
+Any additional particles produced by collisions must be tracked by the
+same process as used for the original particle. They become new
+tracks. In a serial code, the secondary particles must be initialized
+and then set aside during the collision step. Then when the original
+track ends by absorption or escape, the code must take up the job of
+tracking the secondary particles. The secondary particles may generate
+tertiary particles, which will also eventually be tracked. And so on.
+Parallel code might offload the secondary and tertiary tracks to other
+processors (or computational threads).
+
+</p><p>
+One might be concerned that we'll never get to the end if particles
+are generated faster than they are lost. That's true; we won't. But
+particle generation faster than loss corresponds to runaway physical
+situation, for example a prompt supercritical reactor. So the
+real-world will have problems much more troublesome than our
+computational ones!
+
+</p><p>
+ <a id="tth_sEc12.2"></a><h2>
+12.2&nbsp;&nbsp;Tracking, Tallying and Statistical Uncertainty</h2>
+
+</p><p>
+The purpose of a Monte Carlo simulation is generally to determine some
+averaged bulk parameters of the radiation particles or the matter
+itself. The sorts of parameters include, radiation flux as a function
+of position, spectrum of particle energies, rate of occurrence of
+certain types of collision, or resulting state of the matter through
+which the radiation passes. To determine these sorts of quantities
+requires keeping track of the passage of particles through the
+relevant regions of space, and of the collisions that occur there.
+The computational task of keeping track of events and contributions to
+statistical quantities is often called "tallying"<a
+id="tally122675"></a>.
+
+</p><p>
+What is generally done is to divide the region of interest into a
+managable number of discrete volumes, in which the tallies of interest
+are going to be accumulated. Each time an event occurs in one of these
+volumes, it is added to the tally. Then, provided a reasonably large
+number of such events has occurred, the average rate of the occurrence
+of events of interest can be obtained. For example, if we wish to know
+the fission power distribution in a nuclear reactor, we would tally
+the number of fission collisions occurring in each volume. Fission
+reactions release on average a known amount of total energy <span style="font-family:helvetica">
+<i>E</i></span>. So if the number occuring in a particular volume V, during a
+time T is N, the fission power density is N<span style="font-family:helvetica"><i>E</i></span>/VT.
+
+</p><p>
+The number of computational random walks that we can afford to track
+is usually far less than the number of events that would actually
+happen in the physical system being modelled. Each computational
+particle can be considered to represent a large number of actual
+particles all doing the same thing. The much smaller computational
+number leads to important statistical fluctuations, uncertainty, or
+noise, that is a purely computational limitation.
+
+</p><p>
+
+<b>The statistical uncertainty&nbsp;&nbsp;</b><a
+id="uncertainty_statistical122676"></a>
+of a Monte Carlo<a
+id="statistical_uncertainty122677"></a> calculation is
+generally determined by the observation that a sample of N random
+choices from a distribution (population) of standard deviation S has
+a sample mean &#956;<sub>N</sub> whose standard deviation is equal to the
+standard error S/&#8730;N. Each tally event acts like single random
+choice. Therefore for N tally events the uncertainty in the quantity
+to be determined is smaller than its intrinsic uncertainty or
+statistical range by a factor 1/&#8730;N. Put differently, suppose the
+average rate of a certain type of statistically determined event is
+constant, giving on average N events in time T then the number n
+of events in any particular time interval of length T is governed by
+a Poisson probability, eq.&nbsp;(<a href="chap11.html#PoissonDist">11.15</a>) p(n) = exp(&#8722;N)N<sup>n</sup>/n!. The standard deviation of this Poisson distribution
+is &#8730;N. Therefore we obtain a precise estimate of the average rate of
+events, N, by using the number actually observed in a particular
+case, n, only if N (and therefore n) is a large number.
+
+</p><p>
+The first conclusion is that we must not choose our discrete tallying
+volumes too small. The smaller they are, the fewer events will occur
+in them, and, therefore, the less statistically accurate will be the
+estimate of the event rate.
+
+</p><p>
+When tallying collisions<a
+id="collision_tally122678"></a>, the first thought one
+might have is simply to put a check mark against each type of
+collision for each volume element, whenever that exact type of event
+occurs in it. The difficulty with this approach is that it will give
+very poor statistics, because there are going to be too few check
+marks. To get, say, 1% statistical uncertainty, we would need 10<sup>4</sup>
+check marks for each discrete volume. If the events are spread over,
+say 100<sup>3</sup> volumes, we would need 10<sup>10</sup> total collisions <em>of
+  each relevant type</em>. For, say, 100 collision types we are already up
+to 10<sup>12</sup> collisions. The cost is very great. But we can do better
+than this na&#239;ve check-box approach.
+
+</p><p>
+One thing we can do with negligible extra effort is to add to the
+tally for <em>every</em> type of collision, whenever <em>any</em>
+collision happens. To make this work, we must add a variable amount to
+the tally, not just 1 (not just a check mark). The amount we should
+add to each collision-type tally, is just the fraction of all
+collisions that is of that type, namely n<sub>j</sub>&#963;<sub>j</sub>/&#931;<sub>t</sub>. Of
+course these fractional values should be evaluated with values of
+n<sub>j</sub> corresponding to the local volume, and at the velocity of the
+particle being considered (which affects &#963;<sub>j</sub>). This process
+will produce, on average, the same correct collision
+tally value, but will do so with a total number of contributions bigger by
+a factor equal to the number of collision types. That substantially improves the
+statistics.
+
+</p><p>
+<a id="tth_fIg12.5">
+</a>   <img src="figures/volumedisc.png" alt="figures/volumedisc.png" /><a id="volumedisc">
+</a>
+
+<div style="text-align:center">Figure 12.5: Tallying is done in discrete volumes. One can tally every
+    collision(green) but if the steps are larger than the
+    volumes, it gives better statistics to tally every volume the
+    particle passes through(blue).<a id="volumediscl">
+</a></div>
+
+</p><p>
+A further statistical advantage is obtained by tallying more than just
+collisions. If we want particle flux properties, as well as the
+effects on the matter, we need to tally not just collisions, but also
+the average flux density in all the discrete volumes. That requires us
+to determine for every volume, every passage i of a particle through
+it, the fractional time &#8710;t<sub>i</sub> that it spends in the volume, and
+the speed v<sub>i</sub> at which it passed through. See Fig.&nbsp;<a href="chap12.html#volumediscl">12.5</a>. When the simulation has been tracked for a
+sufficient number of particles, the density of particles in the volume
+is proportional to the sum <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8710;t<sub>i</sub>
+</td></tr></table><br /> and the scalar flux
+density<a href="footnote.html#tthFtNtAHJ" id="tthFrefAHJ"><sup>79</sup></a> to <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+v<sub>i</sub> &#8710;t<sub>i</sub>
+</td></tr></table><br />. If collisional lengths (the length of the random walk step) are
+substantially larger than the size of the discrete volumes, then there
+are more contributions to the flux property tallies than there are
+walk steps, i.e.&nbsp;modelled collisions. The statistical accuracy of the
+flux density measurement is then better than the collision tallies
+(even when all collision types are tallied for every collision) by a
+factor approximately equal to the ratio of collision step length to
+discrete volume side-length. Therefore it may be worth the effort to
+keep a tally of the total contribution to collisions of type j that
+we care about from every track that passes through every volume. In
+other words, for each volume, to obtain the sum over all passages i:
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8710;t<sub>i</sub> v<sub>i</sub> n<sub>j</sub> &#963;<sub>j</sub>
+</td></tr></table><br />. The extra cost of this process
+is the geometric task of determining the length of a line during which
+it is inside a particular volume. But if that task is necessary
+anyway, because flux properties are desired, then it is no more work
+to tally the collisional probabilities in this way.
+
+</p><p>
+
+<b>Importance weighting&nbsp;&nbsp;</b><a
+id="weighting_importance122679"></a>
+Another<a
+id="importance_weighting122680"></a> aspect of statistical accuracy
+relates to the choice of initial distribution of particles, especially
+in velocity space. In some transport problems, it might be that the
+particles that penetrate a large distance away from their source are
+predominantly the high energy particles, perhaps those quite far out
+on the tail of a birth velocity distribution that has the bulk of its
+particles at low energy. The most straightforward way to represent the
+transport problem is to launch particles in proportion to their
+physical birth distribution. Each computational particle then
+represents the same number of physical particles. But this choice
+might mean there are very few of the high-energy particles that
+determine the flux far from the source. If so, then the statistical
+uncertainty of the far flux is going to be great.
+
+</p><p>
+<a id="tth_fIg12.6">
+</a>   <img src="figures/importance.png" alt="figures/importance.png" /><a id="importance">
+</a>
+
+<div style="text-align:center">Figure 12.6: If all particles have the same weight, there are many more
+    representing bulk velocities (v<sub>1</sub>) than tail velocities
+    (v<sub>2</sub>). Improved statistical representation of the tail is
+    obtained by giving the tail velocities lower weight w<sub>2</sub>. If the
+    weights are proportional to f then equal numbers of particles
+    are assigned to equal velocity ranges.<a id="importancel">
+</a></div>
+
+</p><p>
+It is possible to compensate for this problem by <em>weighting</em> the
+particles, illustrated by Fig.&nbsp;<a href="chap12.html#importancel">12.6</a>. One can obtain
+better far-flux statistics by launching more of the high energy
+particles than would be implied by their probability distribution, but
+compensating for the statistical excess by an importance weighting w
+that is inversely proportional to the factor by which the particle
+number has exceeded the probability distribution. For a weighted
+particle's subsequent random walk, and for any additional particles
+emitted in response to collisions of the particle, the contribution
+made to any flux or reaction rate is then multiplied by
+w. Consequently the total flux calculated anywhere has the correct
+average contribution from all types of initial particles.  But there
+are more actual contributions (of lower weight) from
+high-initial-energy particles than there otherwise would be. This has
+the effect of reducing the statistical uncertainty of flux that happens
+to depend upon high energy birth particles by transferring some of the
+computational effort to them from lower energy birth particles.
+
+</p><p>
+Importance weighting is immediately accommodated during the tallying
+process by adding contributions to the various flux tallies that are
+the same as have been previously given - except: each contribution
+is multiplied by the weight w<sub>i</sub> of that particular particle. Thus
+density becomes  &#8733; &#931;<sub>i</sub> w<sub>i</sub>&#8710;t<sub>i</sub>  and scalar flux
+density  &#8733; &#931;<sub>i</sub> w<sub>i</sub> v<sub>i</sub> &#8710;t<sub>i</sub>, and so on.
+
+</p><p>
+The weight of a particle that is launched as a result of stimulated
+emission is inherited from its parent. A newly launched particle of
+the nth generation inherently acquires the weight w<sub>n&#8722;1</sub> of the
+particular previous generation particle whose collision caused the
+launch. However, in the process of deciding the nth generation's
+initial velocity an extra launch weighting is accorded to it,
+corresponding to its launch parameters; for example it might be
+weighted proportional to the launch speed (or energy) probability
+distribution p(v<sub>n</sub>). If so, then the weight of the newly launched
+particle is
+<a id="generationwt">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  w<sub>n</sub> = w<sub>n&#8722;1</sub> p(v<sub>n</sub>).</td></tr></table>
+</td><td width="1%">(12.7)</td></tr></table>
+
+
+This process of weight multiplication between generations causes a
+<em>spreading of the weights</em>. The ratio of the maximum to minimum
+weight of each succeeding generation is multiplied by the birth
+weight-ratio; so the weight range ratio grows geometrically. When
+there is a very large range between the minimum and the maximum
+weight, it becomes a waste of time to track particles whose weight is
+negligibly small. So after the simulation has run for some time
+duration, special procedures must be applied to limit the range of
+weights by removing particles of irrelevantly small weight.
+
+</p><p>
+ <a id="tth_sEc12.3"></a><h2>
+12.3&nbsp;&nbsp;Worked Example:  Density and Flux Tallies</h2>
+
+</p><p>
+In a Monte Carlo calculation of radiation transport from a
+source emitting at a fixed rate R particles per second, tallies in
+the surrounding region are kept for every transit of a cell by every
+particle. The tally for density in a particular cell consists of
+adding the time interval &#8710;t<sub>i</sub> during which a particle is in
+it, every time the cell is crossed.  The tally for flux density adds
+up the time interval multiplied by speed: v<sub>i</sub>&#8710;t<sub>i</sub>. After
+launching and tracking to extinction a large number N of random
+emitted particles, the sums are
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ S<sub>n</sub>=</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8710;t<sub>i</sub>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S<sub>&#981;</sub> = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+v<sub>i</sub> &#8710;t<sub>i</sub>.</td></tr></table>
+</td></tr></table>
+
+
+Deduce quantitative physical formulas for what the particle and flux
+densities are (not just that they are proportional to these sums), and
+the uncertainties in them, giving careful rationales.
+
+</p><p>
+<br /> A total of N particles tracked from the source (not
+including the other particles arising from collisions that we also had
+to track), is the number of particles that would be emitted in a
+time T=N/R. Suppose the typical physical duration of a particle
+"flight" (the time from launch to absorption/loss of the particle
+and all of its descendants) is &#964;.
+
+</p><p>
+If T &gt;&gt; &#964;, then it is clear that the calculation is equivalent to
+treating a physical duration T. In that case almost all particle
+flights are completed within the same physical duration T. Only
+those that start within &#964; of the end of T would be physically
+uncompleted; and only those that started a time less than &#964;
+before the start of T would be still in flight when T starts. The
+fraction affected is &#160;&#8764;&#160;&#964;/T, which is small. But in fact, even
+if T is not much longer than &#964;, the calculation is still equivalent to
+simulating a duration T. In an actual duration T there would then
+be many flights that are unfinished at the end of T, and others that are
+part way through at its start. But on average the different types of
+partial flights add up to represent a number of total flights equal to
+N. The fact that in the physical case the partial flights are of
+different particles, whereas in the Monte Carlo calculation they are
+of the same particle, does not affect the average tally.
+
+</p><p>
+Given, then, that the calculation is effectively simulating a duration
+T, the physical formulas for particle and flux
+densities in a cell of volume V are
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ n = S<sub>n</sub>/TV = S<sub>n</sub>R/NV,&nbsp;&nbsp;&nbsp;<span class="roman">and</span>&nbsp;&nbsp;&nbsp; &#981; =  S<sub>&#981;</sub>/TV=S<sub>&#981;</sub> R/NV.</td></tr></table>
+</td></tr></table>
+
+
+
+</p><p>
+To obtain the uncertainty, we require additional sample sums. The
+total number of tallies in the cell of interest we'll call <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">S<sub>1</sub>=</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+1
+</td></tr></table><br />. We may also need the sum of the squared tally contributions
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">S<sub>n<sup>2</sup></sub>=</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8710;t<sub>i</sub><sup>2</sup>
+</td></tr></table><br /> and <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">S<sub>&#981;<sup>2</sup></sub>=</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+(v<sub>i</sub>&#8710;t<sub>i</sub>)<sup>2</sup>
+</td></tr></table><br />.  Then finding S<sub>n</sub> and S<sub>&#981;</sub> can be considered to be a
+process of making S<sub>1</sub> random selections of typical transits of the
+cell from probability distributions whose mean contribution per
+transit are S<sub>n</sub>/S<sub>1</sub> and S<sub>&#981;</sub>/S<sub>1</sub> respectively. Of course the
+probability distributions aren't actually known, they are indirectly
+represented by the Monte Carlo calculation. But we don't need to know
+what the distributions are, because we can invoke the fact that the
+variance of the mean of a large number (S<sub>1</sub>) of samples from a
+population of variance &#963;<sup>2</sup> is just &#963;<sup>2</sup>/S<sub>1</sub>. We
+need an estimate of the population variance for density and flux density. That
+estimate is provided by the standard expressions for variance:
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#963;<sub>n</sub><sup>2</sup>=</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>S<sub>1</sub>&#8722;1<br /></td><td nowrap="nowrap" align="center">
+[S<sub>n<sup>2</sup></sub>&#8722;(S<sub>n</sub>/S<sub>1</sub>)<sup>2</sup>],&nbsp;&nbsp;&nbsp;&#963;<sub>&#981;</sub><sup>2</sup>=</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>S<sub>1</sub>&#8722;1<br /></td><td nowrap="nowrap" align="center">
+[S<sub>&#981;<sup>2</sup></sub>&#8722;(S<sub>&#981;</sub>/S<sub>1</sub>)<sup>2</sup>].</td></tr></table>
+</td></tr></table>
+
+
+So the uncertainties in the tally sums when a fixed number S<sub>1</sub> &#8776; S<sub>1</sub>&#8722;1 of
+tallies occurs<a
+id="density_uncertainty123681"></a><a
+id="flux_uncertainty123682"></a> are
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#963;<sub>n</sub>/</td><td align="left" class="cl"><br /><span class="larger">&#8730;</span><br />
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm">S<sub>1</sub><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+, &nbsp;&nbsp;&nbsp;<span class="roman">and</span>&nbsp;&nbsp;&nbsp; &#963;<sub>&#981;</sub>/</td><td align="left" class="cl"><br /><span class="larger">&#8730;</span><br />
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm">S<sub>1</sub><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td></tr></table>
+
+
+However, there is also uncertainty arising from the fact that the
+number of tallies S<sub>1</sub> is <em>not</em> exactly fixed, it varies from
+case to case in different Monte Carlo trials, each of N
+flights. Generally S<sub>1</sub> is Poisson distributed, so its variance is
+equal to its mean &#963;<sub>S<sub>1</sub></sub><sup>2</sup>=S<sub>1</sub>. Variation &#948;S<sub>1</sub> in
+S<sub>1</sub> gives rise to a variation approximately (S<sub>n</sub>/S<sub>1</sub>) &#948;S<sub>1</sub>
+in S<sub>n</sub>.  Also it is reasonable to suppose that the variances of
+contribution size, &#963;<sub>n</sub><sup>2</sup> and &#963;<sub>&#981;</sub><sup>2</sup> are not correlated
+with the variance arising from number of samples
+(S<sub>n</sub>/S<sub>1</sub>)<sup>2</sup>&#963;<sub>S<sub>1</sub></sub><sup>2</sup>, so we can simply add them and arrive at
+total uncertainty in S<sub>n</sub> and S<sub>&#981;</sub>, (which we write &#948;S<sub>n</sub>
+and &#948;S<sub>&#981;</sub>)
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#948;S<sub>n</sub> = </td><td align="left" class="cl">
+<span class="larger">&nbsp;&nbsp;&#x239B;<br />&#8730;<br /></span></td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#963;<sub>n</sub><sup>2</sup>+S<sub>n</sub><sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>S<sub>1</sub><br /></td></tr></table></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#948;S<sub>&#981;</sub> = </td><td align="left" class="cl">
+<span class="larger">&nbsp;&nbsp;&#x239B;<br />&#8730;<br /></span></td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#963;<sub>&#981;</sub><sup>2</sup>+S<sub>&#981;</sub><sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>S<sub>1</sub><br /></td></tr></table></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr></table>
+</td></tr></table>
+
+
+Usually, &#963;<sub>n</sub> &lt;~S<sub>n</sub> and &#963;<sub>&#981;</sub>  &lt;~S<sub>&#981;</sub>, in which
+case we can (within a factor of &#8730;2) ignore the &#963;<sub>n</sub> and
+&#963;<sub>&#981;</sub> contributions, and approximate the <em>fractional</em>
+uncertainty in both density and flux as <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">1/</td><td align="left" class="cl"><br /><span class="larger">&#8730;</span><br />
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm">S<sub>1</sub><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />. In this
+approximation, the squared sums S<sub>n<sup>2</sup></sub> and S<sub>&#981;<sup>2</sup></sub> are unneeded.
+
+</p><p>
+
+<h2>Exercise 12. Monte Carlo Statistics</h2>
+
+</p><p>
+1. Suppose in a Monte Carlo transport problem there are N<sub>j</sub> different
+types of collision each of which is equally likely. Approximately what
+is the statistical uncertainty in the estimate of the rate of
+collisions of a specific type i when a total N<sub>t</sub> &gt;&gt; N<sub>j</sub> of collisions
+has occurred
+
+</p><p>
+(a) if for each collision just one contribution to a specific
+collision type is tallied,
+
+</p><p>
+(b) if for each collision a proportionate (1/N) contribution to every collision
+type tally is made?
+
+</p><p>
+If adding a tally contribution for any individual collision type has a
+computational cost that is a multiple f times the rest of the cost of
+the simulation,
+
+</p><p>
+(c) how large can f be before it becomes
+counter-productive to add proportions to all collision type tallies
+for each collision?
+
+</p><p>
+<br /><br />2. Consider a model transport problem represented by two particle
+ranges, low and high energy: 1,2.  Suppose on average there are
+n<sub>1</sub> and n<sub>2</sub> particles in each range and n<sub>1</sub>+n<sub>2</sub>=n is fixed. The
+particles in these ranges react with the material background at
+overall average rates r<sub>1</sub> and r<sub>2</sub>.
+
+</p><p>
+(a) A Monte Carlo determination of the reaction rate is based on a
+random draw for each particle determining whether or not it has
+reacted during a time T (chosen such that r<sub>1</sub>T,r<sub>2</sub>T &lt;&lt; 1). Estimate the fractional statistical uncertainty in the reaction
+rate determination after drawing n<sub>1</sub> and n<sub>2</sub> times respectively.
+
+</p><p>
+(b) Now consider a determination using the same r<sub>1,2</sub>, T, and
+total number of particles, n, but distributed differently so that
+the numbers of particles (and hence number of random draws) in the two
+ranges are artificially adjusted to n<sub>1</sub>&#8242;, n<sub>2</sub>&#8242; (keeping
+n<sub>1</sub>&#8242;+n<sub>2</sub>&#8242;=n), and the reaction rate contributions are appropriately
+scaled by n<sub>1</sub>/n<sub>1</sub>&#8242; and n<sub>2</sub>/n<sub>2</sub>&#8242;. What is now the fractional
+statistical uncertainty in reaction rate determination? What is the
+optimum value of n<sub>1</sub>&#8242; (and n<sub>2</sub>&#8242;) to minimize the uncertainty?
+
+</p><p>
+<br /><br /> 3. Build a program to sample randomly from an exponential
+probability distribution p(x)=exp(&#8722;x), using a built-in or library
+uniform random deviate routine. Code the ability to form a series of
+M independent samples labelled j, each sample consisting of N
+independent random values x<sub>i</sub> from the distribution p(x).  The samples
+are to be assigned to K bins depending on the sample mean
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#956;<sub>j</sub>=</td><td nowrap="nowrap" align="center">
+<small>N</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+x<sub>i</sub>/N
+</td></tr></table><br />. Bin k contains all samples for which
+x<sub>k&#8722;1</sub> &#8804; &#956;<sub>j</sub>  &lt;  x<sub>k</sub>, where x<sub>k</sub>=k&#8710;. Together they form a
+distribution n<sub>k</sub>, for k=1,...,K that is the number of samples with &#956;<sub>j</sub>
+in the bin k. Find the mean <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#956;<sub>n</sub>=</td><td nowrap="nowrap" align="center">
+<small>K</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>k=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+n<sub>k</sub> (k&#8722;1/2)&#8710;/M
+</td></tr></table><br />
+and variance <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#963;<sub>n</sub><sup>2</sup>=</td><td nowrap="nowrap" align="center">
+<small>K</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>k=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+n<sub>k</sub> [(k&#8722;1/2)&#8710;&#8722;&#956;<sub>n</sub>]<sup>2</sup>/(M&#8722;1)
+</td></tr></table><br /> of this distribution n<sub>k</sub>, and compare them with the
+prediction of the Central Limit Theorem, for N=100, K=30,
+&#8710; = 0.2, and two cases: M=100 and M=1000.  Submit the
+following as your solution:
+
+<ol type="1">
+<li> Your code in a computer format that is capable of being
+  executed.
+</p><p>
+</li>
+
+<li> Plots of n<sub>k</sub> versus x<sub>k</sub>, for the two cases.
+</p><p>
+</li>
+
+<li> Your numerical comparison of the mean and variance, and comments
+  as to whether it is consistent with theoretical expectations.
+</p><p>
+</li>
+</ol>
+
+</p><p>
+
+
+<hr /><table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+<a href="chap13.html">NEXT
+</a></td></tr></table>
+</div></body></html>

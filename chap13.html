@@ -1,0 +1,1721 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
+    img {     max-width: 100%;
+    max-height: 40vh; } p { line-height: 1.5em; } body {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 18px;
+    }
+  </style>
+<
+<title>chap13.html</title>
+<table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+ <a href="chap12.html">PREVIOUS
+</a></td></tr></table>
+ <a id="tth_chAp13"></a><h1>
+Chapter 13 <br />Next Steps</h1>
+
+
+</p><p>
+This book is by deliberate choice an introduction to numerical methods
+for scientists and engineers that is <em>concise</em>. The idea is that
+brevity is the best way to grasp the big picture of computational
+approaches to problem solving. However, undoubtedly for some people
+the conciseness overstrains your background knowledge and
+requires an uncomfortably accelerated learning curve. If so, you
+may benefit by supplementing your reading with a more elementary
+text<a href="footnote.html#tthFtNtAIA" id="tthFrefAIA"><sup>80</sup></a>.
+
+</p><p>
+For readers that have survived thus far without much extra help,
+congratulations! If you've really made the material your own by doing
+the exercises, you have a wide-ranging essential understanding of the
+application of numerical methods to physical science and engineering.
+That knowledge includes some background derivations and some practical
+applications, and will serve you in good stead in a professional
+career. It might be all you need, but it is by no means comprehensive
+
+</p><p>
+The conciseness has been achieved at the expense of omitting some
+topics that are without question important in certain applications. It is
+the purpose of this concluding chapter to give pointers, even more
+abbreviated than the preceding text, to some of these topics, and so
+open the doors for students who want to go further.  Of course, all of
+this chapter is enrichment, and demands somewhat deeper thought in
+places. If for any topic you don't "get it" on a first reading, then
+don't be discouraged. References to detailed advanced textbooks are given.
+
+</p><p>
+ <a id="tth_sEc13.1"></a><h2>
+13.1&nbsp;&nbsp;Finite Element Methods</h2>
+
+</p><p>
+<a
+id="finite_elements131683"></a><a
+id="unstructured_mesh131684"></a>We have so far omitted two increasingly important approaches to solving
+problems for complicated boundary geometries: Unstructured Meshes and
+Finite Elements. Unstructured meshes enable us to accommodate in a
+natural way boundaries that are virtually as complicated as we
+like. The reason they are generally linked with finite element
+techniques is that the finite elements approach offers a systematic
+way to discretize partial differential equations on unstructured
+meshes. By contrast, it is far more ambiguous how to implement
+consistently finite differences on an unstructured mesh. Finite
+elements are somewhat less intuitive than finite differences, and
+somewhat more complex. On structured meshes they offer little
+advantage to compensate; and often result in difference schemes
+mathematically equivalent to finite differences. So there is far less
+incentive to use finite elements on structured meshes.
+
+</p><p>
+The crucial difference with finite elements lies in the way the
+approximation to the differential equation is formulated. We've seen
+that many of the equations we need to solve in physics and engineering
+are <em>conservation equations</em><a
+id="conservation_equation131685"></a>. They
+can be expressed in differential form or in integral
+form<a
+id="integral_form131686"></a>. Most often
+they are derived in integral form, and then, recognizing that the
+domain over which the conservation applies is arbitrary, we conclude
+that the integrand must itself be zero. That is the differential
+form. The finite elements approach expresses the problem as being to
+minimize the weighted integral of a finite representation of the
+equation. So it is in a sense a return to integral form, but with a
+specific set of weightings that we will explain in a moment.
+
+</p><p>
+Consider an elliptic equation of the type that arises from diffusion
+and many other conservation principles:
+<a id="eq:conselem">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8711;.( D &#8711;&#968;) + s(<b><i>x</i></b>) = 0.</td></tr></table>
+</td><td width="1%">(13.1)</td></tr></table>
+
+
+Suppose we multiply this equation by a weight function<a
+id="weight___function131687"></a> w(<b><i>x</i></b>), and recognize that (for a differentiable
+w)
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+w &#8711;.(D&#8711;&#968;) = &#8711;.(wD&#8711;&#968;)&#8722; D(&#8711;w).(&#8711;&#968;).</td></tr></table>
+</td><td width="1%">(13.2)</td></tr></table>
+
+
+ When we
+integrate it over the entire solution domain volume V whose surface is &#8706;V, then
+using Gauss's (divergence) theorem<a
+id="Gauss_theorem131688"></a>, we get
+<a id="wtdint">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 = </td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+[w &#8711;.(D&#8711;&#968;) + w s] d<sup>3</sup>x</td></tr></table></td></tr>
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+=</td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+[&#8722;D(&#8711;w).(&#8711;&#968;) + w s] d<sup>3</sup>x +</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>&#8706;V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+wD&#8711;&#968;.<b><i>dS</i></b>.</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(13.3)</td></tr></table>
+
+
+Remember that, provided &#968; exactly satisfies the original
+differential equation, this integral equation is exactly satisfied
+for all possible weight functions, w. This fact is expressed by
+saying that the integral is a "weak form"<a
+id="weak_form_of_equation131689"></a> of the
+differential equation. However, we are going to represent &#968; by a
+functional form that has only a discrete number of
+parameters. Generically
+<a id="repelem">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968;(<b><i>x</i></b>) = &#981;<sub>b</sub> + </td><td nowrap="nowrap" align="center">
+<small>N</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>k=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+a<sub>k</sub> &#968;<sub>k</sub>(<b><i>x</i></b>), </td></tr></table>
+</td><td width="1%">(13.4)</td></tr></table>
+
+
+where &#981;<sub>b</sub> is a known function that satisfies the boundary
+conditions, &#968;<sub>k</sub> is a discrete set of functions and a<sub>k</sub> are the
+parameters consisting of a set of coefficients to be found.  This
+discrete &#968;-representation will therefore satisfy the differential
+equation only approximately.
+
+</p><p>
+Boundary conditions on the surface &#8706;V are important. To
+avoid getting bogged down in discussing them, we assume that
+Dirichlet (fixed &#968;) conditions are applied. By expressing &#968;
+as the sum of the part we are solving for, that satisfies
+<em>homogeneous</em> boundary conditions &#968; = 0, plus some known
+function &#981;<sub>b</sub> that satisfies the inhomogeneous conditions but not
+the original equation, we simplify the functions &#968;<sub>k</sub>. They are
+all zero on the boundary.
+
+</p><p>
+One benefit of the right hand side of eq.&nbsp;(<a href="chap13.html#wtdint">13.3</a>) is that we
+now have only first-order derivatives of the dependent variable
+&#968;. We can therefore permit ourselves the freedom of a
+&#968;-representation with discontinuous gradient without inducing the
+infinities that would occur if we used the second-order form
+&#8711;. (D&#8711;&#968;). We still usually require &#968; to be
+everywhere continuous to avoid infinities from &#8711;&#968;. The
+general approach of finite elements is to require the
+<em>residual</em><a
+id="residual131690"></a>, consisting of the right hand side of
+eq.&nbsp;(<a href="chap13.html#wtdint">13.3</a>), to be as close as possible to zero by adjusting
+the parameters determining &#968;. That optimized situation will be
+the solution.
+
+</p><p>
+Of course, we need at least N equations to determine all the
+coefficients a<sub>k</sub>. These will be obtained from different choices of
+the weight function w. Naturally we also represent the range of
+possible weight functions discretely with a limited number of
+parameters (but at least N). The most common choice of w
+representation is to take it to be represented by exactly the same
+functions &#968;<sub>k</sub>. This choice makes sense since it allows the weight
+function approximately the same freedom as &#968; itself; it would be
+unprofitable to apply far more detailed and flexible w functions
+than can be represented by &#968;. This choice, which goes by the name
+<em>Galerkin method</em><a
+id="Galerkin_method131691"></a>, also gives rise to
+symmetric matrices, which is often advantageous.
+
+</p><p>
+Substituting the total &#968; representation of eq.&nbsp;(<a href="chap13.html#repelem">13.4</a>)
+in the integral expression eq.&nbsp;(<a href="chap13.html#wtdint">13.3</a>), and using for w one
+after the other the functions &#968;<sub>k</sub>, we get a set of N equations
+which can be written in matrix form as
+<a id="matrixelem">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>K</b><b>a</b> = <b>f</b></td></tr></table>
+</td><td width="1%">(13.5)</td></tr></table>
+
+
+where <b>a</b> is the column vector of coefficients a<sub>k</sub> to be
+determined. The N&times;N matrix <b>K</b> is symmetric, with coefficients
+<a id="Kcoefs">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  K<sub>jk</sub> = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8711;&#968;<sub>j</sub> . &#8711;&#968;<sub>k</sub> D&nbsp;&nbsp;d<sup>3</sup>x.</td></tr></table>
+</td><td width="1%">(13.6)</td></tr></table>
+
+
+And the column vector <b>f</b> has coefficient values
+<a id="fcoefs">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  f<sub>j</sub> = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+[&#968;<sub>j</sub> s &#8722; &#8711;&#968;<sub>j</sub>.&#8711;&#981;<sub>b</sub> D ]&nbsp;&nbsp;d<sup>3</sup>x.</td></tr></table>
+</td><td width="1%">(13.7)</td></tr></table>
+
+
+In the mechanics field, which was where finite element
+techniques mostly grew up, <b>K</b> is called the stiffness
+matrix<a
+id="stiffness_matrix131692"></a>,
+<b>f</b> the force vector<a
+id="force_vector131693"></a>, and <b>a</b> the
+displacement vector<a
+id="displacement_vector131694"></a>.
+
+</p><p>
+This treatment has shown in principle how an integral approach can
+reduce our partial differential equation to a matrix equation, to
+which the various approaches to matrix inversion can be
+applied to find the solution. But to be specific, we need to decide
+what to use for the basis functions &#968;<sub>k</sub>. They are each defined
+over the entire domain, but it will greatly reduce the number of
+non-zero entries of <b>K</b> if we choose basis functions that are
+localized, i.e.&nbsp;have non-zero value only in a small region of the
+domain. Then when j and k refer to functions that are localized in
+<em>non-overlapping</em> local regions, their corresponding overlap
+integral K<sub>jk</sub> is zero. Various choices of localized basis
+function<a
+id="basis_function_localized131695"></a>
+are possible, but if we think of the function as being defined at a
+mesh of <em>nodes</em> <b><i>x</i></b><sub>k</sub>, then a piecewise
+linear<a
+id="piecewise_linear131696"></a>
+representation arises from basis functions that are identified with
+each node and vary linearly from unity at the node to zero at the
+adjacent nodes. In one dimension, these are "triangle
+functions"<a
+id="triangle_functions131697"></a><a
+id="tent_functions131698"></a>
+(sometimes called "tent" functions),
+whose derivatives are bipolar "box functions"<a
+id="box_functions131699"></a>
+as illustrated in Fig.&nbsp;<a href="chap13.html#ltrianglefn">13.1</a>.
+
+</p><p>
+<a id="tth_fIg13.1">
+</a> <img src="figures/trianglefn.png" alt="figures/trianglefn.png" /><a id="trianglefn">
+</a>
+
+<div style="text-align:center">Figure 13.1: Localized triangle functions in one dimension, multiplied by
+  coefficients, sum to a
+  piecewise linear total function. Their derivatives are box functions
+  with positive and negative parts. They overlap only with adjacent functions.<a id="ltrianglefn">
+</a></div>
+
+</p><p>
+Such a set of functions will give rise to a matrix <b>K</b> that is
+tridiagonal<a
+id="tridiagonal131700"></a>, just as was the case for finite
+differences in one dimension. Using smoother, higher order, functions
+representing the elements is sometimes advantageous. Cubic Hermite
+functions, and cubic B-splines are two examples. They lead to a matrix
+that is not quite as sparse, possessing typically seven non-zero
+diagonals (in 1-dimension). Their ability to treat higher-order
+differential equations efficiently compensates for the extra
+computational complexity and cost.
+
+</p><p>
+In multiple dimensions, the geometry becomes somewhat more
+complicated, but, for example, there is a straightforward extension of
+the piecewise linear treatment to an unstructured mesh of
+tetrahedra<a
+id="tetrahedral_mesh131701"></a>
+in three dimensions.
+
+</p><p>
+<a id="tth_fIg13.2">
+</a> <img src="figures/lintetrahedron.png" alt="figures/lintetrahedron.png" /><a id="lintetrahedron">
+</a>
+<img src="figures/tetrahedron.gif" alt="figures/tetrahedron.gif" />
+
+<div style="text-align:center">Figure 13.2: In linear interpolation within a tetrahedron, the lines from
+  a point p to the corner nodes of the tetrahedron, divide it into
+  four smaller tetrahedra, whose volumes sum to the total volume. The
+  interpolation weight of node k is proportional to the
+  corresponding volume, V<sub>k</sub>.<a id="tetral">
+</a></div>
+
+</p><p>
+For any point within a particular tetrahedron,
+the interpolated value of the function is taken to be equal to a
+weighted sum of the values at the four corner nodes. The weight of
+each corner is equal to the volume of the smaller tetrahedron obtained
+by replacing the corner with the point of interest, divided by the
+total volume of the original tetrahedron, which Fig.&nbsp;<a href="chap13.html#tetral">13.2</a> illustrates<a href="footnote.html#tthFtNtAIB" id="tthFrefAIB"><sup>81</sup></a>.  The &#968;<sub>k</sub> function associated with a node k is unity at
+that node and decreases linearly to zero along every connection leg
+to an adjacent node. The
+interpolation<a
+id="tetrahedral_interpolation131702"></a> formula within a single
+tetrahedral element is then
+<a id="interpelem">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968;(p) = </td><td nowrap="nowrap" align="center">
+<small>4</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+V<sub>k</sub> a<sub>k</sub>/V.</td></tr></table>
+</td><td width="1%">(13.8)</td></tr></table>
+
+
+In the resulting matrix <b>K</b> the only non-zero overlap integrals
+(coefficients) for each row j are those for nodes k that connect
+to node j. The number of such connections is generally small,
+amounting to typically about ten per node, but depending on
+the details of the mesh.  Therefore <b>K</b> is very sparse; and the
+necessary computational effort to obtain the solution can be greatly
+reduced when advanced sparse-matrix techniques are employed.
+
+</p><p>
+More complicated meshes are also possible, using as elements other
+polyhedra<a
+id="polyhedra131703"></a> such as hexahedra (non-rectangular
+cubes). Also higher order interpolations of the solution within the
+elements are sometimes used.  These lead to increasing complications
+in handling the geometrical aspects of the problem. (Even without
+these enhancements, the coding complications are already significant.)
+Generally, mesh-generation libraries or applications are used to
+construct the nodal mesh and its connections. Then the overlap
+integrals need to be evaluated to construct the matrix <b>K</b> and
+the vector <b>f</b>.<a href="footnote.html#tthFtNtAIC" id="tthFrefAIC"><sup>82</sup></a>  In
+addition to open source libraries, many commercial computing packages
+provide the mechanisms for mesh generation, integration, and equation
+discretization, often with substantial graphical user interfaces to
+ease the process.
+
+</p><p>
+ <a id="tth_sEc13.2"></a><h2>
+13.2&nbsp;&nbsp;Discrete Fourier Analysis and Spectral Methods</h2>
+
+</p><p>
+<a
+id="Fourier_discrete_analysis132704"></a><a
+id="Fourier_methods132705"></a><a
+id="spectral_methods132706"></a>A function f(t), defined over a finite range of its
+argument 0 &#8804; t  &lt;  T can be expressed in terms of a Fourier series
+of discrete frequencies &#969;<sub>n</sub>=2&#960;&#957;<sub>n</sub>=2&#960;n/T as.
+<a id="FourierSeries">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  f(t) = </td><td nowrap="nowrap" align="center">
+<small>&#8734;</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>n=&#8722;&#8734;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+<span class="roman">e</span><sup>i&#969;<sub>n</sub> t</sup> F<sub>n</sub> ,</td></tr></table>
+</td><td width="1%">(13.9)</td></tr></table>
+
+
+where the Fourier coefficient for integer n is
+<a id="Fouriercoef">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  F<sub>n</sub> = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>T<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>T</small><!--sup
+--><br /><br />
+<small>0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+<span class="roman">e</span><sup>&#8722;i&#969;<sub>n</sub> t</sup> f(t) dt.</td></tr></table>
+</td><td width="1%">(13.10)</td></tr></table>
+
+
+Actually the expression (<a href="chap13.html#FourierSeries">13.9</a>) gives a function f(t) that is
+<em>periodic</em> in t with period T.
+
+</p><p>
+Numerical representations are not usually continuous; they are
+discrete. So suppose the function f is given only at uniformly
+spaced argument values t<sub>j</sub> = j &#8710;t for j=0,1,...,N&#8722;1, where
+&#8710;t = T/N, and write f(t<sub>j</sub>)=f<sub>j</sub>. Then these N discrete
+values<a href="footnote.html#tthFtNtAID" id="tthFrefAID"><sup>83</sup></a> of f allow
+us to determine only N Fourier coefficients. It is intuitive that
+these should be the N <em>lowest</em> (absolute) frequency components,
+since one clearly cannot meaningfully represent frequencies higher than
+roughly 1/&#8710;t on this discrete mesh. The lowest N frequencies
+are those for which &#8722;N/2 &lt;  n  &#8804; N/2. This observation immediately
+refines the qualification of how high a frequency can be represented
+on a discrete mesh. The highest frequency<a href="footnote.html#tthFtNtAIE" id="tthFrefAIE"><sup>84</sup></a>  has &#124;n&#124;=N/2, giving &#969;<sub>n</sub>=2&#960;&#957;<sub>n</sub> = 2&#960;N/2T=&#960;/&#8710;t. This limit is called the Nyquist
+limit<a
+id="Nyquist_limit132707"></a>.
+
+</p><p>
+If, discarding all pretence at rigor, we decide to approximate f as
+a sum of Dirac delta functions <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">f(t) &#8776; </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8710;tf<sub>j</sub>&#948;(t&#8722;t<sub>j</sub>)
+</td></tr></table><br /> (which gives approximately correct integrals), then
+the integral for F<sub>n</sub> (<a href="chap13.html#Fouriercoef">13.10</a>) can be expressed
+approximately<a
+id="Fourier_transform132708"></a> as a
+sum<a href="footnote.html#tthFtNtAIF" id="tthFrefAIF"><sup>85</sup></a>:
+<a id="Fsumappr">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  F<sub>n</sub> = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>T<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>T&#8722;&#1013;</small><!--sup
+--><br /><br />
+<small>0&#8722;&#1013;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ <span class="roman">e</span><sup>&#8722;i&#969;<sub>n</sub> t</sup> f(t) dt  &#8776; </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>T<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small>N&#8722;1</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ <span class="roman">e</span><sup>&#8722;i&#969;<sub>n</sub> t<sub>j</sub></sup> f<sub>j</sub> &#8710;t = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small>N&#8722;1</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ <span class="roman">e</span><sup>&#8722;i2&#960;n j/N</sup> f<sub>j</sub>.</td></tr></table>
+</td><td width="1%">(13.11)</td></tr></table>
+
+
+Now we notice that the final expression for F<sub>n</sub> is <em>periodic</em>
+with period N; that is, F<sub>n+N</sub>=F<sub>n</sub>. It is therefore convenient to
+consider the range of frequency index &#8722;N/2 &lt; n &#8804; N/2 to be re-ordered
+by replacing every negative n by the positive value n+N. Then n
+runs from 0 to N&#8722;1. One should remember, though that the upper
+half of this range really represents negative
+frequencies. Incidentally, the periodicity of F<sub>n</sub> illustrates that
+one can equally well consider F<sub>n</sub> to represent <em>any</em> frequency
+&#957; =  (n+kN)/T with k an integer. That is because sampling a
+continuous function <span class="roman">e</span><sup>i2&#960;(n+kN)t/T</sup> at t=j&#8710;t=j T/N
+gives values independent of k. Thus, all frequencies higher than the
+Nyquist limit &#957; =  N/2T, contained in a continuous signal sampled
+discretely, are shifted into the Nyquist range and appear at a lower
+absolute frequency in the sampled representation. This effect is called aliasing<a
+id="aliasing132709"></a>.
+
+</p><p>
+The <b><em>discrete</em> Fourier transform</b> and its inverse can thus be
+considered to be<a
+id="Fourier_transform_discrete132710"></a>
+<a id="DFT">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  f<sub>j</sub> = </td><td nowrap="nowrap" align="center">
+<small>N&#8722;1</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>n=0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+<span class="roman">e</span><sup>i2&#960;n j/N</sup> F<sub>n</sub>&nbsp;; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; F<sub>n</sub> = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small>N&#8722;1</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+<span class="roman">e</span><sup>&#8722;i2&#960;n j/N</sup> f<sub>j</sub>.</td></tr></table>
+</td><td width="1%">(13.12)</td></tr></table>
+
+
+Substituting for F<sub>n</sub> in this expression for f<sub>j</sub>, one obtains
+coefficients that are sums of the form <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>n</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+<span class="roman">e</span><sup>i2&#960;n j/N</sup><span class="roman">e</span><sup>&#8722;i2&#960;n j&#8242;/N</sup>
+</td></tr></table><br /> which is zero if j &#8800; j&#8242; and N if
+j=j&#8242;. Therefore these two equations are exact, and could have been
+simply adopted as definitions from the start. The discrete Fourier
+transforms need not be considered <em>approximations</em> to continuous
+transforms; but it is helpful to recognize their relationship to
+Fourier series representations of continuous functions.
+
+</p><p>
+Of course we aren't really interested in quantities that consist of a
+set of delta functions. If, instead of simply multiplying by &#8710;t, we convolve <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+f<sub>j</sub>&#948;(t&#8722;t<sub>j</sub>)
+</td></tr></table><br /> with a triangle function
+that is unity at t=0 and descends linearly to zero at t=&#177;&#8710;t,
+then we will recover a piecewise linear function whose values at t<sub>j</sub>
+are f<sub>j</sub>. This is a much closer representation of the sort of
+function we might be considering.
+
+</p><p>
+The Fourier transform of a
+convolution of two functions is the product of their Fourier
+transforms.
+<a id="convolu">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>T</small><!--sup
+--><br /><br />
+<small>0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+<span class="roman">e</span><sup>&#8722;&#969;<sub>n</sub> t</sup> </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>T</small><!--sup
+--><br /><br />
+<small>0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+f(t&#8242;) g(t&#8722;t&#8242;) dt&#8242;dt = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>T</small><!--sup
+--><br /><br />
+<small>0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+<span class="roman">e</span><sup>&#8722;&#969;<sub>n</sub> t&#8242;</sup> f(t&#8242;) dt&#8242;</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>T</small><!--sup
+--><br /><br />
+<small>0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+<span class="roman">e</span><sup>&#8722;&#969;<sub>n</sub> t"</sup> g(t") dt".</td></tr></table>
+</td><td width="1%">(13.13)</td></tr></table>
+
+
+Therefore the Fourier coefficients F<sub>n</sub> corresponding to
+the piecewise linear form of f are the expressions in eq.&nbsp;(<a href="chap13.html#DFT">13.12</a>)
+multiplied by the scaled Fourier transform of the triangle function, namely
+<a id="trianglFT">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  K<sub>n</sub> = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>&#8710;t</small><!--sup
+--><br /><br />
+<small>&#8722;&#8710;t</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ <span class="roman">e</span><sup>&#8722;i&#969;<sub>n</sub> t</sup> (1&#8722;&#124;t&#124;/&#8710;t) dt/&#8710;t = </td><td nowrap="nowrap" align="center">
+sin<sup>2</sup>(&#969;<sub>n</sub>&#8710;t/2)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>(&#969;<sub>n</sub>&#8710;t/2)<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(13.14)</td></tr></table>
+
+
+So when dealing with continuous functions, and interpolating using the
+inverse transform, eq.&nbsp;(<a href="chap13.html#FourierSeries">13.9</a>), one ought probably to filter the
+signal in frequency space. Multiplying by the sinc-squared function
+K<sub>n</sub>=sin<sup>2</sup>(z<sub>n</sub>)/ z<sub>n</sub><sup>2</sup>, with z<sub>n</sub>=&#969;<sub>n</sub>&#8710;t/2 is the
+equivalent of doing piecewise linear interpolation. At the highest
+absolute frequency, &#969;<sub>N/2</sub>, where &#969;<sub>n</sub>&#8710;t/2 = &#960; N &#8710;T/ T = &#960;, the filter reaches its first zero. It modestly
+ limits the frequency bandwidth of the signal.
+
+</p><p>
+ It turns out to be possible to evaluate discrete Fourier transforms
+ (by successively dividing the domain in half) much faster than
+ implementing the N&times;N multiplications implied by performing
+ the sums in eq.&nbsp;(<a href="chap13.html#DFT">13.12</a>) one after the other. The
+ algorithms<a
+id="Fourier_transform_fast132711"></a><a
+id="fast_Fourier____transform132712"></a> that reduce the computational effort to of order Nln N multiplications are called Fast Fourier Transforms<a href="footnote.html#tthFtNtAIG" id="tthFrefAIG"><sup>86</sup></a>. They, naturally enough, find important uses in
+ spectral analysis and filtering. But, less obviously, they also
+ provide powerful techniques for solving partial differential
+ equations by representing the solution in terms of a finite number of
+ Fourier coeffients, as an alternative to a finite number of discrete
+ values.
+
+</p><p>
+ <b>Spectral representation</b><a
+id="spectral_representation132713"></a> is
+ most powerful for linear problems in which there is an ignorable
+ coordinate<a
+id="ignorable_coordinate132714"></a> because of some inherent
+ symmetry. In such situations each Fourier component becomes
+ independent of the others. What's more, the Fourier components are
+ the eigenmodes (in the direction of symmetry) of the
+ problem. Consequently it is sometimes the case that including a very
+ few such Fourier components, even as few as one, can represent the
+ solution. In effect, this practically lowers the dimensionality of
+ the problem by one, leading to major computational advantage. The
+ equations can be formulated in terms of Fourier modes in the symmetry
+ direction and finite differences in the other direction(s). For
+ separable<a
+id="separable_coordinates132715"></a> linear problems like this,
+ there is actually no pressing need for the Fourier Transforms to be
+ <em>Fast</em>, because the solution in space only needs to be
+ reconstructed after the solution in terms of Fourier modes has been
+ found.
+
+</p><p>
+If the equations to be solved are non-linear, however, or the symmetry is only
+approximate, then different Fourier modes are coupled together. Then a
+larger number of modes is necessary, and the computational advantage
+becomes less. Even so, there are sometimes substantial remaining
+benefits to a spectral representation, provided the Fourier transform
+is fast. The advantages can be understood as follows.
+
+</p><p>
+Suppose we have a partial differential equation in which we wish to
+represent the x coordinate by a Fourier expansion. The
+representations of the other coordinates and their differentials do
+not affect this question. Consider the equation to consist of a part
+that is linear in the dependent variable u, <span style="font-family:helvetica"><i>L</i></span>(u) and a part
+that is quadratic <span style="font-family:helvetica"><i>M</i></span>(u)<span style="font-family:helvetica"><i>N</i></span>(u)<a
+id="non-linearity132716"></a>; so
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<span style="font-family:helvetica"><i>L</i></span>(u)+ <span style="font-family:helvetica"><i>M</i></span>(u)<span style="font-family:helvetica"><i>N</i></span>(u) = s(x).</td></tr></table>
+</td><td width="1%">(13.15)</td></tr></table>
+
+
+Here <span style="font-family:helvetica"><i>L</i></span>, <span style="font-family:helvetica"><i>M</i></span>, <span style="font-family:helvetica"><i>N</i></span> are linear x-differential
+operators, for example: <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"><span style="font-family:helvetica"><i>L</i></span>(u) = </td><td nowrap="nowrap" align="center">
+&#8706;u
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
++ gu
+</td></tr></table><br />. We represent u by a sum of N Fourier modes <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">u = </td><td nowrap="nowrap" align="center">
+<small>N</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>n=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ <span class="roman">e</span><sup>ik<sub>n</sub>x</sup> U<sub>n</sub>
+</td></tr></table><br />, where for an x-domain of length X, k<sub>n</sub>=2&#960;n/X. Substituting a Fourier mode into a linear operator gives rise
+to an algebraic multiplier. For example <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"> </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
++ g</td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<span class="roman">e</span><sup>ik<sub>n</sub>x</sup> = (ik+g) <span class="roman">e</span><sup>ik<sub>n</sub>x</sup>
+</td></tr></table><br />. So <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"><span style="font-family:helvetica"><i>L</i></span>(u) = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>n</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+L<sub>n</sub><span class="roman">e</span><sup>ik<sub>n</sub>x</sup>
+</td></tr></table><br />, where
+L<sub>n</sub> is the multiplier arising from <span style="font-family:helvetica"><i>L</i></span> for the k<sub>n</sub>
+mode. The equations that determine the U<sub>n</sub> are found by Fourier
+transforming the differential equation we started with:
+<a id="nonlinFourier">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>X<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>X</small><!--sup
+--><br /><br />
+<small>0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+[<span style="font-family:helvetica"><i>L</i></span>(u)+ <span style="font-family:helvetica"><i>M</i></span>(u)<span style="font-family:helvetica"><i>N</i></span>(u)] <span class="roman">e</span><sup>&#8722;ik<sub>m</sub>x</sup> dx=S<sub>m</sub>. </td></tr></table>
+</td><td width="1%">(13.16)</td></tr></table>
+
+
+Substituting in the Fourier expansion of u, and using the orthonormal
+properties of the modes: &#8747;<sub>0</sub><sup>X</sup> <span class="roman">e</span><sup>ik<sub>n</sub>x</sup> <span class="roman">e</span><sup>&#8722;ik<sub>m</sub>x</sup> dx/X = &#948;<sub>mn</sub> we get
+ <a id="prodconv">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  L<sub>m</sub> U<sub>m</sub> <span class="roman">e</span><sup>ik<sub>m</sub>x</sup> + </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>l+n=m</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+M<sub>l</sub> U<sub>l</sub> <span class="roman">e</span><sup>ik<sub>l</sub>x</sup> N<sub>n</sub> U<sub>n</sub> <span class="roman">e</span><sup>ik<sub>n</sub>x</sup> = S<sub>m</sub></td></tr></table>
+</td><td width="1%">(13.17)</td></tr></table>
+
+
+The sum arising from the quadratic term couples all the individual
+modal equations<a
+id="coupled_equations132717"></a> together. Without it they
+would be uncoupled. The coupling term has the form of a convolution
+sum. To evaluate the sum directly requires for each equation m that
+we evaluate on average N/2 terms, for a total computational
+multiplication count of approximately 2N<sup>2</sup> (because there are four
+multiplications per term) per solution step. Generally a nonlinear
+equation must be solved by iterative steps in which the nonlinear term
+must be evaluated. An alternative way to evaluate the nonlinear term
+at each step is to transform back to x-space, perform the
+multiplication on the x-space <span style="font-family:helvetica"><i>M</i></span>(u)<span style="font-family:helvetica"><i>N</i></span>(u), and then
+fast Fourier transform (FFT) <a
+id="fast_Fourier_transform132718"></a>the product
+again to obtain the sum term for the Fourier mode equation
+(<a href="chap13.html#prodconv">13.17</a>).
+The differencing to evaluate the operators <span style="font-family:helvetica"><i>M</i></span> and <span style="font-family:helvetica"><i>N</i></span>
+costs a few multiplications, say p. The product for all N values
+u will then cost Np. And the two FFTs will be only approximately 2NlnN. Therefore the total cost of this alternative scales like N(2lnN+p).  Thus, using the FFT approach reduces the 2N<sup>2</sup>
+computational cost scaling to N(2lnN+p).
+
+</p><p>
+Some extra questions arise concerning aliasing, but
+this FFT approach is nevertheless used to good advantage for some
+applications.
+
+</p><p>
+ <a id="tth_sEc13.3"></a><h2>
+13.3&nbsp;&nbsp;Sparse Matrix Iterative Krylov Solution</h2>
+
+</p><p>
+<a
+id="Krylov_techniques133719"></a> We stopped our development of iterative
+linear system solution, which we saw in Chapter <a href="chap6.html#ChapEllip">6</a> is at
+the heart of solving most boundary-value differential equations,
+before introducing the most significant modern developments in this
+field. These are associated with the name of Krylov. Here we give the
+barest introduction. A modern text book should be consulted for more
+details. First, as far as terminology is concerned, the name refers to
+the use of the <em>subspace</em><a
+id="subspace_Krylov133720"></a> of a vector
+space that is accessed by repeated multiplications by the same
+matrix. The Krylov subspace <span style="font-family:helvetica"><i>K</i></span><sub>k</sub>(<b>A</b>,<b>b</b>) of dimension
+k generated by a matrix <b>A</b> from an initial vector <b>b</b>
+consists of all vectors that can be expressed in the form of a sum of
+coefficients times the vectors <b>A</b><sup>j</sup> <b>b</b>, for j=0,1,...,k&#8722;1. The expression <b>A</b><sup>j</sup> means <em>matrix</em> multiply
+  the unit matrix <b>I</b> by <b>A</b>, j times.
+
+</p><p>
+The reason why this subspace is so important, is that it encompasses
+all the vectors that can be accessed by an iterative scheme that uses
+simply addition, scaling and multiplication by
+<b>A</b>. Multiplication by a sparse matrix involves far fewer
+computations than by a full matrix, or than inversion of a sparse
+matrix. Therefore iterative solution techniques that require only
+sparse matrix<a
+id="matrix_sparse133721"></a><a
+id="sparse133722"></a>
+<em>multiplications</em> will be fast.  Indeed the matrix itself may
+never need to be formed, all that is needed is an algorithm for
+multiplying by it. Let's consider how we might construct such an
+interative scheme for solving<a
+id="iteration133723"></a><a
+id="matrix_iterative_solution133724"></a>
+<a id="matrixinvers">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>A</b><b>x</b> = <b>b</b></td></tr></table>
+</td><td width="1%">(13.18)</td></tr></table>
+
+
+for <b>x</b> given <b>b</b>. After say k iterations, we have a
+vector <b>x</b><sub>k</sub> which we hope is nearly the solution. The extent to
+which it is not yet the solution is given by the extent to which the
+residual<a
+id="residual133725"></a> <b>r</b><sub>k</sub> &#8801; (<b>b</b>&#8722;<b>A</b><b>x</b><sub>k</sub>)
+is non-zero. If the matrix <b>A</b> is not very different from the
+identity matrix, then an intuitive scheme for obtaining the next
+iteration vector <b>x</b><sub>k+1</sub> would be to add the residual to
+<b>x</b><sub>k</sub> and take  <b>x</b><sub>k+1</sub> = <b>x</b><sub>k</sub> + <b>r</b><sub>k</sub>. In
+practice it is better to use an increment <b>p</b><sub>k</sub> chosen to be
+like <b>r</b><sub>k</sub>, but "conjugate"<a
+id="conjugate133726"></a> to previous
+increments (in a sense to be explained), and scaled by a coefficient
+&#945;<sub>k</sub> chosen to minimize the resulting residual
+<b>r</b><sub>k+1</sub>. Thus <b>x</b><sub>k+1</sub> = <b>x</b><sub>k</sub> + &#945;<sub>k</sub><b>p</b><sub>k</sub>,
+which means
+<a id="residualupdate">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>r</b><sub>k+1</sub> = <b>r</b><sub>k</sub>&#8722;&#945;<sub>k</sub><b>A</b><b>p</b><sub>k</sub>. </td></tr></table>
+</td><td width="1%">(13.19)</td></tr></table>
+
+
+Different schemes use different choices of <b>p</b><sub>k</sub> and
+&#945;<sub>k</sub>. The search direction <b>p</b><sub>k</sub>, is chosen to be
+<a id="searchdirection">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>p</b><sub>k</sub> = <b>P</b><b>r</b><sub>k</sub> + </td><td nowrap="nowrap" align="center">
+<small>k&#8722;1</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#946;<sub>kj</sub><b>p</b><sub>j</sub></td></tr></table>
+</td><td width="1%">(13.20)</td></tr></table>
+
+
+where <b>P</b> is an optional matrix, omitted (or, equivalently, the
+identity) in the
+simplest case. The coefficients &#946;<sub>kj</sub> are chosen so as to satisfy
+the conjugacy condition that we'll specify in a moment (eq.&nbsp;<a href="chap13.html#Rorthog">13.23</a>).
+
+</p><p>
+If we start from an initial vector <b>x</b><sub>0</sub>=<b>0</b>, so
+<b>r</b><sub>0</sub>=<b>b</b> (without loss of generality<a href="footnote.html#tthFtNtAIH" id="tthFrefAIH"><sup>87</sup></a>), each <b>P</b><b>r</b><sub>k</sub> and
+<b>p</b><sub>k</sub> generated by the iteration, consists of sums of terms like
+(<b>PA</b>)<sup>j</sup><b>P</b><b>b</b> with 0 &#8804; j &lt;  k. In other words, they
+are members of the Krylov subspace<a
+id="subspace_Krylov133727"></a> <span style="font-family:helvetica">
+<i>K</i></span><sub>k</sub>(<b>PA</b>,<b>Pb</b>). The general description "Krylov"
+technique applies to all approaches that use this repeated
+multiplication process.<a href="footnote.html#tthFtNtAII" id="tthFrefAII"><sup>88</sup></a>
+
+</p><p>
+We suppose that minimizing the residual is taken to mean minimimizing
+a bilinear<a
+id="bilinear_form133728"></a> form <b>r</b><sub>k+1</sub><sup>T</sup><b>R</b><b>r</b><sub>k+1</sub>,
+where <b>R</b> is a fixed symmetric matrix to be chosen
+later. Setting the differential of this form with respect to
+&#945;<sub>k</sub> equal to zero we get
+<a id="formzero">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  (<b>A</b><b>p</b><sub>k</sub>)<sup>T</sup><b>R</b>(<b>r</b><sub>k</sub>&#8722;&#945;<sub>k</sub><b>A</b><b>p</b><sub>k</sub>)=<b>p</b><sup>T</sup><sub>k</sub><b>A</b><sup>T</sup><b>R</b><b>r</b><sub>k+1</sub>=0,</td></tr></table>
+</td><td width="1%">(13.21)</td></tr></table>
+
+
+whose solution is
+<a id="alphasoln">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#945;<sub>k</sub> = <b>p</b><sup>T</sup><sub>k</sub><b>A</b><sup>T</sup><b>R</b><b>r</b><sub>k</sub>/<b>p</b><sup>T</sup><sub>k</sub><b>A</b><sup>T</sup><b>R</b><b>A</b><b>p</b><sub>k</sub>,</td></tr></table>
+</td><td width="1%">(13.22)</td></tr></table>
+
+
+and which gives a new residual <b>r</b><sub>k+1</sub> that is
+orthogonal (in the sense of eq.&nbsp;(<a href="chap13.html#formzero">13.21</a>): <b>p</b><sup>T</sup><sub>k</sub><b>A</b><sup>T</sup><b>R</b><b>r</b><sub>k+1</sub>=0) to
+the search direction.  The conjugacy condition<a
+id="conjugacy133729"></a> on the search
+directions is then taken to be that
+<a id="Rorthog">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>p</b><sup>T</sup><sub>j</sub><b>A</b><sup>T</sup><b>R</b><b>A</b><b>p</b><sub>k</sub>=0 &nbsp;&nbsp;&nbsp;<span class="roman">for</span>&nbsp;&nbsp;&nbsp; j &#8800; k</td></tr></table>
+</td><td width="1%">(13.23)</td></tr></table>
+
+
+which requires<a href="footnote.html#tthFtNtAIJ" id="tthFrefAIJ"><sup>89</sup></a> (substituting from eq.&nbsp;<a href="chap13.html#searchdirection">13.20</a>)
+<a id="betasoln">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#946;<sub>kj</sub> = &#8722;<b>p</b><sup>T</sup><sub>j</sub><b>A</b><sup>T</sup><b>R</b><b>A</b><b>P</b><b>r</b><sub>k</sub>/<b>p</b><sup>T</sup><sub>j</sub><b>A</b><sup>T</sup><b>R</b><b>A</b><b>p</b><sub>j</sub></td></tr></table>
+</td><td width="1%">(13.24)</td></tr></table>
+
+
+
+</p><p>
+The residual minimization process produces a series of residuals and
+search directions having orthogonality<a
+id="orthogonality_mutual133730"></a> properties
+that can be used to advantage. The first property is <em>Mutual
+  Orthogonality</em>, which is that
+<a id="mutualorthog">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>p</b><sup>T</sup><sub>j</sub><b>A</b><sup>T</sup><b>R</b><b>r</b><sub>k</sub> = 0 &nbsp;&nbsp;&nbsp; <span class="roman">for</span>&nbsp;<span class="roman">all</span>&nbsp;k&nbsp; <span class="roman">and</span>&nbsp;<span class="roman">all</span>&nbsp;j &lt; k.</td></tr></table>
+</td><td width="1%">(13.25)</td></tr></table>
+
+
+This fact follows inductively, assuming that the condition holds up to
+k. Premultiplying eq.&nbsp;(<a href="chap13.html#residualupdate">13.19</a>) by
+<b>p</b><sub>j</sub><b>A</b><sup>T</sup><b>R</b> gives
+<a id="preresid">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>p</b><sup>T</sup><sub>j</sub><b>A</b><sup>T</sup><b>R</b><b>r</b><sub>k+1</sub> = <b>p</b><sub>j</sub><b>A</b><sup>T</sup><b>R</b><b>r</b><sub>k</sub> &#8722; &#945;<sub>k</sub><b>p</b><sub>j</sub><b>A</b><sup>T</sup><b>R</b><b>A</b><b>p</b><sub>k</sub>.</td></tr></table>
+</td><td width="1%">(13.26)</td></tr></table>
+
+
+For j &lt; k the right hand side's first term is zero by hypothesis and
+the second is zero by conjugacy (<a href="chap13.html#Rorthog">13.23</a>). For j=k, the left
+hand side is zero by eq.&nbsp;(<a href="chap13.html#formzero">13.21</a>). Therefore mutual
+orthogonality holds up to k+1 and so for all k.
+
+</p><p>
+The second property is <em>Residual Orthogonality</em>. This
+follows from Mutual Orthogonality. Because <b>p</b><sub>j</sub> and
+<b>P</b><b>r</b><sub>j</sub> (j &lt; k) span the same Krylov subspace,
+orthogonality of a vector to all of one set implies orthogonality to
+all of the other. Therefore we can replace the <b>p</b><sub>j</sub> in eq.&nbsp;(<a href="chap13.html#mutualorthog">13.25</a>) with <b>P</b><b>r</b><sub>j</sub> and conclude
+<a id="Orthog">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  (<b>P</b><b>r</b><sub>j</sub>)<sup>T</sup><b>A</b><sup>T</sup><b>R</b><b>r</b><sub>k</sub> = <b>r</b><sup>T</sup><sub>k</sub><b>R</b><sup>T</sup><b>A</b><b>P</b><b>r</b><sub>j</sub> = 0 &nbsp;&nbsp;&nbsp; <span class="roman">for</span>&nbsp;<span class="roman">all</span>&nbsp;k&nbsp;<span class="roman">and</span>&nbsp;<span class="roman">all</span>&nbsp;j &lt; k.</td></tr></table>
+</td><td width="1%">(13.27)</td></tr></table>
+
+
+
+</p><p>
+The final property is obtained by premultiplying eq.&nbsp;(<a href="chap13.html#searchdirection">13.20</a>) by <b>r</b><sup>T</sup><sub>k</sub><b>R</b><sup>T</sup><b>A</b> which
+demonstrates that the non-zero scalar products with <b>r</b><sub>k</sub> of
+<b>p</b><sub>k</sub> and <b>P</b><b>r</b><sub>k</sub> are the same:
+<a id="scalpr">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>r</b><sup>T</sup><sub>k</sub><b>R</b><sup>T</sup><b>A</b><b>p</b><sub>k</sub> = <b>r</b><sup>T</sup><sub>k</sub><b>R</b><sup>T</sup><b>A</b><b>P</b><b>r</b><sub>k</sub>.</td></tr></table>
+</td><td width="1%">(13.28)</td></tr></table>
+
+
+The first of these is equal to the denominator of &#945;<sub>k</sub>, in eq.&nbsp;(<a href="chap13.html#alphasoln">13.22</a>).
+
+</p><p>
+Residual Orthogonality enables us to demonstrate conditions on
+an expression nearly the same as the numerator of
+&#946;<sub>kj</sub>. We premultiply a version of eq.&nbsp;(<a href="chap13.html#residualupdate">13.19</a>)
+using index j by <b>r</b><sup>T</sup><sub>k</sub><b>R</b><sup>T</sup><b>A</b><b>P</b> to get (for j &lt; k)
+<a id="betanumer">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>r</b><sup>T</sup><sub>k</sub><b>R</b><sup>T</sup><b>A</b><b>P</b><b>r</b><sub>j+1</sub> = <b>r</b><sup>T</sup><sub>k</sub><b>R</b><sup>T</sup><b>A</b><b>P</b><b>r</b><sub>j</sub> &#8722; &#945;<sub>j</sub> <b>r</b><sup>T</sup><sub>k</sub><b>R</b><sup>T</sup><b>A</b><b>P</b><b>A</b><b>p</b><sub>j</sub>.</td></tr></table>
+</td><td width="1%">(13.29)</td></tr></table>
+
+
+The first term on the right hand side is zero by Residual Orthogonality. The
+left hand side is also zero by Residual Orthogonality except when j=k&#8722;1.
+Therefore, the combination
+<b>r</b><sup>T</sup><sub>k</sub><b>R</b><sup>T</sup><b>A</b><b>P</b><b>A</b><b>p</b><sub>j</sub> = <b>p</b><sup>T</sup><sub>j</sub><b>A</b><sup>T</sup><b>P</b><sup>T</sup><b>A</b><sup>T</sup><b>R</b><b>r</b><sub>k</sub> is zero except when j=k&#8722;1. This last form is equal to the
+numerator of &#946;<sub>kj</sub> provided that
+
+</p><p>
+
+<table class="tabular">
+<tr><td align="left">(1) </td><td align="left"><b>P</b> and <b>A</b> are symmetric,</td></tr>
+<tr><td align="left">(2) </td><td align="left">(<b>A</b><b>P</b>) and (<b>A</b><b>R</b>) commute. </td></tr></table>
+
+
+</p><p>
+Those conditions are sufficient to ensure that only one of
+the &#946;<sub>kj</sub>, namely &#946;<sub>k,k&#8722;1</sub>, is non-zero. It can be rewritten
+<a id="betafinal">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#946;<sub>k,k&#8722;1</sub> = <b>r</b><sup>T</sup><sub>k</sub><b>R</b><sup>T</sup><b>A</b><b>P</b><b>r</b><sub>k</sub>/<b>r</b><sup>T</sup><sub>k&#8722;1</sub><b>R</b><sup>T</sup><b>A</b><b>P</b><b>r</b><sub>k&#8722;1</sub>,</td></tr></table>
+</td><td width="1%">(13.30)</td></tr></table>
+
+
+and &#945;<sub>k</sub> is also generally rewritten as
+<a id="alphafinal">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#945;<sub>k</sub> = <b>r</b><sup>T</sup><sub>k</sub><b>R</b><sup>T</sup><b>A</b><b>P</b><b>r</b><sub>k</sub>/ <b>p</b><sup>T</sup><sub>k</sub><b>A</b><sup>T</sup><b>R</b><b>A</b><b>p</b><sub>k</sub>.</td></tr></table>
+</td><td width="1%">(13.31)</td></tr></table>
+
+
+
+</p><p>
+There is a major advantage to the property of having only one non-zero
+&#946; coefficient, which we'll call the
+"currency-property"<a
+id="currency_property133731"></a>. It is that the
+iteration requires only the <em>current</em> residual and search
+direction vectors, rather than all the previous vectors back to
+zero.  In big problems, the vectors are long. Keeping all of them
+would require costly increase of storage space, and of arithmetic.
+
+</p><p>
+Having done the derivation for a general choice of bilinear matrix
+<b>R</b> and matrix <b>P</b>, we can consider various different
+popular iteration schemes<a href="footnote.html#tthFtNtAJA" id="tthFrefAJA"><sup>90</sup></a> as examples with different choices
+of <b>R</b> and <b>P</b>.
+
+</p><p>
+The <b>Conjugate Gradient</b><a
+id="conjugate_gradient133732"></a> algorithm
+takes <b>R</b>=<b>A</b><sup>&#8722;1</sup> and <b>P</b>=<b>I</b>. The inverse of
+<b>A</b> is not required to be calculated because <b>R</b> (which
+equals <b>R</b><sup>T</sup>) always appears multiplied by <b>A</b>.  Conjugacy
+is then <b>p</b><sup>T</sup><sub>j</sub><b>A</b><b>p</b><sub>k</sub>=0, and Orthogonality is
+<b>r</b><sup>T</sup><sub>j</sub><b>r</b><sub>k</sub>=0. We require <b>A</b> to be symmetric for the
+scheme to work.
+
+</p><p>
+A different choice is called the <b>Minimum Residual</b>
+<a
+id="minimum_residual133733"></a>scheme,
+<b>R</b>=<b>I</b> and <b>P</b>=<b>I</b>, in which &#945; is chosen
+to mimimize <b>r</b><sup>T</sup><sub>k+1</sub><b>r</b><sub>k+1</sub>, with the result that Conjugacy is
+<b>p</b><sub>j</sub><b>A</b><sup>T</sup><b>A</b><b>p</b><sub>k</sub> and Mutual Orthogonality is
+<b>p</b><sup>T</sup><b>A</b><sup>T</sup><b>r</b><sub>k</sub>=0. This scheme again satisfies the
+conditions for only &#946;<sub>k,k&#8722;1</sub> to be non-zero, provided that
+<b>A</b> is symmetric. It then has efficiency similar to the
+Conjugate Gradient scheme.
+
+</p><p>
+If <b>A</b> is <em>not</em> symmetric, then if we wish the
+currency-property to hold, permitting us to retain only current
+vectors, we must implement a compound scheme in which the compound
+matrix <b>A</b><sub>c</sub> is symmetric. The best way to do this is usually
+the <b>Bi-conjugate Gradient</b><a
+id="bi-conjugate_gradient133734"></a> scheme,
+in which the iteration is applied to compound vectors
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"><b>x</b><sub>c</sub>=</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm"><b>x</b><br /></div>                                </td></tr></table><br />
+<b>x</b><br /></td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x23A0;
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />,
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"><b>p</b><sub>c</sub>=</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm"><b>p</b><br /></div>                                </td></tr></table><br />
+<b>p</b><br /></td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x23A0;
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />, and
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"><b>r</b><sub>c</sub>=</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b>r</b><br />
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<div class="comp">-<br /></div>
+<div class="norm"><b>r</b><br /></div>                                </td></tr></table></td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x23A0;
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> with <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"><b>A</b><sub>c</sub> = </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b>0</b><br />
+<b>A</b><sup>T</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<b>A</b><br />
+<b>0</b><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />,
+<b>R</b><sub>c</sub>=<b>A</b><sub>c</sub><sup>&#8722;1</sup> and <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"><b>P</b><sub>c</sub> = </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b>0</b><br />
+<b>I</b><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<b>I</b><br />
+<b>0</b><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />.  Since
+<b>A</b><sub>c</sub><b>R</b><sub><b>c</b></sub>=<b>I</b><sub>c</sub> the commutation requirements are
+immediately fulfilled. The extra costs of this scheme compared with
+the Conjugate Gradient scheme are its doubled vector length<a href="footnote.html#tthFtNtAJB" id="tthFrefAJB"><sup>91</sup></a>, and the
+requirement to be able to multiply by <b>A</b><sup>T</sup> as well as by
+<b>A</b>. It is generally much more efficient than other approaches to
+symmetrization, such as writing
+<b>A</b><sup>T</sup><b>A</b><b>x</b>=<b>A</b><sup>T</sup><b>b</b>, even when
+<b>A</b><sup>T</sup><b>A</b> retains sparsity properties. The Bi-conjugate
+Gradient scheme has essentially the same range of eigenvalues as the
+original matrix, whereas <b>A</b><sup>T</sup><b>A</b> squares the eigenvalues.
+
+</p><p>
+Unfortunately the same matrix symmetrization approach does not work
+for the Minimum Residual scheme, because the commutation properties
+are not preserved. For non-symmetric matrices one requires a
+<b>Generalized Minimum Residual</b><a
+id="GMRES133735"></a> (GMRES)
+method<a href="footnote.html#tthFtNtAJC" id="tthFrefAJC"><sup>92</sup></a>. It does not symmetrize the matrix, and does not possess the
+currency-property. It therefore needs to retain
+multiple older vectors to implement its conjugacy, and so requires
+more storage. To limit the growth of storage, it needs to be restarted
+after a moderate number of steps. The iterations are often called
+after the name of their inventor, Arnoldi. So GMRES is a "restarted
+Arnoldi"<a
+id="Arnoldi_method133736"></a> method.  It leads to a somewhat more
+complicated but also quite robust scheme.
+
+</p><p>
+Solution of a set of <em>nonlinear</em> differential equations over a
+large domain of N mesh points is not itself just a linear system
+solution. Suppose the equations for
+the entire domain can be written
+<a id="nonlinF">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>f</b>(<b>v</b>) = 0.</td></tr></table>
+</td><td width="1%">(13.32)</td></tr></table>
+
+
+where <b>f</b> is a vector function whose N different components
+represent the (e.g.) finite difference equations obeyed at all the
+mesh points, and <b>v</b> represents the N unknowns (typically the
+values at the mesh points) being solved
+for.  The most characteristic solution method for such a system is a
+multidimensional Newton's method. We define the
+Jacobian<a
+id="Jacobian_matrix133737"></a> matrix of <b>f</b> as the square N&times;N
+matrix
+<a id="JacobianDef">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>J</b>(<b>v</b>) = </td><td nowrap="nowrap" align="center">
+&#8706;<b>f</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b>v</b><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(13.33)</td></tr></table>
+
+
+Then Newton's method<a
+id="Newton_method133738"></a> is a series of iterations of the form
+<a id="NewtonIt">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>J</b>&#948;<b>v</b> = &#8722;<b>f</b>(<b>v</b>)</td></tr></table>
+</td><td width="1%">(13.34)</td></tr></table>
+
+
+where &#948;<b>v</b> is the change from one Newton step to the
+next, and <b>J</b> evaluated at the current <b>v</b> position must
+be used. The question is, how to solve this to find &#948;<b>v</b>?
+Well, each Newton step now <em>is</em> a linear problem, so the
+techniques we've been discussing apply. For the big sparse systems we
+get from differential equations, we want to apply an iterative scheme
+for each solve of &#948;<b>v</b>. So we are dealing with a lower
+level of iteration. (There are Newton iterations of iterative solves.) If an
+iterative Krylov technique is used for the &#948;<b>v</b> solve, then
+we only need to <em>multiply by</em> the Jacobian matrix; we don't
+actually need to form it explicitly. The multiplication of any vector
+<b>u</b> by the Jacobian in the vicinity of <b>v</b> can
+be treated approximately as
+<a id="Jacobfree">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>J</b><b>u</b>  &#8776; [&#8722;<b>f</b>(<b>v</b>+&#1013;<b>u</b>)&#8722;<b>f</b>(<b>v</b>)]/&#1013;,</td></tr></table>
+</td><td width="1%">(13.35)</td></tr></table>
+
+
+where &#1013; is a suitable small parameter. Therefore, rather than
+calculating and storing the big Jacobian matrix, all one requires, to
+perform a multiplication of a vector by it, is to evaluate the function
+<b>f</b> at two nearby <b>v</b>s separated by a vector proportional
+to <b>u</b>. This approach goes by the name
+"Jacobian-free Newton
+Krylov"<a
+id="Jacobian-free_method133739"></a><a
+id="Newton-Krylov_method133740"></a>  method.
+
+</p><p>
+At the beginning of this section, the idea of iterative solution was
+motivated by the supposition that <b>A</b> is not very different from
+the identity matrix so that the natural vector update is
+<b>r</b><sub>k</sub>. The speed of convergence of the iterations of any Krylov
+method gets faster the closer to <b>I</b> the matrix is<a href="footnote.html#tthFtNtAJD" id="tthFrefAJD"><sup>93</sup></a>. It is therefore usually well worth the effort to transform
+the system so that <b>A</b> is close to identity. This process is
+called <em>preconditioning</em><a
+id="preconditioning133741"></a>. It consists of seeking a solution to
+the modified, yet equivalent, equation
+<a id="precondeq">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>C</b><sup>&#8722;1</sup> <b>A</b> <b>x</b> = <b>C</b><sup>&#8722;1</sup> <b>b</b></td></tr></table>
+</td><td width="1%">(13.36)</td></tr></table>
+
+
+where <b>C</b> is easy to invert and is "similar to <b>A</b>" in
+the sense that <b>C</b><sup>&#8722;1</sup> well approximates the inverse of
+<b>A</b>. In point of fact, our general treatment already incorporated the
+possibility of preconditioning. The matrix <b>P</b>
+serves precisely the role of <b>C</b><sup>&#8722;1</sup>. One does not
+generally multiply by <b>C</b><sup>&#8722;1</sup>, and one may not even find
+it. Instead, the preconditioning is woven into the iterative solution
+by finding a preconditioned residual <b>z</b>, which formally equals
+<b>P</b><b>r</b>, but is in practice the solution of <b>C</b><b>z</b> = <b>r</b>. Therefore the combined iterative algorithm
+is
+
+</p><p>
+
+<table class="tabular">
+<tr><td align="left">1. </td><td align="left">Update the residual <b>r</b> (=<b>b</b> &#8722; <b>A</b> <b>x</b>),
+via <b>r</b><sub>k</sub>=<b>r</b><sub>k&#8722;1</sub>&#8722;&#945;<sub>k&#8722;1</sub><b>A</b><b>p</b><sub>k&#8722;1</sub>.</td></tr>
+<tr><td align="left">2. </td><td align="left">Solve the system <b>C</b><b>z</b><sub>k</sub> = <b>r</b><sub>k</sub> to
+  find the preconditioned residual <b>z</b><sub>k</sub>.</td></tr>
+<tr><td align="left">3. </td><td align="left">Update the search direction using <b>z</b><sub>k</sub>, via
+<b>p</b><sub>k</sub> =  <b>z</b><sub>k</sub>&#8722;&#946;<sub>k,k&#8722;1</sub><b>p</b><sub>k&#8722;1</sub>.</td></tr>
+<tr><td align="left">4. </td><td align="left">Increment k and repeat from 1.</td></tr></table>
+
+
+</p><p>
+We've already encountered a preconditioner. In the Bi-conjugate
+gradient scheme it was formally the compound matrix
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"><b>C</b><sub>c</sub>=<b>P</b><sub>c</sub><sup>&#8722;1</sup> = </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b>0</b><br />
+<b>I</b><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<b>I</b><br />
+<b>0</b><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />. It makes
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"><b>C</b><sub>c</sub><sup>&#8722;1</sup><b>A</b><sub>c</sub>=</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b>A</b><br />
+<b>0</b><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<b>0</b><br />
+<b>A</b><sup>T</sup><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />, which is closer to <b>I</b><sub>c</sub> than
+<b>A</b><sub>c</sub> is, and will be as close as <b>A</b> is to
+<b>I</b>. That is why the Bi-conjugate gradient scheme has the same
+condition number as the original asymmetric matrix <b>A</b>. We might
+be able to do even better than this by making the compound preconditioner
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"><b>C</b><sub>c</sub> = </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b>0</b><br />
+<b>C</b><sup>T</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<b>C</b><br />
+<b>0</b><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />, giving
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"><b>C</b><sub>c</sub><sup>&#8722;1</sup><b>A</b><sub>c</sub>=</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b>C</b><sup>&#8722;1</sup><b>A</b><br />
+<b>0</b><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<b>0</b><br />
+(<b>C</b><sup>T</sup>)<sup>&#8722;1</sup><b>A</b><sup>T</sup><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />.
+Here <b>C</b> is the additional
+preconditioner chosen as an easily
+inverted approximation to <b>A</b>.
+
+</p><p>
+There are many other possible preconditioners for Krylov schemes. The
+preconditioning step 2 might even itself consist of some modest number
+of steps of an iterative matrix solver of a different type, for
+example approximate SOR inversion of <b>A</b>. In a sense, then,
+preconditioning interleaves two different approximate matrix solvers
+together, in an attempt to gain the strengths of both. In order to
+preserve the currency-property and avoid retaining past residuals, we
+must observe the commutation and symmetry requirements. Conjugate
+gradient schemes take <b>A</b><b>R</b>=<b>I</b> and so always
+commute. The only other requirements are that the preconditioning
+matrix (as well as <b>A</b>) be symmetric so that
+<b>P</b>=<b>C</b><sup>&#8722;1</sup> is symmetric (which requires that <b>C</b> be
+symmetric). The GMRES scheme does not possess the currency-property; so
+it does not have to use symmetric preconditioning.
+
+</p><p>
+At the very least, any Krylov system should be Jacobi<a
+id="preconditioning_Jacobi133742"></a><a
+id="Jacobi-preconditioning133743"></a>
+preconditioned. The Jacobi <b>C</b> consists of the diagonal matrix
+whose elements are the diagonals of <b>A</b>. Jacobi preconditioning
+is completely equivalent to scaling the rows of the system so that all
+of the matrix diagonal entries become one. It is usually most efficient simply
+to perform that scaling rather than using an explicit Jacobi
+preconditioner. When all the diagonal entries are already equal, as
+they are for many cases where <b>A</b> represents spatial finite
+differences, the system is already effectively Jacobi
+preconditioned. Other preconditioners generally require specific
+sparse-matrix partial decomposition in order to minimize their
+costs. It is hard to predict their computational advantage. Sometimes
+they dramatically reduce the number of iterations, but for sparse
+matrices they also generally significantly increase the arithmetic per
+iteration.
+
+</p><p>
+ <a id="tth_sEc13.4"></a><h2>
+13.4&nbsp;&nbsp;Fluid Evolution Schemes</h2>
+
+</p><p>
+     <a id="tth_sEc13.4.1"></a><h3>
+13.4.1&nbsp;&nbsp;Incompressible fluids and pressure correction</h3>
+
+</p><p>
+In Chapter <a href="chap7.html#FluidChapter">7</a> we saw that for fluid flow speed small
+compared with the sound speed <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">c<sub>s</sub>=</td><td align="left" class="cl"><br /><span class="larger">&#8730;</span><br />
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm">&#947;p<sub>0</sub>/&#961;<sub>0</sub><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> the CFL
+criterion forced us to take small timesteps &#8710;t  &#8804; &#8710;x /c<sub>s</sub>.  So, as the sound speed gets greater (compared with other speeds
+of interest) an explicit solution of a certain time duration requires
+more and more, smaller and smaller time-steps. It becomes a
+<em>stiff system</em><a
+id="stiffness134744"></a>, of the type discussed in section
+<a href="chap2.html#StiffStability">2.3</a>, in which a large disparity exists between the
+scales of different modes.  Now c<sub>s</sub> increases if &#947; becomes
+large. Remember we've expressed the equation of state as
+p &#8733; &#961;<sup>&#947;</sup>. A large value of &#947; arises if the fluid
+in question is very <em>incompressible</em>. Formally, a completely
+incompressible<a
+id="incompressible134745"></a> fluid is represented by the limit
+&#947;&#8594; &#8734;, in which the sound speed becomes infinite. For
+large &#947;, it takes a large increase in pressure to cause a small
+increase in density. Solving nearly incompressible fluid equations
+using an explicit approach, like the Lax-Wendroff scheme, will be
+computationally costly. This is a generic problem for all types of
+hyperbolic problems. It arises because of having to represent a large
+range of velocity all the way from the velocities of interest up to
+the speed of propagation of the fastest wave in the problem (the sound
+wave in our example)<a
+id="sound_speed134746"></a>.
+
+</p><p>
+However, very often we actually don't care much about the propagation
+of very fast sound waves. They aren't of interest, for example, in
+many problems concerning the flow of
+liquids<a
+id="liquids134747"></a><a href="footnote.html#tthFtNtAJE" id="tthFrefAJE"><sup>94</sup></a>  In these cases,
+we don't want to have to represent the sound waves; we just want them
+to go away. But if we treat the fluid equations explicitly with
+tolerable sized timestep, they don't go away; instead they become
+unstable. What do we do? We use a numerical scheme which treats the
+sound waves <em>implicitly</em>, rather than explicitly<a
+id="implicit134748"></a>.
+
+</p><p>
+The Navier Stokes<a
+id="Navier_Stokes134749"></a>
+equation (<a href="chap7.html#Divirgenceless">7.8</a>) is
+<a id="NSpressure">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+(&#961;<b><i>v</i></b>)+&#8711;p=&#8711;.(&#961;<b><i>v</i></b><b><i>v</i></b>) &#8722;&#956;&#8711;<sup>2</sup> <b><i>v</i></b> + <b><i>F</i></b>=<b><i>G</i></b>.</td></tr></table>
+</td><td width="1%">(13.37)</td></tr></table>
+
+
+where we've gathered the advective<a
+id="advection134750"></a>,
+viscous<a
+id="viscosity134751"></a>, and body forces together into <b><i>G</i></b> for
+convenience.  Linear sound waves can be derived by setting <b><i>G</i></b>=0
+and taking the divergence of the remainder which, invoking continuity,
+becomes <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#961;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = &#8711;<sup>2</sup>p
+</td></tr></table><br />. Since an
+equation of state<a
+id="equation_of_state134752"></a> converts &#961;-variation
+into p-variation, it becomes a simple wave equation. This
+observation shows that it is
+the left hand side of eq.&nbsp;(<a href="chap13.html#NSpressure">13.37</a>), the relation between
+p and &#961;<b><i>v</i></b>, that we need to make implicit in order to
+stabilize sound waves.  If we are advancing eq.&nbsp;(<a href="chap13.html#NSpressure">13.37</a>) by
+steps &#8710;t in time, then an explicit scheme could be written
+<a id="explicitNS">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+(&#961;<b><i>v</i></b>)<sup>(n+1)</sup>&#8722;(&#961;<b><i>v</i></b>)<sup>(n)</sup> = &#8710;t (&#8722;&#8711;p<sup>(n)</sup>+<b><i>G</i></b><sup>(n)</sup>).</td></tr></table>
+</td><td width="1%">(13.38)</td></tr></table>
+
+
+When a fluid is essentially incompressible, the equation of state can
+be considered<a href="footnote.html#tthFtNtAJF" id="tthFrefAJF"><sup>95</sup></a> to be &#8711;.(&#961;<b><i>v</i></b>)=0.
+If &#961;<b><i>v</i></b> is to satisfy the continuity equation
+&#8711;.(&#961;<b><i>v</i></b>)=0 at time-step n+1, then the divergence of
+eq.&nbsp;(<a href="chap13.html#explicitNS">13.38</a>) gives a Poisson equation<a
+id="Poisson_equation134753"></a> for p<sup>(n)</sup>:
+<a id="presspoisson">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8711;<sup>2</sup> p<sup>(n)</sup> = &#8711;.<b><i>G</i></b><sup>(n)</sup>+ &#8711;.(&#961;<b><i>v</i></b>)<sup>(n)</sup>/&#8710;t.</td></tr></table>
+</td><td width="1%">(13.39)</td></tr></table>
+
+
+The pressure p<sup>(n)</sup> is determined by solving this Poisson equation. Note
+that the second term on the right would be zero if prior steps of the
+scheme were exact. It can be considered a correction term to prevent
+build up of divergence error. Once having determined p<sup>(n)</sup> we can
+then solve for (&#961;<b><i>v</i></b>)<sup>(n+1)</sup>. That's an explicit scheme<a
+id="explicit134754"></a>.
+
+</p><p>
+To obtain an implicit<a
+id="implicit134755"></a> scheme we want to use values for
+the n+1 step in the right hand side of eq.&nbsp;(<a href="chap13.html#explicitNS">13.38</a>),
+especially for p. The problem (as always in implicit schemes) is
+that we don't know the new (n+1 step) values explicitly until the
+advance is completed. They are not available for simple
+substitution. However, we can treat the pressure approximately
+implicitly by a two step process. First we calculate an intermediate
+estimate (&#961;<b><i>v</i></b>)<sup>(n*)</sup> of the new flux density by a momentum
+equation update using the <em>old</em> pressure gradient &#8711;p<sup>(n)</sup> (a step that's explicit in pressure) as (&#961;<b><i>v</i></b>)<sup>(n*)</sup> = (&#961;<b><i>v</i></b>)<sup>(n)</sup> +&#8710;t (&#8722;&#8711;
+p<sup>(n)</sup>+<b><i>G</i></b><sup>(n)</sup>). Next, we calculate a <em>correction</em>
+&#8710;p to the pressure to make it mostly implicit by solving the
+Poisson equation &#8711;<sup>2</sup> &#8710;p<sup>(n)</sup> = &#8711;.[(&#961;<b><i>v</i></b>)<sup>(n*)</sup>&#8722;(&#961;<b><i>v</i></b>)<sup>(n)</sup>]/&#8710;t. Then we update the
+flux to our approximately implicit expression: (&#961;<b><i>v</i></b>)<sup>(n+1)</sup>=(&#961;<b><i>v</i></b>)<sup>(n*)</sup> &#8722; &#8710;t&#8711;(&#8710;p<sup>(n)</sup>). A number of variations on this theme of "pressure
+correction"<a
+id="pressure_correction134756"></a> have been used in numerical
+fluid schemes<a href="footnote.html#tthFtNtAJG" id="tthFrefAJG"><sup>96</sup></a>. When treating plasmas as fluids, for example
+using magnetohydrodynamics, various anisotropic<a
+id="anisotropy134757"></a> fast
+and slow waves appear and several methods for eliminating unwanted
+fast waves have been developed<a href="footnote.html#tthFtNtAJH" id="tthFrefAJH"><sup>97</sup></a>.
+
+</p><p>
+     <a id="tth_sEc13.4.2"></a><h3>
+13.4.2&nbsp;&nbsp;Nonlinearities, shocks, upwind and limiter differencing</h3>
+
+</p><p>
+When flow velocities are in the vicinity of the sound speed, a
+different sort of difficulty arises in treating compressible fluids
+numerically. It is that nonlinearity becomes important and fluids can
+develop abrupt changes of parameters over short length scales that are
+called shocks<a
+id="shocks134758"></a>. The problem with the Lax-Wendroff and
+similar schemes in such a context is that when encountering such
+abruptly changing fluid structures they generate spurious
+oscillations<a
+id="oscillations134759"></a>. This happens because such
+second-order accurate difference schemes are
+<em>dispersive</em><a
+id="dispersion134760"></a>. Waves of short wavelength
+experience numerical phase shifts<a
+id="phase-shift134761"></a> arising from the
+discrete approximations. It is these dispersive phase shifts that
+cause the oscillations.
+
+</p><p>
+A family of methods that avoids generating spurious oscillations are
+those that use <em>upwind</em><a
+id="upwind_differencing134762"></a>
+differencing. These methods are one-sided finite spatial differences,
+always using the upwind side of the location in question. In other
+words, if the fluid velocity is in the positive x-direction, then
+the gradient of a quantity Q at mesh node i is taken to be given
+by (Q<sub>i</sub>&#8722;Q<sub>i&#8722;1</sub>)/&#8710;x. If, however, the velocity is in the
+negative direction it is taken as (Q<sub>i+1</sub>&#8722;Q<sub>i</sub>)/&#8710;x. The
+upwind choice has the effect of stabilizing the time evolution, which
+is advantageous. They also avoid introducing spurious non-monotonic
+(oscillatory) behavior. But unfortunately these schemes have rather
+poor accuracy. They are only first-order in
+space<a
+id="first-order_accuracy134763"></a>, and they introduce very strong
+artificial (numerical) dissipation<a
+id="numerical_dissipation134764"></a> of
+perturbations that ought physically not to be damped.
+
+</p><p>
+There is a nonlinear way to combine higher order accuracy with the
+maintenance of monotonic behavior (hence suppressing spurious
+oscillations). It is to <em>limit</em><a
+id="limiter_methods134765"></a> the
+gradients so as to prevent oscillations occurring. Oscillations are
+measured generally in the form of the
+"Total Variation"<a
+id="total_variation134766"></a> <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#124;Q<sub>i</sub>&#8722;Q<sub>i&#8722;1</sub>&#124;
+</td></tr></table><br />.
+This quantity is equal to the
+difference between the end points for a monotonic series, but is
+larger if there are regions of non-monotonic behavior. A Limiter
+method will avoid introducing extra oscillations if it never increases
+the total variation; i.e.&nbsp;it is "Total Variation Diminishing"
+(TVD).  When these ideas are combined with a representation of the
+fluid variables as being given by their average value over a cell,
+together with a gradient within the cell that does not necessarily
+imply continuity at the cell boundary, it is possible to define
+consistently schemes that have greater fidelity in representing abrupt
+fluid transitions<a href="footnote.html#tthFtNtAJI" id="tthFrefAJI"><sup>98</sup></a>. Nevertheless, care must be exercised in interpreting fluid
+behavior in the vicinity of regions of variation with scale length
+comparable to the mesh spacing. It is always safer if possible to
+ensure that the fluid variation is resolved by the mesh. If it is,
+then the Lax-Wendroff scheme will give second-order accurate results.
+
+</p><p>
+     <a id="tth_sEc13.4.3"></a><h3>
+13.4.3&nbsp;&nbsp;Turbulence</h3>
+
+</p><p>
+<a
+id="turbulence134767"></a>Turbulence refers to unsteady behavior in fluids
+flowing fast enough to generate flow instabilities.  Direct numerical
+simulation (DNS) <a
+id="DNS134768"></a><a
+id="direct_numerical_simulation134769"></a>is the most natural way to solve a problem in which all the length
+scales of the turbulence can be resolved. It consists of choosing
+domain size large enough to encompass the largest scale of the
+problem, while dividing it into a fine enough mesh to resolve the
+smallest scale of the turbulence. The smallest scale is generally that
+at which viscosity<a
+id="viscosity134770"></a> &#956; damps out the fluid
+eddies. We express the order of magnitude of gradients as 1/L: in
+terms of a length scale L. Then the nonlinear inertial term,
+&#8711;.(&#961;<b><i>v</i></b><b><i>v</i></b>), is balanced
+by the viscous term approximately when Re<sub>L</sub> &#8801; &#961;v<sub>L</sub> L/&#956; is
+of order unity. Here v<sub>L</sub> is the velocity associated with eddies of scale
+L, and Re<sub>L</sub> is the "Reynolds number"<a
+id="Reynolds_number134771"></a> at scale
+L. It is approximately unity at the finest fluid scale of the
+problem. The Reynolds number of the macroscopic flow (Re) is given
+approximately by substituting the typical large-scale size and flow
+velocity into this definition. The critical Re at
+which turbulence sets in is generally somewhere between a few thousand
+and a few hundred thousand, depending upon geometry. Typical situations can easily give rise
+to macroscopic Reynolds numbers of 10<sup>6</sup> or more<a href="footnote.html#tthFtNtAJJ" id="tthFrefAJJ"><sup>99</sup></a>.  Because the ratio
+of largest to smallest eddy-scale<a
+id="eddy134772"></a> can therefore be very
+great (often estimated as Re<sup>3/4</sup>), the DNS approach eventually
+becomes computationally infeasible.
+
+</p><p>
+Large Eddy Simulation (LES)<a
+id="LES134773"></a><a
+id="large_eddy_simulation134774"></a>
+seeks to moderate the computational
+demands through an approximation that filters out all effects smaller
+than a certain length scale. Fig.&nbsp;<a href="chap13.html#KolmogSpectl">13.3</a> helps to explain
+this process. The turbulence scale length can be expressed as a
+wave-number k&#160;&#8764;&#160;2&#960;/L, in a Fourier transform of the perturbations.
+The turbulence k-spectrum<a
+id="k-spectrum134775"></a> is
+artificially cut off at a value that is generally well below the
+physical range embodied in the turbulence, i.e.&nbsp;below the viscous
+dissipation range where Re<sub>L</sub>&#160;&#8764;&#160;1. This spatial filtering permits a
+less refined mesh to represent the problem. The effects of the range
+that is artificially cut off can be reintroduced in an approximate way
+into the equations solved. This has most often been done in the form
+of an effective eddy viscosity<a
+id="numerical_viscosity134776"></a><a
+id="eddy_viscosity134777"></a>
+ added to the Navier Stokes
+equations. However, fit estimates for the magnitude of the eddy
+viscosity are rather uncertain<a href="footnote.html#tthFtNtBAA" id="tthFrefBAA"><sup>100</sup></a>.
+
+</p><p>
+<a id="tth_fIg13.3">
+</a> <img src="figures/KolmogSpect.png" alt="figures/KolmogSpect.png" /><a id="KolmogSpect">
+</a>
+
+<div style="text-align:center">Figure 13.3: Schematic energy spectrum E(k) of turbulence as a function
+  of wave number k=2&#960;/L. There is an inertial range where theory
+  (and experiments) indicate that a cascade of energy towards smaller
+  scales gives rise to a power law E(k) &#8733; k<sup>&#8722;5/3</sup>. Eventually
+  viscosity terminates the cascade. LES artificially cuts it off at
+  lower k. <a id="KolmogSpectl">
+</a></div>
+
+</p><p>
+In fact, the finite resolution of a discrete grid representation gives
+rise to an effective k cut-off in any case. If a
+difference scheme is used that introduces sufficient dissipation (not
+just aliasing and dispersion), it is sometimes presumed that no explicit
+additional filtering is essential.
+
+</p><p>
+The Reynolds Averaged Navier Stokes (RANS)<a
+id="RANS_equation134778"></a><a
+id="Reynolds_averaged_Navier_Stokes134779"></a> is an even more
+approximate treatment, which averages over all relevant time scales
+leaving only the steady part of the flow. Therefore essentially
+<em>all</em> the turbulence effects must be represented in the form of
+effective transport coefficients. If we ignore for simplicity any
+variation in density &#961;, then when we time average the Navier
+Stokes equation (<a href="chap13.html#NSpressure">13.37</a>) all the terms except
+&#8711;.(&#961;<b><i>v</i></b><b><i>v</i></b>) are linear. Therefore their average is
+simply the average value of the corresponding quantity. The non-linear
+term, though, in addition to the product of the averaged quantities,
+will give rise to a contribution consisting of the average of the
+square of the fluctuating part of <b><i>v</i></b>, i.e.&nbsp;the divergence of
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#961;&#9001;</td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm"><b><i>v</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm"><b><i>v</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+&#9002;
+</td></tr></table><br /> where the over
+tilde <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm"><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> denotes the fluctuating part and angular brackets
+denote time average. The average of the fluctuating part of a quantity
+is zero, but the average of the square of a fluctuation<a href="footnote.html#tthFtNtBAB" id="tthFrefBAB"><sup>101</sup></a> is in general
+non-zero. This extra (tensor) term
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#961;&#9001;</td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm"><b><i>v</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm"><b><i>v</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+&#9002;
+</td></tr></table><br /> is called the
+Reynolds Stress<a
+id="Reynolds_stress134780"></a>. In order to solve the RANS
+equations, one requires a way to estimate the Reynolds Stress term
+from the properties of the time-averaged solution. This is done by
+writing down higher-order moment equations and averaging them, which
+gives rise to an equation for the evolution of the Reynolds Stress
+tensor. That equation contains various other terms, including a third
+order tensor of the form
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#9001;</td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm"><b><i>v</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm"><b><i>v</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm"><b><i>v</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+&#9002;
+</td></tr></table><br />. The
+system of equations is "closed"<a
+id="closure134781"></a> by adopting an
+approximate form for the Reynolds stress evolution equation where all
+the terms can be evaluated from knowledge of the flow quantities and
+the Reynolds stress.<a href="footnote.html#tthFtNtBAC" id="tthFrefBAC"><sup>102</sup></a>.  That equation is guided by theory but with coefficients
+fitted to experiments. These fits are called
+"correlations"<a
+id="correlation134782"></a> and lead in general to a
+complicated tensor evolution equation. The time-averaged Navier Stokes
+equation and the Reynolds stress tensor evolution equation together
+form a composite system that is then solved numerically.
+
+</p><p>
+
+</p><p>
+
+
+<hr /><table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+<a href="chapA.html">NEXT
+</a></td></tr></table>
+</div></body></html>

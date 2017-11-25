@@ -1,0 +1,1297 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
+    img {     max-width: 100%;
+    max-height: 40vh; } p { line-height: 1.5em; } body {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 18px;
+    }
+  </style>
+<
+<title>chap6.html</title>
+<table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+ <a href="chap5.html">PREVIOUS
+</a></td></tr></table>
+ <a id="tth_chAp6"></a><h1>
+Chapter 6 <br />Elliptic Problems and Iterative Matrix Solution</h1>
+<a id="ChapEllip">
+</a>
+
+</p><p>
+ <a id="tth_sEc6.1"></a><h2>
+6.1&nbsp;&nbsp;Elliptic Equations and Matrix Inversion</h2>
+
+</p><p>
+<a
+id="elliptic61349"></a> In elliptic equations there is no special time-like
+variable and no preferred direction of propagation of the physical
+influence. Generally, therefore elliptic equations, such as Poisson's
+equation<a
+id="Poisson_equation61350"></a>, arise in solving for steady state
+conditions in multiple dimensions.
+
+</p><p>
+A diffusive problem with constant (time independent) source (s) and
+boundary conditions, evolved forward in time, eventually reaches a
+steady state<a
+id="steady_state61351"></a>. When it has reached that state,
+&#8706;/&#8706;t=0.  So the steady state satisfies the equation
+with the time derivative set to zero.
+<a id="diffusivepoisson">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8711;. (D &#8711;&#968;) = &#8722; s.</td></tr></table>
+</td><td width="1%">(6.1)</td></tr></table>
+
+
+This is an elliptic equation<a href="footnote.html#tthFtNtADE" id="tthFrefADE"><sup>34</sup></a>. Indeed, if the diffusivity,
+D, is uniform, it is just Poisson's equation. The final steady state
+of a diffusive equation is an elliptic problem.
+
+</p><p>
+The linear elliptic problem in space can naturally be framed as a matrix
+equation by finite differencing in space and expressing the second
+order difference operator as a matrix multiplication,
+<b>B</b>&#968; so that
+<a id="matrixinvert">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>B</b>&#968;= &#8722;<b>s</b>.</td></tr></table>
+</td><td width="1%">(6.2)</td></tr></table>
+
+
+This is the matrix inversion problem expressed in standard form. Its
+solution is (formally)
+<a id="invertBsol">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968;= &#8722;<b>B</b><sup>&#8722;1</sup><b>s</b>.</td></tr></table>
+</td><td width="1%">(6.3)</td></tr></table>
+
+
+So to solve a linear elliptic problem requires simply a matrix
+inversion. Actually the hard work for the human is
+expressing the difference equations, and especially the boundary
+conditions, in the form of the matrix <b>B</b>. But once that's done
+the computer simply has to invert the matrix. Small problems can
+readily be solved in this way.
+
+</p><p>
+As we've seen for the diffusive problem, though, the matrices involved
+in multidimensional problems can quickly become overwhelmingly large.
+The computational cost<a
+id="matrix_inversion_cost61352"></a> of inverting them can become excessive. What
+does one do? Well, we know how to solve a diffusive equation without
+inverting matrices, don't we. We advance it forward in time using an
+explicit scheme, being sure to observe the stability limits on
+time-step. If we take enough time steps, we'll reach a steady
+state. Then we'll have the solution to the corresponding elliptic
+problem.
+
+</p><p>
+This is the most appropriate way to solve a gigantic matrix inversion
+problem. We <em>do not</em> invert the matrix. Instead, we
+<em>iterate</em> &#968; until it satisfies the matrix equation
+<b>B</b>&#968;
+=&#8722;<b>s</b> as accurately as we like, then we have our
+solution<a
+id="matrix_iterative_solution61353"></a>.
+
+</p><p>
+How do we iterate<a
+id="iteration61354"></a>? Given what we've said already, we
+can think of this as the solution of a time-dependent diffusive
+problem. And for simplicity we'll take the diffusivity uniform.
+<a id="timediff">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+ = D &#8711;<sup>2</sup>&#968;+s. </td></tr></table>
+</td><td width="1%">(6.4)</td></tr></table>
+
+
+An iteration takes us from &#968;<sup>(n)</sup> to &#968;<sup>(n+1)</sup>. It is
+essentially a time-step of our diffusive problem. And if we wish to
+avoid having to invert the matrix, we can use exactly the explicit
+FTCS<a
+id="FTCS61355"></a> scheme to advance it (c.f. eq.&nbsp;<a href="chap5.html#FTCSl">5.2</a>), in one
+space dimension
+<a id="FTCSiter">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968;<sup>(n+1)</sup><sub>j</sub> &#8722;&#968;<sup>(n)</sup><sub>j</sub> = </td><td nowrap="nowrap" align="center">
+D&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+(&#968;<sup>(n)</sup><sub>j+1</sub>&#8722;2&#968;<sup>(n)</sup><sub>j</sub>+&#968;<sup>(n)</sup><sub>j&#8722;1</sub> + s<sup>(n)</sup><sub>j</sub>&#8710;x<sup>2</sup>/D).</td></tr></table>
+</td><td width="1%">(6.5)</td></tr></table>
+
+
+
+</p><p>
+Observe that the term in parentheses on the right hand side of this
+equation is the finite difference form of the steady state equation.
+If &#968; satisfies the steady-state equation, then the RHS is zero,
+and there is no change in &#968;: &#968;<sup>(n+1)</sup>=&#968;<sup>(n)</sup>. If there
+is no change in &#968;, the steady state equation is satisfied.
+
+</p><p>
+Now because we are only really interested in the final steady state,
+we don't worry about how accurate the time integration is. We just
+want to get to the final state as fast as we can. However, we do have
+to worry about stability, because if we use too large a time step and
+experience instability because of it, we will probably never reach the
+steady state. We know the limit of how large &#8710;t can be for
+this scheme<a
+id="stability_condition_diffusion61356"></a>. The limit is &#8710;t  &#8804; &#8710;x<sup>2</sup>/2D. If we choose
+that limit, then the iterative scheme becomes:
+<a id="Jacobi">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968;<sup>(n+1)</sup><sub>j</sub> &#8722;&#968;<sup>(n)</sup><sub>j</sub> = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+(&#968;<sup>(n)</sup><sub>j+1</sub>&#8722;2&#968;<sup>(n)</sup><sub>j</sub>+&#968;<sup>(n)</sup><sub>j&#8722;1</sub> + </td><td nowrap="nowrap" align="center">
+s<sup>(n)</sup><sub>j</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>D<br /></td><td nowrap="nowrap" align="center">
+&#8710;x<sup>2</sup>).</td></tr></table>
+</td><td width="1%">(6.6)</td></tr></table>
+
+
+In N<sub>d</sub> equally-spaced dimensions, where there are 2N<sub>d</sub> adjacent
+points in the stencil, the stability limit is &#8710;t = &#8710;x<sup>2</sup>/2N<sub>d</sub>D and 2N<sub>d</sub> replaces 2 in both the leading
+fraction and the coefficient of &#968;<sup>(n)</sup><sub>j</sub>. The general
+iterative form can be considered to be:
+<a id="Jacobi2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968;<sup>(n+1)</sup><sub>j</sub> &#8722;&#968;<sup>(n)</sup><sub>j</sub> = (</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>q</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+a<sub>q</sub>&#968;<sup>(n)</sup><sub>q</sub></td><td align=left><span style="font-size:200%">/</span></td><td align=center>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>q</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+a<sub>q</sub>) &#8722; &#968;<sup>(n)</sup><sub>j</sub> + </td><td nowrap="nowrap" align="center">
+s<sup>(n)</sup><sub>j</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>q</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+a<sub>q</sub> </td></tr></table></td><td nowrap="nowrap" align="center">
+,</td></tr></table>
+</td><td width="1%">(6.7)</td></tr></table>
+
+
+where the index q ranges over all the  2N<sub>d</sub> adjacent nodes of
+the difference stencil. The coefficient of stencil node q is
+a<sub>q</sub>=D/&#8710;x<sup>2</sup>. The a<sub>q</sub> will not all be the same if
+dimensions are unequally spaced. The coefficient of &#968;<sup>(n)</sup><sub>j</sub>
+is always &#8722;1, and exactly cancels the same term on the left hand
+side.
+
+</p><p>
+This scheme is referred to as Jacobi's method<a
+id="Jacobi_method61357"></a> for
+iterative inversion of matrices<a href="footnote.html#tthFtNtADF" id="tthFrefADF"><sup>35</sup></a>. Unfortunately it converges
+slowly. Fortunately we can do better using schemes inspired by
+Jacobi's method but using our knowledge more efficiently.
+
+</p><p>
+When we are mid way through updating the solution using Jacobi's
+method, we know some of the new values &#968;<sup>(n+1)</sup><sub>q</sub> at the
+adjacent nodes. For example if we were updating in order of increasing
+indices a two dimension spatial configuration, then when we come to
+update &#968;<sup>(n)</sup><sub>jk</sub>, we already know &#968;<sup>(n+1)</sup><sub>j&#8722;1, k</sub> and
+&#968;<sup>(n+1)</sup><sub>j,k&#8722;1</sub>. Maybe we should use those new values
+immediately in the difference scheme, rather than the old values at
+n. Such a scheme of using the currently updated values as available,
+applied to eq.&nbsp;(<a href="chap6.html#Jacobi2">6.7</a>) is called the
+Gauss-Seidel<a
+id="Gauss-Seidel_method61358"></a> method.
+
+</p><p>
+ <a id="tth_sEc6.2"></a><h2>
+6.2&nbsp;&nbsp;Convergence Rate</h2>
+
+</p><p>
+<a
+id="convergence62359"></a><a
+id="Jacobi_method_convergence62360"></a> The Gauss-Seidel
+method still converges nearly as slowly as the Jacobi method. The
+easiest way to see this (and the best way to implement the method for
+PDE solution) is not to update the values in increasing order of
+index. Instead it is better to update <em>every other</em> value. First
+update all the odd-j values and then update all the even-j
+values. The advantage is that at each stage of the update all the
+adjacent values in the stencil that are used have the <em>same</em>
+degree of update. The odd values are updated using the all old even
+values. Then the even values are updated using the all new odd values.
+In multiple dimensions the same effect can be achieved by updating
+first all the values whose indices sum to an odd value (j+k+...=
+odd), and then those that sum to an even number. In two dimensions
+this choice can be illustrated by reference to a checkerboard of red
+and black squares representing the positions of the nodes. Fig.&nbsp;<a href="chap6.html#fig:redblack">6.1</a> illustrates the approach. The algorithm is to
+update first the red, then the black squares. The Red-Black updating
+order separates the update into two<a
+id="red-black_order62361"></a>
+half-updates.<a href="footnote.html#tthFtNtADG" id="tthFrefADG"><sup>36</sup></a>
+
+</p><p>
+<a id="tth_fIg6.1">
+</a>   <img src="figures/redblackiter.png" alt="figures/redblackiter.png" /><a id="redblackiter">
+</a>(a)<img src="figures/checkers.png" alt="figures/checkers.png" /><a id="checkers">
+</a>(b)&nbsp;
+
+<div style="text-align:center">Figure 6.1: (a) One dimensional Gauss Seidel odd-even iteration produces
+    successive solutions for each half-step that form a web that
+    progresses upwards toward the solution. (b) In two dimensions the
+    alternate squares to be updated are all the red (lighter shaded), then all the black.</div>
+  <a id="fig:redblack">
+</a>
+
+</p><p>
+Consider a Fourier<a
+id="Fourier_representation62362"></a> mode<a href="footnote.html#tthFtNtADH" id="tthFrefADH"><sup>37</sup></a> of wave number k<sub>x</sub>=p&#960;/L, where p is the
+integer mode number and L is the length of the domain
+(one-dimensional for simplicity) at whose ends Dirichlet boundary
+conditions are assumed. Its half-update through eq.&nbsp;(<a href="chap6.html#Jacobi">6.6</a>) (ignoring the source term), gives rise to an
+amplification factor<a
+id="amplification_factor_Gauss-Seidel62363"></a>
+<a id="GSamplific">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  A=&#968;<sup>(n+1)</sup><sub>j</sub>/&#968;<sup>(n)</sup><sub>j</sub> = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+(<span class="roman">e</span><sup>ip&#960;&#8710;x/L</sup>+ <span class="roman">e</span><sup>&#8722;ip&#960;&#8710;<sub>x</sub>/L</sup>) = cos(p&#960;&#8710;x/L)</td></tr></table>
+</td><td width="1%">(6.8)</td></tr></table>
+
+
+The convergence process consists of the decay of the error in each mode of the
+system, by which &#968; is still different from
+the steady solution. Each mode is repetitively multiplied by A at
+each half-step.  So after m full-steps (2m half-steps) the mode
+has decayed by a factor A<sup>2m</sup>. After some time, the biggest error
+is going to be caused by the slowest-decaying mode. That is the mode
+whose amplitude factor is closest to 1. Since A=cos(p&#960;&#8710;x/L), the mode with A closest to 1 is the mode with the smallest
+wave number namely p=1. If the number of spatial mesh nodes,
+N<sub>j</sub>=L/&#8710;x is large, then we can Taylor expand the cosine (for
+p=1)
+<a id="GSapprox">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  A  &#8776; 1 &#8722; </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#960;&#8710;x
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>L<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = 1&#8722; </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#960;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<sub>j</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(6.9)</td></tr></table>
+
+
+To reduce the amplitude of the mode by a factor 1/F takes a
+number of steps m such that A<sup>2m</sup> = 1/F, or, taking the logarithm
+and using the expansion ln(1+x) &#8776; x, so lnA  &#8776; &#8722;&#960;<sup>2</sup>/2N<sub>j</sub><sup>2</sup>,
+<a id="stepsreq">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  m = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+ln(1/F)/lnA  &#8776; lnF </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+ N<sub>j</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#960;<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+. </td></tr></table>
+</td><td width="1%">(6.10)</td></tr></table>
+
+
+This equation shows that to converge by a specified factor, requires a
+number of steps proportional to N<sub>j</sub><sup>2</sup>. That is a lot
+of<a
+id="convergence_Gauss-Seidel62364"></a>
+iterations. Incidentally, the Jacobi iteration obviously leads to the
+same amplification factor A. The difference is that it is the factor
+for a full step, rather than a half step. Therefore Gauss-Seidel
+iteration converges only a factor of two faster than Jacobi iteration.
+On the plus side, for multiple dimensions, things don't get
+significantly worse. A square two-dimensional domain with &#8710;x = &#8710;y has the same A, so it takes the same number of iterations.
+
+</p><p>
+ <a id="tth_sEc6.3"></a><h2>
+6.3&nbsp;&nbsp;Successive Over-Relaxation</h2>
+
+</p><p>
+<a
+id="successive_over-relaxation63365"></a><a
+id="SOR63366"></a><a
+id="over-relaxation63367"></a>The Gauss-Seidel method is a "successive" method where values are
+updated in succession, and the
+updated values are immediately used. It turns out that one can greatly
+improve the convergence rate by the simple expedient of
+over-correcting the error at each step. This is called
+"over-relaxation" and when applied to the Gauss-Seidel method is
+therefore called "Successive Over-Relaxation" or SOR. By analogy
+with eq.&nbsp;(<a href="chap6.html#Jacobi2">6.7</a>) it can be written
+<a id="SORgen">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968;<sup>(n+1)</sup><sub>j</sub> &#8722;&#968;<sup>(n)</sup><sub>j</sub> = &#969;</td><td align="left" class="cl">&#x23A1;<br />&#x23A2;<br />
+&#x23A3;
+</td><td nowrap="nowrap" align="center">
+&nbsp; </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>q</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+a<sub>q</sub>&#968;<sup>(r)</sup><sub>q</sub></td><td align=left><span style="font-size:200%">/</span></td><td align=center>
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>q</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+a<sub>q</sub></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+&#8722; &#968;<sup>(n)</sup><sub>j</sub> + </td><td nowrap="nowrap" align="center">
+s<sup>(n)</sup><sub>j</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>q</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+a<sub>q</sub></td></tr></table></td><td align="left" class="cl">&#x23A4;<br />&#x23A5;<br />
+&#x23A6;
+</td><td nowrap="nowrap" align="center">
+,</td></tr></table>
+</td><td width="1%">(6.11)</td></tr></table>
+
+
+where r=n for q corresponding to odd centered stencils, and
+r=n+1 for q corresponding to even.  The parameter &#969; &gt; 1 is
+the over-relaxation parameter. Strictly speaking, if &#969; &lt; 1 one
+should speak of under-relaxation. The particular case &#969; = 1 is
+the original Gauss-Seidel scheme.
+
+</p><p>
+It turns out that SOR<a
+id="SOR_stability63368"></a> is stable for 0 &lt; &#969; &lt; 2.  It is intuitively
+reasonable to guess that SOR converges faster for &#969; &gt; 1, than for
+&#969; = 1.  It is not at all straightforward to show how much faster
+it converges.<a href="footnote.html#tthFtNtADI" id="tthFrefADI"><sup>38</sup></a>  Therefore we will simply
+summarize the facts without proving them.
+
+<ul>
+<li> There is an optimal<a
+id="SOR_optimal63369"></a> value of &#969; somewhere between 1
+and 2, where SOR converges fastest.
+</p><p>
+</li>
+
+<li> If A<sub>J</sub> is the amplification factor for the corresponding
+  Jacobi iteration [cos(&#960;&#8710;x/L) for a uniform problem] then
+  the optimal value is <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#969; = &#969;<sub>b</sub>=2/(1+</td><td align="left" class="cl"><br /><span class="larger">&#8730;</span><br />
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm">1&#8722;A<sub>J</sub><sup>2</sup><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+)
+</td></tr></table><br />.
+</p><p>
+</li>
+
+<li> For this optimal &#969; the amplification factor for the SOR
+  is A<sub>SOR</sub> = &#969;<sub>b</sub>&#8722;1 = (A<sub>J</sub>&#969;<sub>b</sub>/2)<sup>2</sup>.
+For the uniform case and large N<sub>j</sub>, these imply
+<a id="SORopt">
+</a>
+<br clear="all" /><table border="0" width="95%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#969;<sub>b</sub>  &#8776; </td><td nowrap="nowrap" align="center">
+2
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>1+&#960;/N<sub>j</sub><br /></td><td nowrap="nowrap" align="center">
+, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="roman">and</span>&nbsp;&nbsp;&nbsp; A<sub>SOR</sub>  &#8776; 1&#8722; </td><td nowrap="nowrap" align="center">
+2&#960;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<sub>j</sub><br /></td><td nowrap="nowrap" align="center">
+. </td></tr></table>
+</td><td width="1%">(6.12)</td></tr></table>
+
+
+</p><p>
+</li>
+</ul>
+These facts show that near the optimal relaxation parameter the number
+of steps needed to converge by a factor F is approximately  N<sub>j</sub>lnF/2&#960;
+(not N<sub>j</sub><sup>2</sup>lnF/&#960;<sup>2</sup> as with Gauss-Seidel)<a
+id="SOR_convergence63370"></a>. That is a very big
+benefit. However, obtaining that benefit requires one to estimate
+&#969;<sub>b</sub> accurately, and for more complicated problems doing that
+becomes hard. Choosing &#969; well is probably the main challenge
+for SOR. Fig.&nbsp;<a href="chap6.html#poisconverge">6.2</a> shows an illustrative example.
+
+</p><p>
+<a id="tth_fIg6.2">
+</a>   <img src="figures/convergence.png" alt="figures/convergence.png" /><a id="convergence">
+</a>
+
+<div style="text-align:center">Figure 6.2: Number of iterations required to converge a SOR solution of
+    Poisson's equation with uniform source on a mesh of length
+    N<sub>j</sub>=32. It is declared converged when the maximum &#968;-change
+    in a step is less than 10<sup>&#8722;6</sup> &#968;<sub><span class="roman">max</span></sub>. The minimum
+    number of iterations is found to be 63 at &#969; = 1.85. This
+    should be compared with theoretical values of
+    ln(10<sup>6</sup>)(N<sub>j</sub>/2&#960;)=70 at
+    &#969; = 2/(1+&#960;/N<sub>j</sub>)=1.821.<a id="poisconverge">
+</a></div>
+
+</p><p>
+There are other iterative matrix solution techniques, associated with
+the name Krylov<a
+id="Krylov63371"></a>. Like the SOR solution technique, they
+use just multiplication by the matrix, not inversion. That is a big
+advantage for very sparse matrices arising in PDE solving. They go by
+names like "Conjugate Gradient"<a
+id="conjugate_gradient63372"></a>, "Newton
+Krylov"<a
+id="Newton-Krylov63373"></a> and "GMRES"<a
+id="GMRES63374"></a>. In some
+situations they converge faster than SOR, and they don't require
+careful adjustment of a relaxation parameter. However, they have their
+own tuning problems associated with "preconditioning". These topics
+are introduced very briefly in the final chapter.
+
+</p><p>
+ <a id="tth_sEc6.4"></a><h2>
+6.4&nbsp;&nbsp;Iteration and Nonlinear Equations</h2>
+
+</p><p>
+<a
+id="iteration64375"></a><a
+id="nonlinear_equations64376"></a> A major advantage accrues
+to iterative methods of solving elliptic problems. It is that we
+only have to <em>multiply by</em> the difference matrix. Because that
+difference matrix is extremely sparse<a
+id="sparse64377"></a>, we need never in
+fact construct it in its entirety. We perform the matrix
+multiplication more physically by performing the small number of
+multiplications of adjacent stencil mesh values by coefficients. This
+saves immense amounts of storage space (compared with constructing the
+full matrix), and immense numbers of irrelevant multiplications by
+zero. The cost we must pay for the benefit of not constructing and
+inverting the matrix is that a substantial number of iterations is
+necessary. Generally for sizable multidimensional problems that
+iteration cost is far less than the savings.
+
+</p><p>
+Another situation where iteration becomes essential is when the
+differential equations are
+<em>nonlinear</em><a
+id="nonlinear_iteration64378"></a>. In the screening of
+electric fields by plasmas<a
+id="plasma64379"></a> or
+electrolytes<a
+id="electric_screening64380"></a>, for example, the source of the
+Poisson equation (the charge density) is a nonlinear function of the
+potential, &#981;, in this case an exponential leading to:
+<a id="nonlinpois">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8711;<sup>2</sup> &#981; =  &#8722;s = exp(&#981;)&#8722;1.</td></tr></table>
+</td><td width="1%">(6.13)</td></tr></table>
+
+
+How do we solve such an elliptic equation? It cannot be solved by
+matrix inversion because of the nonlinearity on the right hand side.
+Even if we invert the difference matrix and construct eq.&nbsp;(<a href="chap6.html#invertBsol">6.3</a>): \upphi
+= &#8722; <b>B</b><sup>&#8722;1</sup> <b>s</b>, because s
+is a nonlinear function of &#981;, this expression does not constitute
+a solution of the problem.
+
+</p><p>
+The generic answer to how to solve a nonlinear<a
+id="linearization64381"></a> problem is
+
+<ol type="1">
+<li> Linearize it about the current estimate of the solution.
+</p><p>
+</li>
+
+<li> Solve or advance the linear problem.
+</p><p>
+</li>
+
+<li> Repeat from 1, until converged on the nonlinear solution.
+</p><p>
+</li>
+</ol>
+When one knows that iteration is required anyway, because the problem
+is nonlinear, one has substantial incentive to use an iterative
+method for the linearized part of the problem as well. Very often it
+will cost no more effort to solve a nonlinear problem by iteration
+than a linear problem.
+
+</p><p>
+     <a id="tth_sEc6.4.1"></a><h3>
+6.4.1&nbsp;&nbsp;Linearization</h3>
+
+</p><p>
+<a
+id="linearization64382"></a>Suppose we have potential function &#981;<sup>(n)</sup>, at step n, not yet
+a solution of the steady elliptic equation. In the neighborhood of
+that function, we can express the source via a Taylor
+expansion<a
+id="Taylor_expansion64383"></a> (at
+each point in the mesh):
+<a id="nonlintaylor">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  s(&#981;) = s(&#981;<sup>(n)</sup>)+ </td><td nowrap="nowrap" align="center">
+&#8706;s
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; &#981;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm">&#981;<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2!<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> s
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; &#981;<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm">&#981;<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+...,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="roman">where</span>&nbsp;&nbsp;&nbsp;</td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm">&#981;<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+=(&#981;&#8722;&#981;<sup>(n)</sup>).</td></tr></table>
+</td><td width="1%">(6.14)</td></tr></table>
+
+
+For values of &#981; close enough to &#981;<sup>(n)</sup>, i.e. small enough
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm">&#981;<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />, we can ignore all but the first two terms of this
+expansion. For our exponential example, substituting for &#981; and
+rearranging the terms, we would then obtain the linearized equation
+<a id="linshield">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#8711;<sup>2</sup></td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm">&#981;<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+&#8722; exp(&#981;<sup>(n)</sup>)</td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm">&#981;<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+ = exp(&#981;<sup>(n)</sup>)  &#8722;1 &#8722; &#8711;<sup>2</sup>&#981;<sup>(n)</sup>.</td></tr></table>
+</td><td width="1%">(6.15)</td></tr></table>
+
+
+The right hand side is the residual<a
+id="residual64384"></a> - the amount by which the
+step-n value fails to satisfy the differential equation.
+More generally one obtains, from &#8711;<sup>2</sup>&#981; = &#8722;s, a linearized equation
+<a id="lingen">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+&#8711;<sup>2</sup></td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm">&#981;<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+&#8706;s
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; &#981;<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>&#981;<sup>(n)</sup></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm">&#981;<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+ = &#8722;s(&#981;<sup>(n)</sup>) &#8722; &#8711;<sup>2</sup>&#981;<sup>(n)</sup>. </td></tr></table>
+</td><td width="1%">(6.16)</td></tr></table>
+
+
+This equation can be solved to find <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm">&#981;<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> linearly. Of course
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm">&#981;<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> is our linearized estimate of the amount by which the
+real solution &#981; is different from the starting value at the nth
+step: &#981;<sup>(n)</sup>. If we find the solution of the <em>linearized</em>
+equation (<a href="chap6.html#lingen">6.16</a>), then, since that equation is only
+approximate, the new value <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#981;<sup>(n+1)</sup> &#8801; &#981;<sup>(n)</sup>+</td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm">&#981;<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> is only an
+approximate solution of the original nonlinear equation. Presumably,
+though, it is closer to the actual solution. So if we simply interate
+the process then as n increases we approach the full nonlinear
+solution.  That is an iterative solution to the nonlinear problem
+using linearization.
+
+</p><p>
+     <a id="tth_sEc6.4.2"></a><h3>
+6.4.2&nbsp;&nbsp;Combining linear and nonlinear iteration</h3>
+
+</p><p>
+<a
+id="nonlinear_iteration64385"></a>The question then arises: what method should we use to solve the linear
+problem to find <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">~<br /></div>
+<div class="norm">&#981;<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />? It is natural to be guided by the
+knowledge that even if we solved the linear problem exactly, that
+would not give us an exact solution of the nonlinear
+problem. Therefore it is <em>unnecessary</em> to solve the linearized
+equation exactly. And in many cases it is in fact not even necessary
+to get close to the exact solution of the linearized equation for each
+interation of the nonlinear equation. What we then can do is to say,
+we'll solve the linearized equation iteratively, but we'll use
+<em>only one step</em> in our solution. In other words, &#981;<sup>(n+1)</sup>
+is arrived at by doing a single advance of the linearized equation
+iterative scheme (e.g.&nbsp;a SOR advance). Then we recalculate s and
+its derivative &#8706;s/&#8706;&#981; for the new value of &#981;,
+and iterate.
+
+</p><p>
+Actually one might sometimes be able to dispense with the linear term
+in the linearization, by retaining, in the Taylor expansion for s,
+only the first, constant term. That would amount to using
+&#8711;<sup>2</sup>&#981;<sup>(n+1)</sup> = exp&#981;<sup>(n)</sup>&#8722;1 as the equation to be solved
+for each step of the nonlinear iteration. Whether that will work
+depends upon the relative importance of the &#8711;<sup>2</sup>&#981; term in the
+equation. In places where &#8711;<sup>2</sup>&#981; is small, the nonlinear
+equation behaves like a transcendental equation for &#981;: simply
+exp&#981;&#8722;1 &#8776; 0. In that case, solving eq.&nbsp;(<a href="chap6.html#linshield">6.15</a>),
+(without the &#8711;<sup>2</sup>&#981; term) is equivalent to a single Newton
+iteration<a
+id="Newton_method64386"></a> of a root-finding problem, which is a
+sensible iteration to take. Without the linear term, though,
+negligibly small advance towards the nonlinear solution will occur.
+
+</p><p>
+It is hard to generalize about how fast the iteration is going to
+converge on the solution of the nonlinear equation. It depends upon
+the type of nonlinearity. But it is usually the case that if the
+iterative advance is chosen reasonably, then the convergence to the
+nonlinear solution takes no more iterations than approximately what it
+would require to converge as accurately to a solution of the
+linearized equations. In short, iterative solutions can readily
+accommodate nonlinearity in the equations, and produce solutions with
+comparable computational cost.
+
+</p><p>
+
+<h2>Worked Example: Optimal SOR relaxation</h2>
+
+</p><p>
+<a
+id="SOR_optimal64387"></a><a
+id="SOR_convergence64388"></a>Consider the elliptic equation
+<a id="wk6eq1">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>&#981;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>&#981;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; y<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = s(x,y)</td></tr></table>
+</td><td width="1%">(6.17)</td></tr></table>
+
+
+expressed on a cartesian grid x=j&#8710;x, j=0,1,...,N<sub>x</sub>;
+y=k&#8710;y, k=0,1,...,N<sub>y</sub>. And suppose the boundary conditions
+at x=0 and N<sub>x</sub>&#8710;x, and y=0 and N<sub>y</sub>&#8710;y are
+&#981; = f(x,y). Find the optimum relaxation parameter &#969; for an SOR
+iterative solution of the system, and the resulting convergence rate.
+</p><p>
+<br /><a
+id="linearization64389"></a>Suppose the final solution of the system is denoted &#981;<sub>s</sub>. We can
+define a new dependent variable &#968; = &#981;&#8722;&#981;<sub>s</sub>, which is the error
+between some approximation of the solution (&#981;) and the actual
+solution. Of course, while we are in the process of finding the
+solution, we don't know how to derive &#968; from &#981;, because we
+don't yet know what &#981;<sub>s</sub> is. That fact does not affect the
+following arguments.  Substituting for &#981; = &#968;+&#981;<sub>s</sub> in the
+differential equation and using the fact that &#981;<sub>s</sub> exactly
+satisfies it and the boundary conditions, we immediately deduce that
+&#968; satisfies the homogeneous differential
+equation<a
+id="homogeneous_equation64390"></a>
+<a id="wk6eq2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; y<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = 0,</td></tr></table>
+</td><td width="1%">(6.18)</td></tr></table>
+
+
+together with homogeneous boundary conditions: &#968; = 0 on the
+boundary.  Of course the final solution for &#968; is, as a
+consequence, simply zero. But prior to arriving at that solution,
+&#968; is non-zero and any iteration scheme that we use to solve for
+&#981; is equivalent to an iteration scheme to solve for &#968;. In
+particular, the convergence rate of &#968; to zero is just the
+convergence rate of &#981; to &#981;<sub>s</sub>. All stability and convergence
+analysis can be done on the simpler homogeneous &#968; system eq.&nbsp;(<a href="chap6.html#wk6eq2">6.18</a>), and its results applied immediately to the &#981;
+system (<a href="chap6.html#wk6eq1">6.17</a>).
+
+</p><p>
+ The homogeneous Jacobi iteration<a
+id="Jacobi_method64391"></a>
+(see eq.&nbsp;<a href="chap6.html#Jacobi">6.6</a>) in two dimensions of different grid spacing is
+<a id="Jacobi2d">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968;<sup>(n+1)</sup><sub>j,k</sub> &#8722;&#968;<sup>(n)</sup><sub>j,k</sub> = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#968;<sup>(n)</sup><sub>j+1,k</sub>+&#968;<sup>(n)</sup><sub>j&#8722;1,k</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+&#968;<sup>(n)</sup><sub>j,k+1</sub>+&#968;<sup>(n)</sup><sub>j,k&#8722;1</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;y<sup>2</sup><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;y<sup>2</sup><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>&#8722;1</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8722;&#968;<sup>(n)</sup><sub>j,k</sub>.</td></tr></table>
+</td><td width="1%">(6.19)</td></tr></table>
+
+
+Now we do a Von Neumann analysis of the
+homogeneous system<a
+id="Von_Neumann_stability64392"></a>, examining
+the Fourier modes of the 2-Dimensional system. They are proportional
+to expi(k<sub>x</sub>x+k<sub>y</sub>y)=expi&#960;(pj/N<sub>x</sub> + qk/N<sub>y</sub>), where p and q
+are integers that label the mode<a href="footnote.html#tthFtNtADJ" id="tthFrefADJ"><sup>39</sup></a>.
+For the p,q Fourier mode, &#968;<sup>(n)</sup><sub>j+1,k</sub>+&#968;<sup>(n)</sup><sub>j&#8722;1,k</sub>=2cos(p&#960;/N<sub>x</sub>)&#968;<sup>(n)</sup><sub>j,k</sub> and &#968;<sup>(n)</sup><sub>j,k+1</sub>+&#968;<sup>(n)</sup><sub>j,k&#8722;1</sub>=2cos(q&#960;/N<sub>y</sub>)&#968;<sup>(n)</sup><sub>j,k</sub>.
+So, substituting, we get the two-dimensional version of eq.&nbsp;(<a href="chap6.html#GSamplific">6.8</a>)
+<a id="wk6eq5">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  A<sub>J</sub> &#8801; &#968;<sup>(n+1)</sup><sub>j,k</sub>/&#968;<sup>(n)</sup><sub>j,k</sub> = </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+cos(p&#960;/N<sub>x</sub>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+cos(q&#960;/N<sub>y</sub>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;y<sup>2</sup><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;y<sup>2</sup><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>&#8722;1</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(6.20)</td></tr></table>
+
+
+The slowest-decaying mode is the longest wavelength mode: p=1, q=1.
+For this mode, expanding cos&#952; &#8776; 1&#8722;&#952;<sup>2</sup>/2, we get
+<a id="wk6eq6">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+  A<sub>J</sub></td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ &#8776; </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+1 &#8722; </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#960;<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2 N<sub>x</sub><sup>2</sup>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+&#960;<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2 N<sub>y</sub><sup>2</sup>&#8710;y<sup>2</sup><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710; x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;y<sup>2</sup><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>&#8722;1</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+1&#8722; </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#960;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<sub>x</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8710; y<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup>+&#8710;y<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#960;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<sub>y</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8710; x<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup>+&#8710;y<sup>2</sup><br /></td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1">1&#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#960;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<sub>x</sub>N<sub>y</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+N<sub>x</sub><sup>2</sup>&#8710;y<sup>2</sup>+ N<sub>y</sub><sup>2</sup>&#8710; x<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup>+&#8710;y<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td width="50%"></td><td width="1" align="right">(6.21)</td></tr></table>
+</td></tr></table>
+
+
+For brevity in the rest of our equations, let's define a number
+to represent the second term
+<a id="wk6eq8">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  M  &#8801; N<sub>x</sub>N<sub>y</sub></td><td align=left><span style="font-size:200%">/</span></td><td align=center>
+</td><td align="left" class="cl">
+<span class="larger">&nbsp;&nbsp;&#x239B;<br />&#8730;<br /></span></td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+N<sub>x</sub><sup>2</sup>&#8710;y<sup>2</sup>+ N<sub>y</sub><sup>2</sup>&#8710;x<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup>+&#8710;y<sup>2</sup><br /></td></tr></table></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(6.22)</td></tr></table>
+
+
+so that <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">A<sub>J</sub>=1&#8722;<sup>1</sup>/<sub>2</sub></td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#960;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>M<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> and M serves as a
+measure of the grid size, like N in the one-dimensional problem.<a href="footnote.html#tthFtNtAEA" id="tthFrefAEA"><sup>40</sup></a>
+The optimal SOR relaxation factor &#969;<sub>b</sub> is then expressed in
+terms of A<sub>J</sub> as
+<a id="wk6eq7">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+  &#969;<sub>b</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1"></td><td nowrap="nowrap" align="center">
+2
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1+</td><td align="left" class="cl"><br /><span class="larger">&#8730;</span><br />                                </td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm">(1+A<sub>J</sub>)(1&#8722;A<sub>J</sub>)<br /></div>                                </td></tr></table></td><td nowrap="nowrap" align="center">
+ &#8776; </td><td nowrap="nowrap" align="center">
+2
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1+</td><td nowrap="nowrap" align="center">
+&#960;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>M<br /></td></tr></table></td><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td width="50%"></td><td width="1" align="right">(6.23)</td></tr></table>
+</td></tr></table>
+
+
+The resulting amplification factor for SOR iteration using this
+&#969;<sub>b</sub> is
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+A<sub>SOR</sub> = &#969;<sub>b</sub>&#8722;1 &#8776; 1&#8722; </td><td nowrap="nowrap" align="center">
+2&#960;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>M<br /></td><td nowrap="nowrap" align="center">
+,</td></tr></table>
+</td><td width="1%">(6.24)</td></tr></table>
+
+
+and the number of iterations required to reduce &#968; by a factor 1/F
+is (c.f.&nbsp;<a href="chap6.html#stepsreq">6.10</a>)
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+m = &#8722;lnF / lnA<sub>SOR</sub> &#8776; M</td><td nowrap="nowrap" align="center">
+lnF
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#960;<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(6.25)</td></tr></table>
+
+
+
+</p><p>
+
+<span class="footnotesize">
+<b>Enrichment: Outline of SOR Convergence Analysis</b>
+
+</p><p>
+ Assume the matrix B in eq (<a href="chap6.html#matrixinvert">6.2</a>) to
+be solved is arbitrary except that its diagonal entries are minus
+unity. That can be ensured without loss of generality by scaling the
+equations. It can then be separated into three parts: the diagonal,
+which is just minus the unit matrix <b>I</b>, plus <b>U</b>, those
+entries that multiply the old &#968;-values (even nodes), plus
+<b>L</b>, those entries that multiply the new values (odd
+nodes). <b>B</b>=&#8722;<b>I</b>+<b>U</b>+<b>L</b>.  Then the SOR scheme
+(ignoring source) can be written
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#968;<sup>(n+1)</sup>&#8722;&#968;<sup>(n)</sup> = &#969;[(&#8722;<b>I</b> + <b>U</b>)&#968;<sup>(n)</sup>  + <b>L</b>&#968;<sup>(n+1)</sup>]. </td></tr></table>
+</td></tr></table>
+
+
+  Collecting n terms together
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ (<b>I</b>&#8722;&#969;<b>L</b>)&#968;<sup>(n+1)</sup> = [(1&#8722;&#969;)<b>I</b> + &#969;<b>U</b>]&#968;<sup>(n)</sup> , </td></tr></table>
+</td></tr></table>
+
+
+  which can be written
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#968;<sup>(n+1)</sup>=(<b>I</b>&#8722;&#969;<b>L</b>)<sup>&#8722;1</sup> [(1&#8722;&#969;)<b>I</b> + &#969;<b>U</b>]&#968;<sup>(n)</sup> = <b>H</b>&#968;<sup>(n)</sup>. </td></tr></table>
+</td></tr></table>
+
+
+
+</p><p>
+  The eigenvalues of the advancing matrix <b>H</b> are the
+  "amplification factors" for the true modes of the system. They are
+  the solutions, &#955;,  of <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+det<br />
+</td><td nowrap="nowrap">(<b>H</b>&#8722;&#955;<b>I</b>)=0
+</td></tr></table><br />. But
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <b>H</b>&#8722;&#955;<b>I</b> = (<b>I</b>&#8722;&#969;<b>L</b>)<sup>&#8722;1</sup>{ (1&#8722;&#969;)<b>I</b> + &#969;<b>U</b>&#8722;&#955;(<b>I</b>&#8722;&#969;<b>L</b>) } </td></tr></table>
+</td></tr></table>
+
+
+  So
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+det<br />
+</td><td nowrap="nowrap">{&#955;&#969;<b>L</b> +(1&#8722;&#955;&#8722;&#969;)<b>I</b> + &#969;<b>U</b>}=0. </td></tr></table>
+</td></tr></table>
+
+
+  Now the determinant of any matrix
+  &#945;<sup>&#8722;1</sup><b>L</b>&#8722;<b>D</b>+&#945;<b>U</b>, where <b>L</b> and
+  <b>U</b> are lower and upper triangular parts and <b>D</b> is the
+  diagonal, is independent of &#945;. One can see this by noticing that
+  any term in the expansion of the determinant has equal numbers of
+  elements from <b>U</b> as it has from <b>L</b>; so the &#945;
+  factors cancel out.  As implied by our
+  notation, we can arrange the nodes in an appropriate order such
+  that all the even coefficients are in the upper triangle and the odd
+  coefficients in the lower triangle part of the matrix. This would be
+  achieved by the simple expedient of putting all the even positions
+  first. Actually we don't need to do the rearrangement. We just need
+  to know it could be done. In that case, we can
+  balance the upper and lower parts of the determinantal equation,
+  multiplying the  <b>L</b> term by &#955;<sup>&#8722;1/2</sup> and the <b>U</b>
+  term by &#955;<sup>1/2</sup>
+  to make it:
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+det<br />
+</td><td nowrap="nowrap">{&#955;<sup>1/2</sup>&#969;<b>L</b> +(1&#8722;&#955;&#8722;&#969;)<b>I</b> + &#955;<sup>1/2</sup>&#969;<b>U</b>}=0, </td></tr></table>
+</td></tr></table>
+
+
+  i.e.
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+det<br />
+</td><td nowrap="nowrap">{&#8722;(&#955;+&#969;&#8722;1)&#969;<sup>&#8722;1</sup>&#955;<sup>&#8722;1/2</sup><b>I</b> +<b>L</b> + <b>U</b>}=0. </td></tr></table>
+</td></tr></table>
+
+
+  Now notice that the eigenvalues &#956; for the Jacobi iteration
+  matrix, <b>L</b>+<b>U</b>, satisfy
+  <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+det<br />
+</td><td nowrap="nowrap">(&#8722;&#956;<b>I</b>+<b>L</b>+<b>U</b>)=0
+</td></tr></table><br />, which is exactly the same
+  equation with the identification
+  (&#955;+&#969;&#8722;1)&#969;<sup>&#8722;1</sup>&#955;<sup>&#8722;1/2</sup> = &#956;. There's a direct
+  mapping between eigenvalues of the Jacobi iteration and of the SOR iteration.
+
+</p><p>
+  The relationship can be considered a quadratic equation for &#955;,
+  given &#956; and &#969;
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#955;<sup>2</sup>+(2&#969;&#8722;2 &#8722;&#969;<sup>2</sup>&#956;<sup>2</sup>)&#955;+(&#969;&#8722;1)<sup>2</sup>=0. </td></tr></table>
+</td></tr></table>
+
+
+  The optimum &#969; gives the smallest magnitude of the larger
+  &#955; solution.  It occurs when the &#955; roots coincide,
+  i.e.&nbsp;when (&#969;&#8722;1&#8722;&#969;<sup>2</sup>&#956;<sup>2</sup>/2)<sup>2</sup>=(&#969;&#8722;1)<sup>2</sup> whose solution
+  is
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#969; =  &#969;<sub>b</sub> = </td><td nowrap="nowrap" align="center">
+2
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1+</td><td align="left" class="cl"><br /><span class="larger">&#8730;</span><br />                                </td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm">1&#8722;&#956;<sup>2</sup><br /></div>                                </td></tr></table></td><td nowrap="nowrap" align="center">
+. </td></tr></table>
+</td></tr></table>
+
+
+  The corresponding eigenvalue is &#955; = &#969;<sub>b</sub>&#8722;1. For
+  &#969; &gt; &#969;<sub>b</sub>, the roots for &#955; are complex with magnitude
+  &#969;&#8722;1. Therefore SOR is stable only for &#969; &lt; 2, and the
+  convergence rate degrades linearly to zero between &#969;<sub>b</sub> and 2.
+
+</p><p>
+</span>
+<h2>Exercise 6. Iterative Solution of Matrix Problems.</h2>
+
+</p><p>
+<br /><br />1. Start with your code that solved the diffusion equation
+explicitly. Adjust it to always take timesteps at the
+stability limit &#8710;t = &#8710;x<sup>2</sup>/2D, so that:
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#968;<sup>(n+1)</sup><sub>j</sub> &#8722;&#968;<sup>(n)</sup><sub>j</sub> = ( </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+&#968;<sup>(n)</sup><sub>j+1</sub>&#8722;&#968;<sup>(n)</sup><sub>j</sub>+ </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+&#968;<sup>(n)</sup><sub>j&#8722;1</sub> + </td><td nowrap="nowrap" align="center">
+s<sup>(n)</sup><sub>j</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2 D<br /></td><td nowrap="nowrap" align="center">
+&#8710;x<sup>2</sup>).</td></tr></table>
+</td></tr></table>
+
+
+Now it is a Jacobi iterator for solving the steady-state elliptic matrix
+equation.  Implement a convergence test that finds the maximum
+absolute <em>change in</em> &#968; and divides it by the maximum absolute
+&#968;, giving the normalized &#968;-change. Consider the iteration to
+be converged when the normalized &#968;-change is less than (say)
+10<sup>&#8722;5</sup>. Use it to solve
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+d<sup>2</sup>&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = 1</td></tr></table>
+</td></tr></table>
+
+ on the domain x=[&#8722;1,1]
+with boundary conditions &#968; = 0, with a total of N<sub>x</sub>
+equally-spaced nodes. Find how many iterations it takes to converge,
+starting from an initial state &#968; = 0, when
+
+</p><p>
+(a) N<sub>x</sub>=10
+
+</p><p>
+(b) N<sub>x</sub>=30
+
+</p><p>
+(c) N<sub>x</sub>=100
+
+</p><p>
+Compare the number of iterations you require with the analytic
+estimate in the notes. How good is the estimate?
+
+</p><p>
+Now we want to check how accurate the solution really is.
+
+</p><p>
+(d) Solve the equation analytically, and find the value of &#968; at
+x=0, &#968;(0).
+
+</p><p>
+(e) For the three N<sub>x</sub> values, find the relative error<a href="footnote.html#tthFtNtAEB" id="tthFrefAEB"><sup>41</sup></a> in &#968;(0).
+
+</p><p>
+(f) Is the actual relative error the same as the convergence test
+value 10<sup>&#8722;5</sup>? Why?
+
+</p><p>
+<br /><br /> 2. Optional and not for
+credit. Turn your iterator into a SOR solver by splitting the
+iteration matrices up into red and black (odd and even) advancing
+parts. Each part-iterator then uses the latest values of &#968;, that
+has just been updated by the other part-iterator. Also provide
+yourself an over-relaxation parameter &#969;. Explore how fast the
+iterations converge as a function of N<sub>x</sub> and &#969;.
+
+</p><p>
+<br /><br />Note. Although in Octave/Matlab it is convenient to implement the
+matrix multiplications of the advance using a literal multiplication
+by a big sparse matrix, one does not do that in practice. There are
+far more efficient ways of doing the multiplication, that avoid all
+the irrelevant multiplications by zero.
+
+</p><p>
+
+
+<hr /><table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+<a href="chap7.html">NEXT
+</a></td></tr></table>
+</div></body></html>

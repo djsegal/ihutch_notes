@@ -1,0 +1,2326 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
+    img {     max-width: 100%;
+    max-height: 40vh; } p { line-height: 1.5em; } body {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 18px;
+    }
+  </style>
+<
+<title>chap5.html</title>
+<table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+ <a href="chap4.html">PREVIOUS
+</a></td></tr></table>
+ <a id="tth_chAp5"></a><h1>
+Chapter 5 <br />Diffusion. Parabolic Partial Differential Equations</h1>
+<a id="DiffusionChap">
+</a>
+
+</p><p>
+ <a id="tth_sEc5.1"></a><h2>
+5.1&nbsp;&nbsp;Diffusion Equations</h2>
+
+</p><p>
+<a
+id="diffusion51296"></a><a
+id="diffusion_equation51297"></a>The diffusion equation,
+<a id="diffusive">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+ = &#8711;. (D &#8711;&#968;) + s,</td></tr></table>
+</td><td width="1%">(5.1)</td></tr></table>
+
+
+arises in heat conduction<a
+id="heat_conduction51298"></a>, neutron
+transport<a
+id="neutron_transport51299"></a>, particle diffusion<a
+id="particle_diffusion51300"></a> , and
+numerous other situations. There is a clear difference between the
+time variable, t, and the spatial variables <b><i>x</i></b>. We'll talk
+mostly for brevity as if there is only one spatial
+dimension x, but this discussion can readily be generalized to
+multiple spatial dimensions. The highest time derivative is
+&#8706;/&#8706;t, first order. The highest spatial derivative is
+second order &#8706;<sup>2</sup>/&#8706;x<sup>2</sup>. The equation is classified as parabolic.
+
+</p><p>
+<a id="tth_fIg5.1">
+</a>   <img src="figures/nodehyper.png" alt="figures/nodehyper.png" /><a id="nodehyper">
+</a>
+
+<div style="text-align:center">Figure 5.1: Solving a diffusion problem generally requires a
+    combination of spatial boundary conditions and temporal initial
+    condition. Then the solution is propagated upward (forward in
+    time), to fill in the multi-dimensional (time and space) solution
+    domain.<a id="nodehyperl">
+</a></div>
+
+</p><p>
+Consequently, boundary conditions<a
+id="boundary_condition_parabolic51301"></a>
+are not applied all around a closed contour (in the x-t plane) but
+generally only at the two ends of the spatial range, and at one
+"initial" time, as illustrated in Fig. <a href="chap5.html#nodehyperl">5.1</a>. The
+dependent variable solution is propagated from the initial condition
+forward in time (conventionally drawn as the vertical direction).
+
+</p><p>
+ <a id="tth_sEc5.2"></a><h2>
+5.2&nbsp;&nbsp;Time Advance Choices and Stability</h2>
+
+</p><p>
+     <a id="tth_sEc5.2.1"></a><h3>
+5.2.1&nbsp;&nbsp;Forward Time, Centered Space</h3>
+
+</p><p>
+<a
+id="forward_in_time52302"></a><a
+id="centered_in_space52303"></a>For simplicity we'll take D to be uniform in one cartesian
+dimension, and the meshes to be uniform with spacing &#8710;x and
+&#8710;t. Then one way to write the equation in discrete finite
+differences is<a
+id="diffusion_finite_difference52304"></a>
+<a id="FTCSl">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#968;<sup>(n+1)</sup><sub>j</sub> &#8722;&#968;<sup>(n)</sup><sub>j</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;t<br /></td><td nowrap="nowrap" align="center">
+ = D </td><td nowrap="nowrap" align="center">
+&#968;<sup>(n)</sup><sub>j+1</sub>&#8722;2&#968;<sup>(n)</sup><sub>j</sub>+&#968;<sup>(n)</sup><sub>j&#8722;1</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ s<sup>(n)</sup><sub>j</sub>.</td></tr></table>
+</td><td width="1%">(5.2)</td></tr></table>
+
+
+We use (n) to denote time index, and put it as a superscript to
+distinguish it from the space indices j [k, l]. Of course this
+notation is <em>not</em> raising to a power. Notice
+in this equation the <em>second order</em> derivative in space is
+naturally centered and symmetric. However, the time derivative is not
+centered in time. It is really the value at n+1/2, not at the time
+index of everything else: n. This scheme is therefore "Forward" in
+Time, but Centered in Space (FTCS)<a
+id="FTCS52305"></a>; see Fig.&nbsp;<a href="chap5.html#FTCSfig">5.2</a>.
+
+</p><p>
+<a id="tth_fIg5.2">
+</a>   <img src="figures/FTCS.png" alt="figures/FTCS.png" /><a id="FTCS">
+</a>
+
+<div style="text-align:center">Figure 5.2: Forward Time, Centered Space, (FTCS) difference scheme.</div>
+  <a id="FTCSfig">
+</a>
+
+</p><p>
+We immediately know from our previous experience that, because it is
+not centered in time, this scheme's accuracy is going to be only first
+order<a
+id="first-order_accuracy52306"></a> in &#8710;t. Also, this scheme is
+<em>explicit</em><a
+id="explicit52307"></a> in time. The &#968; at n+1 is
+obtained using only prior (n) values of the other quantities:
+<a id="explicitdiff">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968;<sup>(n+1)</sup><sub>j</sub> = &#968;<sup>(n)</sup><sub>j</sub> + </td><td nowrap="nowrap" align="center">
+D&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+(&#968;<sup>(n)</sup><sub>j+1</sub>&#8722;2&#968;<sup>(n)</sup><sub>j</sub>+&#968;<sup>(n)</sup><sub>j&#8722;1</sub>) + &#8710;t&nbsp;&nbsp;s<sup>(n)</sup><sub>j</sub>.</td></tr></table>
+</td><td width="1%">(5.3)</td></tr></table>
+
+
+
+</p><p>
+A question then arises as to whether this scheme is
+<em>stable</em><a
+id="stability_diffusion_equation52308"></a>. For an ordinary
+differential equation, we saw that with explicit integration, there
+was a maximum step size that could be allowed before the scheme became
+unstable. The same is true for hyperbolic and parabolic partial
+differential equations. For stability analysis, we ignore the source
+S (because we are really analysing the deviation of the
+solution<a href="footnote.html#tthFtNtACH" id="tthFrefACH"><sup>27</sup></a>). However, even so, it's a bit
+difficult to see immediately how to evaluate the amplification
+factor<a
+id="amplification_factor52309"></a>, because for partial differential
+equations there is variation in the spatial dimension(s) that has to
+be accounted for. It wasn't present for ordinary differential
+equations. The way this is generally handled is to turn the partial
+differential equation into an ordinary differential equation by
+examining separately all the <em>Fourier
+  components</em><a
+id="Fourier_representation52310"></a> of the spatial
+variation. This sort of analysis is called Von Neumann<a
+id="Von___Neumann_stability52311"></a> stability analysis. It gives a precisely correct
+answer only for uniform grids and coefficients, but it is usually
+approximately correct, and hence in practice very useful even for
+non-uniform cases.
+
+</p><p>
+A Fourier component varies in space like exp(i k<sub>x</sub>x) where k<sub>x</sub> is
+the wave number in the x-direction, (and i is here the square root
+of minus 1). For such a Fourier component, &#968;<sub>j</sub>  &#8733; exp(ik<sub>x</sub>&#8710;x j), so that &#968;<sub>j+1</sub> = exp(ik<sub>x</sub>&#8710;x)&#968;<sub>j</sub>
+and &#968;<sub>j&#8722;1</sub> = exp(&#8722;ik<sub>x</sub>&#8710;x)&#968;<sub>j</sub>. Therefore
+<a id="Fourierspace">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+&#968;<sub>j+1</sub>&#8722;2&#968;<sub>j</sub>+&#968;<sub>j&#8722;1</sub> = ( <span class="roman">e</span><sup>ik<sub>x</sub>&#8710;x</sup>&#8722;2+<span class="roman">e</span><sup>&#8722;ik<sub>x</sub>&#8710;x</sup> ) &#968;<sub>j</sub> = &#8722;4sin<sup>2</sup>(</td><td nowrap="nowrap" align="center">
+k<sub>x</sub>&#8710;x
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+)&#968;<sub>j</sub> .</td></tr></table>
+</td><td width="1%">(5.4)</td></tr></table>
+
+
+Then substituting into eq.&nbsp;(<a href="chap5.html#explicitdiff">5.3</a>) for this Fourier
+component we find
+<a id="Fouriergain">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968;<sup>(n+1)</sup> = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br /><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+ 1 &#8722; </td><td nowrap="nowrap" align="center">
+D&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+4sin<sup>2</sup>(</td><td nowrap="nowrap" align="center">
+k<sub>x</sub>&#8710; x
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+) </td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td></tr></table><hr /><small><span class="roman">Amplification</span>&nbsp;<span class="roman">factor</span></small>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+&#968;<sup>(n)</sup>.</td></tr></table>
+</td><td width="1%">(5.5)</td></tr></table>
+
+
+The amplification factor from each step to the next is the square
+bracket term. If it has a magnitude greater than 1, then instability
+will occur. If D is negative it will in fact be greater than
+1. This instability is not a numerical instability, though. It is a
+<em>physical</em> instability. The diffusion coefficient must be
+positive otherwise the diffusion equation is unstable regardless of
+numerical methods. So D must be positive; and so are &#8710;t,
+&#8710;x. Therefore numerical instability will arise if the
+magnitude of the second
+(negative) term in the amplification factor exceeds 2.
+
+</p><p>
+If k<sub>x</sub>&#8710;x is small, then that will make the second term small
+and unproblematic. We are most concerned about larger k<sub>x</sub> values
+that can make sin<sup>2</sup>(k<sub>x</sub>&#8710;x/2) approximately unity. In fact,
+the largest k<sub>x</sub> value that can be represented on a finite
+grid<a href="footnote.html#tthFtNtACI" id="tthFrefACI"><sup>28</sup></a>  is such that the phase difference
+(k<sub>x</sub>&#8710;x) between adjacent values is &#960; radians. That
+corresponds to a solution that oscillates in sign between adjacent
+nodes. For that Fourier component, therefore, sin<sup>2</sup>(k<sub>x</sub>&#8710;x/2) = 1.
+
+</p><p>
+Stability requires <em>all</em> Fourier modes to be stable, including
+the worst mode that has sin<sup>2</sup>(k<sub>x</sub>&#8710;x/2) = 1. Therefore the
+condition for stability<a
+id="stability_condition_diffusion52312"></a> is
+<a id="FTCSstability">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+4D&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ &lt;  2.</td></tr></table>
+</td><td width="1%">(5.6)</td></tr></table>
+
+
+There is, for the FTCS scheme, a maximum stable timestep equal to
+&#8710;x<sup>2</sup>/2D.
+
+</p><p>
+Incidentally, the fact that &#8710;t must therefore be no bigger
+than something proportional to &#8710;x<sup>2</sup> makes the first order
+accuracy in time less of a problem<a
+id="first-order_accuracy52313"></a>. In
+fact, for a timestep at the stability limit, as we decrease &#8710;x, improving the spatial accuracy proportional to &#8710;x<sup>2</sup>
+because of the second order accuracy in space, we also improve the
+temporal accuracy by the same factor, proportional to &#8710;x<sup>2</sup>
+because &#8710;t  &#8733; &#8710;x<sup>2</sup>.
+
+</p><p>
+     <a id="tth_sEc5.2.2"></a><h3>
+5.2.2&nbsp;&nbsp;Backward Time, Centered Space. Implicit Scheme.</h3>
+
+</p><p>
+In order to counteract the instability, we learned earlier that
+<em>implicit</em><a
+id="implicit52314"></a> schemes are helpful. The natural
+implicit time advance is simply to say that we use the values of the
+updated variables to evaluate the rest of the equation, instead of the
+prior values:
+<a id="implicitdiff">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968;<sup>(n+1)</sup><sub>j</sub> = &#968;<sup>(n)</sup><sub>j</sub> + </td><td nowrap="nowrap" align="center">
+D&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+(&#968;<sup>(n+1)</sup><sub>j+1</sub>&#8722;2&#968;<sup>(n+1)</sup><sub>j</sub>+&#968;<sup>(n+1)</sup><sub>j&#8722;1</sub>) + &#8710;t&nbsp;&nbsp;s<sup>(n+1)</sup><sub>j</sub>;</td></tr></table>
+</td><td width="1%">(5.7)</td></tr></table>
+
+
+This is a Backward in Time, Centered in Space scheme; illustrated in
+Fig. <a href="chap5.html#BTCSl">5.3</a>.
+
+</p><p>
+<a id="tth_fIg5.3">
+</a> <img src="figures/BTCS.png" alt="figures/BTCS.png" /><a id="BTCS">
+</a>
+
+<div style="text-align:center">Figure 5.3: Backward time, centered space, (BTCS) difference scheme.<a id="BTCSl">
+</a></div>
+
+</p><p>
+We'll see a little later how to actually solve this
+equation for the values at n+1, but we can do the same stability
+analysis on it without knowing. The combination for the spatial
+Fourier mode is just as in eq.&nbsp;(<a href="chap5.html#Fourierspace">5.4</a>), so the update
+equation (ignoring S) for a Fourier mode is
+<a id="Fourierimplicit">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br /><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+ 1 + </td><td nowrap="nowrap" align="center">
+D&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+4sin<sup>2</sup>(</td><td nowrap="nowrap" align="center">
+k<sub>x</sub>&#8710; x
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+) </td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td></tr></table><hr /><small><span class="roman">Inverse</span>&nbsp;<span class="roman">of</span>&nbsp;<span class="roman">Amplification</span>&nbsp;<span class="roman">factor</span></small>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+&#968;<sup>(n+1)</sup> = &#968;<sup>(n)</sup>.</td></tr></table>
+</td><td width="1%">(5.8)</td></tr></table>
+
+
+
+</p><p>
+The amplification factor is the inverse of the square bracket factor
+on the left. That square bracket has magnitude always greater than
+one. Therefore the BTCS<a
+id="backward_time52315"></a><a
+id="BTCS_scheme52316"></a> scheme is
+<em>unconditionally stable</em>.  We can take timesteps as large as we
+like.
+
+</p><p>
+It turns out, however, that the only first order accuracy of this
+scheme, like the FTCS scheme, means that we don't generally want much to
+exceed the previously calculated stability limit. If we do so, we
+increasingly sacrifice temporal accuracy, even though not stability.
+
+</p><p>
+     <a id="tth_sEc5.2.3"></a><h3>
+5.2.3&nbsp;&nbsp;Partially implicit, Crank-Nicholson schemes.</h3>
+
+</p><p>
+<a
+id="Crank-Nicholson_scheme52317"></a><a
+id="theta-implicit52318"></a>The best choice, for optimizing the efficiency of the numerical
+solution of diffusive problems is to use a scheme that is part forward
+and part backward. A combination of forward and backward, in which
+&#952; is the weight of the implicit or backward proportion, is
+to write
+<a id="partimplicitdiff">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+  &#968;<sup>(n+1)</sup><sub>j</sub> = &#968;<sup>(n)</sup><sub>j</sub> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
++</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+&#952;</td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+D&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+(&#968;<sup>(n+1)</sup><sub>j+1</sub>&#8722;2&#968;<sup>(n+1)</sup><sub>j</sub>+&#968;<sup>(n+1)</sup><sub>j&#8722;1</sub>) + &#8710;t&nbsp;s<sup>(n+1)</sup><sub>j</sub></td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
++</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1">(1&#8722;&#952;)</td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+D&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+(&#968;<sup>(n)</sup><sub>j+1</sub>&#8722;2&#968;<sup>(n)</sup><sub>j</sub>+&#968;<sup>(n)</sup><sub>j&#8722;1</sub>) + &#8710;t&nbsp;s<sup>(n)</sup><sub>j</sub></td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td width="50%"></td><td width="1" align="right">(5.9)</td></tr></table>
+</td></tr></table>
+
+
+This is sometimes called the "&#952;-implicit" scheme.
+The amplification factor<a
+id="amplification_factor52319"></a> is straightforwardly
+<a id="amplpartial">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ A = </td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 &#8722; (1&#8722;&#952;)</td><td nowrap="nowrap" align="center">
+4D&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+sin<sup>2</sup>(</td><td nowrap="nowrap" align="center">
+k<sub>x</sub>&#8710;x
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+)</td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 + &#952;</td><td nowrap="nowrap" align="center">
+4D&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+sin<sup>2</sup>(</td><td nowrap="nowrap" align="center">
+k<sub>x</sub>&#8710;x
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+)</td></tr></table></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(5.10)</td></tr></table>
+
+
+If &#952; &#8805; <sup>1</sup>/<sub>2</sub> then &#124;A&#124; &#8804; 1, and the scheme is always
+stable. If &#952; &lt;  <sup>1</sup>/<sub>2</sub>, then &#124;A&#124; &#8804; 1 requires the
+stability criterion<a
+id="stability_condition_Crank-Nicholson52320"></a>
+<a id="thetastability">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8710;t  &lt;  </td><td nowrap="nowrap" align="center">
+&#8710;x<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2 D(1&#8722;2&#952;)<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(5.11)</td></tr></table>
+
+
+Thus the minimum degree of implicitness that guarantees
+stability for all sizes of timestep is &#952; =  <sup>1</sup>/<sub>2</sub>. This
+choice is called the "Crank-Nicholson" scheme.
+
+</p><p>
+It has a major advantage beyond stability. It is centered in
+time. That means it is<a
+id="second-order_accuracy52321"></a> second order
+accurate in time (as well as space). This accuracy makes it useful to
+take bigger steps than would be allowed by the (explicit advance)
+stability limit.
+
+</p><p>
+ <a id="tth_sEc5.3"></a><h2>
+5.3&nbsp;&nbsp;Implicit Advancing Matrix Method</h2>
+
+</p><p>
+An implicit or partially implicit<a
+id="implicit_parabolic53322"></a> scheme for
+advancing a parabolic equation generally results in equations
+containing more than one spatial point value at the updated time, for
+example &#968;<sup>(n+1)</sup><sub>j</sub>, &#968;<sup>(n+1)</sup><sub>j&#8722;1</sub>,
+&#968;<sup>(n+1)</sup><sub>j+1</sub>. Such an equation for all spatial positions can
+be written as a matrix equation. Gathering together the terms at n
+and at n+1 from eq.&nbsp;(<a href="chap5.html#partimplicitdiff">5.9</a>), it can be written
+
+</p><p>
+<a id="implicitmatrix">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+B<sub>&#8722;</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+B<sub>0</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+B<sub>+</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#968;<sup>(n+1)</sup><sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#968;<sup>(n+1)</sup><sub>j</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#968;<sup>(n+1)</sup><sub>J</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+C<sub>&#8722;</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+C<sub>0</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+C<sub>+</sub> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#968;<sup>(n)</sup><sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#968;<sup>(n)</sup><sub>j</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#968;<sup>(n)</sup><sub>J</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
++</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+s<sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+s<sub>j</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+s<sub>J</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(5.12)</td></tr></table>
+
+
+
+</p><p>
+or symbolically
+<a id="implicitmatrix2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>B</b>&#968;<sub>n+1</sub> = <b>C</b>&#968;<sub>n</sub> + <b>s</b>,</td></tr></table>
+</td><td width="1%">(5.13)</td></tr></table>
+
+
+where J is the total length of the spatial mesh (the maximum of
+j), and the coefficients are
+<a id="impcoef">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  B<sub>0</sub>=1+ 2</td><td nowrap="nowrap" align="center">
+D&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+&#952;,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  B<sub>+</sub>=B<sub>&#8722;</sub>=&#8722; </td><td nowrap="nowrap" align="center">
+D&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+&#952;,</td></tr></table>
+</td><td width="1%">(5.14)</td></tr></table>
+
+
+<a id="impcoef2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  C<sub>0</sub>=1&#8722;2</td><td nowrap="nowrap" align="center">
+D&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+(1&#8722;&#952;),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  C<sub>+</sub>=C<sub>&#8722;</sub>=+ </td><td nowrap="nowrap" align="center">
+D&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+(1&#8722;&#952;),</td></tr></table>
+</td><td width="1%">(5.15)</td></tr></table>
+
+
+<a id="impcoef3">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <span class="roman">and</span>&nbsp;&nbsp;&nbsp; s<sub>j</sub> = &#8710;t [&#952;s<sup>(n+1)</sup><sub>j</sub> + (1&#8722;&#952;)s<sup>(n)</sup><sub>j</sub>].</td></tr></table>
+</td><td width="1%">(5.16)</td></tr></table>
+
+
+[Notice the &#8710;t scaling factor in s<sub>j</sub>.]
+
+</p><p>
+We are here assuming that the source terms do not depend upon &#968;.
+Eq.&nbsp;(<a href="chap5.html#implicitmatrix2">5.13</a>) can be solved formally by inverting the matrix
+<b>B</b>:
+<a id="impinv">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968;<sub>n+1</sub> = <b>B</b><sup>&#8722;1</sup><b>C</b>&#968;<sub>n</sub> + <b>B</b><sup>&#8722;1</sup><b>s</b>.</td></tr></table>
+</td><td width="1%">(5.17)</td></tr></table>
+
+
+Therefore the additional work involved in using an implicit scheme is
+that we have (effectively) to invert the<a
+id="matrix_inversion53323"></a>
+matrix <b>B</b>, and multiply by the inverse at each timestep.
+
+</p><p>
+Provided the mesh is not too large, this can be a managable
+approach. In a situation where <b>B</b> and <b>C</b> do not change
+with time, the inversion<a href="footnote.html#tthFtNtACJ" id="tthFrefACJ"><sup>29</sup></a> need only be done once; and each step in time
+involves only a matrix multiplication by <b>B</b><sup>&#8722;1</sup><b>C</b> of the
+values from the previous timestep, &#968;<sub>n</sub>.
+
+</p><p>
+If the matrix has the tridiagonal<a
+id="tridiagonal53324"></a> form of eq.&nbsp;(<a href="chap5.html#implicitmatrix">5.12</a>), where the entries are non-zero only on the
+diagonal and the immediately adjacent subdiagonals, then it will
+certainly be more computationally efficient to solve for the
+updated variable by elimination<a href="footnote.html#tthFtNtADA" id="tthFrefADA"><sup>30</sup></a><a
+id="elimination_tridiagonal53325"></a> rather than inverting the matrix
+and multiplying. This is a reflection of the fact that the matrix
+<b>B</b> is <em>sparse</em><a
+id="sparse53326"></a>. All but a very small
+fraction of its coefficients are zero. The fundamental problem is that
+the inverse of a sparse matrix is generally not sparse. Consequently,
+even though multiplication by the original sparse matrix actually
+requires only a few individual arithmetic operations, and easy
+short-cuts can be implemented, there are no obvious short-cuts for
+doing the matrix multiplication by the inverse. As long as we are
+implementing solutions in a mathematical system like
+Octave<a
+id="Octave53327"></a> using the built-in facilities, we won't notice
+any difference because we are not using short-cuts.
+
+</p><p>
+ <a id="tth_sEc5.4"></a><h2>
+5.4&nbsp;&nbsp;Multiple Space Dimensions</h2>
+
+</p><p>
+
+</p><p>
+<a id="tth_fIg5.4">
+</a>   <img src="figures/solnplot.png" alt="figures/solnplot.png" /><a id="solnplot">
+</a>
+
+<div style="text-align:center">Figure 5.4: Example solution, at a particular time, of a diffusion
+    equation in two space dimensions. The value of &#968; is
+    visualized in this perspective plot as the height of the
+    surface.<a id="lsolnplot">
+</a></div>
+
+</p><p>
+When there is more than one spatial coordinate dimension, as
+illustrated in Fig.&nbsp;<a href="chap5.html#lsolnplot">5.4</a>, nothing
+changes formally about our method of solution of parabolic equations.
+What changes, however, is that we need a systematic way to turn the
+entire spatial mesh in multiple
+dimensions<a
+id="multiple_dimensions54328"></a><a
+id="indexing_multiple_dimensions54329"></a>
+into a column vector like
+those in eq.&nbsp;(<a href="chap5.html#implicitmatrix">5.12</a>). In other words, we must index
+all the spatial positions with a single index j. But generally if we
+have multiple dimensions, the natural (physical) indexing of the
+elements of the mesh is by a number of multiple indices equal to the
+number of dimensions: e.g.&nbsp;&#968;<sub>k,l,m</sub>, where k, l,
+m correspond to the coordinates x, y, z.
+
+</p><p>
+Reordering<a
+id="reordering_of_mesh_elements54330"></a> the mesh elements is not
+a particularly difficult task algebraically, but it requires an
+intuitively tricky geometrical mental shift. In general, if we have a
+quantity &#968;<sub>k,l,...</sub> indexed on a multidimensional mesh whose
+lengths in the different mesh dimensions are K, L, ...  then we
+re-index them into a single index j as follows. Start with all
+indices equal to 1. Count through the first index, k = 1,...,K. Then
+increment the second index l and repeat k = 1,...,K. Continue this
+process for l=1,...,L. Then increment the next index (if any), and
+continue till all indices are exhausted. Incidentally, this is
+precisely the order in which the elements<a
+id="order_of_elements54331"></a> are
+stored in computer memory<a
+id="computer_memory54332"></a> when using a
+language like Fortran<a
+id="Fortran_order54333"></a> when using the entire
+allocated array.
+
+</p><p>
+<a id="tth_fIg5.5">
+</a>   <img src="figures/pointorder.png" alt="figures/pointorder.png" /><a id="pointorder">
+</a>
+
+<div style="text-align:center">Figure 5.5: Conversion of a two-dimensional array into a single column
+    vector using column order is like stacking all the columns below
+    one another.</div>
+
+</p><p>
+The result is that for the giant column vector &#968;<sub>j</sub>, the first K
+elements are the original multidimensionally indexed elements
+&#968;<sub>k,1,...</sub>,&nbsp;k=1,...,K; the next K elements, j=K+1,...,2K,
+are the original &#968;<sub>k,2,...</sub> and so on.<a href="footnote.html#tthFtNtADB" id="tthFrefADB"><sup>31</sup></a>
+
+</p><p>
+In multiple dimensions, the second derivative operator (something like
+&#8711;<sup>2</sup>) is represented by a stencil<a
+id="stencil54334"></a>, as illustrated
+in eq.&nbsp;(<a href="chap4.html#stencilmat">4.23</a>). The importance of the reordering of the
+elements into a column vector is that although the components of the
+stencil that are adjacent in the first index (k) remain adjacent in
+j, those in the other index(es) (l) do not. For example the
+elements &#968;<sub>k,l</sub> and &#968;<sub>k,l+1</sub> have j-indices
+j=K.(l&#8722;1)+k and j=K.l+k respectively; they are a distance K
+apart. This fact means that for multiple spatial dimensions the
+matrices <b>B</b> and <b>C</b> are no longer simply
+tridiagonal. Instead, they have an additional non-zero diagonal, a
+distance K from the main diagonal.  If the boundary conditions are
+&#968; = 0, each matrix is
+"Block-Tridiagonal"<a
+id="block_tridiagonal54335"></a><a
+id="block_matrix54336"></a>,
+having a form like this:
+<a id="triplusfringes">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ L&nbsp;<span class="roman">blocks</span></td><td align="left" class="cl">&#x23A7;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23A8;<br />
+&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23A9;
+</td><td nowrap="nowrap" align="center">
+<span class="footnotesize"> </td><td align="left" class="cl">&#x23A1;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />
+&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x23AB;<br />&#x23AA;<br />&#x23AA;<br />&#x23AC;<br />
+&#x23AA;<br />&#x23AA;<br />&#x23AD;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<span class="roman">Block</span> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<span class="roman">size</span> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+K </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x23A4;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />
+&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+</span></td><td align="left" class="cl">&#x23AB;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AC;<br />
+&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AD;
+</td><td nowrap="nowrap" align="center">
+J=K&times;L&nbsp;<span class="roman">rows</span>.</td></tr></table>
+</td><td width="1%">(5.18)</td></tr></table>
+
+
+Here, c denotes the coefficient of the <em>center</em> of the stencil,
+and a denotes the coefficients of the <em>adjacent</em> points in the
+stencil. One can think of the total matrix as being composed of
+L&times;L blocks, each of size K&times;K. All the blocks are zero
+except the tridiagonal ones. And each non-zero block is itself
+tridiagonal (or diagonal). If there are further dimensions M, then
+the giant matrix is a tridiagonal composite of M&times;M blocks,
+each of a two dimensional (L&times;L block) type of eq.&nbsp;(<a href="chap5.html#triplusfringes">5.18</a>). And so on.
+
+</p><p>
+It is very important to think carefully about the boundary
+conditions<a
+id="boundary_condition_block54337"></a>. These occur at the boundaries of <em>each block</em>. Notice
+how the corner (boundary) entries of the extra subdiagonal blocks make
+zero certain coefficients of the subdiagonals of the total matrix.
+One important consequence of the block-tridiagonal form
+(<a href="chap5.html#triplusfringes">5.18</a>) is that it is not so easy to do tridiagonal
+elimination<a
+id="tridiagonal_elimination54338"></a><a
+id="elimination_tridiagonal54339"></a> rather than matrix inversion.
+
+</p><p>
+ <a id="tth_sEc5.5"></a><h2>
+5.5&nbsp;&nbsp;Estimating Computational Cost</h2>
+
+</p><p>
+The computational cost<a
+id="cost__computational_55340"></a><a
+id="computational_cost55341"></a> of
+executing different numerical algorithms often has to be considered
+for large scale computing. This cost is generally expressed in the
+number of floating point operations (FLOPs)<a
+id="FLOP55342"></a>. Roughly, this is the
+number of multiplications (or divisions) required. Additions are cheap.
+
+</p><p>
+For an N&times;N matrix, multiplying into a length-N column vector
+costs (simplemindedly) N rows times N operations per row: N<sup>2</sup>
+(FLOPs). By extending this to N columns, we see that multiplying two
+matrices costs N<sup>3</sup>. Although the process of
+<em>inversion</em><a href="footnote.html#tthFtNtADC" id="tthFrefADC"><sup>32</sup></a> of
+a non-singular matrix, seems far more difficult to do, because the
+algorithm is much more complicated, it also costs roughly N<sup>3</sup>
+operations<a
+id="cost__computational__matrix_multiplication55343"></a><a
+id="matrix_multiplication_cost55344"></a>. These estimates are accurate only
+to within a factor of two or so. But that is enough for most purposes.
+
+</p><p>
+Inverting or multiplying random matrices using Octave on my laptop,
+for N=1000 takes about 1 second. That seems amazingly fast to me,
+because it corresponds to about 1 FLOP per nanosecond. But that's
+about what can be achieved these days provided the cache contains
+enough of the data.
+
+</p><p>
+Trouble is that if we are dealing with two-dimensions in space, each
+of length K=100, then the side of the matrix we have to invert is
+J=K<sup>2</sup>=10000. A multiplication or inversion would take at least
+J<sup>3</sup>/10<sup>9</sup> = 1000 seconds; that's a quarter of an hour. Waiting that
+long is frustrating, and if many inversions are needed, time rapidly
+runs out.
+
+</p><p>
+Inverting the matrix representing a two-dimensional problem takes
+K<sup>6</sup> operations. And for a three-dimensional problem it's K<sup>9</sup>.
+This rapid escalation of the cost means that one doesn't generally
+approach multidimensional problems in terms of simplistic matrix
+inversion. In particular, it is difficult to implement an implicit
+scheme for advancing the diffusion equation. And it is probably more
+realistic just to use an explicit scheme, recognizing and observing
+the stability
+limit, eq.&nbsp;(<a href="chap5.html#FTCSstability">5.6</a>), on maximum time-step size.
+
+</p><p>
+
+<h2>Worked Example: Crank Nicholson Matrices</h2>
+
+</p><p>
+<a
+id="Crank-Nicholson_scheme55345"></a>Express the following parabolic partial differential equation
+in two space variables (r and &#981;) and one time variable (t)
+as a matrix equation using the Crank-Nicholson scheme on uniform
+grids.<a id="wk5eq1">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8711;<sup>2</sup>&#968; = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;r<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+r<sup>2</sup> </td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;r<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;&#981;<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(5.19)</td></tr></table>
+
+
+Find the coefficients and layout of the required matrices if the boundary
+conditions are <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;r<br /></td><td nowrap="nowrap" align="center">
+=0
+</td></tr></table><br /> at r=0,
+&#968; = 0 at r=R, and periodicity in &#981;.
+
+</p><p>
+<br />Let k and l be indices in the r and &#981; coordinates, and let
+&#8710;r and &#8710;&#981; denote their grid spacings. The
+finite difference form of the spatial derivative terms is
+<a id="wk5eq2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+  </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;r<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+ r<sup>2</sup></td><td nowrap="nowrap" align="center">
+&#8706; &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;r<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>k,l</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>k</sub><sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+r<sub>k+1/2</sub><sup>2</sup></td><td nowrap="nowrap" align="center">
+&#968;<sub>k+1,l</sub>&#8722;&#968;<sub>k,l</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>k+1</sub>&#8722;r<sub>k</sub><br /></td><td nowrap="nowrap" align="center">
+&#8722;r<sub>k&#8722;1/2</sub><sup>2</sup></td><td nowrap="nowrap" align="center">
+&#968;<sub>k,l</sub>&#8722;&#968;<sub>k&#8722;1,l</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>k</sub>&#8722;r<sub>k&#8722;1</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>k+1/2</sub>&#8722;r<sub>k&#8722;1/2</sub><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td><td align="left" class="cl">&#x23A1;<br />&#x23A2;<br />
+&#x23A3;
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+r<sub>k</sub>+</td><td nowrap="nowrap" align="center">
+&#8710;r
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>k</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+(&#968;<sub>k+1,l</sub>&#8722;&#968;<sub>k,l</sub>)&#8722;</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+r<sub>k</sub>&#8722;</td><td nowrap="nowrap" align="center">
+&#8710;r
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>k</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+(&#968;<sub>k,l</sub>&#8722;&#968;<sub>k&#8722;1,l</sub>)</td><td align="left" class="cl">&#x23A4;<br />&#x23A5;<br />
+&#x23A6;
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+1+</td><td nowrap="nowrap" align="center">
+&#8710;r
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2r<sub>k</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#968;<sub>k+1,l</sub>&#8722;</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+2+</td><td nowrap="nowrap" align="center">
+&#8710;r<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2r<sub>k</sub><sup>2</sup><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+&#968;<sub>k,l</sub>+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+1&#8722;</td><td nowrap="nowrap" align="center">
+&#8710;r
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2r<sub>k</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#968;<sub>k&#8722;1,l</sub></td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;&#952;<sup>2</sup><br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>k,l</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>k</sub><sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#968;<sub>k,l+1</sub>&#8722;&#968;<sub>k,l</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#952;<sub>l+1</sub>&#8722;&#952;<sub>l</sub><br /></td><td nowrap="nowrap" align="center">
+&#8722;</td><td nowrap="nowrap" align="center">
+&#968;<sub>k,l</sub>&#8722;&#968;<sub>k,l&#8722;1</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#952;<sub>l</sub>&#8722;&#952;<sub>l&#8722;1</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#952;<sub>l+1/2</sub>&#8722;&#952;<sub>l&#8722;1/2</sub><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1"> (&#968;<sub>k,l+1</sub>&#8722;2&#968;<sub>k,l</sub>+&#968;<sub>k,l&#8722;1</sub>)</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>k</sub><sup>2</sup>&#8710;&#952;<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td width="50%"></td><td width="1" align="right">(5.20)</td></tr></table>
+</td></tr></table>
+
+
+Therefore, expressing the positions across the spatial grid in terms
+of a single index j=k+K.(l&#8722;1) (where K is the size of the
+k-grid, and L of the l-grid), the differential operator
+&#8711;<sup>2</sup> becomes a matrix <b>M</b> multiplying the vector
+&#968;
+=&#968;<sub>j</sub>, of the form
+<a id="wk5eq3">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <b>M</b> =  </td><td align="left" class="cl">&#x23A1;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />
+&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+e</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+b</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+b</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+e</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+b</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+b</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x23AB;<br />&#x23AA;<br />&#x23AA;<br />&#x23AC;<br />
+&#x23AA;<br />&#x23AA;<br />&#x23AD;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<span class="roman">Block</span> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<span class="roman">size</span> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+K </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+e</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+b</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+b</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+e</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+b</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+b</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+e</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+b</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+b</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+c</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x23A4;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />
+&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A6;
+</td><td align="left" class="cl">&#x23AB;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AC;<br />
+&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AD;
+</td><td nowrap="nowrap" align="center">
+<span class="roman">L</span> <span class="roman">blocks</span>.</td></tr></table>
+</td><td width="1%">(5.21)</td></tr></table>
+
+
+The explanation of this form is as follows.
+The coefficients of a generic row corresponding to r-position index k are
+<a id="wk5eq4">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  a=</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+1&#8722;</td><td nowrap="nowrap" align="center">
+&#8710;r
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2r<sub>k</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+,&nbsp; b=</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+1+</td><td nowrap="nowrap" align="center">
+&#8710;r
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2r<sub>k</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+,&nbsp; d=</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>k</sub><sup>2</sup>&#8710;&#981;<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+,&nbsp; c=&#8722;(a+b+2d).</td></tr></table>
+</td><td width="1%">(5.22)</td></tr></table>
+
+
+The periodic boundary
+conditions<a
+id="boundary_condition_periodic55346"></a><a
+id="periodic_boundary_condition55347"></a> in &#981; are implemented by the
+appearance of off-diagonal, d-type, blocks at the upper right and
+lower left of the matrix. The r-boundary conditions are the same for
+all the blocks on the diagonal, the tridiagonal<a
+id="block_tridiagonal55348"></a> acb-type blocks. At
+the r=R boundary, (which would be the bottom row of each block), the
+condition &#968; = 0 means no contribution arises to the differential
+operator from the &#968;-value there. The condition therefore allows
+us simply to omit the r=R row from the matrix, choosing the k=K
+index to refer to the position r=R&#8722;&#8710;r.  At the r=0 end (the
+top row of each block), the condition <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; r<br /></td><td nowrap="nowrap" align="center">
+=0
+</td></tr></table><br /> can be implemented in a properly centered way by choosing the
+r-grid to be aligned to the half-integral positions.<a href="footnote.html#tthFtNtADD" id="tthFrefADD"><sup>33</sup></a> In other words,
+r<sub>0</sub>=&#8722;&#8710;r/2, r<sub>1</sub>=+&#8710;r/2, r<sub>n</sub>=(n&#8722;1/2)&#8710;r. (The
+r<sub>0</sub> position values are not represented in the matrices.) In that
+case, there is zero contribution to the difference scheme from the
+first derivative at position r<sub>1&#8722;1/2</sub>=0 (because r<sup>2</sup> there is
+zero), and the r-second-derivative operator at k=1 becomes
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">(1+</td><td nowrap="nowrap" align="center">
+&#8710;r
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2r<sub>1</sub><br /></td><td nowrap="nowrap" align="center">
+)<sup>2</sup>(&#968;<sub>2,l</sub>&#8722;&#968;<sub>1,l</sub>)/&#8710;r<sup>2</sup>=4(&#968;<sub>2,l</sub>&#8722;&#968;<sub>1,l</sub>)/&#8710;r<sup>2</sup>
+</td></tr></table><br />, giving rise to equal and
+opposite coefficients e=4/&#8710;r<sup>2</sup>. The diagonal entry on those
+k=1 rows is minus the sum of all the other coefficients on the row:
+f=&#8722;(e+2d).
+
+</p><p>
+The Crank-Nicholson scheme for the differential equation time advance is then
+<a id="wk5eq6">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968;<sup>(n+1)</sup>&#8722;&#968;<sup>(n)</sup>=</td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+<b>M</b>&#968;<sup>(n+1)</sup> +</td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+<b>M</b>&#968;<sup>(n)</sup>,</td></tr></table>
+</td><td width="1%">(5.23)</td></tr></table>
+
+
+which on rearrangement becomes
+<a id="wk5eq7">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968;<sup>(n+1)</sup> = (<b>I</b>&#8722;</td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+<b>M</b>)<sup>&#8722;1</sup> (<b>I</b>+</td><td nowrap="nowrap" align="center">
+&#8710;t
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+<b>M</b>)&#968;<sup>(n)</sup>.</td></tr></table>
+</td><td width="1%">(5.24)</td></tr></table>
+
+
+
+</p><p>
+
+<h2>Exercise 5. Diffusion and Parabolic Equations.</h2>
+
+</p><p>
+<br /><br /> 1. Write a computer code to solve the diffusive equation
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+ = D</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ s(x)</td></tr></table>
+</td></tr></table>
+
+ For constant, uniform diffusivity D and constant
+specified source s(x). Use a uniform x-mesh with N<sub>x</sub> nodes.
+Consider boundary conditions to be &#968; fixed, equal to &#968;<sub>1</sub>,
+&#968;<sub>2</sub> at the domain boundaries, x=&#8722;1,1, and the initial condition
+to be &#968; =  0  at t=0.
+
+</p><p>
+Construct a matrix <b>G</b>=G<sub>ij</sub> such that <b>G</b>&#968;
+= &#8711;<sup>2</sup>&#968;. Use it to implement the FTCS scheme
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+&#968;<sup>(n+1)</sup> = (<b>I</b>+&#8710;t <b>G</b>)&#968;<sup>(n)</sup> + &#8710;t&nbsp;<b>s</b>,</td></tr></table>
+</td></tr></table>
+
+
+paying special attention to the boundary conditions.
+
+</p><p>
+Solve the time-dependent problem for D=1, s=1, N<sub>x</sub>=30,
+&#968;<sub>1</sub>=&#968;<sub>2</sub>=0, t=0&#8594;1, storing your results in a matrix &#968;(x,t)=&#968;<sub>j<sub>x</sub>,j<sub>t</sub></sub>, and
+plotting that matrix at the end of the solution, for examination.
+
+</p><p>
+Experiment with various &#8710;t to establish the dependence of the
+accuracy and stability of your solution on &#8710;t. In particular,
+<em>without finding an "exact" solution of the equation by any
+  other method</em>,
+
+</p><p>
+(i) Find experimentally the value of &#8710;t above which the scheme
+becomes unstable.
+
+</p><p>
+(ii) Estimate experimentally the fractional error arising from finite
+time step duration in &#968;(t=1,x=0) when using a &#8710;t
+approximately equal to the maximum stable value.
+
+</p><p>
+(iii) By varying N<sub>x</sub>, estimate experimentally the fractional error
+at N<sub>x</sub>=30 arising from finite spatial differences. Which is more
+significant, time or space difference error?
+
+</p><p>
+<br /><br />2. Develop a modified version of your code to implement the
+&#952;-implicit scheme:
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+(<b>I</b>&#8722;&#8710;t&#952;<b>G</b>) &#968;<sup>(n+1)</sup> = (<b>I</b>+&#8710;t (1&#8722;&#952;) <b>G</b>)&#968;<sup>(n)</sup> + &#8710;t&nbsp;s,</td></tr></table>
+</td></tr></table>
+
+
+in the form
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#968;<sup>(n+1)</sup> = <b>B</b><sup>&#8722;1</sup><b>C</b> &#968;<sup>(n)</sup> + <b>B</b><sup>&#8722;1</sup> &#8710;t&nbsp;&nbsp;s</td></tr></table>
+</td></tr></table>
+
+
+
+</p><p>
+(i) Experiment with different &#8710;t and &#952; values, for the same
+time-dependent problem and find experimentally the value of &#952;
+for which instability disappears for all &#8710;t.
+
+</p><p>
+(ii) Suppose we are limited to only 50 timesteps to solve over the time
+0 &lt; t &#8804; 1 so &#8710;t=0.02. Find experimentally the optimum value
+of &#952; which produces the most accurate results.
+
+</p><p>
+<br /><br />Submit the following as your solution for each part:
+
+<ol type="1">
+<li> Your code in a computer format that is capable of being
+  executed, citing the language it is written in.
+</p><p>
+</li>
+
+<li> The requested experimental &#8710;t and/or &#952; values.
+</p><p>
+</li>
+
+<li> A plot of your solution for at least one of the cases.
+</p><p>
+</li>
+
+<li> A brief description of how you determined the accuracy of the result.
+</p><p>
+</li>
+</ol>
+
+</p><p>
+
+
+<hr /><table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+<a href="chap6.html">NEXT
+</a></td></tr></table>
+</div></body></html>

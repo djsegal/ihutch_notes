@@ -1,0 +1,1048 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
+    img {     max-width: 100%;
+    max-height: 40vh; } p { line-height: 1.5em; } body {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 18px;
+    }
+  </style>
+<
+<title>chap10.html</title>
+<table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+ <a href="chap9.html">PREVIOUS
+</a></td></tr></table>
+ <a id="tth_chAp10"></a><h1>
+Chapter 10 <br />Atomistic and Particle-in-Cell Simulation</h1>
+
+</p><p>
+<a
+id="atomistic_simulation100574"></a>When motivating the Boltzmann equation it was argued that there are too
+many particles for us to track them all, so we had to use a
+distribution function approach. However, for some purposes, the number
+of particles that need to be tracked can in fact be managable. In that
+case, we can adopt a computational modelling approach that is called
+generically Atomistic Simulation. In short, it involves time-advancing
+individual classical particles obeying Newton's laws of motion (or in
+some relativistic cases Einstein's extensions of them).
+
+</p><p>
+There are also situations where it is advantageous to solve Boltmann's
+equation by a method that uses
+pseudo-particles<a
+id="pseudo-particle100575"></a>, each of them representative
+of a large number of individual particles. These pseudo-particles are
+modelled as if they were real particles. We'll come to this broader
+topic in a later section, for now just think of real particles.
+
+</p><p>
+ <a id="tth_sEc10.1"></a><h2>
+10.1&nbsp;&nbsp;Atomistic Simulation</h2>
+
+</p><p>
+If the particles are literally atoms or molecules, then since we will
+find it increasingly computationally difficult to track more than,
+say, a few billion of them, the volume of material that can be
+modelled is limited. A billion is 10<sup>9</sup> = 1000<sup>3</sup>; so we could at most
+model a three-dimensional crystal lattice roughly 1000 atoms on a
+side. For a solid, that means the size of the region we can model is
+perhaps 100 nm. Nanoscale<a
+id="nanoscale101576"></a>. There's no way that we are
+going to atomistically model a macroscopic (say 1 mm) piece of
+material globally with forseeable computational capacity. Still, many
+very interesting and important phenomena relating to solid defects,
+atomic displacement due to energetic particle interactions, cracking,
+surface behavior, and so on, occur on the 100 nm scale. Materials
+behavior and design is a very important area for this direct atomic or
+molecular simulation.
+
+</p><p>
+The timescale in atomic interactions ranges from, say, the time it
+takes a gamma ray to cross a nucleus &#160;&#8764;&#160;10<sup>&#8722;23</sup>s to geological
+times of &#160;&#8764;&#160;10<sup>14</sup>s. Modelling must choose a managable fraction of
+this enormous range, because the particle time-steps must be shorter
+than the fastest phenomenon to be modelled, and yet we can only afford
+to compute a moderate number of steps, maybe routinely as many as
+10<sup>4</sup>, but not usually 10<sup>6</sup>, and only heroically 10<sup>8</sup>. Phenomena
+outside our time-scale of choice have to be either irrelevant or
+represented by simplified representations of their effects in our
+modelling time-scale. Fig.&nbsp;<a href="chap10.html#timespacescalel">10.1</a> illustrates the
+computationally feasible space and time-scale region (shaded) indicating the
+approximate location of a few key phenomena.
+
+</p><p>
+
+</p><p>
+<a id="tth_fIg10.1">
+</a>   <img src="figures/timespacescale.png" alt="figures/timespacescale.png" /><a id="timespacescale">
+</a>
+
+<div style="text-align:center">Figure 10.1: Approximate space and time scales for Molecular Dynamics
+    atomistic simulation of condensed matter. Molecular vibration must
+    be accommodated. Then computations of heroic effort are required
+    to explore many orders of magnitude above
+    it.<a id="timespacescalel">
+</a></div>
+
+</p><p>
+For materials modelling where we are considering atoms whose thermal
+velocities are perhaps 1000m/s, moving over lengths perhaps
+10<sup>&#8722;7</sup>m, the required rough time duration is 10<sup>&#8722;10</sup>s for
+<em>molecular transit</em><a
+id="molecular_speed101577"></a>. This is far longer
+than the characteristic time of motion of electrons within the atoms
+themselves, which is approximately the atomic size 10<sup>&#8722;10</sup>m divided
+by the electron velocity at say 10eV energy 10<sup>6</sup>m/s: a time of
+10<sup>&#8722;16</sup>s for <em>electronic configuration</em>. This 1 million factor
+time range is too great to span routinely. So atomistic modelling
+usually needs to represent the atomic physics of the electron
+configurations in molecules in some averaged approximate way. This
+representation can sometimes be calculated on the basis of numerical
+solution of quantum mechanics<a
+id="quantum_mechanics101578"></a>, but we won't
+address that aspect of the problem. On the other hand, the motions of
+the atomic nuclei arising from <em>molecular
+  vibrations</em><a
+id="molecular_vibration101579"></a> has typical
+timescale &#160;&#8764;&#160;10<sup>&#8722;13</sup>s: at least 1000 times longer than
+electrons. This is managable, and indeed <em>must</em> be resolved, if
+the dynamics of a lattice<a
+id="lattice_crystal101580"></a> are to be modelled.
+
+</p><p>
+<a id="tth_fIg10.2">
+</a>   <img src="figures/FCC30x30x30grey3.jpg" alt="figures/FCC30x30x30grey3.jpg" /><a id="FCC30x30x30grey3">
+</a>
+
+<div style="text-align:center">Figure 10.2: Example of a crystal lattice atomistic simulation in three
+    dimensions. Study of a region of nanocrystaline metal with 840,000
+    atoms ready to be deformed. (Courtesy: Ju Li, Massachusetts
+    Institute of Technology.)<a id="VICfig">
+</a></div>
+
+</p><p>
+Atomistic modelling therefore represents the interatomic forces
+arising<a
+id="force_interatomic101581"></a><a
+id="interatomic_force101582"></a> from
+electron orbital interactions <em>only approximately</em>, as time
+averages over electronic orbits or oscillations. But it follows the
+atoms themselves in their motions in response to the interatomic
+forces.  The atoms are represented as classical particles interacting
+via a force field. This approach is sometimes called Molecular
+Dynamics<a
+id="molecular_dynamics101583"></a>. It dates from as early as
+1956<a href="footnote.html#tthFtNtAGB" id="tthFrefAGB"><sup>61</sup></a>. A modern example is shown in Fig.&nbsp;<a href="chap10.html#VICfig">10.2</a>.
+
+</p><p>
+The way a simulation works then is in outline
+
+</p><p>
+<div class="small">
+<table class="tabular">
+<tr><td align="left">1. </td><td align="left">Calculate the force at current position <b><i>x</i></b> on each particle
+  due to all the others.</td></tr>
+<tr><td align="left">2. </td><td align="left">Accelerate and move particles for &#8710;t, getting
+  new velocities <b><i>v</i></b> and positions <b><i>x</i></b>.</td></tr>
+<tr><td align="left">3. </td><td align="left">Repeat from 1.
+</td></tr></table>
+</div>
+
+</p><p>
+Generally a fast second order accurate scheme for the acceleration and
+motion (stage 2) is needed. One frequently used is the leap-frog
+scheme. Another is called the Verlet<a
+id="Verlet_scheme101584"></a> scheme,
+which can be expressed as
+<a id="Verlet">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+  <b><i>x</i></b><sub>n+1</sub></td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+<b><i>x</i></b><sub>n</sub>+ <b><i>v</i></b><sub>n</sub>&#8710;t + <b><i>a</i></b><sub>n</sub> &#8710; t<sup>2</sup>/2</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ <b><i>v</i></b><sub>n+1</sub></td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1"><b><i>v</i></b><sub>n</sub>+ (<b><i>a</i></b><sub>n</sub>+<b><i>a</i></b><sub>n+1</sub>)&#8710;t/2</td></tr></table></td><td width="50%"></td><td width="1" align="right">(10.1)</td></tr></table>
+</td></tr></table>
+
+
+where <b><i>a</i></b><sub>n</sub> is the acceleration corresponding to position
+<b><i>x</i></b><sub>n</sub>.<a href="footnote.html#tthFtNtAGC" id="tthFrefAGC"><sup>62</sup></a>
+
+</p><p>
+We also usually need to store a record of where the particles go,
+since that is the major result of our simulation. And we need methods
+to analyse and visualize the large amount of data that will result: the
+number of steps N<sub>t</sub> times the number of particles N<sub>p</sub> times at
+least 6 (3 space, and 3 velocity) components.
+
+</p><p>
+     <a id="tth_sEc10.1.1"></a><h3>
+10.1.1&nbsp;&nbsp;Atomic/Molecular Forces and Potentials</h3>
+
+</p><p>
+The simplest type of forces, but still useful for a wide range of
+physical situations, are particle-pair attraction and repulsion. Such
+forces act along the vector <b><i>r</i></b>=<b><i>x</i></b><sub>1</sub>&#8722;<b><i>x</i></b><sub>2</sub> between the
+particle positions, and have a magnitude that depends only upon the
+distance r=&#124;<b><i>x</i></b><sub>1</sub>&#8722;<b><i>x</i></b><sub>2</sub>&#124; between them. An example might be
+the inverse-square electric force between two charges q<sub>1</sub> and q<sub>2</sub>,
+<b><i>F</i></b> = (q<sub>1</sub>q<sub>2</sub>/4&#960;&#1013;<sub>0</sub>) <b><i>r</i></b>/r<sup>3</sup>. But for atomistic
+simulation more usually neutral particles are being modelled whose
+force changes from mutual attraction at longer distances to mutual
+repulsion at short distances.
+
+</p><p>
+<a id="tth_fIg10.3">
+</a>   <img src="figures/lennardjones.png" alt="figures/lennardjones.png" /><a id="lennardjones">
+</a>
+  (a) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="figures/morse.png" alt="figures/morse.png" /><a id="morse">
+</a>(b) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<div style="text-align:center">Figure 10.3: Potential and corresponding force forms for (a)
+    Lennard-Jones (eq.&nbsp;<a href="chap10.html#lennard-jones">10.2</a>) and (b) Morse (eq.&nbsp;    <a href="chap10.html#Morse">10.3</a>) expressions.<a id="forceforms">
+</a></div>
+
+
+</p><p>
+A very common form of interatomic<a
+id="interatomic_potential101585"></a>
+potential that gives this kind of attraction and repulsion is the
+Lennard-Jones<a
+id="Lennard-Jones_potential101586"></a> (12:6) potential (see
+Fig.&nbsp;<a href="chap10.html#forceforms">10.3</a>(a))
+<a id="lennard-jones">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b><i>F</i></b>=&#8722;&#8711;U&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="roman">with</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  U = <span style="font-family:helvetica"><i>E</i></span><sub>0</sub></td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+r<sub>0</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>12</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8722;2</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+r<sub>0</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>6</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(10.2)</td></tr></table>
+
+
+A simplicity, but also a weakness, in the Lennard-Jones form is that
+it depends upon just two parameters, the typical energy <span style="font-family:helvetica"><i>E</i></span><sub>0</sub>,
+and the typical distance r<sub>0</sub>. The equilibrium distance,
+corresponding to where the force (&#8722;dU/dr) is zero is, is r<sub>0</sub>. At
+this spacing the binding energy is <span style="font-family:helvetica"><i>E</i></span><sub>0</sub>. The maximum
+attractive force occurs where d<sup>2</sup>U/dr<sup>2</sup>=0, which is r=1.109 r<sub>0</sub>
+and it has magnitude 2.69<span style="font-family:helvetica"><i>E</i></span><sub>0</sub>/r<sub>0</sub>. The weakness of having only
+two parameters is that the spring-constant for the force, d<sup>2</sup>U/dr<sup>2</sup>,
+near the the equilibrium position cannot be set independent of the
+binding energy. An alternative force expression that allows this
+independence, by having three parameters, is the
+Morse<a
+id="Morse_potential101587"></a> form
+<a id="Morse">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  U = <span style="font-family:helvetica"><i>E</i></span><sub>0</sub> (<span class="roman">e</span><sup>&#8722;2&#945;(r&#8722;r<sub>0</sub>)</sup>&#8722;2 <span class="roman">e</span><sup>&#8722;&#945;(r&#8722;r<sub>0</sub>)</sup>).</td></tr></table>
+</td><td width="1%">(10.3)</td></tr></table>
+
+
+Its force is zero at r<sub>0</sub>, where the binding energy is <span style="font-family:helvetica"><i>E</i></span><sub>0</sub>;
+but the spring constant there can be adjusted using the parameter
+&#945;.
+See Fig.&nbsp;<a href="chap10.html#forceforms">10.3</a>(b).
+
+</p><p>
+These simple two-particle, radial-force, forms omit several phenomena
+that are important in molecular interactions in nature. These
+additional phenomena include higher order potential interactions,
+represented by the total potential energy of the entire assembly being given
+as a heirarchy of sums of multiple-particle interactions
+<a id="potlinter">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  U = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+U<sub>1</sub>(<b><i>x</i></b><sub>i</sub>) + </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>ij</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+U<sub>2</sub>(<b><i>x</i></b><sub>i</sub>,<b><i>x</i></b><sub>j</sub>) + </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>ijk</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+U<sub>3</sub>(<b><i>x</i></b><sub>i</sub>,<b><i>x</i></b><sub>j</sub>,<b><i>x</i></b><sub>k</sub>) + ... </td></tr></table>
+</td><td width="1%">(10.4)</td></tr></table>
+
+
+where the subscripts i,j,... refer to different particles.
+The force on a particular particle l is then
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#8722;</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b><i>x</i></b><sub>l</sub><br /></td><td nowrap="nowrap" align="center">
+U
+</td></tr></table><br />.  The first term U<sub>1</sub> represents a
+background force field. The second represents the pairwise force that
+we've so far been discussing. We've been considering the particular
+case where U<sub>2</sub> depends only on r=&#124;<b><i>x</i></b><sub>i</sub>&#8722;<b><i>x</i></b><sub>j</sub>&#124;. The third
+(and higher) terms represent possible multi-particle correlation
+forces. They are often called "cluster" potential
+terms<a
+id="cluster_potential101588"></a>.
+
+</p><p>
+Other force laws between multi-atom molecules might include the
+orientation of the molecule bonds. In that case, internal orientation
+parameters would have to be introduced or else the molecule's
+individual atoms themselves represented by particles whose bonds are
+modelled using force laws appropriate to them. They could be
+represented as a third or probably at least fourth order series for
+the potential.
+
+</p><p>
+     <a id="tth_sEc10.1.2"></a><h3>
+10.1.2&nbsp;&nbsp;Computational requirements</h3>
+
+</p><p>
+If there are N<sub>p</sub> particles, then to evaluate<a
+id="force_evaluation101589"></a>
+the force on particle i from all the other particles j, requires
+N<sub>p</sub> force evaluations for pair-forces (U<sub>2</sub> term). It requires
+N<sub>p</sub><sup>2</sup> for three-particle (U<sub>3</sub>) terms and so on. The force
+calculation needs to be done for all the particles at each step, so if
+we include even just the pair-forces for all particles, N<sub>p</sub><sup>2</sup> force
+terms must be evaluated. This is too much. For example, a million
+particles would require 10<sup>12</sup> pair force evaluations per time
+step. Computational resources would be
+overwhelmed<a
+id="cost__computational__pair_force101590"></a>.
+Therefore the most important enabling
+simplification of a practical atomistic simulation is to reduce the
+number of force evaluations till it is not much worse than linear in
+N<sub>p</sub>. This can be done by taking advantage of the fact that the force
+laws between neutral atoms have a rather
+short range<a
+id="range_of_force101591"></a>;
+so the forces can be ignored for particle spacings greater
+than some modest length. In reality we only need to calculate the
+force contributions from a moderately small number of nearby particles
+on each particle i. It is not sufficient to look at the position of
+all the other particles at each step and decide whether they are near
+enough to worry about. That decision is itself an order N<sub>p</sub> cost per
+particle (N<sub>p</sub><sup>2</sup> total). Even if it's a bit cheaper than actually
+evaluating the force, it won't do. Instead we have to keep track, in
+some possibly approximate way, of which of the other particles are
+close enough to the particle i to matter to it.
+
+</p><p>
+There are broadly two ways of doing this. Either we literally keep a
+list of near neighbors<a
+id="neighbor101592"></a> associated with each
+particle. Or else we divide up the volume under consideration into
+much smaller blocks and adopt the policy of only examining the
+particles in its own block and the neighboring
+blocks<a
+id="block_spatial101593"></a>.  Either of these will obviously work for
+a crystal lattice<a
+id="lattice_crystal101594"></a><a
+id="crystal_lattice101595"></a> type
+problem, modelling a solid, because the atoms hardly ever change their
+nearest neighbors, or the members of blocks.  But in liquids or gases
+the particles can move sufficiently that their neighbors or blocks are
+changing. To recalculate which particles are neighbors costs &#160;&#8764;&#160;N<sub>p</sub><sup>2</sup>. However, there are ways to avoid having to do the neighbor
+determination every step. If we do it rarely enough, we reduce the
+cost scaling.
+
+</p><p>
+
+<b>Neighbor List Algorithm&nbsp;&nbsp;</b><a
+id="neighbor_list101596"></a>
+ A common way to maintain an
+adequately accurate neighbor list is as follows. See Fig.&nbsp;<a href="chap10.html#lneighborlist">10.4</a>.
+
+</p><p>
+<a id="tth_fIg10.4">
+</a>   <img src="figures/neigbors.png" alt="figures/neigbors.png" /><a id="neigbors">
+</a>
+  (a)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="figures/blocks.png" alt="figures/blocks.png" /><a id="blocks">
+</a>(b)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<div style="text-align:center">Figure 10.4: Neighbor List (a), and Block (b), algorithms enable testing
+    only nearby particles for force influence. The neigbors whose
+    influence must be calculated are inside the radius r<sub>l</sub> or inside
+    the shaded region.<a id="lneighborlist">
+</a></div>
+
+</p><p>
+Suppose r<sub>c</sub> is the
+cutoff radius beyond which interparticle forces are negligible. For
+each particle i, designate as neighbors particles within a larger
+sphere &#124;<b><i>x</i></b><sub>j</sub>&#8722;<b><i>x</i></b><sub>i</sub>&#124;=r &lt; r<sub>l</sub>. Suppose the fastest speed a
+particle has is v<sub>max</sub>; then we know that no particle, starting
+from outside the sphere r<sub>l</sub>, can reach the sphere r<sub>c</sub> in less than
+a time (r<sub>l</sub>&#8722;r<sub>c</sub>)/v<sub>max</sub>, that is, in fewer timesteps than
+N<sub>l</sub>=(r<sub>l</sub>&#8722;r<sub>c</sub>)/v<sub>max</sub>&#8710;t. Consequently, we need to update the
+neighbor lists only every N<sub>l</sub> steps. The average neighbor list cost
+per step is N<sub>p</sub><sup>2</sup>/N<sub>l</sub>. This is smaller than N<sub>p</sub><sup>2</sup>, and if N<sub>l</sub> is large
+(because the maximum velocity is small), much smaller. However, it is
+still of order N<sub>p</sub><sup>2</sup>.<a href="footnote.html#tthFtNtAGD" id="tthFrefAGD"><sup>63</sup></a>
+
+</p><p>
+
+<b>Block Algorithm&nbsp;&nbsp;</b><a
+id="block_neigbor_algorithm101597"></a>
+If the domain is divided into a large
+number of blocks, each of which is bigger than the cutoff radius, then
+we need to examine only particles that are in the same block or an
+adjacent block. Adjacent blocks must be examined because a particle
+near the boundary of a block might be influenced by particles just the
+other side of that boundary. Suppose there are N<sub>b</sub> blocks. They
+contain on average N<sub>p</sub>/N<sub>b</sub> particles each. As the size of the
+computational region increases, we can keep this ratio constant.  The
+total number of neighboring particles we need to examine for each
+particle i is (in three dimensions) 3<sup>3</sup>N<sub>p</sub>/N<sub>b</sub> &#8733; const. Thus,
+this block algorithm's step cost is  &#8733; N<sub>p</sub>, linear in the
+number of particles. But the constant of proportionality might be
+quite large.  There is also an interesting question as to how the list
+of particles in a block is maintained. One way to do this is to use a
+linked list of pointers. However, such a linked list does not lend
+itself readily to parallel data implementations, and there are
+interesting forefront research questions as to the best practical way
+of solving this problem.
+
+</p><p>
+ <a id="tth_sEc10.2"></a><h2>
+10.2&nbsp;&nbsp;Particle in Cell Codes</h2>
+
+</p><p>
+<a
+id="particle-in-cell102598"></a> If the interparticle force law is of infinite
+range, as it is, for example, with the
+inverse-square<a
+id="inverse-square_interaction102599"></a> interactions of
+charged particles in a plasma, or gravitating stars, then the
+near-neighbor reduction of the force calculation does not work,
+because there is no cutoff radius beyond which the interaction is
+negligible. This problem is solved in a different way, by representing
+the long-range interactions as the potential on a mesh of cells. This
+approach is called "Particle in Cell" or PIC<a
+id="PIC102600"></a><a href="footnote.html#tthFtNtAGE" id="tthFrefAGE"><sup>64</sup></a>.
+
+</p><p>
+Consider, for simplicity, a single species of charged particles (call
+them electrons) of charge q (=&#8722;e for electrons<a
+id="electron102601"></a>, of
+course), and mass m. Positive ions<a
+id="ion102602"></a> could also be modelled
+as particles, but for now take them to be represented by a smooth
+neutralizing background of positive charge density &#8722;n<sub>i</sub>q. The
+electrons move in a region of space divided into cells labelled with
+index j at positions x<sub>j</sub>. [Most modern PIC production codes are
+multidimensional, but the explanations are easier in one dimension.]
+They give rise to an electric potential &#981;. Ignoring the
+discreteness of the individual electrons, there is a smoothed-out
+total (sum of electron and ion) charge density &#961;<sub>q</sub>(x) = q[n(x)&#8722;n<sub>i</sub>].  The potential satisfies Poisson's
+equation<a
+id="Poisson_equation102603"></a>
+<a id="PICpoiss">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8711;<sup>2</sup>&#981; =  </td><td nowrap="nowrap" align="center">
+d<sup>2</sup>&#981;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = &#8722;</td><td nowrap="nowrap" align="center">
+&#961;<sub>q</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#1013;<sub>0</sub><br /></td><td nowrap="nowrap" align="center">
+ = &#8722;</td><td nowrap="nowrap" align="center">
+q[n(x)&#8722;n<sub>i</sub>]
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#1013;<sub>0</sub><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(10.5)</td></tr></table>
+
+
+We represent this potential discretely on the mesh: &#981;<sub>i</sub> and solve
+it numerically using a standard elliptic solver.  The only new
+feature is that we need to obtain a measure of smoothed-out density on
+the mesh. We do this by assigning the charge density of the individual
+electrons to the mesh in a systematic way. The simplest way to assign
+it is to say
+that each electron's charge is assigned<a
+id="charge_assignment102604"></a>
+to the <em>Nearest Grid Point</em><a
+id="nearest_grid_point102605"></a> NGP.
+That's equivalent
+to saying each electron is like a rod of length equal to the distance
+&#8710;x between the grid points, and it contributes charge density
+equal to q/&#8710;x from all positions along its length. See Fig.&nbsp;<a href="chap10.html#chargeshapel">10.5</a>. The volume
+of the cell is &#8710;x and the electron density is equal to the
+number of particles whose charge is assigned to that cell divided by
+the cell volume.
+
+</p><p>
+<a id="tth_fIg10.5">
+</a>   <img src="figures/chargeshape.png" alt="figures/chargeshape.png" /><a id="chargeshape">
+</a>
+
+<div style="text-align:center">Figure 10.5: Effective shapes for the NGP and CIC charge assignments.<a id="chargeshapel">
+</a></div>
+
+</p><p>
+Usually a continuous linear
+interpolation is preferred, called the <em>Cloud In
+  Cell</em><a
+id="cloud_in_cell102606"></a> CIC assignment. The
+charge density assigned from each electron is equal to q/&#8710;x when
+the electron is exactly at x<sub>j</sub>, and falls linearly, reaching zero when
+the particle is at x<sub>j&#177;1</sub>. Thus the electron is like a rod of length
+2&#8710;x whose charge distribution is triangular.
+
+</p><p>
+The way the particle in cell code runs is this.
+
+</p><p>
+
+<table class="tabular">
+<tr><td align="left">1.</td><td align="left">Assign the charge from all the particles onto the grid cells.</td></tr>
+<tr><td align="left">2.</td><td align="left">Solve Poisson's equation to find the potential &#981;<sub>j</sub>.</td></tr>
+<tr><td align="left">3.</td><td align="left">For each particle, find &#8711;&#981; at its position, x<sub>i</sub>, by
+  interpolation from the x<sub>j</sub>.</td></tr>
+<tr><td align="left">4.</td><td align="left">Accelerate, by the corresponding force, and move the particles.</td></tr>
+<tr><td align="left">5.</td><td align="left">Repeat from 1.</td></tr></table>
+
+
+</p><p>
+This process will simulate the behavior of the plasma accounting
+realistically for the particle motion. So it is a kind of atomistic
+simulation. Fig.&nbsp;<a href="chap10.html#scepticgrid">10.6</a> shows an illustration of an
+example in a spherical computational domain.
+
+</p><p>
+<a id="tth_fIg10.6">
+</a>   <img src="figures/grid.png" alt="figures/grid.png" /><a id="grid">
+</a>
+
+<div style="text-align:center">Figure 10.6: A curved grid (relatively unusual for PIC) shaded to
+    represent the density normalized to the distant value.
+    A few representative particle orbits in the vicinity of a spherical
+    object are shown, and arrows indicate the mean ion
+    velocity.<a id="scepticgrid">
+</a></div>
+
+</p><p>
+Why introduce this cell mesh? Because this approach is computationally
+far more efficient<a
+id="cost__computational__PIC102607"></a> than adding up the
+inverse square law forces between individual particles. An atomistic
+pair-force approach costs &#160;&#8764;&#160;N<sub>p</sub><sup>2</sup> per step. By contrast the
+particle moving stage, once the force is known is &#160;&#8764;&#160;N<sub>p</sub>. If the
+potential grid has a total of N<sub>g</sub> points, then an efficient
+iterative Poisson solution costs &#160;&#8764;&#160;N<sub>g</sub> N<sub>g</sub><sup>1/N<sub>d</sub></sup> per step, in
+N<sub>d</sub> dimensions<a href="footnote.html#tthFtNtAGF" id="tthFrefAGF"><sup>65</sup></a>, or can
+be done by tridiagonal elimination<a
+id="tridiagonal_elimination102608"></a> in
+&#160;&#8764;&#160;N<sub>g</sub> operations in one dimension. Generally the number of
+particles per cell is fairly large, so N<sub>g</sub> is much smaller than
+N<sub>p</sub> and the Poisson cost scales linearly or nearly linearly with
+N<sub>g</sub>. Therefore for practical purposes, the costs are dominantly
+those of interpolating the electric field to the particle and moving
+it: an order N<sub>p</sub> cost, not N<sub>p</sub><sup>2</sup> like the pair-force approach.
+
+</p><p>
+Sometimes the dynamics of the ions is just as important to model as
+the electrons. Then the ions must be treated through the PIC approach
+as a second species of particles obeying Newton's law. Actually it is
+sometimes advantageous to treat only the ions this way, and treat
+electrons as a continuum whose density is a known function of
+&#981;. The latter approach is
+often called "Hybrid"<a
+id="hybrid_PIC102609"></a> PIC.
+
+</p><p>
+<br /><br />     <a id="tth_sEc10.2.1"></a><h3>
+10.2.1&nbsp;&nbsp;Boltzmann Equation Pseudoparticle Representation</h3>
+
+</p><p>
+In a particle in cell code, the particles move and are tracked in
+phase-space: (<b><i>x</i></b>,<b><i>v</i></b>) is known at each time-step. A particle's
+equation of motion in phase space is
+<a id="piccharac">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dt<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b><i>x</i></b><br />
+<b><i>v</i></b><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b><i>v</i></b><br />
+<b><i>a</i></b><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(10.6)</td></tr></table>
+
+
+This is also the equation of motion of the <em>characteristics</em> of
+the Boltzmann equation (<a href="chap8.html#Boltzmann">8.12</a>,<a href="chap8.html#orbitaccel">8.13</a>). Thus
+advancing a PIC code with N<sub>p</sub> particles is equivalent to integrating
+along N<sub>p</sub> characteristics of the Boltzmann equation. But what about
+collisions<a
+id="collision_in_PIC_code102610"></a>?
+
+</p><p>
+The remarkable thing about a PIC code, in its simplest implementation,
+is that it has essentially <em>removed</em> all charged-particle
+collisions. The grainy discreteness of the electrons, is smoothed away
+by the process of assigning charge to the grid and then solving for
+&#981;. Therefore, unless we do something to put collisions back, the
+PIC code actually represents integration along characteristics of the
+<em>Vlasov</em> equation<a
+id="Vlasov_equation102611"></a>, the
+<em>collisionless</em> Boltzmann equation. If we had instead used
+(highly inefficiently) pair-forces, then the charged particle
+collisions would have been retained.
+
+</p><p>
+Because the collisions have been removed from the problem, the actual
+magnitude of each particle's charge and mass no longer matters; only
+the <em>ratio</em>, q/m, appears in the acceleration, <b><i>a</i></b>, in
+the Vlasov equation.  That means we can represent physical situations
+that would in nature involve unmanagable numbers of physical electrons by
+regarding the electrons (or ions) of our computation as
+<em>pseudo-particles</em><a
+id="pseudo-particle102612"></a>. Each pseudo-particle corresponds to a very
+large number of actual particles, reducing the number of computation
+pseudo-particles to a managable total, and keeping the costs of the
+computation within tolerable bounds. For our computation to remain a
+faithful representation of the physical situation, we require only
+that the resolution in phase-space, which depends upon the total
+number of randomly distributed electrons, should be sufficient for whatever
+phenomenon is being studied. We also require, of course, that the
+potential mesh has sufficient spatial resolution.
+
+</p><p>
+<a id="tth_fIg10.7">
+</a>   <img src="figures/xes3.jpg" alt="figures/xes3.jpg" /><a id="xes3">
+</a>
+
+<div style="text-align:center">Figure 10.7: Example of phase-space locations of electrons. A
+    one-dimensional v versus x calculation is illustrated, using
+    the code XES1 (by Birdsall, Langdon, Verboncoeur and Vahedi,
+    originally distributed with the text by Birdsall and Langdon) for
+    two streams of particles giving rise to an instability whose
+    wavelength is four times the domain length. Each electron position
+    is marked as a point. Their motion can be viewed like a
+    movie.<a id="xes3l">
+</a></div>
+
+</p><p>
+Particle in cell codes are a backbone of much computational plasma
+physics, important for modelling semiconductor processing tools, space
+interactions, accelerators, and fusion experiments. An example of a
+one-dimensional PIC calculation is shown in Fig.&nbsp;<a href="chap10.html#xes3l">10.7</a>. They are
+particularly useful for collisionless or nearly collisionless problems
+that are widespread in the field. They can also be modified to include
+collisions of various different types, as the conditions require
+them. In plasmas, though, charged-particle collisions are often
+dominated by small scattering angles and are much better approximated
+by a Fokker-Planck diffusion in phase space than by discrete events.
+
+</p><p>
+     <a id="tth_sEc10.2.2"></a><h3>
+10.2.2&nbsp;&nbsp;Direct Simulation Monte Carlo treatment of gas</h3>
+
+</p><p>
+An approach that combines some of the features of PIC and atomistic
+simulation, is the treatment of tenuous neutral gas behavior by what
+have come to be called Direct Simulation Monte Carlo
+(DSMC)<a
+id="DSMC_codes102613"></a> codes.
+These are for addressing situations where the ratio of the
+mean-free-path<a
+id="mean-free-path102614"></a> of molecules to the
+characteristic spatial feature size
+(the "Knudsen number")<a
+id="Knudsen_number102615"></a> is of order unity
+(within a factor of 100 or so either way). Such situations occur in
+very tenuous gases (e.g. orbital re-entry in space) or when the
+features are microscopic. DSMC shares with PIC the features that the
+domain is divided into a large number of cells, that
+pseudo-particles<a
+id="pseudo-particle102616"></a>
+are used, and that collisions are represented in simplified way that
+reduces computational cost and yet approximates physical
+behavior. DMSC is also, in effect, integrating the Boltzmann equation
+along characteristics, but in this case there's no acceleration term,
+so the characteristics are straight lines.
+
+</p><p>
+The pseudo-particles representing molecules are advanced in time, but
+at each step, chosen somewhat shorter than a typical collision time,
+they are examined to decide whether they have collided.  In order to
+avoid a N<sub>p</sub><sup>2</sup> cost, collisions are considered only with the
+particles in the same cell of the grid. (This partitioning is all the
+cells are used for.) The cells are chosen to have size smaller than a
+mean-free-path, but not by much. They will generally have only a
+modest number (perhaps 20-40) of pseudo-particles in each cell. The
+number of individual molecules represented by each pseudo-particle is
+adjusted to achieve this number per cell.
+
+</p><p>
+Whether a collision has occurred between two particles is decided
+based only upon their relative <em>velocity</em>, not on their position
+within the cell. This is the big approximation. A statistical test
+using random numbers decides if and which collisions have happened.  A
+collision changes the velocity of both colliding particles, in
+accordance with the statistics of the collision cross-section and
+corresponding kinematics. That way, momentum and energy are
+appropriately conserved within the cell as a whole.  Steps are
+iterated, and the overall behavior of the assembly of particles is
+monitored and analysed to provide effective fluid parameters like
+density, velocity, effective viscosity, and so on. Fig.&nbsp;<a href="chap10.html#dsmcl">10.8</a>
+shows an example from the code DSMC, v3.0 developed by Graeme Bird.
+
+</p><p>
+<a id="tth_fIg10.8">
+</a>   <img src="figures/dsmc.jpg" alt="figures/dsmc.jpg" /><a id="dsmc">
+</a>
+
+<div style="text-align:center">Figure 10.8: Example of position plot in two space dimensions of tenuous
+    gas flow past a plate. Different colors (shadings) indicate molecules that
+    have been influenced by the plate through collisions.<a id="dsmcl">
+</a></div>
+
+</p><p>
+     <a id="tth_sEc10.2.3"></a><h3>
+10.2.3&nbsp;&nbsp;Particle Boundary Conditions</h3>
+
+</p><p>
+Objects that are embedded in a particle computation region present
+physical boundaries at which appropriate approximate conditions must
+be applied. For example with DSMC, gas particles are usually reflected,
+whereas with plasmas, it is usually assumed that the electrons are removed
+by neutralization when they encounter a solid surface.
+
+</p><p>
+An important question arises in most particle simulation methods. What
+do we do at the outer boundary of our computational domain? If a particle
+leaves the domain, what happens to it? And what do we do to represent
+particles entering the domain?
+
+</p><p>
+Occasionally the boundary of our domain might be a physical boundary
+no different from an embedded object. But far more often the edge of
+the domain is simply the place where our computation stops, not where
+there is any specific physical change. What do we do then?
+
+</p><p>
+The appropriate answer depends upon the specifics of the situation,
+but quite often it makes sense to use <em>periodic boundary
+  conditions</em><a
+id="periodic_boundary_condition102617"></a>. Periodic conditions
+for particles are like periodic conditions for differential equations
+discussed in section <a href="chap3.html#2ptBCs">3.3.2</a>. They treat the particles as if a
+boundary that they cross corresponds to the same position in space as
+the opposite boundary. A particle moving on a computational domain in
+x that extends from 0 to L, when it steps past L, to a new
+place that would have been x=L+&#948;, outside the domain, is
+reinserted at the position x=&#948; close to the opposite boundary,
+but back inside the domain. Of course the particle's velocity is just
+what it would have been anyway. Velocity is not affected by the
+reinsertion process. Periodic conditions can be applied in any number
+of dimensions.
+
+</p><p>
+<a id="tth_fIg10.9">
+</a> <img src="figures/particleperiod.png" alt="figures/particleperiod.png" /><a id="particleperiod">
+</a>(a)<img src="figures/periodarray.png" alt="figures/periodarray.png" /><a id="periodarray">
+</a>(b)
+
+<div style="text-align:center">Figure 10.9: Particles that cross outer periodic boundaries (a) are
+    relocated to the opposite side of the domain. This is equivalent (b)
+    to modelling an (infinite) periodic array made up of repetitions
+    of the smaller domain.<a id="periodicparts">
+</a></div>
+
+</p><p>
+Periodic boundaries mean that the computation represents the phenomena
+of a periodic array of domains all connected to one another and all
+doing the same thing. Sometimes that is actually what one wants. But
+more often it is an approximation to a larger domain. If nothing of
+interest happens at a scale equal to or larger than the smaller
+computational domain, then the artifically imposed periodicity is
+unimportant, and the periodic conditions are a convenient way to
+represent the computation of a small sub-volume within a much larger,
+uniform, medium. Fig.&nbsp;<a href="chap10.html#periodicparts">10.9</a> illustrates this point.
+
+</p><p>
+Sometimes, however, it is not appropriate to use periodic
+conditions. In that case a particle that leaves the domain is simply
+removed from the calculation. If the calculation is approximately
+steady, then clearly there must also be particles created within the
+domain or <em>entering</em> it from outside. A suitable method for
+injecting them into the calculation must be implemented. It might
+represent, for example, the flux of particles across the boundary from
+an assumed velocity distribution function.
+
+</p><p>
+
+<h2>Worked Example: Required resolution of PIC grid</h2>
+
+</p><p>
+How fine<a
+id="resolution_PIC_mesh102618"></a><a
+id="PIC_resolution102619"></a> must the potential mesh be in an electron Particle in Cell code?
+
+</p><p>
+<br />Well, it depends on how fine-scale the potential variation might
+be. That depends on the parameters of the particles
+(electrons). Suppose they have approximately a Maxwell-Boltzmann
+velocity-distribution of temperature T<sub>e</sub>. We can estimate the finest
+scale of potential variation as follows. We'll consider just a
+one-dimensional problem. Suppose there is at some position x, a
+perturbed potential &#981;(x) such that &#124;&#981;&#124; &lt;&lt; T<sub>e</sub>/e, measured
+from a chosen reference &#981;<sub>&#8734;</sub>=0 in the equilibrium background
+where the density is n<sub>e</sub>=n<sub>&#8734;</sub>=n<sub>i</sub>. (Referring to the
+background as &#8734; is a helpful notation that avoids implying the
+value at x=0; it means the distant value.)  Then the electron
+density at x can be deduced from the fact that f(v) is constant along
+orbits (characteristics).  In the collisionless steady-state,
+energy is conserved; so for any orbit <sup>1</sup>/<sub>2</sub>mv<sup>2</sup>&#8722;e&#981; = <sup>1</sup>/<sub>2</sub>mv<sub>&#8734;</sub><sup>2</sup>, where v<sub>&#8734;</sub> is the velocity on that orbit when it
+is "at infinity" in the background, where &#981; = 0. Consequently,
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">f(v)=f<sub>&#8734;</sub>(v<sub>&#8734;</sub>) = n<sub>&#8734;</sub></td><td align="left" class="cl">
+<span class="larger">&nbsp;&nbsp;&#x239B;<br />&#8730;<br /></span></td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+m
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#960;T<sub>e</sub><br /></td></tr></table></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+exp(&#8722;mv<sub>&#8734;</sub><sup>2</sup>/2T<sub>e</sub>) = n<sub>&#8734;</sub></td><td align="left" class="cl">
+<span class="larger">&nbsp;&nbsp;&#x239B;<br />&#8730;<br /></span></td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+m
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#960;T<sub>e</sub><br /></td></tr></table></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+exp(&#8722;mv<sup>2</sup>/2T<sub>e</sub>+e&#981;/T<sub>e</sub>)
+</td></tr></table><br />. Hence at x, f(v) is Maxwellian with density
+n=&#8747;f(v)dv=n<sub>&#8734;</sub>exp(e&#981;/T<sub>e</sub>).
+
+</p><p>
+Now let's find analytically the steady potential arising for x &gt; 0 when the
+potential slope at x=0 is d&#981;/dx=&#8722;E<sub>0</sub>. Poisson's equation in
+one-dimension is
+<a id="wk10eq1">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d<sup>2</sup>&#981;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = &#8722;</td><td nowrap="nowrap" align="center">
+en<sub>&#8734;</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#1013;<sub>0</sub><br /></td><td nowrap="nowrap" align="center">
+[1&#8722;exp(e&#981;/T<sub>e</sub>)] &#8776; </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+e<sup>2</sup>n<sub>&#8734;</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#1013;<sub>0</sub> T<sub>e</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+&#981;. </td></tr></table>
+</td><td width="1%">(10.7)</td></tr></table>
+
+
+The final approximate form gives Helmholtz's equation. It is obtained by
+Taylor expansion of the exponential to first order, since its argument
+is small. The solution satisfying the condition at x=0 is then
+<a id="wk10eq2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#981;(x)=E<sub>0</sub>&#955;<span class="roman">e</span><sup>&#8722;x/&#955;</sup>,&nbsp;&nbsp;&nbsp; <span class="roman">where</span>&nbsp;&nbsp;&nbsp; &#955;<sup>2</sup> = </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+e<sup>2</sup>n<sub>&#8734;</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#1013;<sub>0</sub> T<sub>e</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(10.8)</td></tr></table>
+
+
+Based on this model calculation, the length
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">&#955; = </td><td align="left" class="cl"><br /><span class="larger">&#8730;</span><br />
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm">e<sup>2</sup>n<sub>&#8734;</sub>/&#1013;<sub>0</sub>T<sub>e</sub><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />, which is called the Debye
+length<a
+id="Debye_length102620"></a>, is the characteristic spatial scale of
+potential variation. A PIC calculation must have fine enough grid to
+resolve the smaller of &#955; and the characteristic feature-size
+of any object in the problem whose influence introduces potential
+structure. In short, &#8710;x  &#8804; &#955;.
+
+</p><p>
+If we had an operational PIC code, we could do a series of
+calculations with different cell size &#8710;x. We would find that
+when &#8710;x became small enough, the solutions would give a result
+independent of &#8710;x. That would be a good way of demonstrating
+adequate spatial resolution<a
+id="spatial_resolution102621"></a> numerically. For
+the simple problem we've considered the requirement can be calculated
+analytically. Actually the criterion &#8710;x  &lt;~&#955; applies
+very widely in plasma PIC calculations.
+
+</p><p>
+
+<h2>Exercise 10. Atomistic Simulation</h2>
+
+</p><p>
+<br /><br />1. The Verlet scheme for particle advance is
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ <b><i>x</i></b><sub>n+1</sub></td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+<b><i>x</i></b><sub>n</sub>+ <b><i>v</i></b><sub>n</sub>&#8710;t + <b><i>a</i></b><sub>n</sub> &#8710; t<sup>2</sup>/2</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ <b><i>v</i></b><sub>n+1</sub></td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1"><b><i>v</i></b><sub>n</sub>+ (<b><i>a</i></b><sub>n</sub>+<b><i>a</i></b><sub>n+1</sub>)&#8710;t/2.</td></tr></table></td><td width="50%"></td><td width="1" align="right">(10.9)</td></tr></table>
+</td></tr></table>
+
+
+Suppose that the velocity at integer timesteps is related to that at
+half integer timesteps by
+<b><i>v</i></b><sub>n</sub>=(<b><i>v</i></b><sub>n&#8722;1/2</sub>+<b><i>v</i></b><sub>n+1/2</sub>)/2.
+With this identification, derive the Verlet scheme from
+the leap-frog scheme,
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+<b><i>x</i></b><sub>n+1</sub></td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+<b><i>x</i></b><sub>n</sub>+<b><i>v</i></b><sub>n+1/2</sub>&#8710;t</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+<b><i>v</i></b><sub>n+3/2</sub></td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1"><b><i>v</i></b><sub>n+1/2</sub>+<b><i>a</i></b><sub>n+1</sub>&#8710;t,</td></tr></table></td><td width="50%"></td><td width="1" align="right">(10.10)</td></tr></table>
+</td></tr></table>
+
+
+and thus show they are equivalent.
+
+</p><p>
+<br /><br /> 2. A block algorithm is applied to an atomistic
+simulation in a cubical 3 dimensional region, containing N<sub>p</sub>=1000000
+atoms approximately uniformly distributed. Only two-particle forces
+are to be considered. The cut-off range for particle-particle force is
+4 times the average particle spacing. Find
+
+</p><p>
+(a) The optimal size of blocks into which to divide the domain for
+fastest execution.
+
+</p><p>
+(b) How many force evaluations per time-step will be required.
+
+</p><p>
+(c) If the force evaluations require 5 multiplications, a Verlet
+advance is used, and the calculation is done on a single processor
+which takes 1 nanosecond per multiplication on average, roughly what
+is the total time taken per timestep (for the full 1,000,000 particles).
+
+</p><p>
+<br /><br /> 3. (a) Prove from the definition of a characteristic
+(see section <a href="chap8.html#characteristicsec">8.3.2</a>) that the equation of the
+characteristics of the collisionless Boltzmann equation is
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dt<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b><i>x</i></b><br />
+<b><i>v</i></b><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b><i>v</i></b><br />
+<b><i>a</i></b><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(10.11)</td></tr></table>
+
+
+Show also that a particle (or pseudo-particle) trajectory in a fixed
+electric potential depends only on initial velocity and the ratio of
+its charge to mass q/m, and therefore that the equation of motion of
+a pseudo-particle must use the same q/m as the actual particles, if
+a PIC simulation is to model correctly the force law at given speed
+and potential.
+
+</p><p>
+(b) A pseudo-particle of charge q follows a characteristic, but it
+is supposed to be representative of many nearby particles
+(characteristics). If the mean density of pseudo-particles in a PIC
+simulation is a factor 1/g (where g &gt;&gt; 1) smaller than the actual
+density of the system being modelled, how much charge must each
+pseudo-particle deposit on the potential grid to give the correct
+potential from Poisson's equation? One way to do PIC simulation is to
+represent all lengths, times, charges and masses in physical units,
+but to use this charge deposition factor, and correspondingly lower
+particle density.
+
+</p><p>
+
+
+<hr /><table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+<a href="chap11.html">NEXT
+</a></td></tr></table>
+</div></body></html>

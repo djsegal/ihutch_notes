@@ -1,0 +1,1426 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
+    img {     max-width: 100%;
+    max-height: 40vh; } p { line-height: 1.5em; } body {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 18px;
+    }
+  </style>
+<
+<title>chap4.html</title>
+<table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+ <a href="chap3.html">PREVIOUS
+</a></td></tr></table>
+ <a id="tth_chAp4"></a><h1>
+Chapter 4 <br />Partial Differential Equations</h1>
+
+</p><p>
+ <a id="tth_sEc4.1"></a><h2>
+4.1&nbsp;&nbsp;Examples of Partial Differential Equations</h2>
+
+</p><p>
+<a
+id="partial_differential_equations41234"></a><a
+id="PDE41235"></a> Partial differential
+equations arise in almost every problem that exists in
+multi-dimensional space. The gradient<a
+id="gradient41236"></a> operator of
+vector calculus<a
+id="vector_calculus41237"></a> is (in three dimensional space)
+<a id="gradient">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8711; =  (</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+, </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;y<br /></td><td nowrap="nowrap" align="center">
+,</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;z<br /></td><td nowrap="nowrap" align="center">
+),</td></tr></table>
+</td><td width="1%">(4.1)</td></tr></table>
+
+
+a <em>partial</em> differential operator.
+
+</p><p>
+Partial differential equations also arise when there is time-dependent
+behavior within a domain that is one-dimensional in space. Then the
+two dimensions (independent variables) are x and t.
+
+</p><p>
+Probably the most important part of computational science and
+engineering is formulating the calculation in terms of partial
+differential equations. Once a situation is properly formulated, the
+numerical techniques we are studying can be applied. But turning a
+problem in the real world into partial differential equations
+representing it, requires deep knowledge. This section can give only a
+few examples.
+
+</p><p>
+     <a id="tth_sEc4.1.1"></a><h3>
+4.1.1&nbsp;&nbsp;Fluid Flow</h3>
+<a id="fluidcontinuity">
+</a>
+
+</p><p>
+<a
+id="fluid_flow41238"></a>The flow of a substance that can be considered to be a continuum
+fluid, such as water, or (collisional) gas, is governed by a hierarchy
+of equations. They are fundamentally conservation equations of
+substance (e.g.&nbsp;mass), of momentum, and of energy. The momentum
+conservation equation is often called the Navier-Stokes equation. It
+relies on the other equations. Let's derive the conservation of
+substance or continuity equation.
+
+</p><p>
+<a
+id="continuity_equation41239"></a><a
+id="mass_conservation41240"></a> Consider a
+substance with density &#961;(<b><i>x</i></b>) which we can consider to be the
+substance's mass per unit volume (but could alternatively be number of
+particles per unit volume or electric charge per unit volume). Suppose
+that this substance has a volumetric source density
+S(<b><i>x</i></b>)<a
+id="source_density41241"></a>. This quantity denotes the amount
+(mass) of substance that is created per unit time per unit volume at
+position <b><i>x</i></b>. Such creation might be by chemical
+reaction<a
+id="reactions41242"></a> (e.g.&nbsp;producing the substance CO<sub>2</sub> from
+reaction of CO and O<sub>2</sub>) or it might be by nuclear reaction (e.g.&nbsp;producing Xe<sup>135</sup> by fission of uranium). The source could also be
+negative, corresponding to destruction of the substance, for example
+radioactive disintegration of Xe<sup>135</sup>, or a balance between
+creation and destruction. Apart from the processes represented by S,
+however, the substance is conserved (neither created nor
+destroyed). If the substance is able to flow, and has a velocity
+<b><i>v</i></b>(<b><i>x</i></b>), then it can move around and as it does so it gives
+rise to a flux density<a
+id="flux_density41243"></a> of substance &#961;<b><i>v</i></b>
+(mass per unit area per unit time). [Flux density represents
+the amount (mass) of substance per unit time carried by the flow across
+unit area with normal in a certain direction; it is therefore a vector
+quantity.]
+Across any small surface (element) <b><i>dA</i></b> the flux
+(mass per unit time) is equal to &#961;<b><i>v</i></b>.<b><i>dA</i></b>, as
+illustrated in Fig.&nbsp;<a href="chap4.html#fluxdensityl">4.1</a>.
+
+</p><p>
+<a id="tth_fIg4.1">
+</a>   <img src="figures/fluxdensity.png" alt="figures/fluxdensity.png" /><a id="fluxdensity">
+</a>
+
+<div style="text-align:center">Figure 4.1: The elementary volume of fluid crossing a surface element
+    dA in time element dt is <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">dt<b><i>v</i></b>.</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>n</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+dA = dt <b><i>v</i></b>.<b><i>dA</i></b>
+</td></tr></table><br />. So the mass per unit time is &#961;<b><i>v</i></b>.<b><i>dA</i></b>.<a id="fluxdensityl">
+</a></div>
+
+</p><p>
+Mass conservation<a
+id="mass_conservation41244"></a> is then described by
+considering some control volume V whose surface is &#8706;V. For
+any such volume, the rate of increase of the total amount of substance
+within the volume must be equal to the total source density within the
+volume plus the amount flowing in across its surface:
+<a id="intconservation">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#961;d<sup>3</sup>x = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+S d<sup>3</sup>x &#8722; </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>&#8706;V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#961;<b><i>v</i></b> .<b><i>dA</i></b>.</td></tr></table>
+</td><td width="1%">(4.2)</td></tr></table>
+
+
+
+</p><p>
+
+</p><p>
+<a id="tth_fIg4.2">
+</a>   <img src="figures/volumeint.png" alt="figures/volumeint.png" /><a id="volumeint">
+</a>
+
+<div style="text-align:center">Figure 4.2: Conservation integrals over arbitrary volume V with
+    surface &#8706;V.<a id="volumeintl">
+</a></div>
+
+</p><p>
+Using Gauss's (divergence) theorem<a
+id="Gauss_theorem41245"></a>, illustrated
+in Fig.&nbsp;<a href="chap4.html#volumeintl">4.2</a>, that for any
+vector field <b><i>u</i></b> (here <b><i>u</i></b>=&#961;<b><i>v</i></b>), the integral over
+a closed volume of the divergence is equal to the surface integral of
+the vector:
+<a id="Gauss">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8711;.<b><i>u</i></b>&nbsp;&nbsp;d<sup>3</sup> x = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>&#8706;V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+<b><i>u</i></b>.<b><i>dA</i></b>,</td></tr></table>
+</td><td width="1%">(4.3)</td></tr></table>
+
+
+the surface term can be converted to a volume integral and the mass conservation equation becomes:
+<a id="preconservation">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>V</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+&#8706;&#961;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
++&#8711;.(&#961;<b><i>v</i></b>) &#8722; S</td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+d<sup>3</sup>x = 0.</td></tr></table>
+</td><td width="1%">(4.4)</td></tr></table>
+
+
+This identity applies for <em>any</em> volume V. The only way that can
+be true is if the <em>integrand</em> is everywhere equal to zero:
+<a id="continuity">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;&#961;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
++&#8711;.(&#961;<b><i>v</i></b>) &#8722; S = 0.</td></tr></table>
+</td><td width="1%">(4.5)</td></tr></table>
+
+
+This is usually called the "continuity" equation. Sometimes,
+arguably more physically, it is called the "advection"<a
+id="advection41246"></a> equation. It
+is a partial differential equation in three space and one time
+variables.
+
+</p><p>
+We'll discuss the rest of the fluid equations later; but for now
+consider a steady state <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+=0
+</td></tr></table><br />, in which the
+velocity <b><i>v</i></b>(<b><i>x</i></b>) is prescribed everywhere, illustrated in
+Fig. <a href="chap4.html#advectionl">4.3</a>. The resulting
+partial differential equation is
+<a id="flow">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8711;.(&#961;<b><i>v</i></b>) = <b><i>v</i></b>.&#8711;&#961;+ &#961;&#8711;.<b><i>v</i></b> = v<sub>x</sub></td><td nowrap="nowrap" align="center">
+&#8706;&#961;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
++ v<sub>y</sub></td><td nowrap="nowrap" align="center">
+&#8706;&#961;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;y<br /></td><td nowrap="nowrap" align="center">
++ v<sub>z</sub></td><td nowrap="nowrap" align="center">
+&#8706;&#961;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;z<br /></td><td nowrap="nowrap" align="center">
++ G(<b><i>x</i></b>) &#961; =  S,</td></tr></table>
+</td><td width="1%">(4.6)</td></tr></table>
+
+
+where the components of the velocity v<sub>x</sub>, v<sub>y</sub>, v<sub>z</sub> and the
+divergence of the velocity, G=&#8711;.<b><i>v</i></b>, are prescribed
+functions of position.
+
+</p><p>
+<a id="tth_fIg4.3">
+</a>   <img src="figures/advection.png" alt="figures/advection.png" /><a id="advection">
+</a>
+
+<div style="text-align:center">Figure 4.3: The advection equation with prescribed velocity <b><i>v</i></b>
+    amounts to integration along the streamlines.  Conditions
+    ("initial" conditions) can be applied along the solution region
+    boundaries A and B, but not then along C and D.<a id="advectionl">
+</a></div>
+
+</p><p>
+From the point of view of solving for &#961; as a function of space,
+this is a linear first-order partial differential equation in three
+dimensions, with variable (i.e. non-uniform) coefficients v<sub>x</sub>,
+v<sub>y</sub>, v<sub>z</sub>, and G. It is <em>inhomogeneous</em> if S &#8800; 0, but
+<em>homogeneous</em> if S=0 everywhere.
+
+</p><p>
+     <a id="tth_sEc4.1.2"></a><h3>
+4.1.2&nbsp;&nbsp;Diffusion</h3>
+
+</p><p>
+<a
+id="diffusion41247"></a>When a substance such as a gas diffuses through a some other medium,
+for example a porous solid, or another (flow free) gas, the flux
+density &#961;<b><i>v</i></b> of the substance is frequently proportional to
+the gradient of its density &#961;:
+<a id="diffusionflux">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#961;<b><i>v</i></b> = &#8722; D &#8711;&#961;,</td></tr></table>
+</td><td width="1%">(4.7)</td></tr></table>
+
+
+where D is the diffusion coefficient<a
+id="diffusion_coefficient41248"></a>.
+
+</p><p>
+For such a diffusion problem, we can eliminate the velocity from the
+continuity equation (<a href="chap4.html#continuity">4.5</a>) and obtain the diffusion equation:
+<a id="diffusion">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;&#961;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+&#8722;&#8711;.(D&#8711;&#961;) &#8722; S = 0.</td></tr></table>
+</td><td width="1%">(4.8)</td></tr></table>
+
+
+This is a linear partial differential equation that is second order in the
+spatial derivatives (e.g.&nbsp;if D is uniform the second term becomes
+Laplacian &#8722;D&#8711;<sup>2</sup>&#961;); but it is first order in
+time.<a
+id="diffusion_equation41249"></a>
+
+</p><p>
+     <a id="tth_sEc4.1.3"></a><h3>
+4.1.3&nbsp;&nbsp;Waves</h3>
+
+</p><p>
+The equation that governs waves in one dimension, for example
+small-amplitude compressional vibrations of a column of air in a pipe,
+or transverse vibrations of a stretched string or a rigid rod, is
+<a id="waveequation">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+=c<sub>s</sub><sup>2</sup></td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+,</td></tr></table>
+</td><td width="1%">(4.9)</td></tr></table>
+
+
+where c<sub>s</sub> is the wave (sound) speed, and &#968; represents the wave
+displacement or perturbed quantity (e.g.&nbsp;pressure). The wave
+equation<a
+id="wave_equation41250"></a> is second
+order in space and time, and linear (provided c<sub>s</sub> does not depend on &#968;).
+
+</p><p>
+     <a id="tth_sEc4.1.4"></a><h3>
+4.1.4&nbsp;&nbsp;Electromagnetism</h3>
+
+</p><p>
+Maxwell's equations<a
+id="Maxwell_s_equations41251"></a> of electromagnetism, relating the electric<a
+id="electric_field41252"></a> and
+magnetic fields<a
+id="magnetic_field41253"></a> <b><i>E</i></b>, and <b><i>B</i></b>, to the
+charge density<a
+id="charge_density41254"></a>
+&#961;<sub>q</sub>, and the electric current density<a
+id="current_density41255"></a> <b><i>j</i></b>, in the absence
+of dielectric or magnetic materials are:
+<a id="maxwell">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+  </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+&#8711;. <b><i>E</i></b> = &#961;<sub>q</sub>/&#1013;<sub>0</sub> </td></tr></table></td><td width="50%"></td><td width="1" align="right">(4.10)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+&#8711;&times;<b><i>E</i></b> = &#8722; </td><td nowrap="nowrap" align="center">
+&#8706;<b><i>B</i></b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+&#8711;. <b><i>B</i></b> = 0 </td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1">&#8711;&times;<b><i>B</i></b> = &#956;<sub>0</sub> <b><i>j</i></b> + &#956;<sub>0</sub>&#1013;<sub>0</sub> </td><td nowrap="nowrap" align="center">
+&#8706;<b><i>E</i></b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr></table>
+</td></tr></table>
+
+
+where &#1013;<sub>0</sub>=8.85&times;10<sup>&#8722;12</sup> F/m is the permittivity<a
+id="permittivity41256"></a> of free
+space, &#956;<sub>0</sub>=4&#960;&times;10<sup>&#8722;7</sup> H/m is the permeability<a
+id="permeability41257"></a> of free
+space. These fundamental constants satisfy &#956;<sub>0</sub>&#1013;<sub>0</sub> = 1/c<sup>2</sup>, where c is the speed of light<a
+id="speed_of_light41258"></a>.
+
+</p><p>
+These are a system of partial differential equations. There appear to
+be eight in all because the curl<a
+id="curl41259"></a> equations are vector equations (three
+equations in one) and the divergence equations are single equations.
+However, there's some built-in redundancy in the equations that
+reduces there effective number to six (equal to the number of dependent
+variables in the components of the electric and magnetic fields).
+
+</p><p>
+Only rarely does one solve the full set of equations numerically. More
+usually one is interested in simplified special cases. For example, if
+time dependence can be ignored, then &#8711;&times;<b><i>E</i></b>=0, which
+is a sufficient condition to allow the electric field to be expressed
+as the gradient of a scalar potential <b><i>E</i></b>=&#8722;&#8711;&#981;. In that
+case, the potential satisfies<a
+id="electrostatic41260"></a>
+<a id="Poisson">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8722;&#8711;.<b><i>E</i></b> = &#8722;&#8711;.(&#8722;&#8711;&#981;) = &#8711;<sup>2</sup> &#981; = </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>&#981;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>&#981;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;y<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>&#981;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;z<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = &#8722;&#961;<sub>q</sub>/&#1013;<sub>0</sub>, </td></tr></table>
+</td><td width="1%">(4.11)</td></tr></table>
+
+
+which is Poisson's equation<a href="footnote.html#tthFtNtACD" id="tthFrefACD"><sup>23</sup></a><a
+id="Poisson_equation41261"></a>. Poisson's equation sets a <em>second
+  order</em> differential, the <em>Laplacian</em><a
+id="Laplacian41262"></a> (&#8711;<sup>2</sup>) of the
+potential equal to a (presumably prescribed) function &#8722;&#961;<sub>q</sub>/&#1013;<sub>0</sub>.
+
+</p><p>
+ <a id="tth_sEc4.2"></a><h2>
+4.2&nbsp;&nbsp;Classification of Partial Differential Equations</h2>
+
+</p><p>
+<a
+id="PDE_classification42263"></a><a
+id="classification_of_PDEs42264"></a> In the theory
+of partial differential equations, there are three types of
+differential equation. They are called: Hyperbolic<a
+id="hyperbolic42265"></a>,
+Parabolic<a
+id="parabolic42266"></a>, and Elliptic<a
+id="elliptic42267"></a>. To
+understand this classification rigorously would take us far beyond our
+scope, but it is important for computation because the methods of
+solving the different types of equation are different.
+
+</p><p>
+For our purposes, the classification can be considered
+as follows for second order equations. Write the general linear
+second-order partial differential equation governing dependent
+variable &#968; for independent variables x<sub>i</sub> as
+<a id="general2nd">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i,j</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+c<sub>ij</sub></td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sub>i</sub><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sub>j</sub><br /></td><td nowrap="nowrap" align="center">
+&#968;+ </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+c<sub>i</sub> </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; x<sub>i</sub><br /></td><td nowrap="nowrap" align="center">
+&#968;+ c &#968; =  const.</td></tr></table>
+</td><td width="1%">(4.12)</td></tr></table>
+
+
+A specific example might be
+<a id="specific2nd">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  A</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+&#968; +2B </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x &#8706;y<br /></td><td nowrap="nowrap" align="center">
+&#968;+ C</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;y<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+&#968; =  0.</td></tr></table>
+</td><td width="1%">(4.13)</td></tr></table>
+
+
+Consider the coefficients c<sub>ij</sub>, and regard them as defining a
+surface in the multidimensional space via the quadratic
+form<a
+id="quadratic_form42268"></a> associated with them:
+<a id="genquadform">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i,j</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+c<sub>ij</sub>x<sub>i</sub>x<sub>j</sub> + </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+c<sub>i</sub> x<sub>i</sub> = const.</td></tr></table>
+</td><td width="1%">(4.14)</td></tr></table>
+
+
+Specifically:
+<a id="specquadform">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  Ax<sup>2</sup> +2B xy + Cy<sup>2</sup> = const.</td></tr></table>
+</td><td width="1%">(4.15)</td></tr></table>
+
+
+Then the partial differential equation is hyperbolic,
+  parabolic, or elliptic according to whether the surface so defined
+  is itself hyperbolic, parabolic, or elliptic.
+
+</p><p>
+For our two-dimensional specific example, the surface is
+
+<dl>
+ <dt><b>Hyperbolic</b></dt>
+	<dd> if B<sup>2</sup>&#8722;AC  &gt; 0; for example B=0, C=&#8722;A, x<sup>2</sup> &#8722; y<sup>2</sup> = const.</dd>
+ <dt><b>Parabolic</b></dt>
+	<dd> if  B<sup>2</sup>&#8722;AC = 0; for example B=C=0, x<sup>2</sup> &#8722;y = const.</dd>
+ <dt><b>Elliptic</b></dt>
+	<dd> if  B<sup>2</sup>&#8722;AC  &lt; 0; for example B=0, C=A, x<sup>2</sup> + y<sup>2</sup> = const.</dd>
+</dl>
+And so is the equation.
+The examples we have given previously illustrate characteristically
+these different types.
+
+</p><p>
+The <i>wave equation</i> is <i>hyperbolic</i>.
+
+</p><p>
+The <i>diffusion equation</i> is <i>parabolic</i>.
+
+</p><p>
+The <i>Poisson equation</i> is <i>elliptic</i>.
+
+</p><p>
+The first order equation for fluid flow with prescribed velocity
+(advection equation) is ambiguous under this classification because
+the surface for a first order form is a plane. But a plane can be
+considered a degenerate hyperbola, because it extends to infinity
+(unlike an ellipse which is finite in extent). The first order
+system for one scalar dependent variable is always
+hyperbolic.<a href="footnote.html#tthFtNtACE" id="tthFrefACE"><sup>24</sup></a>
+
+</p><p>
+Loosely speaking, second order hyperbolic equations are wave-like, and
+elliptic equations are steady-flux-conservation-like. A hyperbolic
+or parabolic equation generally has at least one independent variable
+that is like time, as well as others that are like space. An
+elliptic problem is more like a steady (non-time-varying) problem in
+multiple space dimensions. The classification is more fundamentally to
+do with whether a problem of order N with N boundary
+conditions<a
+id="boundary_condition42269"></a> on a single surface (the
+multidimensional equivalent of an initial value problem) can be solved
+or not. Such a problem is called a Cauchy problem<a
+id="Cauchy_problem42270"></a>.
+Generally, hyperbolic equations are those for which the
+Cauchy problem can be solved; for elliptic equations it cannot.
+
+</p><p>
+The most important distinction from the viewpoint of numerical
+solution of partial differential equations is with respect to the
+boundary conditions. Are these all applied on a single open surface,
+such as the plane at t=0? If so (hyperbolic and parabolic equations
+only) then this is an <em>initial value problem</em> where we are trying
+to solve for the time evolution and we can integrate forward in time
+from the initial conditions. For example, recalling Fig.&nbsp;<a href="chap4.html#advectionl">4.3</a> for the (hyperbolic) advection<a
+id="advection42271"></a>
+equation, one can see immediately that because the equation governs
+the variation of density along a streamline, it could make no sense to
+apply conditions at two different points along the one
+streamline<a
+id="streamline42272"></a>.
+
+</p><p>
+<a id="tth_fIg4.4">
+</a>   <img src="figures/ellipBC.png" alt="figures/ellipBC.png" /><a id="ellipBC">
+</a>
+
+<div style="text-align:center">Figure 4.4: An elliptic equation, such as Laplace's equation has
+    boundary conditions applied round an entire closed surface. In
+    this case, the potential is prescribed everywhere on the square
+    domain boundary, and contours of potential are plotted.<a id="ellipBCl">
+</a></div>
+
+</p><p>
+Alternatively, are the conditions applied on the boundary of a closed
+domain (as illustrated in Fig.&nbsp;<a href="chap4.html#ellipBCl">4.4</a>)? If so (elliptic
+equations) then the solution everywhere depends upon all the boundary
+information, it is called a <em>boundary value
+  problem</em><a
+id="boundary_value_problem42273"></a>. Then we generally can't
+successfully integrate from the boundary. "Shooting" doesn't work in
+multiple dimensions; so we can't turn the problem into an interative
+initial value problem the way we did in one-dimension. We have to
+converge to the full solution everywhere simultaneously.
+
+</p><p>
+ <a id="tth_sEc4.3"></a><h2>
+4.3&nbsp;&nbsp;Finite Difference Partial Derivatives</h2>
+
+</p><p>
+As with ordinary differential equations, a key step in implementing
+numerical solution of partial differential equations is the expression
+of the derivatives in terms of the discrete numerical representation
+of the variables<a
+id="discrete_representation43274"></a>. There are many
+possible such discrete representations. One might be in terms of the
+Fourier coefficients a<sub>ij</sub> of a discrete Fourier representation
+such as<a
+id="Fourier_representation43275"></a>:
+<a id="fourierrep">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#968; =  </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i,j</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+a<sub>ij</sub>sin(&#960;i x/L<sub>x</sub>)sin(&#960;j y/L<sub>y</sub>),</td></tr></table>
+</td><td width="1%">(4.16)</td></tr></table>
+
+
+(where we've chosen to rule out cosine terms by presuming the boundary
+conditions to be &#968; = 0 at x=0,L<sub>x</sub> or y=0,L<sub>y</sub>). There are some
+equations in which it is computationally efficient to work in terms of
+such coefficients, especially in coordinate directions that are ignorable.
+Far more often, though, the representation of our variables is on a
+discrete spatial mesh with finite spacing in the independent
+variables.
+
+</p><p>
+A mesh is considered to be "structured"<a
+id="structured_mesh43276"></a> if
+the points at which the solution is to be found are in a regular order
+in each of the coordinate directions. The most obvious choice is
+cartesian<a
+id="cartesian43277"></a> coordinates. The mesh nodes would then be
+at positions (x<sub>n</sub>,y<sub>m</sub>,z<sub>l</sub>), where each array x<sub>n</sub>, y<sub>m</sub>, etc., is
+ordered x<sub>n&#8722;1</sub> &lt; x<sub>n</sub> &lt; x<sub>n+1</sub>, etc. The mesh is then
+"uniform"<a
+id="uniform_mesh43278"></a> if the spacing between nodes is the
+same for all nodes: x<sub>n+1</sub>&#8722;x<sub>n</sub>=&#8710;x for all n, and similarly
+for y, z. Structured meshes are also possible on general
+curvilinear coordinates<a
+id="curvilinear_coordinates43279"></a>, for example
+cylindrical or spherical coordinates, provided the domain remains
+"rectangular" in the coordinates; in other words, provided for some
+set of coordinates (&#958;,&#951;,&#950;), the &#958;<sub>n</sub> are independent of
+&#951;<sub>m</sub> and &#950;<sub>l</sub>, and so on. Fig.&nbsp;<a href="chap4.html#grids">4.5</a> gives two
+examples. For such structured meshes, the
+most natural and adaptable finite representation is by finite
+differences<a
+id="finite_difference43280"></a>.
+
+</p><p>
+<a id="tth_fIg4.5">
+</a>  <div style="text-align:center">  <img src="figures/gridrect.png" alt="figures/gridrect.png" /><a id="gridrect">
+</a>(a)<img src="figures/gridfig3.png" alt="figures/gridfig3.png" /><a id="gridfig3">
+</a>(b)&nbsp;
+
+<div style="text-align:center">Figure 4.5: Structured grids. (a) Rectangular, but non-uniform. (b)
+    Curvilinear, but still structured.<a id="grids">
+</a></div>
+</div>
+</p><p>
+By contrast, an <em>unstructured</em><a
+id="unstructured_mesh43281"></a> grid can
+have any degree of connectedness. Its cells will not generally be
+quadrilaterals<a
+id="quadrilateral43282"></a> (in two-dimensions) or
+hexahedrons<a
+id="hexahedron43283"></a> (in three dimensions) and it is far less
+clear how to construct a finite-difference scheme. Fig.&nbsp;<a href="chap4.html#unstructured">4.6</a> shows an example of a triangular unstructured
+mesh<a href="footnote.html#tthFtNtACF" id="tthFrefACF"><sup>25</sup></a>.
+
+</p><p>
+<a id="tth_fIg4.6">
+</a>   <img src="figures/airfoil.png" alt="figures/airfoil.png" /><a id="airfoil">
+</a>
+
+<div style="text-align:center">Figure 4.6: A region of an unstructured mesh. Such meshes are
+    designed to give greater resolution in areas of more rapid
+    variation, often close to boundaries of complicated or subtle
+    shapes. This example uses a triangular mesh but other choices are
+    possible.<a id="unstructured">
+</a></div>
+
+</p><p>
+We'll stick to structured meshes here.
+
+</p><p>
+Just as in one dimension we use a representation
+<a id="diff1d">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n+1/2</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+&#968;<sub>n+1</sub>&#8722;&#968;<sub>n</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>x<sub>n+1</sub>&#8722;x<sub>n</sub><br /></td><td nowrap="nowrap" align="center">
+,</td></tr></table>
+</td><td width="1%">(4.17)</td></tr></table>
+
+
+so in two dimensions<a
+id="derivative_2-dimensional43284"></a> we can
+generalize this to partial derivatives of a dependent variable
+&#968;(x,y) in x and y on mesh positions n,m as
+<a id="diff2d">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n+1/2,m</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+&#968;<sub>n+1,m</sub>&#8722;&#968;<sub>n,m</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>x<sub>n+1</sub>&#8722;x<sub>n</sub><br /></td><td nowrap="nowrap" align="center">
+,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;y<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n,m+1/2</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+&#968;<sub>n,m+1</sub>&#8722;&#968;<sub>n,m</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>y<sub>m+1</sub>&#8722;y<sub>m</sub><br /></td><td nowrap="nowrap" align="center">
+,</td></tr></table>
+</td><td width="1%">(4.18)</td></tr></table>
+
+
+with obvious generalization to higher dimensions. Two (or more)
+indices denote the mesh node (or half-node position) where the value
+of the variable is to be considered evaluated.
+
+</p><p>
+Higher derivatives<a
+id="derivative_higher43285"></a> are formed by taking
+appropriate differences of derivative expressions. So
+<a id="2ndx">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; x<sup>2</sup><br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n,m</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+=</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; x<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n+1/2,m</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8722;</td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; x<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n&#8722;1/2,m</small>&nbsp;<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>x<sub>n+1/2</sub>&#8722;x<sub>n&#8722;1/2</sub><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(4.19)</td></tr></table>
+
+
+and
+<a id="2ndy">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; y<sup>2</sup><br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n,m</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+=</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; y<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n,m+1/2</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8722;</td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; y<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n,m&#8722;1/2</small>&nbsp;<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td></tr></table>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>y<sub>m+1/2</sub>&#8722;y<sub>m&#8722;1/2</sub><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(4.20)</td></tr></table>
+
+
+into which we substitute the expressions from eq.&nbsp;(<a href="chap4.html#diff2d">4.18</a>).
+That leads to a sum of coefficients times the values of &#968; at
+three mesh points.
+
+</p><p>
+If we are dealing, for example, with Poisson's
+equation<a
+id="Poisson_equation43286"></a>,
+&#8711;<sup>2</sup> &#968; =  &#961;, then the entire finite difference
+expression becomes<a
+id="Laplacian_finite_difference43287"></a>:
+<a id="Laplace2d">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; x<sup>2</sup><br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n,m</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; y<sup>2</sup><br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n,m</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i=adjacent</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+a<sub>i</sub>(&#968;<sub>i</sub>&#8722;&#968;<sub>n,m</sub>) = &#961;<sub>n,m</sub>,</td></tr></table>
+</td><td width="1%">(4.21)</td></tr></table>
+
+
+where the sum is over the nodes adjacent to n,m, in other words, i
+takes the four cases (n&#8722;1,m), (n+1,m), (n,m&#8722;1), (n,m+1), and
+for uniform mesh the coefficients a<sub>i</sub> are 1/&#8710;x<sup>2</sup> or
+1/&#8710;y<sup>2</sup>. Written out in full
+<a id="stencil2d">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+  </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+(&#968;<sub>n+1,m</sub>+&#968;<sub>n&#8722;1,m</sub>) + </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;y<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+(&#968;<sub>n,m+1</sub>+&#968;<sub>n,m&#8722;1</sub>) &#8722; </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+2
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+2
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;y<sup>2</sup><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+&#968;<sub>n,m</sub></td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table><tr><td nowrap="nowrap" align="right" colspan="1"> = &#961;<sub>n,m</sub>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr></table></td><td width="50%"></td><td width="1" align="right">(4.22)</td></tr></table>
+</td></tr></table>
+
+
+
+</p><p>
+This form naturally generalizes immediately to higher dimensions. It
+has a standard structure represented by eq.&nbsp;(<a href="chap4.html#Laplace2d">4.21</a>), namely
+that the second order differential operator is represented by the sum
+over all the adjacent nodes of coefficients times the adjacent values,
+minus the sum of all the coefficients times the central value. This
+sum is called a "stencil"<a
+id="stencil43288"></a>, representing the
+differential. The sum of all its coefficients (including the
+coefficient of the central value) is zero, because if &#968; is
+uniform, &#8711;<sup>2</sup>&#968; is zero. Written out geometrically for two
+dimensions the coefficients form a cross pattern which for the
+uniform-mesh Laplacian is:
+<a id="stencilmat">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+m+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+. </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1/&#8710;y<sup>2</sup> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+. </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+m </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1/&#8710;x<sup>2</sup> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;(2/&#8710;x<sup>2</sup> +2/&#8710;y<sup>2</sup>) </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1/&#8710;x<sup>2</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+m&#8722;1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+. </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1/&#8710;y<sup>2</sup> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+. </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+n&#8722;1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+n </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+n+1</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(4.23)</td></tr></table>
+
+
+Other linear second order differential operators, or non-uniform or
+curvilinear meshes, will have different coefficients, but will still
+have the same geometric shape, and still have the central coefficient
+equal to minus the sum of the others.
+
+</p><p>
+The stencil represented by eq.&nbsp;(<a href="chap4.html#stencilmat">4.23</a>), is called a "star
+stencil". It includes only the adjacent point along coordinate
+directions. It is second order accurate.  One can make
+differential operator approximations whose errors are of higher order
+accuracy. Such modified stencils might fill in the corners of the
+3&times;3 matrix or even go additional steps beyond the edges, using
+appropriate coefficients. Although there may be specific applications
+in which such expanded stencils are appropriate, they are rather
+rare. The main focus is generally on ensuring that the coefficients
+are calculated well centered<a
+id="centered43289"></a> so as to maintain the second order
+accuracy<a
+id="second-order_accuracy43290"></a>. This is not automatic in non-uniform mesh cases.
+
+</p><p>
+
+<h2>Worked Example: Cylindrical Differences</h2>
+
+</p><p>
+Determine the type classification<a
+id="classification_of_PDEs43291"></a> of the
+following partial
+differential equation, governing a problem in cylindrical
+coordinates<a
+id="cylindrical_coordinates43292"></a>
+r,&#952;.
+<a id="cyllaplace">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8711;<sup>2</sup>&#968; &#8801; </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;r<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+ r </td><td nowrap="nowrap" align="center">
+&#8706; &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;r<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
++  </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;&#952;<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = &#8722; k<sup>2</sup> &#968;.</td></tr></table>
+</td><td width="1%">(4.24)</td></tr></table>
+
+
+Obtain an appropriate difference stencil representing the differential
+operator, at grid point r<sub>n</sub>, &#952;<sub>m</sub> for a grid with uniform mesh
+in r and &#952; such that r<sub>n</sub>=n&#8710;r, and &#952;<sub>m</sub>=m&#8710;&#952;.
+
+</p><p>
+<br />The quadratic form<a
+id="quadratic_form43293"></a> in x and y arising from
+the coefficients for the derivatives with respect to r and &#952;
+is
+<a id="quadcyl">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  x<sup>2</sup> + </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+y<sup>2</sup> +</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<br /></td><td nowrap="nowrap" align="center">
+x = const.</td></tr></table>
+</td><td width="1%">(4.25)</td></tr></table>
+
+
+Since r<sup>2</sup> is always positive, this is the equation of an ellipse
+(the ratio of its axes is 1/r). The differential equation is
+<em>elliptic</em><a
+id="elliptic43294"></a>. We can apply a condition around an
+entire closed boundary in the r-&#952; plane. In practice &#952;
+is periodic, so there usually isn't a true boundary at &#952; = 0.  At
+r=0 (if the domain extends to it), <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; r<br /></td><td nowrap="nowrap" align="center">
+=0
+</td></tr></table><br />. The boundary conditions are applied at fixed r-positions.
+
+</p><p>
+To obtain the stencil<a
+id="stencil43295"></a>, start by writing down the first
+order partial derivatives in the coordinate directions:
+<a id="gradcyl">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;r<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n+1/2,m</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+&#968;<sub>n+1,m</sub>&#8722;&#968;<sub>n,m</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>n+1</sub>&#8722;r<sub>n</sub><br /></td><td nowrap="nowrap" align="center">
+,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r&#8706;&#952;<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n,m+1/2</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+&#968;<sub>n,m+1</sub>&#8722;&#968;<sub>n,m</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>n</sub>(&#952;<sub>m+1</sub>&#8722;&#952;<sub>m</sub>)<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(4.26)</td></tr></table>
+
+
+Then substitute into the second-derivative forms:
+<a id="radialcyl">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+  </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;r<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+ r </td><td nowrap="nowrap" align="center">
+&#8706; &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;r<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n,m</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+= </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>n</sub><br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+r<sub>n+1/2</sub></td><td nowrap="nowrap" align="center">
+&#968;<sub>n+1,m</sub>&#8722;&#968;<sub>n,m</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>n+1</sub>&#8722;r<sub>n</sub><br /></td><td nowrap="nowrap" align="center">
+&#8722;r<sub>n&#8722;1/2</sub></td><td nowrap="nowrap" align="center">
+&#968;<sub>n,m</sub>&#8722;&#968;<sub>n&#8722;1,m</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>n</sub>&#8722;r<sub>n&#8722;1</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>n+1/2</sub>&#8722;r<sub>n&#8722;1/2</sub><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+1+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2n<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+(&#968;<sub>n+1,m</sub>&#8722;&#968;<sub>n,m</sub>)&#8722;</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+1&#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2n<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+(&#968;<sub>n,m</sub>&#8722;&#968;<sub>n&#8722;1,m</sub>)</td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710; r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1"> </td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+1+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2n<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+&#968;<sub>n+1,m</sub>&#8722;2&#968;<sub>n,m</sub>+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+1&#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2n<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+&#968;<sub>n&#8722;1,m</sub></td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710; r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td width="50%"></td><td width="1" align="right">(4.27)</td></tr></table>
+</td></tr></table>
+
+
+and
+<a id="thetacyl">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;&#952;<sup>2</sup><br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n,m</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>n</sub><sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#968;<sub>n,m+1</sub>&#8722;&#968;<sub>n,m</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#952;<sub>m+1</sub>&#8722;&#952;<sub>m</sub><br /></td><td nowrap="nowrap" align="center">
+&#8722;</td><td nowrap="nowrap" align="center">
+&#968;<sub>n,m</sub>&#8722;&#968;<sub>n,m&#8722;1</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#952;<sub>m</sub>&#8722;&#952;<sub>m&#8722;1</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#952;<sub>m+1/2</sub>&#8722;&#952;<sub>m&#8722;1/2</sub><br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1"> (&#968;<sub>n,m+1</sub>&#8722;2&#968;<sub>n,m</sub>+&#968;<sub>n,m&#8722;1</sub>)</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>n</sub><sup>2</sup>&#8710;&#952;<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td width="50%"></td><td width="1" align="right">(4.28)</td></tr></table>
+</td></tr></table>
+
+
+Then we see that the required stencil for the differential operator is
+<a id="stencilcyl">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+m+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+. </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1/(r<sub>n</sub>&#8710;&#952;)<sup>2</sup> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+. </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+m </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+1&#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2n<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+/&#8710;r<sup>2</sup> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2[1/&#8710;r<sup>2</sup> +1/(r<sub>n</sub>&#8710;&#952;)<sup>2</sup>] </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+1+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2n<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+/&#8710;r<sup>2</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+m&#8722;1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+. </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1/(r<sub>n</sub>&#8710;&#952;)<sup>2</sup> </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+. </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+n&#8722;1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+n </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+n+1</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(4.29)</td></tr></table>
+
+
+
+</p><p>
+
+<h2>Exercise 4. Partial Differential Equations.</h2>
+
+</p><p>
+<br /><br /> 1.
+Determine whether the following partial differential equations, in
+which p and q are arbitrary real constants, are elliptic,
+parabolic, or hyperbolic.
+
+</p><p>
+(a) <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"> p<sup>2</sup></td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ q<sup>2</sup></td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;y<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+=0
+</td></tr></table><br />
+
+</p><p>
+(b) <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"> p<sup>2</sup></td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+&#8722; q<sup>2</sup></td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;y<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = &#968;
+</td></tr></table><br />
+
+</p><p>
+(c) <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"> </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ 4</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x&#8706;y<br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;y<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+=0
+</td></tr></table><br />
+
+</p><p>
+(d) <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"> </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ 2</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x&#8706;y<br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;y<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+=0
+</td></tr></table><br />
+
+</p><p>
+(e) <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"> </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ p</td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;y<br /></td><td nowrap="nowrap" align="center">
+ = &#968;
+</td></tr></table><br />
+
+</p><p>
+(f) <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"> </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;y<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup> &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;z<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+=0
+</td></tr></table><br />
+
+</p><p>
+(g) <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"> p</td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
++ qy </td><td nowrap="nowrap" align="center">
+&#8706;&#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;y<br /></td><td nowrap="nowrap" align="center">
+ = 1
+</td></tr></table><br />
+
+</p><p>
+<br /><br />2. Write a computer code function<a href="footnote.html#tthFtNtACG" id="tthFrefACG"><sup>26</sup></a> to evaluate the difference stencil
+in two dimensions for the anisotropic partial differential operator,
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"><span style="font-family:helvetica"><i>L</i></span> = </td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++2</td><td nowrap="nowrap" align="center">
+&#8706;<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; y<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />. The code function is to operate on a quantity f(x,y)=f<sub>ij</sub>,
+represented as a matrix of the values at discrete points on a
+structured, equally-spaced, 2-D mesh with N<sub>x</sub> and N<sub>y</sub> nodes in the
+x and y directions, spanning the intervals 0 &#8804; x  &#8804; L<sub>x</sub>, 0 &#8804; y &#8804; L<sub>y</sub>. The function should accept parameters
+N<sub>x</sub>,N<sub>y</sub>,L<sub>x</sub>,L<sub>y</sub>,i,j,f and return the corresponding finite-difference
+expression for g<sub>ij</sub> = <span style="font-family:helvetica"><i>L</i></span> f at mesh point i,j.
+
+</p><p>
+Write also a test program to construct f(x,y) = (x<sup>2</sup>+y<sup>2</sup>/2) on the
+mesh nodes, giving f<sub>ij</sub>, and call your stencil function, with f  and the
+corresponding N<sub>x</sub>,N<sub>y</sub>,L<sub>x</sub>,L<sub>y</sub> as arguments, to evaluate g<sub>ij</sub> and
+print it.
+
+</p><p>
+Submit the following as your solution:
+
+<ol type="1">
+<li> Your code in a computer format that is capable of being
+  executed, citing the language it is written in.
+</p><p>
+</li>
+
+<li> A brief answer to the following. Will your function work at
+  the boundaries, x=0,L<sub>x</sub>, or y=0,L<sub>y</sub>? If not, what is needed to
+  make it work there?
+</p><p>
+</li>
+
+<li> The values of g<sub>ij</sub> for four different nodes corresponding to
+  two different interior i and two different interior j, when
+  N<sub>x</sub>=N<sub>y</sub>=10, L<sub>x</sub>=L<sub>y</sub>=10.
+</p><p>
+</li>
+
+<li> Brief answer to: Are there inefficiencies in using a code like
+  this to evaluate <span style="font-family:helvetica"><i>L</i></span> f everywhere on the mesh? If so, how
+  might those inefficiencies be avoided?
+</p><p>
+</li>
+</ol>
+
+</p><p>
+
+
+<hr /><table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+<a href="chap5.html">NEXT
+</a></td></tr></table>
+</div></body></html>

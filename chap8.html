@@ -1,0 +1,1274 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
+    img {     max-width: 100%;
+    max-height: 40vh; } p { line-height: 1.5em; } body {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 18px;
+    }
+  </style>
+<
+<title>chap8.html</title>
+<table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+ <a href="chap7.html">PREVIOUS
+</a></td></tr></table>
+ <a id="tth_chAp8"></a><h1>
+Chapter 8 <br />Boltzmann's Equation and its solution</h1>
+
+</p><p>
+So far in our discussion of multidimensional problems we have been
+focussing on continuum fluids governed by partial differential
+equations. Despite the fact that treating fluids as continua seems
+entirely natural, and gives remarkably accurate representation in many
+cases, we know that fluids in nature are not continuous. They are made
+up of individual molecules. A continuum<a
+id="continuum80473"></a>
+representation is expected to work well only when the molecules
+experience collisions on a time and space scale much shorter than
+those of interest to our situation. By contrast, when the collision
+mean-free-path<a
+id="collision80474"></a><a
+id="mean-free-path80475"></a> is either an
+important part of the problem, as it is, for example, when calculating
+the viscosity of a fluid, or when the collision mean-free-path (or
+time) is long compared with the typical scales of the problem, as it
+is for very dilute gases and for many plasmas, a fluid treatment
+cannot cope. We then need to represent the discrete molecular nature
+of the substance as well as its collective behavior.
+
+</p><p>
+Even so, it is unrealistic in most problems to suppose that we can
+follow the detailed dynamics of each individual molecule. There are
+p/kT=10<sup>5</sup>(<span class="roman">Pa</span>)/[1.38&times;10<sup>&#8722;23</sup>(<span class="roman">J</span><span class="roman">/</span><span class="roman">K</span>)&times;273( <span class="roman">K</span>)]=2.65&times;10<sup>25</sup> molecules, for example, in a cubic meter of
+gas at atmospheric pressure and 0 degrees C temperature (STP). Even
+computers of the distant future are not going to track every particle
+in such an assembly. Instead a statistical<a
+id="statistical___description80476"></a> description is used. The treatment is common to many
+different types of particles. The particles under consideration might
+be neutrons in a fission reactor, neutral molecules of a gas,
+electrons of a plasma, and so on.
+
+</p><p>
+ <a id="tth_sEc8.1"></a><h2>
+8.1&nbsp;&nbsp;The Distribution Function</h2>
+
+</p><p>
+<a
+id="distribution_function81477"></a>Consider a volume element small compared with the size of the problem
+but still large enough to contain very many particles. The element is
+cuboidal d<sup>3</sup>x=dx.dy.dz with sides <b><i>dx</i></b>, see Fig.&nbsp;<a href="chap8.html#lphasespace">8.1</a>. It is located at the
+position <b><i>x</i></b>. We want a sufficient description of the average
+properties of the particles in this element.
+
+</p><p>
+<a id="tth_fIg8.1">
+</a>   <img src="figures/phasespaceelement.png" alt="figures/phasespaceelement.png" /><a id="phasespaceelement">
+</a>
+
+<div style="text-align:center">Figure 8.1: The phase-space element is six-dimensional and selects
+    particles that lie in a space element d<sup>3</sup>x and simultaneously in
+    a velocity element d<sup>3</sup>v.<a id="lphasespace">
+</a></div>
+
+</p><p>
+We use a statistical description originally invented by James Clerk
+Maxwell called the "distribution function". The distribution
+function is a quantity f(<b><i>v</i></b>,<b><i>x</i></b>,t) that is a function of
+velocity <b><i>v</i></b>, position <b><i>x</i></b>, and time t. The distribution
+function is defined by considering an element in
+<em>velocity-space</em><a
+id="velocity-space81478"></a> d<sup>3</sup>v=dv<sub>x</sub>.dv<sub>y</sub>.dv<sub>z</sub> with
+sides <b><i>dv</i></b> located at velocity <b><i>v</i></b>. Any particle whose
+velocity components lie simultaneously in the ranges v<sub>x</sub>&#8594;v<sub>x</sub>+dv<sub>x</sub>, v<sub>y</sub>&#8594; v<sub>y</sub>+dv<sub>y</sub>, v<sub>z</sub> &#8594; v<sub>z</sub>+dv<sub>z</sub>, is inside that
+velocity element.
+
+</p><p>
+Then at any time t the distribution function
+f(<b><i>v</i></b>,<b><i>x</i></b>,t), is such that the number of particles in the
+spatial element d<sup>3</sup>x that have velocities in the velocity element
+d<sup>3</sup>v is
+<a id="distribfunc">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  f(<b><i>v</i></b>,<b><i>x</i></b>,t) d<sup>3</sup>v d<sup>3</sup>x.</td></tr></table>
+</td><td width="1%">(8.1)</td></tr></table>
+
+
+The distribution function is therefore the density of particles in the
+six-dimensional "phase-space"<a
+id="phase-space81479"></a> combining velocity
+and space. Its utility arises from the presumption that because of the
+enormous number of particles in the problem we can let the velocity
+and spatial elements, that is the phase-space element d<sup>3</sup>vd<sup>3</sup>x,
+become almost infinitesimally small and yet still have a large number
+of particles in it. With a large number of particles, statistical
+descriptions make sense. In particular, it makes sense to think of f
+as a kind of continuous fluid in six dimensions. Obviously if the
+phase-space element is shrunk down to a sufficiently small size, then
+eventually there will be very few particles in it. The
+discreteness<a
+id="discreteness_of_particles81480"></a> of the particles becomes
+visible and eventually there are either one or no particles in each
+tiny volume. But if we can shrink the element enough that it is small
+compared with the smallest scales in the problem while it still
+contains a large number of particles, then we have a sufficient
+statistical description if we know f everywhere, but we don't know
+the coordinates of each individual particle.  The most famous of all
+such distribution functions is the Maxwellian<a
+id="Maxwell-Boltzmann___distribution81481"></a>, which is
+<a id="Maxwellian">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  f(<b><i>v</i></b>,<b><i>x</i></b>,t) = n(<b><i>x</i></b>,t) </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+m
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#960;k T<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>3/2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+exp</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8722;</td><td nowrap="nowrap" align="center">
+mv<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2kT<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(8.2)</td></tr></table>
+
+
+Here m is the mass of the particles, T their temperature, and k
+Boltzmann's constant. The squared velocity
+v<sup>2</sup>=<b><i>v</i></b>.<b><i>v</i></b>=v<sub>x</sub><sup>2</sup>+v<sub>y</sub><sup>2</sup>+v<sub>z</sub><sup>2</sup> appearing in the exponential
+makes the distributions in the different coordinate directions
+separable<a
+id="separable_coordinates81482"></a>
+<a id="separategaus">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  exp</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8722;</td><td nowrap="nowrap" align="center">
+mv<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2kT<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+=exp</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8722;</td><td nowrap="nowrap" align="center">
+mv<sub>x</sub><sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2kT<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+exp</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8722;</td><td nowrap="nowrap" align="center">
+mv<sub>y</sub><sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2kT<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+exp</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8722;</td><td nowrap="nowrap" align="center">
+mv<sub>z</sub><sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2kT<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(8.3)</td></tr></table>
+
+
+See Fig.&nbsp;<a href="chap8.html#lmaxwellian">8.2</a>.
+
+</p><p>
+<a id="tth_fIg8.2">
+</a>   <img src="figures/maxwellian.png" alt="figures/maxwellian.png" /><a id="maxwellian">
+</a>
+
+<div style="text-align:center">Figure 8.2: A Maxwellian distribution function in two dimensions
+    displayed as a perspective view of the surface f(v<sub>x</sub>,v<sub>y</sub>), with
+    velocities (v<sub>x</sub>,v<sub>y</sub>) normalized to the thermal velocity
+    <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td align="left" class="cl"><br /><span class="larger">&#8730;</span><br />
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm">2T/m<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />. This can be considered to be the proportional to
+    the distribution at a fixed value of v<sub>z</sub>, since the Maxwellian
+    is separable.<a id="lmaxwellian">
+</a></div>
+
+</p><p>
+The factor <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+m
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#960;kT<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>3/2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> normalizes the
+distributions in the three velocity dimensions. It is equal to the
+inverse of the integral of eq.&nbsp;(<a href="chap8.html#separategaus">8.3</a>) over all
+velocities. Therefore the leading term n(<b><i>x</i></b>,t) is just the
+density in space<a
+id="density81483"></a> (not phase-space). It might vary with
+position or time. The Maxwellian distribution is what occurs in
+<em>thermodynamic equilibrium</em><a
+id="thermodynamic_equilibrium81484"></a> when
+there are no substantial effects driving the velocity distribution
+away from its natural form. But there are many important situations
+where non-thermal, that is non-Maxwellian, distributions arise.
+
+</p><p>
+The distribution function directly determines the mean flow
+velocity<a
+id="flow_velocity81485"></a>, and for particles whose internal energy
+is unimportant, the energy
+density<a
+id="density_energy81486"></a><a
+id="energy_density81487"></a>.
+The particle flux density, which is the fluid velocity
+times the fluid density, is
+<a id="meanvel">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#915; = n <b><i>v</i></b> = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<b><i>v</i></b> f(<b><i>v</i></b>,<b><i>x</i></b>,t) d<sup>3</sup>v.</td></tr></table>
+</td><td width="1%">(8.4)</td></tr></table>
+
+
+The kinetic energy density<a
+id="kinetic_energy81488"></a>, which for a
+stationary fluid can be considered the density times 3/2 times the
+temperature is
+<a id="energyden">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <span style="font-family:helvetica"><i>E</i></span> = </td><td nowrap="nowrap" align="center">
+3
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+n k T = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+m v<sup>2</sup> f d<sup>3</sup>v.</td></tr></table>
+</td><td width="1%">(8.5)</td></tr></table>
+
+
+
+</p><p>
+When the distribution in a specific coordinate direction does not
+concern us, perhaps because it is known, or because by symmetry it is
+unimportant, we often reduce the number of dimensions which we
+track. For example, often we might address only the x-direction
+velocity, v<sub>x</sub>. In that case, we use a one-dimensional distribution
+function,
+<a id="oneddist">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  f<sub>x</sub>(v<sub>x</sub>) = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+f(<b><i>v</i></b>) dv<sub>y</sub>dv<sub>z</sub>,</td></tr></table>
+</td><td width="1%">(8.6)</td></tr></table>
+
+
+that is the <em>integral</em><a
+id="distribution__1-dimensional81489"></a>
+of the full three dimensional distribution
+over the ignorable velocity coordinates. In effect, f<sub>x</sub>(v<sub>x</sub>) picks
+out a particular v<sub>x</sub> but includes all possible v<sub>y</sub> and v<sub>z</sub>. So
+the number of particles in the velocity element dv<sub>x</sub> is f<sub>x</sub>(v<sub>x</sub>)dv<sub>x</sub>.
+
+</p><p>
+The distribution function first arose in connection with the kinetic
+theory of gases<a
+id="kinetic_theory81490"></a>. Its use is therefore often
+referred to as "kinetic theory".
+
+</p><p>
+ <a id="tth_sEc8.2"></a><h2>
+8.2&nbsp;&nbsp;Conservation of Particles in Phase-Space</h2>
+
+</p><p>
+<a
+id="Boltzmann_equation82491"></a> Boltzmann's equation governs the
+conservation of particles; not just in space, which is the continuity
+equation (<a href="chap4.html#continuity">4.5</a>)<a
+id="particle___conservation82492"></a><a
+id="conservation_particles82493"></a>, but in
+phase-space. When solved, it tells us what the distribution function
+actually is. Its derivation is mathematically very much like the
+derivation of the fluid continuity equation. The main complication is
+that one needs to think in six dimensions! We'll usually illustrate
+this thinking in a (2-dimensional) diagram, using just one space (x
+as the abscissa) and one velocity (v as the ordinate) dimension.
+See Fig.&nbsp;<a href="chap8.html#phasespacefluxl">8.3</a>.
+
+</p><p>
+<a id="tth_fIg8.3">
+</a>   <img src="figures/phasespaceflux.png" alt="figures/phasespaceflux.png" /><a id="phasespaceflux">
+</a>
+
+<div style="text-align:center">Figure 8.3: In phase-space, velocity v carries a particle in the
+    x-direction, acceleration carries it in the
+    v-direction. Particle flux out of an element dvdx arises from
+    the divergence of the fluxes fv and fa in the respective
+    directions<a id="phasespacefluxl">
+</a></div>
+
+</p><p>
+As time passes, particles move in phase-space. The rate of change of
+x is the velocity dx/dt=v. The rate of change of velocity v is
+acceleration dv/dt=a. Generally acceleration arises from force (per
+particle) divided by particle mass. The force might be gravity, or
+(for charged particles) electric or magnetic field. An individual
+particle thus moves through the phase-space (in the xv plane of our
+diagram). If we therefore consider some phase-space volume we can
+write the conservation of particles within it just as we did for the
+fluid continuity equation as
+<a id="pfcontinuity">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
++ &#8711;<sub>ps</sub>.(f <b><i>v</i></b><sub>ps</sub>) = </td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b><i>x</i></b><br /></td><td nowrap="nowrap" align="center">
+.(f <b><i>v</i></b>) +</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b><i>v</i></b><br /></td><td nowrap="nowrap" align="center">
+. (f <b><i>a</i></b>) = S .</td></tr></table>
+</td><td width="1%">(8.7)</td></tr></table>
+
+
+Here <b><i>v</i></b><sub>ps</sub> is the "phase-space velocity", a six-dimensional
+vector consisting of the combination of the velocity in space and the
+acceleration. And &#8711;<sub>ps</sub> is the gradient operator in phase
+space, likewise a six-dimensional vector.
+<a id="6dphasespace">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<b><i>v</i></b><sub>ps</sub>=</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b><i>v</i></b><br />
+<b><i>a</i></b><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>x</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>y</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>z</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a<sub>x</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a<sub>y</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+a<sub>z</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+,&nbsp;<span class="roman">and</span>&nbsp; &#8711;<sub>ps</sub>=</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8711;<br />
+&#8711;<sub>v</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b><i>x</i></b><br /></td></tr></table><br />
+<table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b><i>v</i></b><br /></td></tr></table></td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8706;/&#8706;x</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8706;/&#8706;y</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8706;/&#8706;z</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8706;/&#8706;v<sub>x</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8706;/&#8706;v<sub>y</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8706;/&#8706;v<sub>z</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(8.8)</td></tr></table>
+
+
+The notation most usually used is to write out the space and velocity
+parts of the derivatives separately.
+<a id="spatialderivatives">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b><i>x</i></b><br /></td><td nowrap="nowrap" align="center">
+. (f<b><i>v</i></b>) = </td><td nowrap="nowrap" align="center">
+&#8706;(f v<sub>x</sub>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+&#8706;(f v<sub>y</sub>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;y<br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+&#8706;(f v<sub>z</sub>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;z<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(8.9)</td></tr></table>
+
+
+and
+<a id="velocityderivatives">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b><i>v</i></b><br /></td><td nowrap="nowrap" align="center">
+. (f <b><i>a</i></b>) = </td><td nowrap="nowrap" align="center">
+&#8706;(f a<sub>x</sub>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;v<sub>x</sub><br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+&#8706;(f a<sub>y</sub>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;v<sub>y</sub><br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+&#8706;(f a<sub>z</sub>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;v<sub>z</sub><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(8.10)</td></tr></table>
+
+
+This helps us remember we are dealing with phase-space. Equation
+(<a href="chap8.html#pfcontinuity">8.7</a>) expresses the fact that the rate of change of
+number particles in a phase-space element is equal to the rate at
+which they are flowing inward across its boundary plus the combined
+source rate inside the element, S (all per unit volume). Particles
+flow across the boundary either by moving in space across the boundary
+of d<sup>3</sup>x, or by accelerating (moving in velocity-space) across the
+boundary of d<sup>3</sup>v.
+
+</p><p>
+A final simplification arises in eq.&nbsp;(<a href="chap8.html#pfcontinuity">8.7</a>) because of
+what a partial derivative means. It means take the derivative
+<em>keeping all the other phase-space coordinates constant</em>. In
+other words, the partial x-derivative holds y,z,v<sub>x</sub>,v<sub>y</sub>,v<sub>z</sub>
+constant. The partial derivative of any v<sub>j</sub> with respect to any
+x<sub>k</sub> is therefore zero, which means that in the spatial divergence
+eq.&nbsp;(<a href="chap8.html#spatialderivatives">8.9</a>) the velocity factors can be taken
+outside the spatial derivatives to write
+<a id="spatialdivergence">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b><i>x</i></b><br /></td><td nowrap="nowrap" align="center">
+.(f <b><i>v</i></b>) = <b><i>v</i></b>.</td><td nowrap="nowrap" align="center">
+&#8706; f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b><i>x</i></b><br /></td><td nowrap="nowrap" align="center">
+ = v<sub>x</sub></td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
++ v<sub>y</sub></td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;y<br /></td><td nowrap="nowrap" align="center">
++ v<sub>z</sub></td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;z<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(8.11)</td></tr></table>
+
+
+That rearrangement is always possible. If the acceleration of a
+particle does not depend on its velocity (or depends on it in such a
+way that &#8711;<sub>v</sub>.<b><i>a</i></b>=0, which is the case for the Lorentz
+force) then we can do the same for the acceleration term.
+
+</p><p>
+Then we arrive at Boltzmann's equation<a
+id="Boltzmann_equation82494"></a>
+<a id="Boltzmann">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
++ <b><i>v</i></b>.</td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; <b><i>x</i></b><br /></td><td nowrap="nowrap" align="center">
++ <b><i>a</i></b>.</td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b><i>v</i></b><br /></td><td nowrap="nowrap" align="center">
+ = S = C.</td></tr></table>
+</td><td width="1%">(8.12)</td></tr></table>
+
+
+The source term on the right hand side of Boltzmann's equation
+contains not only literal creation<a
+id="particle_creation82495"></a> or
+destruction of particles (e.g.&nbsp;by chemical or nuclear reactions), but
+also any instantaneous changes of velocity, in other words
+<em>collisions</em>. A collision<a
+id="collision82496"></a> that does not destroy
+or create a particle of the type we are tracking can nevertheless
+change its velocity abruptly<a href="footnote.html#tthFtNtAEF" id="tthFrefAEF"><sup>45</sup></a>. This change in
+velocity immediately transports the particle from one velocity to
+another. The particle jumps to a different position in
+phase-space. That constitutes a "sink" at the old velocity and a
+"source" at the new velocity. Chemical or nuclear reactions also
+occur as a result of collisions, of course. Consequently essentially
+all the phenomena that contribute to the Boltzmann equation's source
+(with the exception of spontaneous - e.g.&nbsp;radioactive - decay of
+the particles) are collisions; and the source term is usually called
+the "collision" term and written C instead of S.
+
+</p><p>
+The collision term C(<b><i>v</i></b>,<b><i>x</i></b>,t) is the rate per unit
+phase-space-volume of generation (or removal if it is negative) of
+particles at position <b><i>x</i></b> having velocity <b><i>v</i></b>. It
+naturally depends also upon the distribution function f itself. For
+example the rate per unit volume at which collisions occur removing
+particles of a certain velocity is proportional to the number of such
+particles present in the first place.
+
+</p><p>
+ <a id="tth_sEc8.3"></a><h2>
+8.3&nbsp;&nbsp;Solving the Hyperbolic Boltzmann Equation</h2>
+
+</p><p>
+     <a id="tth_sEc8.3.1"></a><h3>
+8.3.1&nbsp;&nbsp;Integration along orbits</h3>
+
+</p><p>
+<a
+id="orbit83497"></a><a
+id="integration_along_orbit83498"></a>If we know the collision term C, as well as <b><i>a</i></b>, then clearly
+Boltzmann's equation is a first-order linear partial differential
+equation (in seven total dimensions including time, or less if there
+are ignorable coordinates).  Since it is first order linear with a
+single scalar dependent variable<a href="footnote.html#tthFtNtAEG" id="tthFrefAEG"><sup>46</sup></a>, f, it is hyperbolic. That means
+we may solve it as an initial value problem<a
+id="hyperbolic83499"></a>.
+
+</p><p>
+The most natural way to do this is to follow particle
+trajectories<a
+id="trajectory83500"></a> in phase-space, which we will call
+particle orbits. Any individual particle moves in accordance with
+<a id="orbitaccel">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d <b><i>x</i></b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d t<br /></td><td nowrap="nowrap" align="center">
+ = <b><i>v</i></b>, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td><td nowrap="nowrap" align="center">
+d <b><i>v</i></b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d t<br /></td><td nowrap="nowrap" align="center">
+ = <b><i>a</i></b>; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="roman">i</span><span class="roman">.</span><span class="roman">e</span><span class="roman">.</span>&nbsp;&nbsp;&nbsp; </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d t<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b><i>x</i></b><br />
+<b><i>v</i></b><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+=</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<b><i>v</i></b><br />
+<b><i>a</i></b><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(8.13)</td></tr></table>
+
+
+This is an ordinary differential equation, which we know how to solve
+(assuming <b><i>a</i></b> is known), starting from some initial position in
+phase-space <b><i>x</i></b><sub>0</sub>, <b><i>v</i></b><sub>0</sub>. But how does this orbit help us to
+solve Boltzmann's equation for the distribution function? It helps us
+because Boltzmann's equation is an equation for the rate of change of
+f moving along a particle phase-space orbit.
+
+</p><p>
+Suppose we catch a six-dimensional ride on one of the particles and
+move with it, looking out into the phase-space near to us and
+measuring the particle density there; watching it change as time goes
+by. The rate of change of the distribution function will be precisely
+that given by the left hand side of Boltzmann's equation. See Fig.&nbsp;<a href="chap8.html#phaseorbitl">8.4</a> for a visualization.
+
+</p><p>
+<a id="tth_fIg8.4">
+</a>   <img src="figures/phaseorbit.png" alt="figures/phaseorbit.png" /><a id="phaseorbit">
+</a>
+
+<div style="text-align:center">Figure 8.4: A phase-space orbit is determined by a first order ordinary
+    differential equation. The Boltzmann equation states that the rate
+    of change of the distribution function along phase-space orbits is
+    equal to the collision term.<a id="phaseorbitl">
+</a></div>
+
+</p><p>
+First let's convince ourselves that is true. If, during our ride, we
+measure the difference in f between times different by a small
+interval dt. The f will be different because (1) it may have
+intrinsic variation with time, resulting in a change dt&nbsp;&#8706;f/ &#8706;t; (2) it may have variation with space so our motion has
+carried us a distance dt&nbsp;<b><i>v</i></b>, to a place where f is different
+by dt&nbsp;<b><i>v</i></b>.&#8706;f/&#8706;<b><i>x</i></b>; or (3) it may have
+variation with velocity so our motion in velocity space (acceleration)
+has carried us a velocity-"distance", dt&nbsp;<b><i>a</i></b>, to where f is
+different by dt&nbsp;<b><i>a</i></b>.&#8706;f/&#8706;<b><i>v</i></b>.  The total of
+these three, divided by dt, is the rate of change of f along the
+orbit. That's the left hand side of eq.&nbsp;(<a href="chap8.html#Boltzmann">8.12</a>).
+
+</p><p>
+Second, why is this identity with the total derivative the case? It is
+because the flow in phase-space is<a
+id="phase-space_divergence83501"></a>
+<em>divergenceless</em><a
+id="divergenceless83502"></a>,
+&#8711;<sub>ps</sub>.<b><i>v</i></b><sub>ps</sub>=0. Just as for an ordinary
+three-dimensional fluid for which &#8711;.(&#961;<b><i>v</i></b>) = <b><i>v</i></b>.&#8711;&#961; if &#8711;.<b><i>v</i></b>=0, implying D&#961;/Dt=S,
+similarly for a dimensionless flow in phase-space. The phase-space
+flow is divergenceless if the acceleration has the requisite property
+&#8711;<sub>v</sub>.<b><i>a</i></b>=0. This can be interpreted as a statement that
+there is no dissipation.
+
+</p><p>
+Third, how does this identity help us? It reduces Boltzmann's
+equation to an ordinary differential equation along the
+orbits. Writing the total differential as D/Dt it becomes
+<a id="BoltzmannOrbit">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
++ <b><i>v</i></b>.</td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; <b><i>x</i></b><br /></td><td nowrap="nowrap" align="center">
++ <b><i>a</i></b>.</td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b><i>v</i></b><br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+Df
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>Dt<br /></td><td nowrap="nowrap" align="center">
+ = C.</td></tr></table>
+</td><td width="1%">(8.14)</td></tr></table>
+
+
+We can integrate the second equality immediately to obtain:
+<a id="orbitintegrated">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  f(<b><i>v</i></b><sub>1</sub>,<b><i>x</i></b><sub>1</sub>,t<sub>1</sub>) &#8722; f(<b><i>v</i></b><sub>0</sub>,<b><i>x</i></b><sub>0</sub>,t<sub>0</sub>) = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>1</small><!--sup
+--><br /><br />
+<small>0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+C dt.</td></tr></table>
+</td><td width="1%">(8.15)</td></tr></table>
+
+
+The integral is along the orbit<a
+id="integral_along_orbit83503"></a>, whatever
+that might be in phase space, from the initial position (0) to the
+final position (1). The final value of the distribution function,
+measured at the final values of velocity, position, and time, is equal
+to the initial value of the distribution function at the initial
+values of velocity, position, and time, plus the integral of the
+collision term along the orbit. The easiest case to deal with is if
+there are <em>no</em> collisions, C=0. Then the initial and final
+distribution functions are equal in value. A fact we express by
+saying, in the absence of collisions, the distribution function is
+"constant along orbits"<a
+id="constant_along_orbit83504"></a>.
+
+</p><p>
+It is vital to realize that constant along orbits generally does <em>not</em> mean
+that the distribution function is the same function of velocity at 1
+as it was at 0. No, the orbital <em>velocity</em> has changed between
+those positions. So although f has the same <em>height</em>, that
+height does not occur at the same <em>velocity</em>. Fig.&nbsp;<a href="chap8.html#constonorbit">8.5</a> illustrates this fact.
+
+</p><p>
+
+</p><p>
+<a id="tth_fIg8.5">
+</a> <img src="figures/constantorbit.png" alt="figures/constantorbit.png" /><a id="constantorbit">
+</a><img src="figures/potentialhill.png" alt="figures/potentialhill.png" /><a id="potentialhill">
+</a>
+
+
+<div style="text-align:center">Figure 8.5: In the collisionless Boltzmann equation the distribution is
+  constant along orbits. The distribution (a) is different at the top
+  of a potential hill (b) because the speed on an orbit is smaller
+  (conserving energy). The distribution values f<sub>0</sub>=f(x<sub>0</sub>) and
+  f<sub>1</sub>=f(x<sub>1</sub>) are the same but at different velocities. Orbits have
+  moved the distribution along the horizontal dotted lines in (a). The
+  lowest velocity orbits of distribution f<sub>0</sub> (upper dashed part) can't
+  reach the top of the hill where f<sub>1</sub> is, and do not contribute to
+  it.<a id="constonorbit">
+</a></div>
+
+</p><p>
+     <a id="tth_sEc8.3.2"></a><h3>
+8.3.2&nbsp;&nbsp;Orbits are Characteristics</h3><a id="characteristicsec">
+</a>
+
+</p><p>
+Every hyperbolic partial differential equation can be analysed in a
+manner equivalent to the integration along orbits. This approach is
+called the method of characteristics<a
+id="characteristic83505"></a>. The
+terminology "characteristic"<a
+id="method_of_characteristics83506"></a> is the
+general term for what we've called in the context of the Boltzmann
+equation an "orbit". Suppose we have a first order linear equation,
+an advection equation<a
+id="advection83507"></a> with source<a
+id="source83508"></a>
+<a id="hyper1st">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>v</b>.</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b>x</b><br /></td><td nowrap="nowrap" align="center">
+&#968; =  S,</td></tr></table>
+</td><td width="1%">(8.16)</td></tr></table>
+
+
+in which the components of the N-dimensional vector <b>v</b> are
+simply known functions of &#968; and the N-dimensional independent
+variables <b>x</b>.  Introduce a new parameter t which is going to
+serve like time. (If the original equation already contained time as
+one of the independent variables, treat it just as one component of
+the vector <b>v</b> and use the new t as a parameterization.) Think
+of the <b>v</b> as velocities in N-dimensional space such that
+d<b>x</b>/dt=<b>v</b>. Remember, in the original formulation, those
+<b>v</b> were just the coefficients of the partial derivatives in the
+respective directions. What we've done is to address the question
+"what if the coefficients <b>v</b> were velocities?"&nbsp;in respect of
+the new t parameter we introduced. The answer is that starting from
+any point <b>x</b> we would move with the velocity <b>v</b> and
+thereby trace out an orbit in the <b>x</b>-space. This orbit is what
+is called the characteristic of the differential equation. As we
+follow the characteristic, the equation we would be satisfying would
+be
+<a id="characode">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>v</b>.</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b>x</b><br /></td><td nowrap="nowrap" align="center">
+&#968; =   </td><td nowrap="nowrap" align="center">
+d <b>x</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dt<br /></td><td nowrap="nowrap" align="center">
+.</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b>x</b><br /></td><td nowrap="nowrap" align="center">
+&#968; = </td><td nowrap="nowrap" align="center">
+<small>N</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+d x<sub>j</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dt<br /></td><td nowrap="nowrap" align="center">
+.</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<sub>j</sub><br /></td><td nowrap="nowrap" align="center">
+&#968; = </td><td nowrap="nowrap" align="center">
+d &#968;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dt<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small><span class="roman">orbit</span></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+=S.</td></tr></table>
+</td><td width="1%">(8.17)</td></tr></table>
+
+
+This equation is an ordinary differential equation along the
+characteristic and can be integrated as &#968;<sub>1</sub>&#8722;&#968;<sub>0</sub> = &#8747;<sub>0</sub><sup>1</sup> Sdt. This process is exactly what we did for Boltzmann's equation. The
+only difference is that Boltzmann's equation already contained
+time. Fortunately the coefficient of <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> in
+Boltzmann's equation is 1. Therefore it was possible to choose the
+time-like parameter to be actual physical time, which we did.  We
+could however have made a different choice, if we'd preferred.  We
+also used notation familiar from fluid theory for the "convective"
+derivative D/Dt, but that is no different from d/dt along the
+orbit.
+
+</p><p>
+Higher order scalar equations can be rendered into first order,
+<em>vector</em> (multiple dependent variable) equations, as we saw
+before. If they are hyperbolic, then they have characteristics which
+correspond to the coefficients of the eigenvectors of the
+equations. Those eigenvectors must be real<a
+id="eigenvalue_real83509"></a>
+otherwise the presumption that there are real characteristics breaks
+down. The condition, therefore, for a system of vector equations to be
+hyperbolic<a
+id="hyperbolic83510"></a> is that they are diagonalizable with real
+eigenvectors.
+
+</p><p>
+ <a id="tth_sEc8.4"></a><h2>
+8.4&nbsp;&nbsp;Collision Term</h2>
+
+</p><p>
+<a
+id="collision84511"></a>The importance of the Boltzmann equation's collision term depends upon the
+application. In some plasma and gravitational applications it can be
+completely neglected and ignored. Collisions are nothing.  Then the
+equation of interest is called the Vlasov equation<a
+id="Vlasov_equation84512"></a>.
+<a id="Vlasov">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
++ <b><i>v</i></b>.</td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; <b><i>x</i></b><br /></td><td nowrap="nowrap" align="center">
++ <b><i>a</i></b>.</td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b><i>v</i></b><br /></td><td nowrap="nowrap" align="center">
+ = 0.</td></tr></table>
+</td><td width="1%">(8.18)</td></tr></table>
+
+
+At the other extreme, when applied forces are negligible so <b><i>a</i></b>=0,
+and the problem is homogeneous and steady state
+&#8706;/&#8706;<b><i>x</i></b>=0, &#8706;/&#8706;t=0, all that is
+left of the Boltzmann equation is C=0. So then collisions are everything!
+
+</p><p>
+Also, the form of the collision term depends upon
+application. Especially it depends upon whether the important
+collisions are with the same particles or with some particles of a
+different type that are described by a different distribution
+function.
+
+</p><p>
+     <a id="tth_sEc8.4.1"></a><h3>
+8.4.1&nbsp;&nbsp;Self-scattering</h3>
+
+</p><p>
+<a
+id="scattering84513"></a><a
+id="self-scattering84514"></a> Self-scattering dominates, for example, a
+simple unreactive monatomic gas.  There is just one species of
+particle. And elastic<a
+id="elastic_scattering84515"></a> self-scattering is the
+only type of collision present. Then the integrals over all velocity
+space of C, <b><i>v</i></b>C, and <b><i>v</i></b><sup>2</sup>C are zero. That is a simple
+consequence of particle, momentum, and energy conservation.  With
+self-scattering, though, other complications are severe. The rate at
+which collisions take place depends upon a product
+f(<b><i>v</i></b><sub>1</sub>)f(<b><i>v</i></b><sub>2</sub>) of the distribution functions of the two
+colliding particles of different velocities (so it is non-linear). It
+is multiplied by the collision rate, which is the cross-section (a
+function of relative speed) times the relative speed
+&#963;&#124;<b><i>v</i></b><sub>1</sub>&#8722;<b><i>v</i></b><sub>2</sub>&#124;. It is then integrated over the velocity
+<b><i>v</i></b><sub>2</sub> of the target particle (so Boltzmann's equation becomes an
+integro-differential equation<a
+id="integro-differential84516"></a>). Generally
+substantial approximation is necessary to make the collision term
+managable, even for numerical solution.
+
+</p><p>
+     <a id="tth_sEc8.4.2"></a><h3>
+8.4.2&nbsp;&nbsp;No self-scattering</h3>
+
+</p><p>
+If, however, the dominant interactions are with a different type of
+particle, then momentum and energy of the first species is not
+necessarily conserved. It can be transferred to the second
+species. But at least<a
+id="linear_collision_term84517"></a> the collision term
+is linear in f, and if the initial velocity distribution of the
+second species is known or may be neglected, then substantial
+reduction of the need for integration can occur.
+
+</p><p>
+For example, as illustrated in Fig.&nbsp;<a href="chap8.html#lBGKcoln">8.6</a>, a form of
+collision term that approximately represents
+charge-exchange<a
+id="charge-exchange84518"></a> collisions at a fixed rate
+&#957; between singly charged ions (the species whose Boltzman equation we
+are trying to solve) and neutrals of the same element (the target
+species 2) is
+<a id="BGKcoln">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  C(f) = &#8722;&#957;f(<b><i>v</i></b>) +&#957;f<sub>2</sub>(<b><i>v</i></b>).</td></tr></table>
+</td><td width="1%">(8.19)</td></tr></table>
+
+
+
+</p><p>
+<a id="tth_fIg8.6">
+</a>   <img src="figures/chargeexch.png" alt="figures/chargeexch.png" /><a id="chargeexch">
+</a>
+
+<div style="text-align:center">Figure 8.6: Charge exchange collisions, where an electron is
+    transferred from a neutral to an ion, give rise to a simple
+    collision term. If they occur at a constant rate, &#957;, eq.&nbsp;    <a href="chap8.html#BGKcoln">8.19</a> applies.<a id="lBGKcoln">
+</a></div>
+
+</p><p>
+This is sometimes called the BGK<a
+id="BGK_collision_term84519"></a> collision
+form. It represents depletion of the original ions at rate &#957;
+giving the term &#8722;&#957;f(<b><i>v</i></b>), and their direct replacement at the same
+rate by new ions.  The newly born ions, before their collision, were
+neutrals. They retain the velocity distribution f<sub>2</sub>(<b><i>v</i></b>) they had
+before the collision, because the collision just transfers an electron
+from one to the other.
+
+</p><p>
+Another idealized example (Fig.&nbsp;<a href="chap8.html#lisotropic">8.7</a>) is when collisions
+are with heavy stationary targets<a
+id="stationary_targets84520"></a> (which
+therefore acquire negligible recoil energy) which happen to scatter equally,
+isotropically, in all directions.
+
+</p><p>
+<a id="tth_fIg8.7">
+</a>   <img src="figures/isotropscat.png" alt="figures/isotropscat.png" /><a id="isotropscat">
+</a>
+
+<div style="text-align:center">Figure 8.7: Isotropic scattering (an idealized approximation) gives
+    particles emerging equally in all directions &#8486;. With heavy
+    targets, v is not changed in magnitude, only in direction. Eq.&nbsp;    (<a href="chap8.html#isotropic">8.20</a>) is the result.<a id="lisotropic">
+</a></div>
+
+</p><p>
+In a collision, a particle
+just changes the direction of its velocity, not its magnitude.
+If the density of targets is n<sub>2</sub> and the collision cross-section is
+&#963;, then
+<a id="isotropic">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  C(f) = &#8722;n<sub>2</sub> &#963;v</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+f(<b><i>v</i></b>) &#8722; </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+f(<b><i>v</i></b>)d<sup>2</sup>&#8486;/4&#960;</td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(8.20)</td></tr></table>
+
+
+Here<a
+id="solid_angle___Omega_84521"></a> d<sup>2</sup>&#8486; =  sin&#952;d&#952;d&#967; is the
+element of solid angle, and the integral is over the angular position
+(&#952;,&#967;) on the surface of the sphere in velocity space at
+constant total velocity v. In other words, the second term is the
+average of the distribution function over all directions, at v. This
+type of collision scatters the velocity direction, thus tending to
+remove any anisotropy (variation with angles &#952; or &#967;.)
+
+</p><p>
+It should be noticed that in these examples where self-collisions can
+be ignored, the collision term generally consists of two parts. The
+first is negative, the removal or "sink"<a
+id="sink_of_particles84522"></a>
+rate of particles that collide with whatever targets happen to be
+present (&#8722;n<sub>2</sub>&#963;v f in eq.<a href="chap8.html#isotropic">8.20</a>). The second is
+positive, the "source"<a
+id="source_of_particles84523"></a> rate of particles
+from all mechanisms. When non-reactive gases are being treated, the
+source is only the re-emergence of particles from collisions. But in
+other situations, such as neutron transport in a reactor, generation
+of new particles from reactions or spontaneous emission from the
+target medium may be equally important.
+
+</p><p>
+For multiple target species, j, the sink term is the sum of collisions
+with all target types. And this is often written in shorthand as
+&#8722;&#931;<sub>t</sub>&times;( v f), with
+<a id="macrocross">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#931;<sub>t</sub> = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>j</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+n<sub>j</sub> &#963;<sub>j</sub>;</td></tr></table>
+</td><td width="1%">(8.21)</td></tr></table>
+
+
+and referred to in reactor physics literature as the "macroscopic
+cross-section"<a
+id="macroscopic_cross-section84524"></a>. This terminology is
+unfortunate because the quantity &#931;<sub>t</sub> has units m<sup>&#8722;1</sup> not
+m<sup>2</sup>, and is an inverse attenuation-length<a
+id="attenuation-length84525"></a>,
+not a cross section. When the targets are stationary, &#931;<sub>t</sub> is
+isotropic: the rate of collisions is independent of the direction of
+particle velocity. The source term, by contrast, is <em>not</em> usually isotropic
+because it includes the emergence of particles from pure scattering
+events. Scattering, even from stationary targets, usually partially
+retains any anisotropy in the distribution function itself. (The
+conditions of eq.&nbsp;<a href="chap8.html#isotropic">8.20</a> are a non-typical idealization.)
+
+</p><p>
+
+<h2>Worked Example: Solving Vlasov's Equation</h2>
+
+</p><p>
+Consider<a
+id="Vlasov_equation84526"></a> a steady-state situation, one
+dimensional in space and velocity, where acceleration arises only from
+a spatially varying potential energy of the form &#981;(x)=&#981;<sub>0</sub>exp(&#8722;x<sup>2</sup>/w<sup>2</sup>), so a=&#8722;<sup>1</sup>/<sub>m</sub>d&#981;/dx, and collisions are
+negligible. If the distribution function at &#124;x&#124;&#8594; &#8734; is equal
+to f<sub>&#8734;</sub>(v) = exp(&#8722;m v<sup>2</sup>/2T), and &#981;<sub>0</sub> &#8805; 0, find the
+distribution function f(v,x) for all x, and v. Can you solve
+this problem if &#981;<sub>0</sub> &lt; 0?
+</p><p>
+<br />The steady collisionless one-dimensional Boltzmann (Vlasov) equation
+is<a
+id="steady_state84527"></a>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ 0=</td><td nowrap="nowrap" align="center">
+D f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>D t<br /></td><td nowrap="nowrap" align="center">
+ = v.</td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; x<br /></td><td nowrap="nowrap" align="center">
++ a.</td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;v<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(8.22)</td></tr></table>
+
+
+The equations of the orbit (the characteristics)
+are<a
+id="characteristic_equation84528"></a>
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+d x
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d t<br /></td><td nowrap="nowrap" align="center">
+ = v;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td><td nowrap="nowrap" align="center">
+d v
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d t<br /></td><td nowrap="nowrap" align="center">
+=a=&#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>m<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+d&#981;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d x<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(8.23)</td></tr></table>
+
+
+Multiplying the second of these by the first we find
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ v</td><td nowrap="nowrap" align="center">
+d v
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d t<br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>m<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+d&#981;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d x<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+d x
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>d t<br /></td><td nowrap="nowrap" align="center">
+=0,</td></tr></table>
+</td><td width="1%">(8.24)</td></tr></table>
+
+
+which may be immediately integrated to find
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+m v<sup>2</sup> + &#981; =  const.</td></tr></table>
+</td><td width="1%">(8.25)</td></tr></table>
+
+
+We have derived the conservation of energy, kinetic plus
+potential. The constant can be considered to be the kinetic energy at
+infinity, <sup>1</sup>/<sub>2</sub>mv<sub>&#8734;</sub><sup>2</sup>, where the potential (&#981;<sub>&#8734;</sub>) is zero.
+
+</p><p>
+For Vlasov's equation, the distribution function, f is constant
+along the orbits<a
+id="constant_along_orbit84529"></a>. Therefore
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ f(v,x) = f<sub>&#8734;</sub>(v<sub>&#8734;</sub>) = exp(&#8722;m v<sub>&#8734;</sub><sup>2</sup>/2T) = exp(&#8722;[m v<sup>2</sup>+2&#981;(x)]/2T).</td></tr></table>
+</td><td width="1%">(8.26)</td></tr></table>
+
+
+Substituting for &#981;(x) we find
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ f(v,x) = exp(&#8722;[m v<sup>2</sup>+2&#981;<sub>0</sub> e<sup>&#8722;x<sup>2</sup>/w<sup>2</sup></sup>]/2T) = exp(&#8722;</td><td nowrap="nowrap" align="center">
+m v<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2T<br /></td><td nowrap="nowrap" align="center">
+)exp(&#8722;</td><td nowrap="nowrap" align="center">
+&#981;<sub>0</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>T<br /></td><td nowrap="nowrap" align="center">
+e<sup>&#8722;x<sup>2</sup>/w<sup>2</sup></sup>).</td></tr></table>
+</td><td width="1%">(8.27)</td></tr></table>
+
+
+If &#981;<sub>0</sub> &gt; 0, then no matter how small v<sup>2</sup> is, there is a real
+solution for v<sub>&#8734;</sub> to the conservation equation <sup>1</sup>/<sub>2</sub> m v<sup>2</sup>+ &#981; =  <sup>1</sup>/<sub>2</sub> m v<sub>&#8734;</sub><sup>2</sup>. Therefore this expression for f
+is valid for all v. The distribution is everywhere Maxwellian, but
+its density varies with position. However, if &#981;<sub>0</sub> &lt; 0 then,
+everywhere that &#981; is negative, there is a minimum speed
+<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td align="left" class="cl"><br /><span class="larger">&#8730;</span><br />
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm">&#8722;2&#981;/m<br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />, below which there is no real solution for
+v<sub>&#8734;</sub>. These are the trapped orbits<a
+id="trapped_orbit84530"></a>. They do
+not extend to infinity, but are reflected because they reside in the
+potential well. The value of f on those trapped orbits is undefined
+by the boundary condition at infinity, and must be determined
+otherwise, e.g.&nbsp;from the initial conditions. Fig.&nbsp;<a href="chap8.html#xhole">8.8</a> shows
+an example solution.
+
+</p><p>
+<a id="tth_fIg8.8">
+</a> <img src="figures/hillcontour.png" alt="figures/hillcontour.png" /><a id="hillcontour">
+</a>(a)<img src="figures/wellcontour.png" alt="figures/wellcontour.png" /><a id="wellcontour">
+</a>(b)
+
+<div style="text-align:center">Figure 8.8: Contours of constant f(v,x) are also orbits. Therefore the
+  orbits can be plotted simply by contouring f,
+  whose value is determined by the total (kinetic plus potential)
+  energy at any point in phase-space. When the potential has a hill
+  (a), all orbits extend to x&#8594; &#8734; and f is determined by
+  boundary conditions. When the potential has a well (b), the value of
+  f on trapped orbits (shaded) is undetermined. [The parameters used
+  in these plots are &#981;<sub>0</sub>/m=&#177;1, w=1, T/m=1.]<a id="xhole">
+</a></div>
+
+</p><p>
+
+<h2>Exercise 8. Boltzmann's Equation.</h2>
+
+</p><p>
+<br /><br />1. Divergence of acceleration in phase-space.
+
+</p><p>
+(a) Prove that particles of charge q moving in a magnetic field
+<b><i>B</i></b> and hence subject to a force q<b><i>v</i></b>&times;<b><i>B</i></b>,
+nevertheless have &#8711;<sub>v</sub>.<b><i>a</i></b>=0.
+
+</p><p>
+(b) Consider a frictional force that slows particles down in
+accordance with <b><i>a</i></b>=&#8722;K<b><i>v</i></b>, where K is a constant. What is
+the "velocity-divergence", of this acceleration,
+&#8711;<sub>v</sub>.<b><i>a</i></b>?  Does this cause the distribution function f
+to increase or decrease as a function of time?
+
+</p><p>
+<br /><br /> 2. Write down the Boltzmann equation governing the
+distribution function of neutral particles of mass m in a
+gravitational field <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">g</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>x</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />, moving through matter that
+consists of two different species of density n<sub>a</sub>, n<sub>b</sub> whose
+<em>only</em> effects are: species a absorbs the particles with a
+cross-section &#963;<sub>a</sub> independent of speed; species b emits the
+particles with a Maxwellian distribution of small temperature T<sub>b</sub>,
+by radioactive decay with a half-life t<sub>b</sub>.
+
+</p><p>
+Solve the equation (analytically) in uniform steady state (<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+=</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b><i>x</i></b><br /></td><td nowrap="nowrap" align="center">
+=0
+</td></tr></table><br />), in the
+limit kT<sub>b</sub> &lt;&lt; m g/n<sub>a</sub>&#963;<sub>a</sub>, to find the distribution function
+f<sub>x</sub>(v<sub>x</sub>).
+
+</p><p>
+
+
+<hr /><table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+<a href="chap9.html">NEXT
+</a></td></tr></table>
+</div></body></html>

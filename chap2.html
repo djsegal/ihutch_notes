@@ -1,0 +1,1370 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
+    img {     max-width: 100%;
+    max-height: 40vh; } p { line-height: 1.5em; } body {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 18px;
+    }
+  </style>
+<
+<title>chap2.html</title>
+<table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+ <a href="chap1.html">PREVIOUS
+</a></td></tr></table>
+ <a id="tth_chAp2"></a><h1>
+Chapter 2 <br />Ordinary Differential Equations</h1>
+<a id="ODEChap">
+</a>
+
+</p><p>
+<a
+id="ordinary_differential_equation2075"></a> <a id="tth_sEc2.1"></a><h2>
+2.1&nbsp;&nbsp;Reduction to first-order</h2>
+
+</p><p>
+<a
+id="reduction_of_order2176"></a><a
+id="order_reduction2177"></a> An ordinary
+differential equation involves just one<a
+id="independent_variable2178"></a>
+<em>independent</em> variable, x, and a<a
+id="dependent_variable2179"></a>
+<em>dependent</em> variable y. Obviously it involves
+<em>derivatives</em><a
+id="derivative2180"></a><a
+id="differential2181"></a> of the
+dependent variable like <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+dy
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />. The highest
+order<a
+id="order_of_differential2182"></a>
+differential, i.e.&nbsp;the term <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+d<sup>N</sup>y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>N</sup><br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> with the largest value
+of N appearing in the equation, defines the <em>order</em> N of the
+equation. So the most general ODE of order N can be written such
+that the Nth order derivative is equal to a function of all the
+lower order derivatives and the independent variable x:
+<a id="ode1">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d<sup>N</sup>y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>N</sup><br /></td><td nowrap="nowrap" align="center">
+ = f(</td><td nowrap="nowrap" align="center">
+d<sup>N&#8722;1</sup>y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>N&#8722;1</sup><br /></td><td nowrap="nowrap" align="center">
+,</td><td nowrap="nowrap" align="center">
+d<sup>N&#8722;2</sup>y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>N&#8722;2</sup><br /></td><td nowrap="nowrap" align="center">
+,...,</td><td nowrap="nowrap" align="center">
+dy
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+,y,x)</td></tr></table>
+</td><td width="1%">(2.1)</td></tr></table>
+
+
+
+</p><p>
+Such an ordinary differential equation of order N in a single dependent
+variable, y, can always be reduced to a set of simultaneous
+coupled<a
+id="coupled_equations2183"></a>
+<em>first</em> order equations involving N dependent variables.
+The simplest way to do this is to use a natural notation to denote by
+y<sup>(i)</sup> the ith derivative:
+<a id="ode2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d<sup>i</sup>y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>i</sup><br /></td><td nowrap="nowrap" align="center">
+ = y<sup>(i)</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i=1,2,...,N&#8722;1.</td></tr></table>
+</td><td width="1%">(2.2)</td></tr></table>
+
+
+When combined with the original equation, the total system can be
+written as a first-order vector<a
+id="vector_equations2184"></a> differential
+equation whose components are
+<a id="ode3">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+y<sup>(i)</sup> = f<sub>i</sub>(y<sup>(N&#8722;1)</sup>,y<sup>(N&#8722;2)</sup>,...,y<sup>(1)</sup>,y<sup>(0)</sup>,x), &nbsp;&nbsp;&nbsp; i=0,1,...,N&#8722;1</td></tr></table>
+</td><td width="1%">(2.3)</td></tr></table>
+
+
+(where for notational consistency y<sup>(0)</sup>=y). Explicitly in vector form:
+<a id="ode4">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sup>(0)</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sup>(1)</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sup>(N&#8722;1)</sup></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>0</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f<sub>N&#8722;1</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sup>(1)</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sup>(2)</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+f(y<sup>(N&#8722;1)</sup>,y<sup>(N&#8722;2)</sup>,...,y<sup>(1)</sup>,y<sup>(0)</sup>,x)</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(2.4)</td></tr></table>
+
+
+Recognizing that the combined simultanous vector system of dimension
+N with first-order derivatives, is equivalent to a single scalar equation
+of order N, we often say that the order<a
+id="order_of_system2185"></a> of the coupled vector system is
+still N. (Sorry if that seems confusing. In practice you get the
+hang of it.)
+
+</p><p>
+This is formal mathematics and applies to all equations, but precisely
+such a set of coupled first-order equations will often also arise
+directly in the formulation of the practical problem we are trying to
+solve<a
+id="coupled_equations2186"></a>. Suppose
+we are trying to track the position of a fluid<a
+id="fluid2187"></a> element in a three
+dimensional steady flow<a
+id="flow2188"></a>. If we know the fluid velocity <b><i>v</i></b>
+as a function of position <b><i>v</i></b>(<b><i>x</i></b>), then the equation of the
+track of a fluid element, i.e.&nbsp;the path followed by the element as it
+moves in time t, is
+<a id="ode5">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dt<br /></td><td nowrap="nowrap" align="center">
+<b><i>x</i></b> = <b><i>v</i></b>.</td></tr></table>
+</td><td width="1%">(2.5)</td></tr></table>
+
+
+This is the equation we must solve to find a fluid
+streamline<a
+id="streamline2189"></a>.  It is of just the same form we derived
+by order reduction. Such a history of position as a function of time
+is called generically an orbit<a
+id="orbit2190"></a>.  Here the independent
+variable is t, and the dependent variable is <b><i>x</i></b>. The vector
+<b><i>v</i></b> plays the role of the functions f<sub>i</sub>.
+
+</p><p>
+Orbits may not be just in space, they may be in
+higher-dimensional<a
+id="higher-dimension2191"></a> phase-space. For example
+(see Fig <a href="chap2.html#cycvelocity">2.1</a>) to
+find the orbit of a charged particle<a
+id="charged_particle2192"></a> (e.g.&nbsp;proton) of mass m<sub>p</sub> and charge e moving at velocity <b><i>v</i></b> in a
+uniform magnetic field <b><i>B</i></b><a
+id="magnetic_field2193"></a>, we observe
+that it is subject to a force e<b><i>v</i></b>&times;<b><i>B</i></b>. In the absence
+of any other forces, it has an equation of motion<a
+id="magnetic_force2194"></a>
+<a id="ode6">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dt<br /></td><td nowrap="nowrap" align="center">
+<b><i>v</i></b> = </td><td nowrap="nowrap" align="center">
+e
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>m<sub>p</sub><br /></td><td nowrap="nowrap" align="center">
+<b><i>v</i></b>&times;<b><i>B</i></b> = <b><i>f</i></b>(<b><i>v</i></b>) ,</td></tr></table>
+</td><td width="1%">(2.6)</td></tr></table>
+
+
+in which the acceleration depends upon the velocity.  This is a first
+order vector differential equation, in three dimensions, where t
+plays the role of the independent variable, and the dependent variable
+is the vector velocity <b><i>v</i></b>. The vector
+acceleration<a
+id="acceleration2195"></a> <b><i>f</i></b> which is the vector
+derivative function depends upon all the components of <b><i>v</i></b>.
+
+</p><p>
+<a id="tth_fIg2.1">
+</a>   <img src="figures/cycvelocity.png" alt="figures/cycvelocity.png" /><a id="cycvelocity">
+</a>
+
+<div style="text-align:center">Figure 2.1: Orbit of the velocity of a particle moving in a uniform
+    magnetic field is a circle in <em>velocity-space</em> perpendicular
+    to the field (<br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">B=B</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>z</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> here).<a id="cycvelocity">
+</a></div>
+
+</p><p>
+If, for our proton orbit, <b><i>B</i></b> is not uniform, but varies with
+position, then we need to know both position <b><i>x</i></b>, and velocity
+<b><i>v</i></b> at all times along the orbit to solve it. The system then
+involves six-dimensional vectors consisting of the components of
+<b><i>x</i></b> and <b><i>v</i></b>:
+
+</p><p>
+<a id="ode7">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dt<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+x<sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+x<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+x<sub>3</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>3</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+v<sub>3</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+(v<sub>2</sub>B<sub>3</sub>&#8722;v<sub>3</sub>B<sub>2</sub>)e/m<sub>p</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+(v<sub>3</sub>B<sub>1</sub>&#8722;v<sub>1</sub>B<sub>3</sub>)e/m<sub>p</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+(v<sub>1</sub>B<sub>2</sub>&#8722;v<sub>2</sub>B<sub>1</sub>)e/m<sub>p</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(2.7)</td></tr></table>
+
+
+
+</p><p>
+Very often, to find <em>analytic</em> solutions it feels more natural to
+eliminate some of the dependent variables with the result that the
+order of the ODE is raised. So, for example for a uniform magnetic
+field in the 3-direction, the dynamics perpendicular to it separate
+out into
+<a id="ode8">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dt<br /></td><td nowrap="nowrap" align="center">
+v<sub>1</sub> = &#8486;v<sub>2</sub> ,&nbsp;</td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dt<br /></td><td nowrap="nowrap" align="center">
+v<sub>2</sub> = &#8722;&#8486; v<sub>1</sub>&nbsp;&nbsp;&nbsp; &#8658;&nbsp;&nbsp;&nbsp; </td><td nowrap="nowrap" align="center">
+d<sup>2</sup>v<sub>1</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dt<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = &#8722;&#8486;<sup>2</sup>v<sub>1</sub>,&nbsp; </td><td nowrap="nowrap" align="center">
+d<sup>2</sup>v<sub>2</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dt<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = &#8722;&#8486;<sup>2</sup>v<sub>2</sub>.</td></tr></table>
+</td><td width="1%">(2.8)</td></tr></table>
+
+
+(writing &#8486; = eB/m<sub>p</sub>)<a
+id="cyclotron_frequency___Omega_2196"></a>.  The second-order
+<em>uncoupled</em> equations are familiar to us as simple harmonic
+oscillator<a
+id="simple_harmonic_oscillator2197"></a> equations, having
+solutions like cos&#8486;t and sin&#8486;t. So they are easier
+to solve <em>analytically</em>. But the original first-order equations,
+even though they are <em>coupled</em> are far easier to solve
+<em>numerically</em>. So we don't generally do the
+elimination<a
+id="elimination2198"></a> in computational solutions.
+
+</p><p>
+ <a id="tth_sEc2.2"></a><h2>
+2.2&nbsp;&nbsp;Numerical Integration of Initial Value Problem</h2>
+
+</p><p>
+     <a id="tth_sEc2.2.1"></a><h3>
+2.2.1&nbsp;&nbsp;Explicit Integration</h3>
+Now we consider how in practice to solve a first-order ODE<a
+id="ODE2299"></a>
+in which all the boundary conditions<a
+id="boundary_condition22100"></a> are
+imposed at the same position in the independent variable. Such
+boundary conditions constitute what is called an "initial value
+problem"<a
+id="initial_value_problem22101"></a>. We start
+integrating<a
+id="integrating22102"></a> forward in the independent variable
+(e.g. time or space) from a place where the initial values are
+specified. To simplify the discussion we will consider a single
+(scalar) dependent variable y, but note that the generalization to a
+vector of dependent variables is usually immediate, so the treatment
+is fine for higher order equations that have been reduced to vectorial
+first-order form.
+
+</p><p>
+In general, numerical solution of differential equations requires us
+to represent the solution, which is usually continuous, in a
+discrete<a
+id="discrete_representation22103"></a>
+manner where the values are given at a series of points rather than
+continuously. See Fig.&nbsp;<a href="chap2.html#discretegradientl">2.2</a>.
+
+</p><p>
+<a id="tth_fIg2.2">
+</a>   <img src="figures/discretegradient.png" alt="figures/discretegradient.png" /><a id="discretegradient">
+</a>
+
+<div style="text-align:center">Figure 2.2: Illustrating finite difference representation of a
+    continuous function.</div>
+  <a id="discretegradientl">
+</a>
+
+</p><p>
+The natural way to discretize the
+derivative<a
+id="discrete_derivative22104"></a> is to write
+<a id="ode9">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+dy
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+ &#8776; </td><td nowrap="nowrap" align="center">
+y<sub>n+1</sub>&#8722;y<sub>n</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>x<sub>n+1</sub>&#8722;x<sub>n</sub><br /></td><td nowrap="nowrap" align="center">
+ = f(y,x),</td></tr></table>
+</td><td width="1%">(2.9)</td></tr></table>
+
+
+where the index<a
+id="index22105"></a> n denotes the value at the nth
+discrete step, and therefore
+<a id="ode10">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  y<sub>n+1</sub> = y<sub>n</sub> + f(y,x) (x<sub>n+1</sub>&#8722;x<sub>n</sub>).</td></tr></table>
+</td><td width="1%">(2.10)</td></tr></table>
+
+
+This equation tells us how y changes from one step to the
+next. Starting from an initial position we can step discretely as far
+as we like, choosing the size of the independent variable step
+(x<sub>n+1</sub>&#8722;x<sub>n</sub>)=&#8710; appropriately.
+
+</p><p>
+A question that arises, though, is what to use for x and y inside
+the derivative function f(y,x). The x value can be chosen more or
+less at will<a href="footnote.html#tthFtNtABD" id="tthFrefABD"><sup>13</sup></a>
+but before we've actually made the step, we don't know where we are
+going to end up in y, so we can't easily decide where in y to
+evaluate f. The easiest answer, but not generally the best, is to
+recognize that at any point in stepping from n to n+1 along the
+orbit, we already have the value y<sub>n</sub>. So we could just use
+f(y<sub>n</sub>,x<sub>n</sub>). This choice is said to be
+"explicit"<a
+id="explicit_method22106"></a>, and is sometimes called the Euler
+method<a
+id="Euler_method22107"></a>. The reason why this method is not the best
+is because it tends have poor <em>accuracy</em><a
+id="accuracy22108"></a> and poor
+<em>stability</em><a
+id="stability22109"></a>.
+
+</p><p>
+     <a id="tth_sEc2.2.2"></a><h3>
+2.2.2&nbsp;&nbsp;Accuracy and Runge-Kutta Schemes</h3>
+
+</p><p>
+<a
+id="Runge-Kutta_schemes22110"></a> To illustrate the problem of accuracy, consider
+the derivative function f expanded as a
+Taylor<a
+id="Taylor_expansion22111"></a> series about the x<sub>n</sub>,y<sub>n</sub> position, writing
+x&#8722;x<sub>n</sub>=&#948;x, y&#8722;y<sub>n</sub>=&#948;y. The derivative function f is a
+function of both x and y. However, the solution for the orbit can
+be written y=y(x). Therefore the function evaluated on the orbit,
+f(y(x),x), is a function only of x, and we can write its (total)
+derivative as <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+df
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />.
+The Taylor expansion of this function is simply<a href="footnote.html#tthFtNtABE" id="tthFrefABE"><sup>14</sup></a>
+<a id="ode12">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ f(y(x),x) = f(y<sub>n</sub>,x<sub>n</sub>) + </td><td nowrap="nowrap" align="center">
+df<sub>n</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+&#948;x + </td><td nowrap="nowrap" align="center">
+d<sup>2</sup>f<sub>n</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#948;x<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2!<br /></td><td nowrap="nowrap" align="center">
++O(&#948;x<sup>3</sup>)</td></tr></table>
+</td><td width="1%">(2.11)</td></tr></table>
+
+
+We use the notation df<sub>n</sub>/dx (etc.) to indicate values evaluated at
+position n.
+If we substitute this Taylor expansion for f into the differential
+equation we are trying to solve,
+ dy/dx=d&#948;y/d&#948;x = f,
+and integrate term by term we
+get the <em>exact</em> solution of the differential equation.
+<a id="ode13">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#948;y = f<sub>n</sub> &#948;x + </td><td nowrap="nowrap" align="center">
+df<sub>n</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#948;x<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2!<br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+d<sup>2</sup>f<sub>n</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#948;x<sup>3</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>3!<br /></td><td nowrap="nowrap" align="center">
++ O(&#948;x<sup>4</sup>)</td></tr></table>
+</td><td width="1%">(2.12)</td></tr></table>
+
+
+We subtract from it whatever the finite difference <em>approximate</em>
+equation is. In the case of
+(<a href="chap2.html#ode10">2.10</a>) it is &#948;y<sup>(1)</sup> = f<sub>n</sub> &#948;x, and we find that the error<a
+id="error_Runge-Kutta22112"></a> in
+y<sub>n+1</sub> is
+<a id="ode14">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#948;y&#8722;&#948;y<sup>(1)</sup>=&#1013; =  </td><td nowrap="nowrap" align="center">
+df<sub>n</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#948;x<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2!<br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+d<sup>2</sup>f<sub>n</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#948;x<sup>3</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>3!<br /></td><td nowrap="nowrap" align="center">
++ O(&#948;x<sup>4</sup>).</td></tr></table>
+</td><td width="1%">(2.13)</td></tr></table>
+
+
+This tells us that the explicit Euler difference scheme is accurate
+only to <em>first-order</em><a
+id="error_order22113"></a><a
+id="order_of___error22114"></a><a
+id="first-order22115"></a> in
+the size of the step &#948;x (when the first derivative of f is
+non-zero) because an error of order &#948;x<sup>2</sup> is present.  That
+means if we make the step a factor of 2 smaller, the cumulative error,
+when integrating over a set total distance, gets smaller by
+(approximately) a factor of 2. (Because each step's error is 4 times
+smaller, but there are twice as many steps.) That's not very good. We
+would have to take very small steps, &#948;x, to get good accuracy.
+
+</p><p>
+<a id="tth_fIg2.3">
+</a>   <img src="figures/fnplus1.png" alt="figures/fnplus1.png" /><a id="fnplus1">
+</a>
+
+<div style="text-align:center">Figure 2.3: Optional steps using derivative function evaluated at n
+    or n+1.</div>
+  <a id="fnplus1l">
+</a>
+
+</p><p>
+We can do better. Our error arose because we approximated the
+derivative function by using its value only at x<sub>n</sub>. But once we've
+moved to the next position, and know (with some inaccuracy) the value
+y<sub>n+1</sub> and hence f<sub>n+1</sub> there, we can evaluate <em>better</em> the
+f we should have used. This process is illustrated in Fig.&nbsp;<a href="chap2.html#fnplus1l">2.3</a>. In fact, by substitution from eq.&nbsp;(<a href="chap2.html#ode12">2.11</a>) it is easy to see that if we use, instead, the advancing
+equation
+<a id="ode16">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#948;y = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+(f<sub>n</sub> + f<sub>n+1</sub><sup>(1)</sup>) &#948;x,</td></tr></table>
+</td><td width="1%">(2.14)</td></tr></table>
+
+
+where f<sub>n+1</sub><sup>(1)</sup>=f(y<sub>n+1</sub><sup>(1)</sup>,x<sub>n+1</sub>) is the value of f obtained at the end
+of our first (explicit Euler) advance y<sub>n+1</sub><sup>(1)</sup>=y<sub>n</sub>+ f<sub>n</sub> &#948;x,
+then we would obtain for our <em>approximate</em> advancing scheme
+<a id="ode17">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#948;y = f<sub>n</sub>&#948;x + </td><td nowrap="nowrap" align="center">
+df<sub>n</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#948;x<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2!<br /></td><td nowrap="nowrap" align="center">
++ O(&#948;x<sup>3</sup>),</td></tr></table>
+</td><td width="1%">(2.15)</td></tr></table>
+
+
+which now agrees with the <em>first two</em> terms of the full exact
+expansion (<a href="chap2.html#ode13">2.12</a>), and whose error, in comparison with that
+expression, is now of <em>third</em> order, rather than second. This
+second-order<a
+id="second-order22116"></a> accurate scheme gives cumulative errors
+proportional to &#948;x<sup>2</sup> and so converges much more quickly as we
+shorten the step length.
+
+</p><p>
+The reason we obtained a more accurate step was that we used a more
+accurate value for the average (over the step) of the derivative
+function. It is straightforward to improve the average even more, so
+as to obtain even higher order accuracy. But to do that
+requires us to obtain estimates of the derivative function part
+way through the step as well as at the ends. That's because we need to
+estimate the first and second derivatives of f.
+
+</p><p>
+A Runge-Kutta method consists of taking a series of steps, each one of
+which uses the estimate of the derivative function obtained from the
+previous one, and then taking some weighted average of their
+derivatives.
+
+</p><p>
+<a id="tth_fIg2.4">
+</a>   <div style="text-align:center">  <img src="figures/rungekutta.png" alt="figures/rungekutta.png" /><a id="rungekutta">
+</a>
+
+<div style="text-align:center">Figure 2.4: Runge-Kutta fourth-order scheme with four partial steps,
+    evaluates the derivative function f<sup>(k)</sup> with k=0,1,2,3, at
+    four places (x<sub>k</sub>,y<sub>k</sub>), each determined by extrapolation along
+    the previous derivative.<a id="rungekutta">
+</a></div>
+</div>
+</p><p>
+Specifically, the <em>fourth-order (accurate)
+  Runge-Kutta</em><a
+id="fourth-order22117"></a> scheme, which is by far the most
+popular and is illustrated in Fig.&nbsp;<a href="chap2.html#rungekutta">2.4</a>, uses:
+<a id="ode17a">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+  f<sup>(0)</sup> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+f(y<sub>n</sub>,x<sub>n</sub>) </td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ f<sup>(1)</sup> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+f(y<sub>n</sub>+f<sup>(0)</sup></td><td nowrap="nowrap" align="center">
+&#8710;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+,x<sub>n</sub>+</td><td nowrap="nowrap" align="center">
+&#8710;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+)</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ f<sup>(2)</sup> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+f(y<sub>n</sub>+f<sup>(1)</sup></td><td nowrap="nowrap" align="center">
+&#8710;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+,x<sub>n</sub>+</td><td nowrap="nowrap" align="center">
+&#8710;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+)</td></tr></table></td><td width="50%"></td><td width="1" align="right">(2.16)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ f<sup>(3)</sup> </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1">f(y<sub>n</sub>+f<sup>(2)</sup>&#8710;,x<sub>n</sub>+&#8710;),</td></tr></table></td><td width="50%"></td></tr></table>
+</td></tr></table>
+
+
+in which two steps are to the half-way point <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+&#8710;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />.
+Then the following combination
+<a id="ode18">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  y<sub>n+1</sub> = y<sub>n</sub> + (</td><td nowrap="nowrap" align="center">
+f<sup>(0)</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>6<br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+f<sup>(1)</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>3<br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+f<sup>(2)</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>3<br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+f<sup>(3)</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>6<br /></td><td nowrap="nowrap" align="center">
+)&#8710;+ O(&#8710;<sup>5</sup>),</td></tr></table>
+</td><td width="1%">(2.17)</td></tr></table>
+
+
+gives an approximation accurate to fourth-order<a href="footnote.html#tthFtNtABF" id="tthFrefABF"><sup>15</sup></a>
+
+</p><p>
+The Runge-Kutta method costs more computation per step, because it
+requires four evaluations of the function f(y,x), rather than just
+one. But that is often more than compensated by the ability to take
+larger steps than with the Euler method for the same accuracy.
+
+</p><p>
+     <a id="tth_sEc2.2.3"></a><h3>
+2.2.3&nbsp;&nbsp;Stability</h3>
+
+</p><p>
+<a
+id="stability_of_ODE_solution22118"></a><a
+id="stability22119"></a>The second, and possibly more important, weakness of explicit<a
+id="explicit22120"></a>
+integration is in respect of stability. Consider a linear differential
+equation
+<a id="ode19">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+dy
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+ = &#8722;k y,</td></tr></table>
+</td><td width="1%">(2.18)</td></tr></table>
+
+
+where k is a positive constant.
+This of course has the solution y=y<sub>0</sub> exp(&#8722;k x). But suppose
+we integrate it numerically using the explicit scheme
+<a id="ode20">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  y<sub>n+1</sub> = y<sub>n</sub> + f(y<sub>n</sub>,x<sub>n</sub>) (x<sub>n+1</sub>&#8722;x<sub>n</sub>) = y<sub>n</sub> (1 &#8722;k &#8710;) .</td></tr></table>
+</td><td width="1%">(2.19)</td></tr></table>
+
+
+This finite difference equation<a
+id="finite_difference22121"></a> has the solution
+<a id="ode21">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  y<sub>n</sub> = y<sub>0</sub> (1&#8722;k &#8710;)<sup>n</sup>,</td></tr></table>
+</td><td width="1%">(2.20)</td></tr></table>
+
+
+as may be verified by the simple observation that
+y<sub>n+1</sub>/y<sub>n</sub>=(1&#8722;k&#8710;). (This ratio is called the amplification
+factor<a
+id="amplification_factor22122"></a>.) If k&#8710; is a small number,
+then no difficulties will arise, and our scheme will produce
+approximately correct results. However, a choice k&#8710; &gt;  2
+compromises not only accuracy, but also <em>stability</em>. The
+resulting solution has alternating sign; it oscillates; but also its
+magnitude <em>increases</em> with n and will tend to infinity at large
+x. It has become unstable, as illustrated in Fig.&nbsp;<a href="chap2.html#unstable1d">2.5</a>.
+
+</p><p>
+<a id="tth_fIg2.5">
+</a>   <img src="figures/unstable1d.png" alt="figures/unstable1d.png" /><a id="unstable1d">
+</a>
+
+<div style="text-align:center">Figure 2.5: Explicit numerical integration of eq.&nbsp;(<a href="chap2.html#ode19">2.18</a>), using eq.&nbsp;    (<a href="chap2.html#ode20">2.19</a>) leads to an oscillatory instability if the step
+    length is too long. Four step lengths are shown k &#8710; =  0.5,0.9,1.5,2.1.<a id="unstable1d">
+</a></div>
+
+</p><p>
+In general, an explicit discrete advancing scheme requires the step in
+the independent variable to be less than some value (in this case
+2/k) in order to achieve stability.
+
+</p><p>
+An <em>implicit</em><a
+id="implicit22123"></a> advancing scheme, by contrast, is one in which the
+value of the derivative used to advance the variable is taken at the
+<em>end</em> of the step rather than at the <em>beginning</em>. For our
+example equation, this would be a numerical scheme of the form
+<a id="ode22">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  y<sub>n+1</sub> = y<sub>n</sub> + f(y<sub>n+1</sub>,x<sub>n+1</sub>)(x<sub>n+1</sub>&#8722;x<sub>n</sub>) = y<sub>n</sub> &#8722;k y<sub>n+1</sub>&#8710;.</td></tr></table>
+</td><td width="1%">(2.21)</td></tr></table>
+
+
+It is easy to rearrange this equation into
+<a id="ode23">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  y<sub>n+1</sub>(1+k &#8710;) = y<sub>n</sub>.</td></tr></table>
+</td><td width="1%">(2.22)</td></tr></table>
+
+
+This has solution
+<a id="ode24">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  y<sub>n</sub> = y<sub>0</sub> (1+k &#8710;)<sup>&#8722;n</sup>.</td></tr></table>
+</td><td width="1%">(2.23)</td></tr></table>
+
+
+For positive k &#8710; (the case of interest) this finite difference
+equation <em>never</em> becomes unstable, no matter how big k &#8710;
+is, because the solution consists of successive powers of an
+amplification factor 1/(1+k&#8710;) whose magnitude is always less
+than 1. This is a characteristic of implicit
+schemes<a
+id="implicit_schemes22124"></a>. They are generally stable even for
+large steps<a
+id="step_size22125"></a>.
+
+</p><p>
+ <a id="tth_sEc2.3"></a><h2>
+2.3&nbsp;&nbsp;Multidimensional Stiff Equations: Implicit Schemes</h2>
+<a id="StiffStability">
+</a>
+
+</p><p>
+<a
+id="stiff_equations23126"></a>The question of stability for an order-one system (the scalar problem)
+is generally not very interesting; because instability of the explicit
+scheme occurs only when the step size is longer than the
+characteristic spatial scale of the problem 1/k. If you've
+chosen your step size so large, you are already failing to get an
+accurate solution of the equation. However, multidimensional (i.e.&nbsp;higher order) sets of (vector) equations may have multiple solutions
+that have very different scale-lengths in the independent variable.  A
+classic example is an order-two homogeneous linear system with constant
+coefficients
+<a id="ode25">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+<b>y</b> = <b>A</b> <b>y</b>,&nbsp;&nbsp;&nbsp; <span class="roman">where</span> <span class="roman">for</span> <span class="roman">example</span>&nbsp;&nbsp;&nbsp; <b>A</b> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;1</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+100 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;101</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(2.24)</td></tr></table>
+
+
+For any such linear system the solution can be constructed by
+consideration of the <em>eigenvalues</em><a
+id="eigenvalue23127"></a> of the
+matrix <b>A</b>: those numbers for which there exists a solution to
+<b>A</b><b>y</b>=&#955;<b>y</b>.  If these are &#955;<sub>j</sub> and the
+corresponding eigenvectors<a
+id="eigenvector23128"></a> are <b>y</b><sub>j</sub>, then
+<b>y</b> = <b>y</b><sub>j</sub> exp(&#955;<sub>j</sub> x) are solutions to the
+equation. The complete solution can be constructed as a sum of these
+different characteristic solutions, weighted by coefficients to
+satisfy the initial conditions.  The point of our particular example
+matrix is that its eignvalues are -100 and -1. Consequently in order
+to integrate numerically a solution that has a significant quantity of
+the second, slowly changing, solution &#955;<sub>2</sub>=&#8722;1, it is necessary
+nevertheless to ensure the stability of the first, rapidly changing,
+solution, &#955;<sub>1</sub>=&#8722;100. Otherwise, if the first solutions is
+unstable, no matter how little of that solution we start with, it will
+eventually grow exponentially large and erroneously dominate our
+result. If an explicit advancing scheme is used, then stability
+requires &#124;&#955;<sub>1</sub>&#124;&#8710; &lt;  2 as well as &#124;&#955;<sub>2</sub>&#124;&#8710; &lt;  2, and
+the &#955;<sub>1</sub> condition is by far the most restrictive.  There are then at
+least &#160;&#8764;&#160;&#124;&#955;<sub>1</sub>/&#955;<sub>2</sub>&#124; steps during the decay of the
+(&#955;<sub>2</sub>) solution of interest. Because this ratio is large, an
+explicit scheme is computationally expensive, requiring many steps. In
+general, the <em>stiffness</em><a
+id="stiffness23129"></a> of a differential
+equation system can be measured by the ratio of the largest to the
+smallest eigenvalue magnitude. If this ratio is large, the system is
+stiff, and that means it is hard to integrate explicitly.
+
+</p><p>
+Using an implicit scheme avoids the necessity for taking very small
+steps. It does so at the cost of solving the matrix problem (<b>I</b>&#8722;&#8710;.<b>A</b>)<b>y</b><sub>n+1</sub>=<b>y</b><sub>n</sub> .  This requires the
+inversion<a
+id="matrix_inversion23130"></a> of a matrix in order to evaluate
+<a id="ode26">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>y</b><sub>n+1</sub>=(<b>I</b>&#8722;&#8710;.<b>A</b>)<sup>&#8722;1</sup><b>y</b><sub>n</sub>.</td></tr></table>
+</td><td width="1%">(2.25)</td></tr></table>
+
+
+For a linear problem like the one we are considering, the single
+inversion, done once and for all, is a relatively small cost compared
+with the gain obtained by being able to take decent length steps.
+
+</p><p>
+All of this probably seems rather elaborate for a linear, constant
+coefficient, system, since we are actually able to solve it
+analytically when we know the eigenvalues and eigenvectors. However,
+it becomes much more significant when we realize that the stability of
+a <em>nonlinear</em><a
+id="nonlinear_stability23131"></a> system, or one in which
+the coefficients vary with x or y, for which numerical integration
+may be essential, is generally very well described by expressing it
+approximately as a linear system<a
+id="linearization23132"></a> in the
+neighborhood of the region under consideration, and then evaluating
+the stability of the linearized system. The matrix that arises from
+linearization when the (vectorial) derivative function is
+<b>f</b>(<b>y</b>,x) has the elements A<sub>ij</sub> = &#8706;f<sub>i</sub>/&#8706;y<sub>j</sub>.  An implicit solution then requires (<b>I</b>&#8722;&#8710;.<b>A</b>) to
+be inverted for every step, because it is changing with position (if
+the derivative function is nonlinear).
+
+</p><p>
+In short, implicit schemes lead to greater stability, which is very
+important with stiff systems, but require matrix inversion.
+
+</p><p>
+ <a id="tth_sEc2.4"></a><h2>
+2.4&nbsp;&nbsp;Leap-Frog Schemes</h2>
+
+</p><p>
+<a
+id="Leap-Frog_scheme24133"></a> Codes such as
+particle-in-cell<a
+id="PIC24134"></a><a
+id="particle-in-cell24135"></a> simulations of
+plasmas, atomistic simulation<a
+id="atomistic_simulation24136"></a>, or any
+codes that do large amount of orbit
+integration<a
+id="orbit_integration24137"></a>, generally want to use as cheap a
+scheme as possible to maintain their speed. The step size is often
+dictated by questions other than the accuracy of the orbit
+integration. In such situations, Runge-Kutta or implicit schemes are
+rarely used. Instead, an accurate orbit integration can be obtained by
+recognizing that Newton's second law of motion (acceleration
+proportional to force) is a second-order vector equation that can most
+conveniently be split into two first-order vector equations involving
+position, velocity, and acceleration. The velocity we want for the
+equation governing the evolution of position, d<b><i>x</i></b>/dt=<b><i>v</i></b>,
+is the average velocity during the motion between two positions. An
+unbiassed estimate of that velocity is to take it to be the velocity
+at the <em>center</em> of the position step. So if the times at which we
+evaluate the position <b><i>x</i></b><sub>n</sub> of the particle are denoted t<sub>n</sub>,
+then we want the velocity at time (t<sub>n+1</sub>+t<sub>n</sub>)/2. We might call
+this time t<sub>n+1/2</sub><a
+id="half-step_position__t__n_1_2__24138"></a> and the velocity
+<b><i>v</i></b><sub>n+1/2</sub>. Also, the acceleration we want for the equation for
+the evolution of velocity, d<b><i>v</i></b>/dt=<b><i>a</i></b>, is the average
+acceleration between two velocities. If the velocities are represented
+at t<sub>n&#8722;1/2</sub> and t<sub>n+1/2</sub>, then the time at which we want the
+acceleration is t<sub>n</sub>, and we might call that acceleration
+<b><i>a</i></b><sub>n</sub>.
+
+</p><p>
+We can therefore construct an appropriate centered<a
+id="centered24139"></a>
+integration scheme as follows starting from position n.
+</p><p>
+<br />
+<table class="tabular">
+<tr><td align="left">(1) </td><td width="0">Move the particles using
+their velocities <b><i>v</i></b><sub>n+1/2</sub> to find the new positions
+<b><i>x</i></b><sub>n+1</sub>=<b><i>x</i></b><sub>n</sub>+<b><i>v</i></b><sub>n+1/2</sub>(t<sub>n+1</sub>&#8722;t<sub>n</sub>); this is called
+the drift step<a
+id="drift_step24140"></a>.</td></tr>
+<tr><td align="left">(2) </td><td width="0">Accelerate the velocities using the accelerations
+<b><i>a</i></b><sub>n+1</sub> evaluated at the new positions <b><i>x</i></b><sub>n+1</sub> to
+obtain the new velocities
+<b><i>v</i></b><sub>n+3/2</sub>=<b><i>v</i></b><sub>n+1/2</sub> +<b><i>a</i></b><sub>n+1</sub>(t<sub>n+3/2</sub> &#8722;t<sub>n+1/2</sub>);
+this is called the kick step<a
+id="kick_step24141"></a>.</td></tr>
+<tr><td align="left">(3) </td><td width="0">Repeat (1) and (2) for the next time
+step n+1, and so on.
+</td></tr></table>
+<a
+id="staggered_values24142"></a>
+
+</p><p>
+<br />Each of the drift and kick steps can be simple
+explicit advances. But because the velocities are suitably
+time-shifted relative to the positions and accelerations, the result
+is <em>second-order accurate</em>. Such a scheme is called a Leap-Frog
+scheme, in reference to the children's game where each of two players
+alternately jumps over the back of the other in moving to the new
+position. Velocity and position are jumping over one another in time;
+they never land at the same time (or place). See Fig.&nbsp;<a href="chap2.html#leapfrogl">2.6</a>.
+
+</p><p>
+<a id="tth_fIg2.6">
+</a>   <img src="figures/leapfrog.png" alt="figures/leapfrog.png" /><a id="leapfrog">
+</a>
+
+<div style="text-align:center">Figure 2.6: Staggered values for x and v are updated leap-frog
+    style.<a id="leapfrogl">
+</a></div>
+
+</p><p>
+One trap for the unwary in a Leap-Frog scheme is the specification of
+initial values<a
+id="initial_values_leap-frog24143"></a>. If we want to
+calculate an orbit which has specified initial position <b><i>x</i></b><sub>0</sub>
+and velocity <b><i>v</i></b><sub>0</sub> at time t=t<sub>0</sub>, then it is not sufficient
+simply to put the velocity initially equal to the specified
+<b><i>v</i></b><sub>0</sub>. That is because the first velocity, which governs the
+position step from t<sub>0</sub> to t<sub>1</sub> is <em>not</em> <b><i>v</i></b><sub>0</sub>, but
+<b><i>v</i></b><sub>1/2</sub>. To start the integration off correctly, therefore, we
+must take a <em>half-step</em> in velocity by putting <b><i>v</i></b><sub>1/2</sub> = <b><i>v</i></b><sub>0</sub>+ <b><i>a</i></b><sub>0</sub> (t<sub>1</sub>&#8722;t<sub>0</sub>)/2, before beginning the standard
+integration.
+
+</p><p>
+Leap-Frog schemes generally possess important conservation properties
+such as conservation of momentum<a
+id="conservation_properties24144"></a>, that
+can be essential for realistic simulation with a large number of
+particles.
+
+</p><p>
+
+<h2>Worked Example: Stability of finite differences</h2>
+
+</p><p>
+<a
+id="explicit24145"></a><a
+id="implicit24146"></a>Find the stability limits when solving by discrete finite differences of length
+&#8710;, using explicit or implicit schemes, the initial value equation
+<a id="worksecond">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d<sup>2</sup>y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++2&#945;</td><td nowrap="nowrap" align="center">
+dy
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
++ k<sup>2</sup> y = g(x),</td></tr></table>
+</td><td width="1%">(2.26)</td></tr></table>
+
+
+where &#945; is a positive constant  &lt; &#124;k&#124;.
+</p><p>
+<br />First, reduce the equation to standard first-order form by
+writing<a
+id="order_reduction24147"></a>
+<a id="wk2standard">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sup>(0)</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sup>(1)</sup></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sup>(1)</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+g(x)&#8722;2&#945;y<sup>(1)</sup>&#8722;k<sup>2</sup>y<sup>(0)</sup></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;k<sup>2</sup></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2&#945;</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sup>(0)</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sup>(1)</sup></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
++</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+g(x)</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(2.27)</td></tr></table>
+
+
+Now, notice that, in either form, this equation has a sort of driving
+term g(x) independent of y. It can be removed from the stability
+analysis by considering a new variable z which is the difference
+between the finite difference numerical solution that we are trying to
+analyse, y<sub>n</sub>(x), and the exact solution of the differential
+equation, y(x). Thus z<sub>n</sub>=y<sub>n</sub>&#8722;y(x<sub>n</sub>). The quantity z satisfies a
+discretized form of the <em>homogeneous</em><a
+id="homogeneous___equations24148"></a> version of eq.&nbsp;(<a href="chap2.html#worksecond">2.26</a>); with the term g(x)
+removed. Consequently analysing that homogeneous equation tells us
+whether the difference z between the numerical and the exact
+solutions is stable or not. That is what we really want to know. For
+stability, we pay no attention to g(x). The resulting homogeneous
+equation is of exactly the same form as eq. (<a href="chap2.html#ode25">2.24</a>): <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+<b>z</b>=<b>A</b><b>z</b>
+</td></tr></table><br />. Each independent solution for <b>z</b>
+is thus an eigenvector<a
+id="eigenvector24149"></a> of the matrix <b>A</b> such
+that <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+<b>z</b>=&#955;<b>z</b>
+</td></tr></table><br /> . The
+eigenvalue<a
+id="eigenvalue24150"></a> &#955; decides its stability.  An
+explicit (Euler)<a
+id="Euler_method24151"></a> scheme of step length &#8710;
+will result in a step amplification factor<a
+id="amplification_factor24152"></a>, such that
+<b>z</b><sub>n+1</sub>=F<b>z</b><sub>n</sub> with F=1+&#955;&#8710;, and will be
+unstable if &#124;F&#124; &gt; 1.
+
+</p><p>
+The eigenvalues of <b>A</b> satisfy
+
+</p><p>
+<a id="wk2eigen">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ 0=</td><td align="left" class="cl">&#x23A2;<br />&#x23A2;<br />
+&#x23A2;<br />&#x23A2;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;&#955;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;k<sup>2</sup></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;&#955;&#8722;2&#945;</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x23A2;<br />&#x23A2;<br />
+&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+=&#955;<sup>2</sup>+2&#945;&#955;+k<sup>2</sup>, </td></tr></table>
+</td><td width="1%">(2.28)</td></tr></table>
+
+
+with solutions
+<a id="wk2soln">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#955; =  &#8722;&#945;&#177;</td><td align="left" class="cl"><br /><span class="larger">&#8730;</span><br />
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>
+<div class="norm">&#945;<sup>2</sup>&#8722;k<sup>2</sup><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(2.29)</td></tr></table>
+
+
+These solutions are complex if k<sup>2</sup> &gt; &#945;<sup>2</sup>, in which case,
+<a id="wk2crit">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#124;F&#124;<sup>2</sup> = (1&#8722;&#945;&#8710;)<sup>2</sup>+(k<sup>2</sup>&#8722;&#945;<sup>2</sup>)&#8710;<sup>2</sup> = 1 &#8722;2&#945;&#8710; + k<sup>2</sup>&#8710;<sup>2</sup>.</td></tr></table>
+</td><td width="1%">(2.30)</td></tr></table>
+
+
+&#124;F&#124; is greater than unity unless &#8710; &lt;  2&#945;/k<sup>2</sup>, which is the
+stability criterion of the Euler scheme. If &#945; = 0, so that the
+homogeneous equation is an undamped harmonic oscillator, the explicit
+scheme is unstable for any &#8710;. A fully implicit scheme, by contrast, has
+F=<b>z</b><sub>n+1</sub>/<b>z</b><sub>n</sub>=1/(1&#8722;&#955;&#8710;), for which
+&#124;F&#124;<sup>2</sup>=1/(1+2&#945;&#8710;+k<sup>2</sup>&#8710;<sup>2</sup>), always less than one. The implicit
+scheme is always stable.
+
+</p><p>
+
+<h2>Exercise 2. Integrating Ordinary Differential Equations.</h2>
+
+</p><p>
+1. Reduce the following higher-order ordinary differential equations
+to first-order vector differential equations, which you should write
+out in vector format.
+
+</p><p>
+  (a) <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+d<sup>2</sup>y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dt<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = &#8722;1
+</td></tr></table><br />
+
+</p><p>
+  (b) <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">A y + B </td><td nowrap="nowrap" align="center">
+dy
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
++ C</td><td nowrap="nowrap" align="center">
+d<sup>2</sup>y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ D</td><td nowrap="nowrap" align="center">
+d<sup>3</sup>y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = E
+</td></tr></table><br />
+
+</p><p>
+  (c) <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+d<sup>2</sup> y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = 2 </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+dy
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8722; y<sup>3</sup>
+</td></tr></table><br />
+
+</p><p>
+<br /><br />2. Accuracy order of ODE schemes. For notational convenience, we start
+at x=y=0 and consider a small step in x and y of the ODE
+dy/dx=f(y,x).  The Taylor expansion of the derivative function along
+the orbit is
+<a id="odeex">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ f(y(x),x) = f<sub>0</sub> + </td><td nowrap="nowrap" align="center">
+df<sub>0</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+x + </td><td nowrap="nowrap" align="center">
+d<sup>2</sup>f<sub>0</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+ x<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2!<br /></td><td nowrap="nowrap" align="center">
++ ... </td></tr></table>
+</td><td width="1%">(2.31)</td></tr></table>
+
+
+
+</p><p>
+<br />
+<table class="tabular">
+<tr><td align="left">(a)</td><td width="0">Integrate <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+dy
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td nowrap="nowrap" align="center">
+=f(y(x),x)
+</td></tr></table><br /> term by term to find the solution for y to
+third-order in x. </td></tr>
+<tr><td align="left">(b)</td><td width="0">Suppose  y<sub>1</sub> = f<sub>0</sub> x. Find y<sub>1</sub>&#8722;y(x) to second-order in x.</td></tr>
+<tr><td align="left">(c)</td><td width="0">Now consider  y<sub>2</sub> = f(y<sub>1</sub>,x) x, show that it is equal to
+f(y,x)x plus a term that is third-order in x.</td></tr>
+<tr><td align="left">(d)</td><td width="0">Hence find y<sub>2</sub>&#8722;y to second-order in x.</td></tr>
+<tr><td align="left">(e)</td><td width="0">Finally show that y<sub>3</sub> = <sup>1</sup>/<sub>2</sub> ( y<sub>1</sub>+ y<sub>2</sub>) is equal to y
+accurate to <em>second-order</em> in  x.</td></tr></table>
+
+
+</p><p>
+ [Comment. The third-order term in part (c) involves the
+partial derivative &#8706;f/&#8706;y rather than the derivative
+along the orbit. Proving rigorously that the fourth-order Runge Kutta
+scheme really is fourth-order, is rather difficult because it requires
+keeping track of such partial derivatives.]
+
+</p><p>
+
+<b>Programming Exercise&nbsp;&nbsp;</b>
+
+</p><p>
+Write a program to integrate numerically from t=0 to t=4/&#969; the ODE
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+dy
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dt<br /></td><td nowrap="nowrap" align="center">
+=&#8722;&#969;y</td></tr></table>
+</td></tr></table>
+
+
+with &#969; a positive constant, starting from y(0)=1, proceeding
+as follows.
+
+</p><p>
+(a) Use the explicit Euler scheme
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ y<sub>n+1</sub> = y<sub>n</sub> &#8722; &#8710;t &#969;y<sub>n</sub>. </td></tr></table>
+</td></tr></table>
+
+
+
+</p><p>
+(b) Use the implicit scheme
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ y<sub>n+1</sub> = y<sub>n</sub> &#8722; &#8710;t &#969;y<sub>n+1</sub>. </td></tr></table>
+</td></tr></table>
+
+
+
+</p><p>
+In each case, find numerically the <em>fractional</em> error at
+t=4/&#969; for the following choices of timestep.
+
+</p><p>
+&nbsp;&nbsp;&nbsp; (i) &#969;&#8710;t = 0.1 (ii) &#969;&#8710;t = 0.01
+(iii) &#969;&#8710;t = 1
+
+</p><p>
+<br />(c) Find experimentally the timestep value at which the explicit
+scheme becomes unstable. Verify that the implicit scheme never becomes
+unstable.
+
+</p><p>
+
+
+<hr /><table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+<a href="chap3.html">NEXT
+</a></td></tr></table>
+</div></body></html>

@@ -1,0 +1,1727 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
+    img {     max-width: 100%;
+    max-height: 40vh; } p { line-height: 1.5em; } body {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 18px;
+    }
+  </style>
+<
+<title>chap3.html</title>
+<table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+ <a href="chap2.html">PREVIOUS
+</a></td></tr></table>
+ <a id="tth_chAp3"></a><h1>
+Chapter 3 <br />Two-point Boundary Conditions</h1>
+
+</p><p>
+<a
+id="two-point_boundary_conditions30153"></a><a
+id="boundary_condition30154"></a> Very
+often, the boundary conditions that determine the solution of an
+ordinary differential equation<a
+id="ODE30155"></a> are applied not just at a
+single value of the independent variable<a
+id="independent_variable30156"></a>,
+x, but at two points, x<sub>1</sub> and x<sub>2</sub>.  This type of problem is
+inherently different from the "initial value problems"<a
+id="initial___value_problem30157"></a> discussed previously. Initial value problems are
+single-point boundary conditions. There must be more than one
+<em>condition</em> if the system is higher order than one, but in an
+initial value problem, all conditions are applied at the same place
+(or time). In two-point problems we have boundary conditions at more
+than one <em>place</em> (more than one value of the independent
+variable) and we are interested in solving for the dependent
+variable(s)<a
+id="dependent_variable30158"></a> in the interval x<sub>1</sub> &#8804; x &#8804; x<sub>2</sub> of the independent variable.
+
+</p><p>
+ <a id="tth_sEc3.1"></a><h2>
+3.1&nbsp;&nbsp;Examples of Two-Point Problems</h2>
+
+</p><p>
+Many examples of two-point problems arise from steady flux
+conservation<a
+id="flux_conservation31159"></a> in the presence of
+sources<a
+id="source31160"></a>.
+
+</p><p>
+In electrostatics<a
+id="electrostatic31161"></a> the electric
+potential<a
+id="potential31162"></a> &#981; is related to the charge
+density<a
+id="charge_density31163"></a><a
+id="density_charge31164"></a> &#961; through one
+of the Maxwell equations<a
+id="Maxwell_s_equations31165"></a>: a form of
+Poisson's<a
+id="Poisson_equation31166"></a>  equation
+<a id="2pt1">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8711;.<b><i>E</i></b>=&#8722;&#8711;<sup>2</sup>&#981; =  &#961;/&#1013;<sub>0</sub> </td></tr></table>
+</td><td width="1%">(3.1)</td></tr></table>
+
+
+where <b><i>E</i></b> is the electric field<a
+id="electric_field31167"></a> and
+&#1013;<sub>0</sub> is the permittivity<a
+id="permittivity31168"></a> of free space.
+
+</p><p>
+<a id="tth_fIg3.1">
+</a>   <img src="figures/slabcharge.png" alt="figures/slabcharge.png" /><a id="slabcharge">
+</a>
+
+<div style="text-align:center">Figure 3.1: Electrostatic configuration independent of y and z with
+  conducting boundaries at x<sub>1</sub> and x<sub>2</sub> where &#981; = 0. This is a
+  second-order two-point boundary problem.<a id="lslabcharge">
+</a></div>
+
+</p><p>
+In a slab geometry<a
+id="slab31169"></a> where &#961; varies
+in a single direction (coordinate) x, but not in y or z, an
+ordinary differential equation arises
+<a id="2pt2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d<sup>2</sup>&#981;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = &#8722;</td><td nowrap="nowrap" align="center">
+&#961;(x)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#1013;<sub>0</sub><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(3.2)</td></tr></table>
+
+
+If we suppose (see Fig.&nbsp;<a href="chap3.html#lslabcharge">3.1</a>) that the potential is held
+equal to zero at two planes, x<sub>1</sub> and x<sub>2</sub>, by placing
+grounded<a
+id="grounded31170"></a> conductors there, then its variation between
+them depends upon the distribution of the charge density
+&#961;(x). Solving for &#981;(x) is a two-point problem.  In effect,
+this is a conservation equation for electric flux, <b><i>E</i></b>. Its
+divergence<a
+id="divergence31171"></a> is equal to the source density, which is
+the charge density.
+
+</p><p>
+<a id="tth_fIg3.2">
+</a>   <img src="figures/cylinderheat.png" alt="figures/cylinderheat.png" /><a id="cylinderheat">
+</a>
+
+<div style="text-align:center">Figure 3.2: Heat balance equation in cylindrical geometry leads to a
+    two-point problem with conditions consisting of fixed temperature
+    at the edge, r=a and zero gradient at the center r=0.<a id="lcylinderheat">
+</a></div>
+
+</p><p>
+A second-order<a
+id="second-order31172"></a> two-point problem also arises from
+steady heat conduction<a
+id="heat_conduction31173"></a>. See Fig.&nbsp;<a href="chap3.html#lcylinderheat">3.2</a>. Suppose a cylindrical<a
+id="cylindrical31174"></a> reactor
+fuel rod experiences volumetric heating from the nuclear reactions
+inside it with a power density p(r) (Watts per cubic meter), that
+varies with cylindrical radius r.
+
+</p><p>
+Its boundary, at r=a say, is held at a constant
+temperature<a
+id="temperature31175"></a> T<sub>a</sub>. If the thermal
+conductivity<a
+id="thermal___conductivity31176"></a><a
+id="conductivity_thermal31177"></a><a
+id="conductivity31178"></a> of the
+rod is &#954;(r), then the radial heat flux
+density<a
+id="density_heat_flux31179"></a> (Watts per
+square meter) is
+<a id="2pt3">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  q=&#8722;&#954;</td><td nowrap="nowrap" align="center">
+d T
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(3.3)</td></tr></table>
+
+
+In steady state, the total heat flux<a
+id="heat_flux31180"></a> across the
+surface at radius r (per unit rod length) must equal the total
+heating within it:
+<a id="2pt4">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  2&#960;r q = &#8722;2 &#960;r &#954;(r)</td><td nowrap="nowrap" align="center">
+d T
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>r</small><!--sup
+--><br /><br />
+<small>0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+p(r&#8242;) 2&#960;r&#8242;dr&#8242;.</td></tr></table>
+</td><td width="1%">(3.4)</td></tr></table>
+
+
+Differentiating this equation we obtain:
+<a id="2pt5">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+ r&#954;</td><td nowrap="nowrap" align="center">
+d T
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = &#8722;r p(r).</td></tr></table>
+</td><td width="1%">(3.5)</td></tr></table>
+
+
+This second-order differential equation requires two boundary
+conditions. One is T(a)=T<sub>a</sub>, but the other is less immediately
+obvious. It is that the solution must be
+nonsingular<a
+id="nonsingularity31181"></a> at r=0, which requires that the
+<em>derivative</em> of T be zero there:
+<a id="2pt6">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d T
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>r=0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = 0.</td></tr></table>
+</td><td width="1%">(3.6)</td></tr></table>
+
+
+
+</p><p>
+ <a id="tth_sEc3.2"></a><h2>
+3.2&nbsp;&nbsp;Shooting</h2>
+
+</p><p>
+<a
+id="shooting_method32182"></a>     <a id="tth_sEc3.2.1"></a><h3>
+3.2.1&nbsp;&nbsp;Solving two-point problems by initial-value iteration</h3>
+
+</p><p>
+One approach to computing the solution to two-point problems is to use
+the same technique used to solve initial value problems. We
+treat x<sub>1</sub> as if it were the starting point of an initial value
+problem. We choose enough boundary conditions there to specify the
+entire solution. For a second-order equation such as (<a href="chap3.html#2pt2">3.2</a>) or
+(<a href="chap3.html#2pt5">3.5</a>), we would need to choose two conditions: y(x<sub>1</sub>)=y<sub>1</sub>,
+and dy/dx&#124;<sub>x<sub>1</sub></sub>=s, say, where y<sub>1</sub> and s are the chosen
+values. Only one of these is actually the boundary condition to be
+applied at the initial point, x<sub>1</sub>. We'll suppose it is y<sub>1</sub>. The
+other, s, is an arbitrary guess at the start of our solution
+procedure.
+
+</p><p>
+Given these initial conditions, we can solve for y over the entire
+range x<sub>1</sub> &#8804; x  &#8804; x<sub>2</sub>. When we have done so for this case, we
+can find the value y at x<sub>2</sub> (or its derivative if the original
+boundary conditions there required it). Generally, this first solution will
+<em>not</em> satisfy the actual two-point boundary condition at x<sub>2</sub>,
+which we'll take as y=y<sub>2</sub>. That's because our guess of s was not
+correct.
+
+</p><p>
+<a id="tth_fIg3.3">
+</a>   <img src="figures/cannonshoot.png" alt="figures/cannonshoot.png" /><a id="cannonshoot">
+</a>
+
+<div style="text-align:center">Figure 3.3: Multiple successive shots from a cannon can take advantage of
+    observations of where the earlier ones hit, in order to iterate the aiming
+    elevation s until they strike the target.<a id="lcannonshoot">
+</a></div>
+
+</p><p>
+It's as if we are aiming at the point (x<sub>2</sub>,y<sub>2</sub>) with a cannon
+located at (x<sub>1</sub>,y<sub>1</sub>) (see Fig.&nbsp;<a href="chap3.html#lcannonshoot">3.3</a>). We elevate the
+cannon so that the cannonball's initial angle is dy/dx&#124;<sub>x<sub>1</sub></sub>=s,
+which is our initial guess at the best aim. We shoot. The cannonball
+flies over, (within our metaphor, the initial value solution is found)
+but is not at the correct height when it reaches x<sub>2</sub> because our
+first guess<a
+id="initial_guess32183"></a> at the aim was imperfect. What do we
+do? We see the height at which the cannonball hits, above or below the
+target. We adjust our aim accordingly with a new elevation s<sub>2</sub>,
+dy/dx&#124;<sub>x<sub>1</sub></sub>=s<sub>2</sub>, and shoot again. Then we
+iteratively<a
+id="iteration32184"></a> refine our aim taking as many shots as
+necessary, and improving the aim each time, till we hit the target.
+This is the "shooting" method of solving a two-point problem. The
+cannonball's trajectory stands for the initial value integration with
+assumed initial condition.
+
+</p><p>
+One question that is left open in this description is exactly
+<em>how</em> we refine our aim. That is, how do we change the guess of
+the initial slope s so as to get a solution that is nearer to the
+correct value of y(x<sub>2</sub>)? One of the easiest and most robust ways to
+do this is by bisection.
+
+</p><p>
+     <a id="tth_sEc3.2.2"></a><h3>
+3.2.2&nbsp;&nbsp;Bisection</h3>
+
+</p><p>
+<a
+id="bisection32185"></a><a
+id="root-finding32186"></a> Suppose we have a continuous
+function f(s) over some interval [s<sub>l</sub>,s<sub>u</sub>] (i.e.&nbsp;s<sub>l</sub> &#8804; s &#8804; s<sub>u</sub>), and we wish to find a solution to f(s)=0 within that range.
+If f(s<sub>l</sub>) and f(s<sub>u</sub>) have <em>opposite signs</em>, then we know that
+there is a solution (a "root" of the equation) somewhere between s<sub>l</sub>
+and s<sub>u</sub>. For definiteness in our description, we'll take f(s<sub>l</sub>) &#8804; 0 and f(s<sub>u</sub>) &#8805; 0.  To get a better estimate of where f=0 is, we
+can bisect the interval and examine the value of f at the point
+s=(s<sub>l</sub>+s<sub>u</sub>)/2. If f(s) &lt; 0, then we know that a solution must be in
+the half interval [s,s<sub>u</sub>], whereas if f(s) &gt; 0, then a solution must
+be in the other interval [s<sub>l</sub>,s]. We choose whichever half-interval
+the solution lies in, and update one or other end of our interval to
+be the new s-value. In other words, we set either s<sub>l</sub>=s or s<sub>u</sub>=s
+respectively. The new interval [s<sub>l</sub>,s<sub>u</sub>] is half the length of the
+original, so it gives us a better estimate of where the solution value
+is.
+
+</p><p>
+<a id="tth_fIg3.4">
+</a>   <img src="figures/bisection.png" alt="figures/bisection.png" /><a id="bisection">
+</a>
+
+<div style="text-align:center">Figure 3.4: Bisection successively divides in two an interval in which there
+    is a root, always retaining the subinterval in which a root
+    lies.<a id="lbisection">
+</a></div>
+
+</p><p>
+Now we just iterate<a
+id="iteration32187"></a> the above procedure, as
+illustrated in Fig.&nbsp;<a href="chap3.html#lbisection">3.4</a>. At each step we get an interval
+of half the length of the previous step, in which we know a solution
+lies. Eventually the interval becomes small enough that its extent can
+be ignored; we then know the solution accurately enough, and can stop
+the iteration.
+
+</p><p>
+The wonderful thing about bisection is that it highly
+efficient<a
+id="efficiency32188"></a>, because it is guaranteed to converge in
+"logarithmic time"<a
+id="logarithmic_time32189"></a>. If we start with an
+interval of length L, then at the kth interation the interval
+length is L/2<sup>k</sup>. So if the tolerance<a
+id="tolerance32190"></a> with which we
+need the s-value solution is &#948; (generally a small length),
+the number of iterations we must take before
+convergence<a
+id="convergence32191"></a> is
+N=log<sub>2</sub>(L/&#948;)<a
+id="cost__computational_32192"></a><a
+id="cost__computational__logarithmic32193"></a>. For
+example if L/&#948; = 10<sup>6</sup>, then N=20. This is a quite modest number
+of iterations even for a very high degree of refinement.
+
+</p><p>
+There are iterative methods of root finding that converge faster than
+bisection for well behaved functions. One is "Newton's
+method"<a
+id="Newton_method32194"></a>, which may succinctly be stated as
+s<sub>k+1</sub> = s<sub>k</sub> &#8722; f(s<sub>k</sub>)/df/ds|<sub>s<sub>k</sub></sub>. It converges in a
+few steps when the starting guess<a
+id="guess_initial32195"></a> is not too far
+from the solution. Unlike bisection, it does not require two starting
+points on opposite sides of the root. However, Newton's method (1)
+requires derivatives of the function, which makes it more complicated
+to code, (2) is less robust, because it takes big steps near
+df/ds=0, and may even step in the wrong direction and not converge
+at all in some cases. Bisection is guaranteed to converge after a
+modest number of steps. Robustness<a
+id="robustness32196"></a> is in practice
+usually more important than speed.<a
+id="false-position___method32197"></a><a href="footnote.html#tthFtNtABG" id="tthFrefABG"><sup>16</sup></a>
+
+</p><p>
+In the context of our shooting solution of a two-point problem, the
+function f is the error in the boundary value at the second point
+y(x<sub>2</sub>)&#8722;y<sub>2</sub> of the inital-value solution y(x) that takes
+initial-value s for its derivative at x<sub>1</sub>. The bisection generally
+adjusts the initial-value s until &#124;y(x<sub>2</sub>)&#8722;y<sub>2</sub>&#124; is less than some
+tolerance<a
+id="tolerance32198"></a> (rather than requiring some tolerance on s).
+
+</p><p>
+ <a id="tth_sEc3.3"></a><h2>
+3.3&nbsp;&nbsp;Direct Solution</h2>
+
+</p><p>
+The shooting method, while sometimes useful for situations where
+adaptive
+step-length<a
+id="adaptive_step-length33199"></a><a
+id="step-length_adaptive33200"></a> is
+a major benefit, is rather a back-handed way of solving two-point
+problems. It is very often better to solve the problem by constructing
+a finite difference system to represent the differential equation
+<em>including</em> its boundary conditions, and then solve that system
+directly.
+
+</p><p>
+     <a id="tth_sEc3.3.1"></a><h3>
+3.3.1&nbsp;&nbsp;Second-order finite differences</h3>
+
+</p><p>
+<a
+id="second-order_differences33201"></a><a
+id="discrete33202"></a> First let's consider
+how one ought to represent a second-order derivative as finite
+differences. Suppose we have a uniformly spaced grid (or
+mesh)<a
+id="mesh33203"></a><a
+id="grid33204"></a> of values of the independent variable
+x<sub>n</sub> such that x<sub>n+1</sub>&#8722;x<sub>n</sub>=&#8710;x. The natural definition of the
+first derivative<a
+id="first_derivative33205"></a><a
+id="first_derivative_discrete33206"></a> is
+<a id="2pt7">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+dy
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n+1/2</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+&#8710;y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+y<sub>n+1</sub> &#8722; y<sub>n</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>x<sub>n+1</sub> &#8722; x<sub>n</sub><br /></td><td nowrap="nowrap" align="center">
+; </td></tr></table>
+</td><td width="1%">(3.7)</td></tr></table>
+
+
+and this should be regarded as an estimate of the value at the
+midpoint x<sub>n+1/2</sub>=(x<sub>n</sub>+x<sub>n+1</sub>)/2, which we denote via a
+half-integral index n+1/2. The second
+derivative<a
+id="second_derivative_discrete33207"></a><a
+id="second_derivative33208"></a>
+is the derivative of the derivative. Its most
+natural definition, therefore is
+<a id="2pt8">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d<sup>2</sup>y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+&#8710;(dy/dx)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+(dy/dx|<sub>n+1/2</sub>&#8722;dy/ dx|<sub>n&#8722;1/2</sub>)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>x<sub>n+1/2</sub>&#8722;x<sub>n&#8722;1/2</sub><br /></td><td nowrap="nowrap" align="center">
+,</td></tr></table>
+</td><td width="1%">(3.8)</td></tr></table>
+
+
+as illustrated in Fig.&nbsp;<a href="chap3.html#l2ndDerivative">3.5</a>.
+
+</p><p>
+<a id="tth_fIg3.5">
+</a>   <img src="figures/2ndDerivative.png" alt="figures/2ndDerivative.png" /><a id="2ndDerivative">
+</a>
+
+<div style="text-align:center">Figure 3.5: Discrete second derivative at n is the difference between
+    the discrete derivatives at n+<sup>1</sup>/<sub>2</sub> and n&#8722;<sup>1</sup>/<sub>2</sub>. In a
+    uniform mesh, it is
+    divided by the same &#8710;x.<a id="l2ndDerivative">
+</a></div>
+
+</p><p>
+Because the first derivative is the value at n+1/2, the second
+derivative (the derivative of the first derivative) is the value at a
+point mid way between n+1/2 and n&#8722;1/2, i.e.&nbsp;at n. Substituting
+from the previous equation (<a href="chap3.html#2pt7">3.7</a>) we
+get<a
+id="binomial33209"></a><a href="footnote.html#tthFtNtABH" id="tthFrefABH"><sup>17</sup></a>:
+<a id="2pt9">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+   </td><td nowrap="nowrap" align="center">
+d<sup>2</sup>y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+(y<sub>n+1</sub>&#8722;y<sub>n</sub>)/&#8710;x &#8722; (y<sub>n</sub>&#8722;y<sub>n&#8722;1</sub>)/&#8710;x
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+y<sub>n+1</sub> &#8722; 2 y<sub>n</sub> + y<sub>n&#8722;1</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(3.9)</td></tr></table>
+
+
+
+</p><p>
+Now think of the entire mesh stretching from n=1 to n=N. The
+values y<sub>n</sub> at all the nodes can be considered to be a column vector
+of length N. The second derivative can then be considered to be a
+matrix operating on that column vector, to give the values of
+eq.&nbsp;(<a href="chap3.html#2pt9">3.9</a>).  So, written in matrix form we have:
+<a id="2pt10">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d<sup>2</sup>y/dx<sup>2</sup>|<sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d<sup>2</sup>y/dx<sup>2</sup>|<sub>n</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+d<sup>2</sup>y/dx<sup>2</sup>|<sub>N</sub></td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>n</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>N</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+,</td></tr></table>
+</td><td width="1%">(3.10)</td></tr></table>
+
+
+where the square N&times;N matrix has diagonal elements equal to &#8722;2. On the
+adjacent diagonals, sometimes called subdiagonals, (indices n,n+1 and
+n,n&#8722;1) it has 1; and everywhere else it is zero. This overall form is
+called tridiagonal<a
+id="tridiagonal33210"></a>.
+
+</p><p>
+If we are considering the equation<a id="generic2pt">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d<sup>2</sup>y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = g(x)</td></tr></table>
+</td><td width="1%">(3.11)</td></tr></table>
+
+
+where g(x) is
+some function (for example g=&#8722;&#961;/&#1013;<sub>0</sub> for our electrostatic
+example) then the equation is represented by putting the column vector
+(d<sup>2</sup>y/dx<sup>2</sup>|<sub>n</sub>) equal to the column vector (g<sub>n</sub>)=(g(x<sub>n</sub>)).
+
+</p><p>
+     <a id="tth_sEc3.3.2"></a><h3>
+3.3.2&nbsp;&nbsp;Boundary Conditions</h3>
+<a id="2ptBCs">
+</a>
+
+</p><p>
+<a
+id="boundary_condition33211"></a><a
+id="boundary_condition_discrete33212"></a> However,
+in eq.&nbsp;(<a href="chap3.html#2pt10">3.10</a>), the top left and bottom right corners of the
+derivative matrix have deliberately been left ambiguous, because
+that's where the boundary conditions come into play. Assuming they are
+on the boundaries, the quantities y<sub>1</sub> and y<sub>N</sub> are determined not
+by the differential equation and the function g, but by the boundary
+values. We must adjust the first and last row of the matrix
+accordingly to represent those boundary conditions. A convenient way
+to do this when the conditions consist of specifying y<sub>L</sub> and y<sub>R</sub>
+at the left and right-hand ends is to write the equation as:
+<a id="2pt11">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>n</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>N&#8722;1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>N</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2y<sub>L</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+g<sub>2</sub>&#8710;x<sup>2</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+g<sub>n</sub>&#8710;x<sup>2</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+g<sub>N&#8722;1</sub>&#8710;x<sup>2</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2y<sub>R</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(3.12)</td></tr></table>
+
+
+Notice that the first and last rows of the matrix have been made
+purely diagonal, and the column vector on the right hand side (call it
+<b>h</b>) uses for the first and last rows the boundary values, and
+for the others the elements of <b>g</b>&#8710;x<sup>2</sup>. These adjustments
+enforce that the first and last values of y are always the boundary
+values y<sub>L</sub> and y<sub>R</sub>.<a href="footnote.html#tthFtNtABI" id="tthFrefABI"><sup>18</sup></a>
+
+</p><p>
+Once we have constructed this matrix form of the differential
+equation<a
+id="matrix_equation33213"></a>, which we can write:
+<a id="2pt12">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>D</b> <b>y</b> = <b>h</b>,</td></tr></table>
+</td><td width="1%">(3.13)</td></tr></table>
+
+
+it is obvious that we can solve it by simply inverting the matrix
+<b>D</b> and finding
+<a id="2pt13">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>y</b> = <b>D</b><sup>&#8722;1</sup> <b>h</b>.</td></tr></table>
+</td><td width="1%">(3.14)</td></tr></table>
+
+
+(Or we can use some other appropriate matrix equation solution technique.)
+
+</p><p>
+In general, we must make the first and last rows of the matrix
+equation into discrete expressions of the boundary conditions there.
+If instead of Dirichlet boundary conditions<a
+id="Dirichlet_boundary___condition33214"></a><a
+id="boundary_condition_Dirichlet33215"></a> (value is specified),
+we are given Neumann<a
+id="boundary_condition_Neumann33216"></a><a
+id="Neumann___boundary_condition33217"></a> conditions, that is, the <em>derivative</em> (e.g.&nbsp;dy/dx|<sub>1</sub>) is specified, a different adjustment of the
+corners is necessary.  The most obvious thing to do is to make the
+first row of the matrix equation proportional to
+<a id="2pt14">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  (&#8722;1&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; ...) (<b>y</b>) = y<sub>2</sub>&#8722;y<sub>1</sub> = &#8710;x(dy/dx|<sub>1</sub>).</td></tr></table>
+</td><td width="1%">(3.15)</td></tr></table>
+
+
+However, this choice does not calculate the derivative at the right
+place. The expression (y<sub>2</sub>&#8722;y<sub>1</sub>)/&#8710;x is the derivative at
+x<sub>3/2</sub> rather than x<sub>1</sub>, which is the boundary<a href="footnote.html#tthFtNtABJ" id="tthFrefABJ"><sup>19</sup></a>. So the scheme (<a href="chap3.html#2pt14">3.15</a>) is not properly
+centered<a
+id="centered33218"></a> and will give only first
+order<a
+id="first-order_accuracy33219"></a> accuracy.<a href="footnote.html#tthFtNtACA" id="tthFrefACA"><sup>20</sup></a>  A better
+extrapolation of the derivative to the boundary is to write instead
+for the first row
+<a id="2pt15">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8722;</td><td nowrap="nowrap" align="center">
+3
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp;  &#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;...</td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+(<b>y</b>) = &#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+(y<sub>3</sub>&#8722;y<sub>2</sub>)+ </td><td nowrap="nowrap" align="center">
+3
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+(y<sub>2</sub>&#8722;y<sub>1</sub>) = &#8710;x(dy/dx|<sub>1</sub>).</td></tr></table>
+</td><td width="1%">(3.16)</td></tr></table>
+
+
+This is a discrete form of the expression y&#8242;<sub>1</sub>  &#8776; y&#8242;<sub>3/2</sub>&#8722;y"<sub>2</sub>.<sup>1</sup>/<sub>2</sub>&#8710;x, which is accurate to second-order,
+because it cancels out the first-order error in the derivative.
+The same treatment applies to a Neumann condition at x<sub>N</sub> (but of
+course using the mirror image of the row given in eq.&nbsp;(<a href="chap3.html#2pt15">3.16</a>)).
+
+</p><p>
+If the boundary condition is of a more general form (the
+so-called Robin<a
+id="boundary_condition_Robin33220"></a><a
+id="Robin_boundary_condition33221"></a> condition)
+<a id="2pt16">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  Ay+By&#8242;+C=0,</td></tr></table>
+</td><td width="1%">(3.17)</td></tr></table>
+
+
+Then we want the first row to represent this equation discretely. The
+natural way to do this, based upon our previous forms, is to make it
+<a id="2pt17">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+A</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+1&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; ...)+</td><td nowrap="nowrap" align="center">
+B
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;x<br /></td><td nowrap="nowrap" align="center">
+(&#8722;</td><td nowrap="nowrap" align="center">
+3
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; &#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;...</td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+(<b>y</b>) = &#8722;C.</td></tr></table>
+</td><td width="1%">(3.18)</td></tr></table>
+
+
+In addition to combining the previous inhomogeneous boundary forms,
+this expression can also represent the specification of homogeneous
+boundary conditions, or in other words logarithmic gradient
+conditions. When C=0, the boundary condition is d(lny )/dx=y&#8242;/y=&#8722;A/B.
+This form (with A/B=1) is the condition that one might apply to the
+potential due to a spherically symmetric electrostatic charge at the
+outer boundary, for example.
+
+</p><p>
+It may be preferable in some cases to scale the first row of the
+matrix equation to make the diagonal entry the same as all the other
+diagonals, namely &#8722;2. This is done by multiplying all the row's
+elements of <b>D</b>, and the corresponding entry of <b>h</b> by a
+factor &#8722;2/D<sub>11</sub>, or &#8722;2/D<sub>NN</sub> respectively. This can improve the
+conditioning<a
+id="conditioning33222"></a><a
+id="matrix_conditioning33223"></a> of the
+matrix, making inversion easier and more accurate.
+
+</p><p>
+
+</p><p>
+<a id="tth_fIg3.6">
+</a>   <img src="figures/periodicBC.png" alt="figures/periodicBC.png" /><a id="periodicBC">
+</a>
+
+<div style="text-align:center">Figure 3.6: Periodic boundary conditions apply when the independent
+    variable is, for example, distance around a periodic domain.<a id="periodic">
+</a></div>
+
+</p><p>
+A final type of boundary condition worth discussing is called
+"periodic"<a
+id="periodic_boundary_condition33224"></a><a
+id="boundary_condition_periodic33225"></a>. This expression means that the end of the x-domain is
+considered to be connected to its beginning.  Such a situation arises,
+for example, if the domain is actually a circle in two-dimensional
+space. But it is also sometimes used to approximate an infinite
+domain. For periodic boundary conditions it is usually convenient to
+label the first and last point 0 and N. See Fig.&nbsp;<a href="chap3.html#periodic">3.6</a>. They are the same point; so
+the values at x<sub>0</sub> and x<sub>N</sub> are the same. There are then N
+different points and the discretized differential equation must be
+satisfied at them all, with the differences wrapping round to the
+corresponding point across the boundary. The resulting matrix equation
+is then
+<a id="2pt18">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+... </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>n</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>N&#8722;2</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>N&#8722;1</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+g<sub>1</sub>&#8710;x<sup>2</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+g<sub>2</sub>&#8710;x<sup>2</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+g<sub>n</sub>&#8710;x<sup>2</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+g<sub>N&#8722;2</sub>&#8710;x<sup>2</sup></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+g<sub>N&#8722;1</sub>&#8710;x<sup>2</sup></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+,</td></tr></table>
+</td><td width="1%">(3.19)</td></tr></table>
+
+
+which maintains the pattern 1,&#8722;2,1 for every row, without exception.
+For the first and last rows, the subdiagonal 1 element that would be
+outside the matrix, is wrapped round to the other end of the row. It
+gives a new entry in the top right and bottom left
+corners.<a href="footnote.html#tthFtNtACB" id="tthFrefACB"><sup>21</sup></a>
+
+</p><p>
+ <a id="tth_sEc3.4"></a><h2>
+3.4&nbsp;&nbsp;Conservative Differences, Finite Volumes</h2>
+
+</p><p>
+<a
+id="conservative_form34226"></a>In our cylindrical fuel rod example, we had what one might call a
+"weighted derivative": something more complicated than a
+Laplacian. One might be tempted to write it in the following way:
+<a id="2pt19">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+ r&#954;</td><td nowrap="nowrap" align="center">
+d T
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+ = r&#954;</td><td nowrap="nowrap" align="center">
+d<sup>2</sup>T
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ </td><td nowrap="nowrap" align="center">
+d(r&#954;)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+d T
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td nowrap="nowrap" align="center">
+,</td></tr></table>
+</td><td width="1%">(3.20)</td></tr></table>
+
+
+and then use the discrete forms for the first and second derivative in
+this expression. The problem with that approach is that first
+derivatives are at half-mesh-points (n+1/2 etc.), while second
+derivatives are at whole mesh points (n). So it is not clear how
+best to express this multiple term formula discretely in a consistent
+manner. In particular, if one adopts an asymmetric form, such as
+writing dT/dr&#124;<sub>n</sub>  &#8776; (T<sub>n+1</sub>&#8722; T<sub>n</sub>)/&#8710;x, (just ignoring the
+fact that this is really centered at n+1/2, not n), then the
+error will be of second-order in &#8710;x. The scheme will be
+accurate only to first-order. That's bad.
+
+</p><p>
+We must avoid that error. But even so, there are various <em>different</em> ways
+to produce schemes that are second-order accurate. Generally the best
+way is to recall that the differential form arose as a
+<em>conservation equation</em>. It was the conservation of energy that
+required the heat flux through a particular radius cylinder 2&#960;r&#954;dT/dr to vary with radius only so as to account for the power
+density at radius r. It is therefore best to develop the
+second-order differential in this way. First we form dT/dr in the
+usual discrete form at n&#8722;1/2 and n+1/2. Then we multiply those
+values by r&#954; <em>at the same half-mesh positions n&#8722;1/2 and
+  n+1/2</em>.  Then we take the difference of those two fluxes writing:
+<a id="2pt20">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+ r&#954;</td><td nowrap="nowrap" align="center">
+d T
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td colspan="2" align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+=</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+  r<sub>n+1/2</sub>&#954;<sub>n+1/2</sub></td><td nowrap="nowrap" align="center">
+T<sub>n+1</sub>&#8722;T<sub>n</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;r<br /></td><td nowrap="nowrap" align="center">
+&#8722; r<sub>n&#8722;1/2</sub>&#954;<sub>n&#8722;1/2</sub></td><td nowrap="nowrap" align="center">
+T<sub>n</sub>&#8722;T<sub>n&#8722;1</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710; r<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;r<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r<sub>n+1/2</sub>&#954;<sub>n+1/2</sub></td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;T<sub>n+1</sub></td></tr></table></td></tr>
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;&nbsp;&#8722;(r<sub>n+1/2</sub>&#954;<sub>n+1/2</sub>+r<sub>n&#8722;1/2</sub>&#954;<sub>n&#8722;1/2</sub>) </td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;T<sub>n</sub></td></tr></table></td></tr>
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;&nbsp;+ r<sub>n&#8722;1/2</sub>&#954;<sub>n&#8722;1/2</sub></td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;T<sub>n&#8722;1</sub>&nbsp;]. </td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(3.21)</td></tr></table>
+
+
+The big advantage of this expression is that it exactly conserves the
+heat flux<a
+id="heat_flux34227"></a>. This property can be seen by considering
+the exact heat conservation in integral form<a
+id="integral_form34228"></a> over
+the cell consisting of the range r<sub>n&#8722;1/2</sub> &lt; r &lt; r<sub>n+1/2</sub>:
+<a id="htcons">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  2&#960;r<sub>n+1/2</sub>&#954;<sub>n+1/2</sub></td><td nowrap="nowrap" align="center">
+dT
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n+1/2</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8722; 2&#960;r<sub>n&#8722;1/2</sub>&#954;<sub>n&#8722;1/2</sub></td><td nowrap="nowrap" align="center">
+dT
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n&#8722;1/2</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+=&#8722;</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>r<sub>n+1/2</sub></small><!--sup
+--><br /><br />
+<small>r<sub>n&#8722;1/2</sub></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+p 2&#960;r&#8242;dr&#8242;.</td></tr></table>
+</td><td width="1%">(3.22)</td></tr></table>
+
+
+Then adding together the versions of this equation for two adjacent
+positions n=k,k+1, the <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+dT
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>k+1/2</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> terms
+cancel, provided the expression for <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">r&#954;</td><td nowrap="nowrap" align="center">
+dT
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> is the same at the
+same n value regardless of which adjacent cell (k or k+1) it
+arises from. This symmetry is present when using <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+dT
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n+1/2</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+=(T<sub>n+1</sub>&#8722;T<sub>n</sub>)/&#8710;r
+</td></tr></table><br /> and the half-mesh
+values of r&#954;. The sum of the
+equations is therefore the exact total conservation for the region
+r<sub>k&#8722;1/2</sub> &lt; r &lt; r<sub>k+3/2</sub>, consisting of the sum of the two adjacent
+cells. This process can then be extended over the whole domain,
+proving total heat conservation. Approaching the discrete equations in
+this way is sometimes called the method of "finite
+volumes"<a
+id="finite_volumes34229"></a><a href="footnote.html#tthFtNtACC" id="tthFrefACC"><sup>22</sup></a>. The finite volume
+in our illustrative case is the annular region between r<sub>n&#8722;1/2</sub> and
+r<sub>n+1/2</sub>.
+
+</p><p>
+A less satisfactory alternative which remains second-order accurate
+might be to evaluate the right hand side of eq.&nbsp;(<a href="chap3.html#2pt19">3.20</a>) using
+double distance derivatives that are centered at the n mesh as
+follows
+<a id="2pt21">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+ r&#954;</td><td nowrap="nowrap" align="center">
+d T
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td colspan="2" align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+=</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+  r<sub>n</sub>&#954;<sub>n</sub></td><td nowrap="nowrap" align="center">
+T<sub>n+1</sub>&#8722;2T<sub>n</sub>+T<sub>n&#8722;1</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+r<sub>n+1</sub>&#954;<sub>n+1</sub>&#8722;r<sub>n&#8722;1</sub>&#954;<sub>n&#8722;1</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#8710; r<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+T<sub>n+1</sub>&#8722;T<sub>n&#8722;1</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#8710;r<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;r<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+[&nbsp;(r<sub>n+1</sub>&#954;<sub>n+1</sub>/4+r<sub>n</sub>&#954;<sub>n</sub>&#8722;r<sub>n&#8722;1</sub>&#954;<sub>n&#8722;1</sub>/4)</td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;T<sub>n+1</sub></td></tr></table></td></tr>
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2r<sub>n</sub>&#954;<sub>n</sub> </td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;T<sub>n</sub></td></tr></table></td></tr>
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
++(&#8722;r<sub>n+1</sub>&#954;<sub>n+1</sub>/4+r<sub>n</sub>&#954;<sub>n</sub>+r<sub>n&#8722;1</sub>&#954;<sub>n&#8722;1</sub>/4)</td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;T<sub>n&#8722;1</sub> ].</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(3.23)</td></tr></table>
+
+
+None of the coefficients of the Ts in this expression is the same as
+in eq.&nbsp;(<a href="chap3.html#2pt20">3.21</a>) unless r&#954; is independent of
+position. This is true even in the case where r&#954; is known only
+at whole mesh points so the half-point values in (<a href="chap3.html#2pt20">3.21</a>) are
+obtained by interpolation. Expression (<a href="chap3.html#2pt21">3.23</a>) does not exactly
+conserve heat flux, which is an important weakness. Expression
+(<a href="chap3.html#2pt20">3.21</a>) is usually to be preferred.
+
+</p><p>
+
+<h2>Worked Example: Formulating radial differences</h2>
+
+</p><p>
+<a
+id="radial_differences34230"></a>Formulate a matrix scheme to solve by finite-differences the equation
+<a id="ch3wkd1">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+r</td><td nowrap="nowrap" align="center">
+d y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
++ rg(r)=0</td></tr></table>
+</td><td width="1%">(3.24)</td></tr></table>
+
+
+with given g and two-point boundary conditions dy/dr=0 at r=0
+and y=0 at r=N&#8710;, on an r-grid of uniform spacing &#8710;.
+
+</p><p>
+<br />We write down the finite difference equation at a
+generic position:
+<a id="ch3wk2">
+</a><br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">  </td><td nowrap="nowrap" align="center">
+dy
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n+1/2</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+y<sub>n+1</sub>&#8722;y<sub>n</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;<br /></td><td nowrap="nowrap" align="center">
+.
+</td></tr></table><br />
+Substituting this into the differential equation, we get
+<a id="ch3wkd3">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+  &#8722;r<sub>n</sub>g<sub>n</sub>=</td><td nowrap="nowrap" align="center">
+d
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+r</td><td nowrap="nowrap" align="center">
+dy
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+r<sub>n+1/2</sub></td><td nowrap="nowrap" align="center">
+dy
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n+1/2</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8722; r<sub>n&#8722;1/2</sub></td><td nowrap="nowrap" align="center">
+dy
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dr<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>n&#8722;1/2</small>&nbsp;<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+r<sub>n+1/2</sub></td><td nowrap="nowrap" align="center">
+y<sub>n+1</sub>&#8722;y<sub>n</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;<br /></td><td nowrap="nowrap" align="center">
+&#8722;  r<sub>n&#8722;1/2</sub></td><td nowrap="nowrap" align="center">
+y<sub>n</sub>&#8722;y<sub>n&#8722;1</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td width="50%"></td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1">(r<sub>n+1/2</sub>y<sub>n+1</sub>&#8722;2r<sub>n</sub>y<sub>n</sub>+r<sub>n&#8722;1/2</sub>y<sub>n&#8722;1</sub>) </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8710;<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table></td><td width="50%"></td><td width="1" align="right">(3.25)</td></tr></table>
+</td></tr></table>
+
+
+It is convenient (and improves matrix conditioning<a
+id="matrix_conditioning34231"></a>) to divide this
+equation through by r<sub>n</sub>/&#8710;<sup>2</sup>, so that the nth equation reads
+<a id="ch3wkd4">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+r<sub>n+1/2</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>n</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+y<sub>n+1</sub>&#8722;2y<sub>n</sub>+</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+r<sub>n&#8722;1/2</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>n</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+y<sub>n&#8722;1</sub> = &#8722;&#8710;<sup>2</sup>g<sub>n</sub></td></tr></table>
+</td><td width="1%">(3.26)</td></tr></table>
+
+
+For definiteness we will take the position of the nth grid point to
+be r<sub>n</sub>=n&#8710;, so n runs from 0 to N. Then the coefficients become
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+r<sub>n&#177;1/2</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>r<sub>n</sub><br /></td><td nowrap="nowrap" align="center">
+=</td><td nowrap="nowrap" align="center">
+n&#177;1/2
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>n<br /></td><td nowrap="nowrap" align="center">
+=1&#177;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2n<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(3.27)</td></tr></table>
+
+
+
+</p><p>
+The boundary condition at n=N is y<sub>N</sub>=0. At n=0 we want
+dy/dr=0, but we need to use an expression that is centered<a
+id="centered34232"></a> at n=0,
+not n=1/2, to give second-order accuracy<a
+id="second-order_accuracy34233"></a>. Therefore following eq.&nbsp;(<a href="chap3.html#2pt15">3.16</a>) we write the equation at n=0
+<a id="ch3wkd5">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8710;dy/dx|<sub>0</sub>=&#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+(y<sub>2</sub>&#8722;y<sub>1</sub>)+ </td><td nowrap="nowrap" align="center">
+3
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+(y<sub>1</sub>&#8722;y<sub>0</sub>) = </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8722;</td><td nowrap="nowrap" align="center">
+3
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; &#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;...</td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+(<b>y</b>) = 0.</td></tr></table>
+</td><td width="1%">(3.28)</td></tr></table>
+
+
+Gathering all our equations into a matrix we have:
+<span class="small"><a id="ch3wkd6">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;</td><td nowrap="nowrap" align="center">
+3
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+2 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1&#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1&#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2n<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2n<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<sup><big>&#183;</big></sup>&#183;<sub><big>&#183;</big></sub></td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1&#8722;</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2(N&#8722;1)<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1+</td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2(N&#8722;1)<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;2</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>0</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>n</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>N&#8722;1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+y<sub>N</sub></td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+=&#8722;&#8710;<sup>2</sup></td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239C;<br />&#x239D;
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+g<sub>1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+g<sub>n</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+:</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+g<sub>N&#8722;1</sub></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(3.29)</td></tr></table>
+
+</span>
+Fig.&nbsp;<a href="chap3.html#lcyldiff">3.7</a> shows the solution of an illustrative case.
+
+</p><p>
+<a id="tth_fIg3.7">
+</a>   <img src="figures/cyldiff.png" alt="figures/cyldiff.png" /><a id="cyldiff">
+</a>
+
+<div style="text-align:center">Figure 3.7: Example of the result of a finite difference solution for
+    y of eq.&nbsp;(<a href="chap3.html#ch3wkd1">3.24</a>) using a matrix of the form of
+    eq.&nbsp;(<a href="chap3.html#ch3wkd6">3.29</a>). The source g is purely
+    illustrative, and is plotted in the figure. The boundary points at
+    the ends of the range of solution are r=0, and r=N&#8710; = 4. A
+    grid size N=25 is used.</div><a id="lcyldiff">
+</a>
+
+</p><p>
+
+<h2>Exercise 3. Solving 2-point ODEs.</h2>
+
+</p><p>
+ 1.
+Write a code to solve, using matrix inversion, a 2-point ODE of the form
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+d<sup>2</sup>y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
+ = f(x)</td></tr></table>
+</td></tr></table>
+
+ on the x-domain [0,1], spanned by an equally spaced mesh of
+N nodes, with Dirichlet boundary conditions y(0)=y<sub>0</sub>, y(1)=y<sub>1</sub>.
+
+</p><p>
+When you have got it working, obtain your personal expressions for
+f(x), N, y<sub>0</sub>, and y<sub>1</sub> from
+<a href="http://silas.psfc.mit.edu/22.15/giveassign3.cgi"><tt>http://silas.psfc.mit.edu/22.15/giveassign3.cgi</tt></a>. (Or use
+f(x) = a + bx, a = 0.15346,
+b = 0.56614,
+N = 44,
+y<sub>0</sub> = 0.53488,
+y<sub>1</sub> = 0.71957.) And solve the
+differential equation so posed. Plot the solution.
+
+</p><p>
+Submit the following as your solution:
+
+<ol type="1">
+<li> Your code in a computer format that is capable of being
+  executed.
+</p><p>
+</li>
+
+<li> The expressions of your problem f(x), N, y<sub>0</sub>, and y<sub>1</sub>
+</p><p>
+</li>
+
+<li> The numeric values of your solution y<sub>j</sub>.
+</p><p>
+</li>
+
+<li> Your plot.
+</p><p>
+</li>
+
+<li> Brief commentary ( &lt;  300 words) on what problems you faced and how you solved them.
+</p><p>
+</li>
+</ol>
+
+</p><p>
+<br /><br /> 2.
+Save your code and make a copy with a new name. Edit the new code so
+that it solves the ODE
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+d<sup>2</sup>y
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dx<sup>2</sup><br /></td><td nowrap="nowrap" align="center">
++ k<sup>2</sup> y = f(x)</td></tr></table>
+</td></tr></table>
+
+
+on the same domain and with the same boundary conditions, but with the
+extra parameter k<sup>2</sup>. Verify that your new code works correctly for
+small values of k<sup>2</sup>, yielding results close to those of the previous
+problem.
+
+</p><p>
+Investigate what happens to the solution in the vicinity of k=&#960;.
+
+</p><p>
+Describe what the cause of any interesting behavior is.
+
+</p><p>
+Submit the following as your solution:
+
+<ol type="1">
+<li> Your code in a computer format that is capable of being
+  executed.
+</p><p>
+</li>
+
+<li> The expressions of your problem f(x), N, y<sub>0</sub>, and y<sub>1</sub>
+</p><p>
+</li>
+
+<li> Brief description ( &lt;  300 words) of the results of your
+  investigation and your explanation.
+</p><p>
+</li>
+
+<li> Back up the explanation with plots if you like.
+</p><p>
+</li>
+</ol>
+
+</p><p>
+
+
+<hr /><table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+<a href="chap4.html">NEXT
+</a></td></tr></table>
+</div></body></html>

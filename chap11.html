@@ -1,0 +1,930 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
+    img {     max-width: 100%;
+    max-height: 40vh; } p { line-height: 1.5em; } body {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 18px;
+    }
+  </style>
+<
+<title>chap11.html</title>
+<table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+ <a href="chap10.html">PREVIOUS
+</a></td></tr></table>
+ <a id="tth_chAp11"></a><h1>
+Chapter 11 <br />Monte Carlo Techniques</h1>
+
+</p><p>
+So far we have been focussing on how particle codes work once the
+particles are launched. We've talked about how they are moved, and how
+self-consistent forces on them are calculated. What we have not
+addressed is how they are launched in an appropriate way in the first
+place, and how particles are reinjected into a simulation. We've also
+not explained how one decides statistically whether a collision has
+taken place to any particle and how one would then decide what
+scattering angle the collision corresponds to. All of this must be
+determined in computational physics and engineering by the use of
+random numbers and statistical distributions.<a href="footnote.html#tthFtNtAGG" id="tthFrefAGG"><sup>66</sup></a><a
+id="Monte_Carlo110622"></a> Techniques based on random numbers
+are called by the name of the famous casino at Monte Carlo.
+
+</p><p>
+ <a id="tth_sEc11.1"></a><h2>
+11.1&nbsp;&nbsp;Probability and Statistics</h2>
+
+</p><p>
+     <a id="tth_sEc11.1.1"></a><h3>
+11.1.1&nbsp;&nbsp;Probability and Probability Distribution</h3>
+
+</p><p>
+Probability<a
+id="probability111623"></a>, in the mathematically precise sense, is an
+idealization of the repetition of a measurement, or a sample, or some
+other test.  The result in each individual case is supposed to be
+unpredictable to some extent, but the repeated tests show some average
+trends that it is the job of probability to represent. So, for
+example, the single toss of a coin gives an unpredictable result:
+heads or tails; but the repeated toss of a (fair) coin gives on
+average equal numbers of heads and tails. Probability theory describes
+that regularity by saying the probability of heads and tails is
+equal. Generally the probability of a particular class of outcomes
+(e.g. heads) is defined as the <em>fraction of the outcomes</em>, in a
+very large number of tests, that are in the particular class. For a
+fair coin toss, probability of heads is the fraction of outcomes of a
+large number of tosses that is heads, 0.5. For a six-sided die, the
+probability of getting any particular value, say 1, is the fraction of
+rolls that come up 1, in a very large number of tests. That will be
+one-sixth for a fair die. In all cases, because probability is defined
+as a <em>fraction</em>, the sum of probabilities of all possible
+outcomes must be unity.
+
+</p><p>
+More usually, in describing physical systems we deal with a
+<em>continuous</em> real-valued outcome, such as the speed of a randomly
+chosen particle.  In that case the probability is described by a
+"probability distribution"<a
+id="probability_distribution111624"></a> p(v)
+which is a function of the random variable (in this case velocity
+v). The probability of finding that the velocity lies in the range
+v&#8594; v+dv for small dv is then equal to p(v)dv. In order for the
+sum of all possible probabilities to be unity, we require
+<a id="probeq1">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+p(v) dv = 1.</td></tr></table>
+</td><td width="1%">(11.1)</td></tr></table>
+
+
+
+</p><p>
+Each individual sample<a
+id="sample111625"></a><a href="footnote.html#tthFtNtAGH" id="tthFrefAGH"><sup>67</sup></a> might give rise to more than one
+value. For example the velocity of a sampled particle might be a
+three-dimensional vector <b><i>v</i></b>=(v<sub>x</sub>,v<sub>y</sub>,v<sub>z</sub>). In that case, the
+probability distribution is a function in a multi-dimensional
+parameter-space, and the probability of obtaining a sample that
+happens to be in a multi-dimensional element d<sup>3</sup>v at <b><i>v</i></b> is
+p(<b><i>v</i></b>)d<sup>3</sup>v. The corresponding normalization is
+<a id="probeq3">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+p(<b><i>v</i></b>) d<sup>3</sup>v = 1.</td></tr></table>
+</td><td width="1%">(11.2)</td></tr></table>
+
+
+Obviously, what this shows is that if our sample consists of randomly
+selecting particles from a velocity distribution function f(<b><i>v</i></b>), then
+the corresponding probability function is simply
+<a id="distribprob">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  p(<b><i>v</i></b>) = f(<b><i>v</i></b>)/</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+f(<b><i>v</i></b>)d<sup>3</sup>v = f(<b><i>v</i></b>)/n,</td></tr></table>
+</td><td width="1%">(11.3)</td></tr></table>
+
+
+where n is the particle density. So the normalized distribution
+function is the velocity probability distribution.
+
+</p><p>
+The <em>cumulative</em><a
+id="probability_cumulative111626"></a> probability
+function can be considered to represent the probability that a sample
+value is less than a particular value. So for a single-parameter
+distribution p(v), the cumulative probability is
+<a id="cumul1">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  P(v) = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>v</small><!--sup
+--><br /><br />
+<small>&#8722;&#8734;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+p(v&#8242;)dv&#8242;.</td></tr></table>
+</td><td width="1%">(11.4)</td></tr></table>
+
+
+In multiple dimensions, the cumulative probability is a
+multidimensional function that is the integral in all the dimensions
+of the probability distribution:
+<a id="cumul2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  P(<b><i>v</i></b>) = P(v<sub>x</sub>,v<sub>y</sub>,v<sub>z</sub>)=</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>v<sub>x</sub></small><!--sup
+--><br /><br />
+<small>&#8722;&#8734;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>v<sub>y</sub></small><!--sup
+--><br /><br />
+<small>&#8722;&#8734;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>v<sub>z</sub></small><!--sup
+--><br /><br />
+<small>&#8722;&#8734;</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+p(<b><i>v</i></b>&#8242;)d<sup>3</sup>v&#8242;.</td></tr></table>
+</td><td width="1%">(11.5)</td></tr></table>
+
+
+Correspondingly the probability distribution is the derivative of the
+cumulative probability: p(v)=dP/dv, or p(<b><i>v</i></b>)=&#8706;<sup>3</sup>P/&#8706;v<sub>x</sub>&#8706;v<sub>y</sub>&#8706;v<sub>z</sub>.
+
+</p><p>
+     <a id="tth_sEc11.1.2"></a><h3>
+11.1.2&nbsp;&nbsp;Mean, Variance, Standard Deviation, and Standard Error</h3>
+
+</p><p>
+If we make a large number N of individual measurements of a random
+value from a probability distribution p(v), each of which gives a
+value v<sub>i</sub>, i=1,2,...,N, then the<a
+id="mean111627"></a><a
+id="sample_mean111628"></a>
+<em>sample mean</em> value of the combined sample N is defined as
+<a id="mean">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#956;<sub>N</sub> = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small>N</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+v<sub>i</sub>.</td></tr></table>
+</td><td width="1%">(11.6)</td></tr></table>
+
+
+The<a
+id="variance111629"></a><a
+id="sample_variance111630"></a><a
+id="Bessel_s_correction111631"></a>
+<em>sample variance</em> is defined<a href="footnote.html#tthFtNtAGI" id="tthFrefAGI"><sup>68</sup></a> as
+<a id="variance">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  S<sub>N</sub><sup>2</sup> = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>N&#8722;1<br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<small>N</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>i=1</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+(v<sub>i</sub>&#8722;&#956;<sub>N</sub>)<sup>2</sup>.</td></tr></table>
+</td><td width="1%">(11.7)</td></tr></table>
+
+
+The <em>sample standard deviation</em><a
+id="standard_deviation111632"></a>
+is S<sub>N</sub>, the square root of the<a
+id="sample_standard_deviation111633"></a>
+variance, and the
+<em>sample standard error</em><a
+id="standar_error111634"></a> is S<sub>N</sub>/&#8730;N. The mean is
+obviously a measure of the average value, and the variance or standard
+deviation is a measure of how spread out the random values are. They
+are the simplest unbiassed estimates of the moments of the
+distribution. These moments are properties of the
+<em>probability distribution</em> not of the particular sample. The
+<em>distribution mean</em><a href="footnote.html#tthFtNtAGJ" id="tthFrefAGJ"><sup>69</sup></a><a
+id="distribution_mean111635"></a> is defined as
+<a id="distmean">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#956; =  </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+v p(v) dv</td></tr></table>
+</td><td width="1%">(11.8)</td></tr></table>
+
+
+and the <em>distribution variance</em><a
+id="distribution_variance111636"></a> is
+<a id="distvar">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  S<sup>2</sup> = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+(v&#8722;&#956;)<sup>2</sup> p(v)dv.</td></tr></table>
+</td><td width="1%">(11.9)</td></tr></table>
+
+
+Obviously for large N we expect the sample mean to be approximately
+equal to the distribution mean and the sample variance equal to the
+distribution variance.
+
+</p><p>
+A finite size sample will not have a mean exactly equal to the
+distribution mean because of statistical fluctuations. If we regard
+the sample mean &#956;<sub>N</sub> as itself being a random variable, which
+changes from one total sample of N tests to the next total sample of
+N tests,<a
+id="central_limit_theorem111637"></a> then it can be
+shown<a href="footnote.html#tthFtNtAHA" id="tthFrefAHA"><sup>70</sup></a>  that the probability distribution of
+&#956;<sub>N</sub> is approximately a Gaussian with standard deviation equal to
+the standard error S<sub>N</sub>/&#8730;N. That is one reason why the
+Gaussian<a
+id="Gaussian111638"></a><a
+id="normal_distribution111639"></a> distribution is
+sometimes called the "Normal" distribution. The Gaussian probability
+distribution in one dimension has only two<a href="footnote.html#tthFtNtAHB" id="tthFrefAHB"><sup>71</sup></a> independent
+parameters &#956; and S.
+
+</p><p>
+ <a id="tth_sEc11.2"></a><h2>
+11.2&nbsp;&nbsp;Computational random selection</h2>
+<a id="comprandsel">
+</a>
+
+</p><p>
+<a
+id="pseudo-random112640"></a> Computers can generate <em>pseudo</em>-random
+numbers, usually by doing complicated non-linear arithmetic starting
+from a particular "seed" number
+(or strictly a seed<a
+id="seed__random112641"></a> "state"
+which might be multiple numbers). Each successive
+number produced is actually completely determined by the algorithm,
+but the sequence has the appearance of randomness, in that the values
+v jump around in the range 0 &#8804; v  &#8804; 1, with no apparent
+systematic trend to them. If the random number generator is a good
+generator, then successive values will not have
+statistically-detectable dependence on the prior values, and the
+distribution of values in the range will be uniform, representing a
+probability distribution p(v)=1. Many languages and mathematical
+systems have library functions that return a random number. Not all
+such functions are<a
+id="random_number_generator112642"></a> "good" random
+number generators.
+(The built-in C
+functions are notoriously not good.) One should be wary for production
+work. It is also extremely useful, for example for program debugging,
+to be able to repeat a pseudo-random calculation, knowing the sequence
+of "random" numbers you get each time will be the same. What you
+must be careful about, though, is that if you want to improve the
+accuracy of a calculation by increasing the number of samples, it is
+essential that the samples be independent. Obviously, that means the
+random numbers you use must <em>not</em> be the same ones you already
+used. In other words, the seed must be different. This goes also for
+parallel computations. Different parallel processors should normally
+use different seeds.
+
+</p><p>
+Now obviously if our computational task calls for a random number from
+a uniform distribution between 0 and 1, p(v)=1, then using one of
+the internal or external library functions is the way to go. However,
+usually we will be in a situation where the probability distribution
+we want to draw from is <em>non-uniform</em>, for example a Gaussian
+distribution, an exponential distribution, or some other function of value.
+How do we do that?
+
+</p><p>
+We use two related random variables; call them u and v. Variable
+u is going to be uniformly distributed between 0 and 1. (It is
+called a "uniform deviate"<a
+id="uniform_deviate112643"></a>.) Variable v
+is going to be related to u through some one-to-one functional relation.
+Now if we take a particular sample value drawn from the uniform
+deviate, u, there is a corresponding value v. What's more, we know
+that the fraction of drawn values that are in a particular u-element du,
+is equal to the fraction of values that are in the corresponding
+v-element dv. Consequently, recognizing that those fractions are
+p<sub>u</sub>(u)du and p<sub>v</sub>(v)dv respectively, where p<sub>u</sub> and p<sub>v</sub> are the
+respective probability distributions of u and v, we have
+<a id="dudv">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  p<sub>u</sub>(u)du=p<sub>v</sub>(v)dv &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#8658; &nbsp;&nbsp;&nbsp; p<sub>v</sub>(v) = p<sub>u</sub>(u) </td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+du
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dv<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+=</td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+du
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dv<br /></td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(11.10)</td></tr></table>
+
+
+The final equality uses the fact that p<sub>u</sub>=1 for a uniform deviate.
+
+</p><p>
+Therefore, if we are required to find random values v from a
+probability distribution p<sub>v</sub>, we simply have to find a functional
+relationship between v and u that satisfies p<sub>v</sub>(v) = |du/dv|. But we know of a function already that provides
+this property. Consider the cumulative<a
+id="cumulative_probability112644"></a>
+probability P<sub>v</sub>(v)=&#8747;<sup>v</sup>p<sub>v</sub>(v&#8242;)dv&#8242;. It is monotonic, and ranges
+between zero and 1. Therefore we may choose to write
+<a id="transdist">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  u = P<sub>v</sub>(v) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="roman">for</span> <span class="roman">which</span>&nbsp;&nbsp;&nbsp; </td><td nowrap="nowrap" align="center">
+du
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>dv<br /></td><td nowrap="nowrap" align="center">
+ = p<sub>v</sub>(v).</td></tr></table>
+</td><td width="1%">(11.11)</td></tr></table>
+
+
+So if u=P<sub>v</sub>(v), the v variable will be randomly distributed with
+probability distribution p<sub>v</sub>(v). We are done. Actually not quite
+done, because the process of choosing u and then finding the value
+of v which corresponds to it requires us to invert the function
+P<sub>v</sub>(v). That is
+<a id="inversevu">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  v = P<sub>v</sub><sup>&#8722;1</sup>(u).</td></tr></table>
+</td><td width="1%">(11.12)</td></tr></table>
+
+
+Fig.&nbsp;<a href="chap11.html#Pselect">11.1</a> illustrates this process.
+It is not always possible to invert the function analytically, but it
+is always possible to do it numerically. One way is by root
+finding<a
+id="root_finding_bisection112645"></a> e.g.&nbsp;bisection.
+
+</p><p>
+<a id="tth_fIg11.1">
+</a>   <img src="figures/distribtransf.png" alt="figures/distribtransf.png" /><a id="distribtransf">
+</a>
+
+<div style="text-align:center">Figure 11.1: To obtain numerically a random variable v with specified
+    probability distribution p<sub>v</sub> (not to scale), calculate a table
+    of the function P<sub>v</sub>(v) by integration. Draw a random number from
+    uniform deviate u. Find the v for which P<sub>v</sub>(v)=u by
+    interpolation. That's the random v.<a id="Pselect">
+</a></div>
+
+</p><p>
+Since P<sub>v</sub> is monotonic, for any u between 0 and 1, there is a
+single root v of the equation P<sub>v</sub>(v)&#8722;u=0. Provided we can find that
+root quickly, then given u we can find v. One way to make the root
+finding quick is to generate a table of N<sub>t</sub> values of v and u=P<sub>v</sub>(v),
+equally spaced <em>in u</em> (not in v). Then given any u, the
+index of the point just below u is the integer value i= u*N<sub>t</sub>,
+and we can interpolate between it and the next point using the
+fractional value of  u*N<sub>t</sub>.<a href="footnote.html#tthFtNtAHC" id="tthFrefAHC"><sup>72</sup></a>
+
+</p><p>
+
+<b>Rejection Method&nbsp;&nbsp;</b><a
+id="rejection_method112646"></a>
+Another way of obtaining random values from some specified probability
+distribution is by the "Rejection Method", illustrated in Fig.&nbsp;<a href="chap11.html#rejectionl">11.2</a>. This involves using a second random number to decide
+whether or not to retain the first one chosen. The second random
+number is used to weight the probability of the first one.
+
+</p><p>
+<a id="tth_fIg11.2">
+</a>     <img src="figures/rejection.png" alt="figures/rejection.png" /><a id="rejection">
+</a>
+
+<div style="text-align:center">Figure 11.2: The rejection method chooses a v value randomly from a
+      simple distribution (e.g.&nbsp;a constant) whose integral is
+      invertible. Then a second random number decides whether it will
+      be rejected or accepted. The fraction accepted at v is equal
+      to the ratio of p<sub>v</sub>(v) to the simple invertible distribution.
+      p<sub>v</sub>(v) must be scaled by a constant factor to be everywhere
+      less than the simple distribution (1 here).<a id="rejectionl">
+</a></div>
+
+</p><p>
+In effect this means picking points below the first scaled
+distribution, in the illustrated case of a rectangular distribution,
+uniformly distributed within the rectangle, and accepting only those
+that are below p<sub>v</sub>(v) (suitably scaled to be everywhere less than
+1). Therefore some inefficiency is inevitable. If the area under
+p<sub>v</sub>(v) is, say, half the total, then twice as many total choices are
+needed, and each requires two random numbers, giving four
+<a
+id="efficiency_rejection_method112647"></a>times as many random numbers per
+accepted point. Improvement on the second inefficiency can be obtained
+by using a simply invertible function that fits p<sub>v</sub>(v) more
+closely. Even so, this will be slower than the tabulated function
+method, unless the random number generator has very small cost.
+
+</p><p>
+
+<b>Monte Carlo Integration&nbsp;&nbsp;</b> Notice by the way, that this
+second<a
+id="Monte_Carlo_integration112648"></a> technique shows exactly how
+"Monte Carlo Integration" can be done. Select points at random over
+a line, or a rectangular area in two dimensions, or cuboid volume in
+three dimensions. Decide whether each point is within the area/volume
+of interest. If so, add the value of the function to be integrated to
+the running total, if not, not. Repeat. At the end multiply the total
+by the area/volume of the rectangle/cuboid divided by the number of
+random points examined (total, not just those that are within the
+area/volume).  That's the integral. Such a technique can be quite an
+efficient way, and certainly an easy-to-program way, to integrate over
+a volume for which it is simple to decide whether you are inside it
+but hard to define systematically where the boundaries are. An example
+might be the volume inside a cube but outside a sphere placed
+off-center inside the cube. The method's drawback is that its accuracy
+increases only like the inverse <em>square root</em> of the number of
+points sampled. So if high accuracy is required, other methods may be
+much more efficient.<a
+id="quasi-random_numbers112649"></a><a href="footnote.html#tthFtNtAHD" id="tthFrefAHD"><sup>73</sup></a>
+
+</p><p>
+ <a id="tth_sEc11.3"></a><h2>
+11.3&nbsp;&nbsp;Flux integration and injection choice.</h2>
+
+</p><p>
+<a
+id="injection_particle113650"></a><a
+id="particle_injection113651"></a> Suppose we are
+simulating a sub-volume that is embedded in a larger region. Particles
+move in and out of the sub-volume. Something interesting is being
+modelled within the subvolume, for example the interaction of some
+object with the particles. If the volume is big enough, the region
+outside the subvolume is relatively unaffected by the physics in the
+subvolume, then we know or can specify what the distribution function
+of particles is in the outer region, at the volume's boundaries. Assume
+that periodic boundary conditions are not appropriate, because, for
+example, they don't well represent an isolated interaction. How do we
+determine statistically what particles to inject into the subvolume
+across its boundary?
+
+</p><p>
+<a id="tth_fIg11.3">
+</a>     <img src="figures/injection.png" alt="figures/injection.png" /><a id="injection">
+</a>
+
+<div style="text-align:center">Figure 11.3: Simulating over a volume that is embedded in a wider
+      external region, we need to be able to decide how to inject
+      particles from the exterior into the simulation volume so as
+      to represent statistically the exterior distribution.<a id="injcube">
+</a></div>
+
+</p><p>
+Suppose the volume is a cuboid shown in Fig.&nbsp;<a href="chap11.html#injcube">11.3</a>. It has 6
+faces, each of which is normal to one of the coordinate axes, and
+located at &#177;L<sub>x</sub>, &#177;L<sub>y</sub> or &#177;L<sub>z</sub>. We'll consider the face
+perpendicular to x which is at &#8722;L<sub>x</sub>, so that positive velocity
+v<sub>x</sub> corresponds to moving <em>into</em> the simulation sub-volume. We calculate
+the rate at which particles are crossing the face into the
+subvolume. If the distribution function is f(<b><i>v</i></b>,<b><i>x</i></b>), then
+the flux density<a
+id="flux_density113652"></a> in the +v<sub>x</sub> direction is
+<a id="fluxvxden">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#915;<sub>x</sub>(<b><i>x</i></b>) = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>&#8734;</small><!--sup
+--><br /><br />
+<small>v<sub>x</sub>=0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+v<sub>x</sub> f(<b><i>v</i></b>,<b><i>x</i></b>) dv<sub>x</sub> dv<sub>y</sub>dv<sub>z</sub>&nbsp;&nbsp;</td></tr></table>
+</td><td width="1%">(11.13)</td></tr></table>
+
+
+and the number entering across the face per unit time (the flux)<a
+id="flux113653"></a> is
+<a id="fluxfac">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  F<sub>&#8722;L<sub>x</sub></sub> = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>L<sub>y</sub></small><!--sup
+--><br /><br />
+<small>&#8722;L<sub>y</sub></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>L<sub>y</sub></small><!--sup
+--><br /><br />
+<small>&#8722;L<sub>y</sub></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#915;<sub>x</sub>(&#8722;L<sub>x</sub>,y,z) &nbsp;&nbsp;dy dz.</td></tr></table>
+</td><td width="1%">(11.14)</td></tr></table>
+
+
+
+</p><p>
+Assume that the outer region is steady, independent of time. We
+proceed by evaluating the six fluxes F<sub>j</sub>, using the above
+expressions and their equivalents for the six different faces.  At
+each time step of the simulation, we decide how many particles to
+inject into the subvolume from each face. The average number of
+particles to inject in a timestep &#8710;t at face j is equal to
+F<sub>j</sub>&#8710;t. If this number is large,<a href="footnote.html#tthFtNtAHE" id="tthFrefAHE"><sup>74</sup></a> then it may
+be appropriate to inject just that number (although dealing with the
+non-integer fractional part of the number needs consideration). But if
+it is of order unity or even smaller, then that does not correctly
+represent the statistics. In that case we need to decide statistically
+at each step how many particles are injected: 0,1,2 ...
+
+</p><p>
+It is a standard result of probability theory <a href="footnote.html#tthFtNtAHF" id="tthFrefAHF"><sup>75</sup></a> that
+if events (in this case injections) take place randomly and
+uncorrelated with each other at a fixed average rate r (per sample,
+in this case per time-step) then the number n that happens in any
+particular sample is an integer random variable with "Poisson
+distribution"<a
+id="Poisson_distribution113654"></a>: a discrete probability distribution
+<a id="PoissonDist">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  p<sub>n</sub> = exp(&#8722;r)r<sup>n</sup>/n!&nbsp;.</td></tr></table>
+</td><td width="1%">(11.15)</td></tr></table>
+
+
+The parameter giving the rate, r, is a real number, but the number
+for each sample, n, is an integer.  One can rapidly verify that,
+since <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<small>&#8734;</small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>n=0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+r<sup>n</sup>/n!=exp(r)
+</td></tr></table><br />, the probabilities are
+properly normalized: <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>n</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+p<sub>n</sub>=1
+</td></tr></table><br />.  The mean rate is <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><span class="largerstill">&#8721;<br />
+</span><small>n</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+np<sub>n</sub>=r
+</td></tr></table><br />
+(as advertized). The variance, it turns out, is also r. So the
+standard deviation is &#8730;r. The value p<sub>n</sub> gives us precisely
+the probability that n particles will need to be injected when the
+flux is r=F<sub>j</sub>. So the first step in deciding injections is to select
+randomly a number to be injected, from the Poisson distribution eq.&nbsp;(<a href="chap11.html#PoissonDist">11.15</a>). There are various ways to do this (including
+library routines). The root-finding approach is easily applied,
+because the cumulative probability function P<sub>u</sub>(u) can be considered
+to consist of steps of height p<sub>n</sub> at the integers n (and constant
+in between).
+
+</p><p>
+Next we need to decide where on the surface each injection is going to
+take place. If the flux density is uniform, then we just pick randomly
+a position corresponding to &#8722;L<sub>y</sub> &#8804; y  &#8804; L<sub>y</sub> and &#8722;L<sub>z</sub> &#8804; z  &#8804; L<sub>z</sub>. Non-uniform flux density, however, introduces another distribution
+function inversion headache. It's more work, but straightforward.
+
+</p><p>
+Finally we need to select the actual velocity of the particle. Very
+importantly, the probability distribution of this selection is
+<em>not</em> just the velocity distribution function, or the velocity
+distribution function restricted to positive v<sub>x</sub>. No, it it the
+<em>flux</em> distribution v<sub>x</sub>f(<b><i>v</i></b>,<b><i>x</i></b>) weighted by the
+normal velocity v<sub>x</sub> (for an x-surface) if positive (otherwise
+zero). If the distribution is separable,
+f(<b><i>v</i></b>)=f<sub>x</sub>(v<sub>x</sub>)f<sub>y</sub>(v<sub>y</sub>)f<sub>z</sub>(v<sub>z</sub>), as it is if it is Maxwellian,
+then the tangential velocities v<sub>y</sub>, v<sub>z</sub>, can be treated
+separately: select two different velocities from the respective
+distributions. And select v<sub>x</sub> (positive) from a probability
+distribution proportional to v<sub>x</sub>f<sub>x</sub>(v<sub>x</sub>).
+
+</p><p>
+If f is not separable, then a more elaborate random selection is
+required. Suppose we have the cumulative probability distribution of
+velocities P(v<sub>x</sub>,v<sub>y</sub>,v<sub>z</sub>) for all interesting values of
+velocity. Notice that if v<sub>xmax</sub>, v<sub>ymax</sub>, v<sub>zmax</sub> denote the
+largest relevant values of v<sub>x</sub>, v<sub>y</sub> and v<sub>z</sub>, beyond which f=0,
+then P(v<sub>x</sub>,v<sub>ymax</sub>,v<sub>zmax</sub>) is a function of just one variable
+v<sub>x</sub>, and is the cumulative probability distribution integrated over
+the entire relevant range of the other velocity components. That is,
+it is the one-dimensional cumulative probability distribution of
+v<sub>x</sub>. We can convert it into a
+one-dimensional<a
+id="cumulative_flux_probability113655"></a>
+flux cumulative probability by performing the following
+integral (numerically, discretely).
+<a id="fluxinteg">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table border="0" cellspacing="0" cellpadding="0">
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+  F(v<sub>x</sub>) </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>v<sub>x</sub></small><!--sup
+--><br /><br />
+<small>0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+v<sub>x</sub>&#8242;</td><td nowrap="nowrap" align="center">
+&#8706;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; v<sub>x</sub>&#8242;<br /></td><td nowrap="nowrap" align="center">
+P(v<sub>x</sub>&#8242;,v<sub>ymax</sub>,v<sub>zmax</sub>)&nbsp;&nbsp;dv<sub>x</sub>&#8242;</td></tr></table></td><td width="50%"></td><td width="1" align="right">(11.16)</td></tr>
+ <tr><td width="50%"></td><td nowrap="nowrap" align="right" colspan="1"><table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+ </td></tr></table></td><td nowrap="nowrap" align="left">
+<table border="0" cellspacing="0" cellpadding="2"><tr><td nowrap="nowrap" align="left">
+=</td></tr></table></td><td nowrap="nowrap" align="left">
+<table><tr><td nowrap="nowrap" align="right" colspan="1">v<sub>x</sub> P(v<sub>x</sub>,v<sub>ymax</sub>,v<sub>zmax</sub>)&#8722;</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small>v<sub>x</sub></small><!--sup
+--><br /><br />
+<small>0</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+P(v<sub>x</sub>&#8242;,v<sub>ymax</sub>,v<sub>zmax</sub>)&nbsp;&nbsp;dv<sub>x</sub>&#8242;.</td></tr></table></td><td width="50%"></td></tr></table>
+</td></tr></table>
+
+
+Afterwards, we can normalize F(v<sub>x</sub>) by dividing by F(v<sub>xmax</sub>),
+ariving at the cumulative flux weighted probability for v<sub>x</sub>.
+
+</p><p>
+We then proceed as follows.
+
+</p><p>
+<br />
+<table class="tabular">
+<tr><td align="left">1.</td><td width="0">Choose a random v<sub>x</sub> from its cumulative flux-weighted probability
+  F(v<sub>x</sub>).</td></tr>
+<tr><td align="left">2.</td><td width="0">Choose a random v<sub>y</sub> from its cumulative probability for the
+  already chosen v<sub>x</sub>, namely P(v<sub>x</sub>,v<sub>y</sub>,v<sub>zmax</sub>) regarded as a
+  function only of v<sub>y</sub>.</td></tr>
+<tr><td align="left">3.</td><td width="0">Choose a random v<sub>z</sub> from its cumulative probability for the
+  already chosen v<sub>x</sub> and v<sub>y</sub>, namely P(v<sub>x</sub>,v<sub>y</sub>,v<sub>z</sub>) regarded as a
+  function only of v<sub>z</sub>.</td></tr></table>
+
+
+</p><p>
+<br /> Naturally for other faces, y and z one has to
+start with the corresponding velocity component and cycle round the
+indices.  For steady external conditions all the cumulative velocity
+probabilities need to be calculated only once, and then
+stored for subsequent time steps.
+
+</p><p>
+
+<b>Discrete particle representation&nbsp;&nbsp;</b> An alternative to this
+continuum approach is to suppose that the external distribution
+function is represented by a perhaps large number, N, (maybe
+millions) of representative "particles" distributed in accordance
+with the external velocity distribution function. Particle k has
+velocity <b><i>v</i></b><sub>k</sub> and the density of particles in phase space is
+proportional to the distribution function, that is to the probability
+distribution. Then if we wished to select randomly a velocity from the
+particle distribution we simply arrange the particles in order and
+pick one of them at random. However, when we want the particles to be
+flux-weighted, in normal direction <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>n</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> say, we must select
+them with probability proportional to <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap">v<sub>n</sub>=</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>n</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+.<b><i>v</i></b>
+</td></tr></table><br /> (when
+positive, and zero when negative). Therefore, for this normal
+direction we must consider each particle to have appropriate weight.
+We associate each particle with a real<a href="footnote.html#tthFtNtAHG" id="tthFrefAHG"><sup>76</sup></a> index r so that when r<sub>k</sub> &#8804; r  &lt;  r<sub>k+1</sub> the particle k is indicated. The interval length
+allocated to particle k is chosen proportional to its weight, so
+that <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"> r<sub>k+1</sub>&#8722;r<sub>k</sub> &#8733; </td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b><i>n</i></b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+.<b><i>v</i></b><sub>k</sub>
+</td></tr></table><br />. Then the
+selection consists of a random number draw x, multiplied by the
+total real index range and indexed to the particle and hence to its
+velocity: x(r<sub>N+1</sub>&#8722;r<sub>1</sub>)+r<sub>1</sub> = r &#8594; k &#8594; <b><i>v</i></b><sub>k</sub>. The discreteness
+of the particle distribution will generally not be an important
+limitation for a process that already relies on random particle
+representation. The position of injection will anyway be selected
+differently even if a representative particle velocity is selected
+more than once.
+
+</p><p>
+
+<h2>Worked example: High Dimensionality Integration</h2>
+
+</p><p>
+Monte Carlo techniques are commonly used for high-dimensional
+<a
+id="high-dimensionality113656"></a><a
+id="dimensionality113657"></a>problems; integration
+is perhaps the simplest example.<a
+id="Monte_Carlo_integration113658"></a> The
+reasoning is approximately this. When there are d dimensions, the
+total number of points in a grid whose size is M in each
+coordinate-direction is N=M<sup>d</sup>. The fractional uncertainty in
+estimating a one-dimensional integral of a function with only isolated
+discontinuities, based upon evaluating it at M grid points, may be
+estimated as  &#8733; 1/M. If this estimate still applies to multiple
+dimension integration (and this is the dubious part), then the
+fractional uncertainty is  &#8733; <sup>1</sup>/<sub>M</sub>=N<sup>&#8722;1/d</sup>. By
+comparison, the uncertainty in a Monte-Carlo estimate of the integral
+based on N evaluations is  &#8733; N<sup>&#8722;1/2</sup>. When d is larger
+than 2, the Monte Carlo square-root convergence scaling is better than
+the grid estimate. And if d is very large, Monte Carlo is much
+better.  Is this argument correct?  Test it by obtaining the volume of
+a four-dimensional hypersphere<a
+id="hypersphere113659"></a> by numerical
+integration, comparing a grid technique with Monte Carlo.
+</p><p>
+<br />A four-dimensional sphere of radius 1 consists of all those points for
+which r<sup>2</sup>=x<sub>1</sub><sup>2</sup>+x<sub>2</sub><sup>2</sup>+x<sub>3</sub><sup>2</sup>+x<sub>4</sub><sup>2</sup> &#8804; 1. Its volume is known
+analytically; it is &#960;<sup>2</sup>/2. Let us evaluate the volume numerically
+by examing the unit hypercube 0 &#8804; x<sub>i</sub> &#8804; 1, i=1,...,4. It is
+1/2<sup>4</sup>=1/16th of the hypercube &#8722;1 &#8804; x<sub>i</sub> &#8804; 1, inside of which the
+hypersphere fits; so the volume of of the hypersphere that lies
+within the 0 &#8804; x<sub>i</sub> &#8804; 1 unit hypercube is 1/16th of its total
+volume; it is &#960;<sup>2</sup>/32. We calculate this volume numerically by discrete
+integration as follows.
+
+</p><p>
+A deterministic (non-random) integration of the volume consists of
+constructing an equally spaced lattice<a
+id="lattice113660"></a> of points at the
+center of cells that fill the unit cube. If there are M points per
+edge, then the lattice positions in the dimension i (i=1,...,4)
+of the cell-centers are x<sub>i,k<sub>i</sub></sub>=(k<sub>i</sub>&#8722;0.5)/M, where k<sub>i</sub>=1,...,M
+is the (dimension-i) position index. We integrate the volume of the
+sphere by collecting values from every lattice point throughout the
+unit hypercube. A value is unity if the point lies within the
+hypersphere r<sup>2</sup> &#8804; 1; otherwise it is zero. We sum all values (zero
+or one) from every lattice point and obtain an integer equal to the
+number of lattice points S inside the hypersphere. The total number
+of lattice points is equal to M<sup>4</sup>. That sum corresponds to the total
+volume of the hypercube, which is 1. Therefore the discrete estimate
+of the volume of 1/16th of the hypersphere is S/M<sup>4</sup>. We can
+compare this numerical integration with the analytic value and express
+the fractional error as the numerical value divided by the analytic
+value, minus one:
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">Fractional</span> <span class="roman">Error</span> = </td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+S/M<sup>4</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#960;<sup>2</sup>/32<br /></td><td nowrap="nowrap" align="center">
+&#8722;1</td><td align="left" class="cl">&#x23A2;<br />&#x23A2;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+
+</p><p>
+Monte Carlo integration works essentially exactly the same except that
+the points we choose are not a regular lattice, but rather they are
+random. Each one is found by taking four new uniform-variate values
+(between 0 and 1) for the four coordinate values x<sub>i</sub>. The point
+contributes unity if it has r<sup>2</sup> &#8804; 1 and zero otherwise. We obtain a
+different count S<sub>r</sub>. We'll choose to use a total number N of random point
+positions exactly equal to the number of lattice points N=M<sup>4</sup>,
+although we could have made N any integer we like. The Monte Carlo
+integration estimate of the volume is S<sub>r</sub>/N.
+
+</p><p>
+I wrote a computer code to carry out these simple procedures, and
+compare the fractional errors for values of M ranging from 1 to
+100. The results are shown in Fig.&nbsp;<a href="chap11.html#intcomparel">11.4</a>.
+
+</p><p>
+<a id="tth_fIg11.4">
+</a>     <img src="figures/intcompare.png" alt="figures/intcompare.png" /><a id="intcompare">
+</a>
+
+<div style="text-align:center">Figure 11.4: Comparing error in the volume of a hypersphere found
+      numerically using lattice and Monte Carlo integration. It turns out
+      that Monte Carlo integration actually does <em>not</em>
+      converge significantly faster than lattice integration, contrary to
+      common wisdom. They both converge approximately like
+      1/&#8730;N (logarithmic slope =&#8722;<sup>1</sup>/<sub>2</sub>). What's more, if one
+      uses a "bad" random number generator (the Monte Carlo Bad
+      line) it is possible the random integration will cease
+      converging at some number, because it gives only a finite-length
+      of independent random numbers, which in this case is exhausted
+      at roughly a million. <a id="intcomparel">
+</a></div>
+
+</p><p>
+Four dimensional lattice integration<a
+id="lattice_integration113661"></a>
+does as well as Monte Carlo for this sphere. Lattice
+integration is not as bad as the dubious assumption of fractional
+uncertainty <sup>1</sup>/<sub>M</sub>=N<sup>&#8722;1/d</sup> suggests; it is more like
+N<sup>&#8722;2/d</sup> for d &gt; 1. Only at higher dimensionality than d=4 do tests show the
+advantages of Monte Carlo integration beginning to be significant.
+As a bonus, this integration experiment detects poor random number
+generators.<a href="footnote.html#tthFtNtAHH" id="tthFrefAHH"><sup>77</sup></a>
+
+</p><p>
+
+<h2>Exercise 11. Monte Carlo Techniques</h2>
+
+</p><p>
+<br /><br />1. A random variable is required, distributed on the interval 0 &#8804; x &#8804; &#8734; with probability distribution p(x)=kexp(&#8722;kx), with k
+a constant. A library routine is available that returns a uniform
+random variate y (i.e.&nbsp;with uniform probability 0 &#8804; y  &#8804; 1). Give formulas and an algorithm to obtain the required randomly
+distributed x value from the returned y value.
+
+</p><p>
+<br /><br />2. Particles that have a Maxwellian distribution
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ f(<b><i>v</i></b>) = n </td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+m
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2&#960;k T<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>3/2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+exp</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#8722;</td><td nowrap="nowrap" align="center">
+mv<sup>2</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2kT<br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(11.17)</td></tr></table>
+
+
+cross a boundary into a simulation region.
+
+</p><p>
+(a) Find the cumulative probability distribution P(v<sub>n</sub>) that ought
+to be used to determine the velocity v<sub>n</sub> normal to the boundary, of
+the injected particles.
+
+</p><p>
+(b) What is the total rate of injection per unit area that should be used?
+
+</p><p>
+(c) If the timestep duration is &#8710;t, and the total rate of
+crossing a face is r such that r&#8710;t = 1, what probability
+distribution should be used to determine statistically the <i>
+  actual</i> integer number of particles injected at each step?
+
+</p><p>
+(d) What should be the probability of 0, 1, or 2 injections?
+
+</p><p>
+<br /><br />3. Write a code to perform a Monto Carlo integration of the area
+under the curve y=(1&#8722;x<sup>2</sup>)<sup>0.3</sup> for the interval &#8722;1 &#8804; x &#8804; 1. Experiment with different total numbers of sample points, and
+determine the area accurate to 0.2%, and approximately
+how many sample points are needed for that accuracy.
+
+</p><p>
+
+
+<hr /><table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+<a href="chap12.html">NEXT
+</a></td></tr></table>
+</div></body></html>

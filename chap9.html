@@ -1,0 +1,1369 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+           "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
+    img {     max-width: 100%;
+    max-height: 40vh; } p { line-height: 1.5em; } body {
+      font-family: 'Roboto', sans-serif !important;
+      font-size: 18px;
+    }
+  </style>
+<
+<title>chap9.html</title>
+<table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+ <a href="chap8.html">PREVIOUS
+</a></td></tr></table>
+ <a id="tth_chAp9"></a><h1>
+Chapter 9 <br />Energy-Resolved Diffusive Transport</h1>
+
+</p><p>
+When there are strong processes that drive the velocity distribution
+function away from equilibrium<a
+id="non-equilibrium90531"></a>, it is generally
+important to account for the full distribution of velocities of
+particles to understand their transport. Sources of particles with
+kinetic energy substantially higher than the typical (e.g.&nbsp;thermal)
+energy will have this effect. Examples include all sorts of
+<em>reactions</em>; for example the chemical reactions<a
+id="reactions90532"></a>
+that occur in combustion, or, as we will address in this chapter, the
+nuclear reactions that involve neutrons.<a href="footnote.html#tthFtNtAEH" id="tthFrefAEH"><sup>47</sup></a>
+
+</p><p>
+ <a id="tth_sEc9.1"></a><h2>
+9.1&nbsp;&nbsp;Collisions of Neutrons</h2>
+
+</p><p>
+Neutrons experience no net electric or magnetic forces, because they
+are uncharged, and usually gravity is ignorable; so in Boltzmann's
+equation the term proportional to the acceleration <b><i>a</i></b> can
+usually be neglected. Self-collisions are also negligible. It is the
+background matter through which the neutrons<a
+id="neutron91533"></a> are moving that
+provides the targets with which the neutrons collide. It can be taken
+to consist of practically stationary atoms.
+
+</p><p>
+Collisions give the crucial terms in Boltzmann's equation. They arise
+from a whole host of different nuclear species, and the relevant
+cross-sections<a
+id="cross-section91534"></a> have very strong dependence on
+neutron kinetic energy (or equivalently speed, v). We generally sum
+over all the relevant species to give appropriate total source and
+sink rates per unit phase-space volume. In addition to the sink of
+neutrons, &#8722;&#931;<sub>t</sub> vf from all possible collisions, there are
+sources arising from scattering, and from fission<a
+id="fission_reaction91535"></a>
+reactions.<a href="footnote.html#tthFtNtAEI" id="tthFrefAEI"><sup>48</sup></a>  For
+fission and scattering, as illustrated by Fig.&nbsp;<a href="chap9.html#neutroncolnl">9.1</a>, we
+consider an incoming neutron denoted with a prime (&#8242;), having
+velocity given by speed v&#8242;, and direction unit vector
+&#8486;&#8242;<a
+id="direction_vector___bmOmega_91536"></a> (so <b><i>v</i></b>&#8242;=v&#8242;&#8486;) giving rise
+to an outgoing (sourced) neutron with speed v, and direction
+&#8486;.  The
+"macroscopic cross-sections"<a
+id="macroscopic_cross-section91537"></a>
+are written
+respectively &#931;<sub>f</sub> and &#931;<sub>s</sub>. They are functions of both
+incoming and outgoing velocity, which is denoted (v&#8242;&#8594;v,&#8486;&#8242;&#8594;&#8486;).
+
+</p><p>
+<a id="tth_fIg9.1">
+</a>   <img src="figures/neutroncoln.png" alt="figures/neutroncoln.png" /><a id="neutroncoln">
+</a>
+
+<div style="text-align:center">Figure 9.1: Collisions give a source of particles in dvd<sup>2</sup>&#8486; as a result
+    of particles that (before the collision) are in
+    dv&#8242;d<sup>2</sup>&#8486;&#8242;. Both induced fissions (weighted by the average
+    neutron yield &#957;) and scattering events contribute. The sink
+    term in dvd<sup>2</sup>&#8486; is the sum of all collisions that remove a
+    particle from dvd<sup>2</sup>&#8486;.<a id="neutroncolnl">
+</a></div>
+
+</p><p>
+Possible spatial dependence (on <b><i>x</i></b>) is implicit. Each fission
+gives rise to an average number of outgoing neutrons &#957; typically
+greater than one, so for source the quantity required is actually
+&#957;&#931;<sub>f</sub>. Also, to calculate the source we must integrate over
+all possible incoming velocities, for which we write the flux
+density<a href="footnote.html#tthFtNtAEJ" id="tthFrefAEJ"><sup>49</sup></a>  as v&#8242;f&#8242; and the velocity element as
+d<sup>3</sup>v&#8242;=v&#8242;<sup>2</sup> d<sup>2</sup>&#8486;&#8242;&nbsp;dv&#8242;. Thus Boltzmann's equation becomes the
+neutron transport equation<a
+id="neutron_transport_equation91538"></a>:
+<a id="neuttrans">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
++ v&#8486;.</td><td nowrap="nowrap" align="center">
+&#8706;f
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;<b><i>x</i></b><br /></td><td nowrap="nowrap" align="center">
+ = </td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />&#8722;&#931;<sub>t</sub>vf<hr /><small><span class="roman">sink</span></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
++</td></tr></table></td></tr>
+<tr><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+[</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />&#957;&#931;<sub>f</sub>(v&#8242;&#8594; v,&#8486;&#8242;&#8594;&#8486;)<hr /><small><span class="roman">fission</span></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
++</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />&#931;<sub>s</sub>(v&#8242;&#8594; v,&#8486;&#8242;&#8594;&#8486;)<hr /><small><span class="roman">scattering</span></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+]v&#8242;f&#8242;v&#8242;<sup>2</sup>d<sup>2</sup>&#8486;&#8242;&nbsp;dv&#8242;.</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(9.1)</td></tr></table>
+
+
+This specific form of the collision term can also be used to treat
+collisions and chemical reactions between neutral molecules in a gas
+mixture<a href="footnote.html#tthFtNtAFA" id="tthFrefAFA"><sup>50</sup></a>. For neutrons, the cross-sections are very
+complicated functions of speed v&#8242;, and require extensive data and careful
+integration to produce accurate collision terms, even when f is
+known. What's more, we have to deal with an integro-differential equation. It
+is not obvious how to solve it to find f self-consistently.
+
+</p><p>
+ <a id="tth_sEc9.2"></a><h2>
+9.2&nbsp;&nbsp;Reduction to multigroup diffusion equations</h2>
+
+</p><p>
+<a
+id="integro-differential92539"></a>Solving six- or seven-dimensional integro-differential equations
+numerically is a major undertaking. If we just simple-mindedly
+discretize the distribution function f(<b><i>v</i></b>,<b><i>x</i></b>,t) on finite
+grids in each dimension, the amount of data quickly gets out of
+hand. Grids of length 100 require multiple terrabytes of
+representation 100<sup>6</sup> = 10<sup>12</sup>, and solving for all of the discrete
+elements in phase-space becomes a grand computing challenge. Although
+there are some reasons to tackle that challenge, it is more usual, and
+historically more useful, instead to reduce the dimensionality of the
+problem by making appropriate choices of representation.
+
+</p><p>
+When the distribution function is nearly thermal, it is reasonable to
+describe it by just a few, low-order,<a
+id="velocity_moments92540"></a>
+moments<a
+id="moments_velocity_distribution92541"></a> of the velocity. This has
+the effect of reducing the three-dimensions of velocity-space to just
+a few dependent parameters. They are the density<a
+id="density92542"></a>
+n=&#8747;f d<sup>3</sup>v, the mean velocity<a
+id="mean_velocity92543"></a> &#8747;<b><i>v</i></b>f d<sup>3</sup>v/n, and the mean kinetic energy per particle, equivalent to the
+temperature<a
+id="temperature92544"></a>: &#8747;<sup>1</sup>/<sub>2</sub>m v<sup>2</sup> fd<sup>3</sup>v/n=3T/2. Formally, taking the corresponding moments of
+Boltzmann's equation ends up giving us the standard fluid equations;
+continuity, momentum, and energy conservation. Thus, solving such a
+reduction has already been addressed in our discussion of numerical
+treatment of fluid problems.
+
+</p><p>
+What do we do, though, when the velocity distribution is far from
+thermal, as it is in a reactor? We must keep account of that velocity
+dependence, because collision cross-sections depend upon it.  A
+different type of approximation, useful in cases like neutron
+transport, because collisions are dominant, is to take the velocity
+<em>anisotropy</em><a
+id="anisotropic92545"></a> to be small. The distribution
+function f is nearly spherically symmetric<a
+id="symmetric92546"></a>: nearly
+independent of &#8486;; and it is unnecessary to represent the
+velocity-direction dependence of f in any detail.
+
+</p><p>
+
+</p><p>
+<a id="tth_fIg9.2">
+</a>   <img src="figures/angleint.png" alt="figures/angleint.png" /><a id="angleint">
+</a>
+
+<div style="text-align:center">Figure 9.2: Illustrating the spherical volume in velocity-space over
+    which the directional integral is performed.<a id="anglintfig">
+</a></div>
+
+</p><p>
+It is necessary to retain just enough information about the anisotropy
+of f(<b><i>v</i></b>) to represent the directed <em>flux density</em> of
+neutrons<a
+id="neutron_flux-density92547"></a>, which is what determines their
+transport.  Consider neutrons of a specific speed v (i.e.&nbsp;in the
+element dv at v).  Integrate the full transport equation
+(<a href="chap9.html#neuttrans">9.1</a>) v<sup>2</sup>d<sup>2</sup>&#8486; (=d<sup>3</sup>v/dv since d<sup>3</sup>v=v<sup>2</sup>d<sup>2</sup>&#8486;dv) over the spherical velocity space element, as illustrated in
+Fig.&nbsp;<a href="chap9.html#anglintfig">9.2</a>. We will denote that
+element just dv, to remind us of the speed choice, although its
+total velocity-space-volume is 4&#960;v<sup>2</sup> dv. Now we denote the
+distribution function integrated over direction as
+<a id="avergf">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  F(v) = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>dv</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+f v<sup>2</sup>d<sup>2</sup>&#8486; =  </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>dv</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+f d<sup>3</sup>v/dv.</td></tr></table>
+</td><td width="1%">(9.2)</td></tr></table>
+
+
+So the number of particles per unit volume<a
+id="speed-distribution92548"></a>
+in the speed range dv is F(v)dv.
+
+</p><p>
+The first term in the
+angle-integrated Boltzmann equation becomes <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+&#8706;F
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706; t<br /></td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br />.
+The second term becomes
+<a id="workadvec">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>dv</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+v&#8486;.&#8711;f&nbsp;d<sup>3</sup>v/dv=&#8711;. [</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+<small></small><!--sup
+--><br /><br />
+<small>dv</small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+&#8486;vf&nbsp; d<sup>3</sup>v/dv] = &#8711;. &#915;(v).</td></tr></table>
+</td><td width="1%">(9.3)</td></tr></table>
+
+
+Here, &#915;(v) dv = &#8747;<sub>dv</sub>&#8486;vf&nbsp;d<sup>3</sup>v is the
+flux-density of the particles in the speed
+element dv; so &#915;(v) is the speed distribution of the
+flux-density, a vector quantity.
+
+</p><p>
+Since all &#931; are independent of &#8486; (only the difference
+&#8486;&#8722;&#8486;&#8242; matters), the first (sink) term on the right of
+eq.&nbsp;(<a href="chap9.html#neuttrans">9.1</a>)
+becomes &#8722;&#931;<sub>t</sub>v F(v) and the second (source term) can be written
+<a id="neutsource">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  Q(v)=</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+[&#957;&#931;<sub>f</sub>(v&#8242;&#8594; v)+&#931;<sub>s</sub>(v&#8242;&#8594; v)]v&#8242;F(v&#8242;) dv&#8242;,</td></tr></table>
+</td><td width="1%">(9.4)</td></tr></table>
+
+
+in terms of &#931;<sub>f</sub> and &#931;<sub>s</sub> integrated over direction.
+
+</p><p>
+The direction-integrated transport equation is then
+<a id="neutspeed">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;F(v)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
++ &#8711;.  &#915;(v) = &#8722;&#931;<sub>t</sub>vF(v) + Q(v),</td></tr></table>
+</td><td width="1%">(9.5)</td></tr></table>
+
+
+
+</p><p>
+This equation becomes a diffusion equation if the flux-density is
+proportional to the gradient of the density, an approximation usually
+called Fick's law<a
+id="Fick_s_law92549"></a>.
+Written in terms of F(v), this proportionality is
+<a id="phifick">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#915;(v) = &#8722;D &#8711;F(v),</td></tr></table>
+</td><td width="1%">(9.6)</td></tr></table>
+
+
+where D is the "diffusion coefficient". The value of D
+is approximately v/3&#931;<sub>t</sub>, as outlined at the end of this
+section.
+</p><p>
+We then have the speed-resolved (or equivalently
+energy-resolved) diffusion
+equation<a
+id="diffusion_equation92550"></a><a
+id="energy_resolved_diffusion92551"></a>
+<a id="neutdiff">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;F(v)
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+&#8722; &#8711;.  [D&#8711;F(v)] = &#8722;&#931;<sub>t</sub>v F(v) + Q(v).</td></tr></table>
+</td><td width="1%">(9.7)</td></tr></table>
+
+
+The lowest-order anisotropy of f(<b><i>v</i></b>) is contained in
+&#915;
+=D&#8711;F(v), but the collision terms in this approximation are
+independent of any anisotropy. The equation applies for all values of
+the speed, v.
+
+</p><p>
+<br /><br />
+<span class="footnotesize">
+<b>Enrichment: Derivation of Diffusion Coefficient.</b>
+
+</p><p>
+  The neutron (kinetic)
+  transport equation (<a href="chap9.html#neuttrans">9.1</a>) can be turned into a spatial
+  diffusion equation by considering a fixed speed v.  To lowest
+  order, we approximate the angular dependence of f as
+  being a constant plus a term proportional to &#956; = cos&#952;; i.e.&nbsp;  as f=f<sub>0</sub>+f<sub>1</sub>&#956;, where f<sub>0</sub> and f<sub>1</sub> are independent of
+  &#8486;. These are the first two terms of an expansion of the
+  angular dependence in spherical harmonics. Reactor physics
+  literature calls this the P<sub>1</sub> Approximation.  Obviously this
+  approximation only makes sense if the distribution has an
+  approximate axis of (velocity) cylindrical symmetry, relative to
+  which the polar angle &#952; is measured.  In the absence of
+  inherent material anisotropy, the local axis of symmetry must be in
+  the direction of of the density gradient &#8711;f<sub>0</sub>.
+
+</p><p>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <br /><table border="0" align="left"><tr><td></td><td width="500">
+
+      Integration over a spherical velocity element with
+      &#956; = cos&#952; and the angle &#952; measured from the
+      direction &#8711;f<sub>0</sub>.<br />
+</td></tr></table><!--vbox-->&nbsp;&nbsp;&nbsp;
+    <img src="figures/costhetasphere2.png" alt="figures/costhetasphere2.png" />
+  <!--hbox--><br clear="all" />
+
+</p><p>
+  If we substitute into eq.&nbsp;  (<a href="chap9.html#neuttrans">9.1</a>) and equate orders of &#956;, ignoring the partial
+  time derivative (since we presume the distribution in angle relaxes
+  quickly), we then obtain at order &#956;
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#124;&#8711;f<sub>0</sub>&#124; = (&#8722;&#931;<sub>t</sub> + &#931;<sub>s1</sub>)f<sub>1</sub>, </td></tr></table>
+</td></tr></table>
+
+
+  where &#931;<sub>s1</sub> is the part of the scattering term proportional
+  to &#956;, which is always smaller than &#931;<sub>t</sub>. (Sometimes
+  &#931;<sub>s1</sub> is approximately ignorable.) Unlike scattering,
+  fission does not contribute to this anisotropic component, except
+  from its part in &#931;<sub>t</sub>, because it is generally presumed that
+  there is no significant correlation between the direction of neutron
+  emission from a fission event and the incoming neutron. [The degree
+  of anisotropy in neutrons from fission reactions is low but
+  formally non-zero, especially at higher incoming neutron energy.]
+
+</p><p>
+  The contribution from
+  the speed element dv to the directed
+  spatial flux density (which is along the symmetry axis direction) is
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#915;(v)dv = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+f v &#956;d<sup>3</sup>v = </td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+fv &#956;&nbsp;2&#960;v<sup>2</sup>d&#956;dv = 2&#960; v<sup>3</sup>dv</td><td align="left" class="cl">&#8992;<br />&#8993;
+</td><td nowrap="nowrap" align="center">
+(f<sub>0</sub>+f<sub>1</sub>&#956;)&#956;d&#956; =  </td><td nowrap="nowrap" align="center">
+ 1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>3<br /></td><td nowrap="nowrap" align="center">
+vf<sub>1</sub>&nbsp;4&#960; v<sup>2</sup> dv .  </td></tr></table>
+</td></tr></table>
+
+
+  Incorporating the previous equation, we then have
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#915;(v) = &#8722; </td><td nowrap="nowrap" align="center">
+v
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>3(&#931;<sub>t</sub>&#8722;&#931;<sub>s1</sub>)<br /></td><td nowrap="nowrap" align="center">
+&#8711;(f<sub>0</sub> 4&#960;v<sup>2</sup>). </td></tr></table>
+</td></tr></table>
+
+
+  This is Fick's law relating a flux density &#915;dv to the
+  gradient of a density f4&#960;v<sup>2</sup>dv, times a diffusivity
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ D = </td><td nowrap="nowrap" align="center">
+v
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>3(&#931;<sub>t</sub>&#8722;&#931;<sub>s1</sub>)<br /></td><td nowrap="nowrap" align="center">
+. </td></tr></table>
+</td></tr></table>
+
+
+</span>
+
+</p><p>
+ <a id="tth_sEc9.3"></a><h2>
+9.3&nbsp;&nbsp;Numerical Representation of Multigroup Equations</h2>
+
+</p><p>
+We've made substantial progress in making the transport equation more
+managable, lowering its dimensionality from six phase-space dimensions
+to four (3 space and 1 speed). Even so, we have to choose how to
+represent the distribution in speed (or energy), as well as the
+spatial representation.
+
+</p><p>
+     <a id="tth_sEc9.3.1"></a><h3>
+9.3.1&nbsp;&nbsp;Groups</h3>
+
+</p><p>
+<a
+id="groups93552"></a><a
+id="speed_groups93553"></a>
+</p><p>
+<a id="tth_fIg9.3">
+</a>   <img src="figures/speedgroups.png" alt="figures/speedgroups.png" /><a id="speedgroups">
+</a>
+
+<div style="text-align:center">Figure 9.3: Groups are ranges in speed (equivalently energy) into which
+    the neutrons are lumped. They are very rarely of equal width in
+    speed or energy.<a id="speedgroupsl">
+</a></div>
+
+</p><p>
+The natural discretization in speed is to use ranges of speed, or
+equivalently energy.
+In reactor physics the ranges are called "groups". It is like
+representing the speed distribution as a histogram (see Fig.&nbsp;<a href="chap9.html#speedgroupsl">9.3</a>). A point in phase
+space (particle, if you like) belongs to the (integer) group g if
+its speed satisfies v<sub>g&#8722;1/2</sub> &#8804; v  &lt;  v<sub>g+1/2</sub>. The
+half-integer-index speeds are the extrema of the speed range belonging
+to group g, and this group is regarded as having a typical or
+average speed v<sub>g</sub>. Put another way, the group can be considered to
+be the integral over the finite speed element &#8710;v<sub>g</sub> = v<sub>g+1/2</sub>&#8722;v<sub>g&#8722;1/2</sub>. Take there to be N<sub>G</sub> groups in all.
+Then each neutron group separately satisfies a diffusion equation like
+(<a href="chap9.html#neutdiff">9.7</a>), except that the source integral Q(v) for each
+group contains, in its integral, contributions from all the other
+groups, corresponding to fission neutrons appearing in one group when
+they were caused by another group, or scattering directly from one
+speed (group) to another.
+<a id="multigroupdiff">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;F<sub>g</sub>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
+&#8722; &#8711;. [ D<sub>g</sub>&#8711;F<sub>g</sub>] +&#931;<sub>tg</sub>v<sub>g</sub> F<sub>g</sub> = Q<sub>g</sub>.</td></tr></table>
+</td><td width="1%">(9.8)</td></tr></table>
+
+
+Since Q depends linearly on the F<sub>g</sub>, through the integrals
+&#8747;v&#8242;F(v&#8242;)dv&#8242;, the discretized equations
+are naturally expressed in terms of a matrix equation acting on a column
+vector of group fluxes
+<a id="multigroupdiffvec">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+&#8706;<b>F</b>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;t<br /></td><td nowrap="nowrap" align="center">
++( &#8722; <b>L</b> +&#931;<sub>t</sub><b>V</b>)<b>F</b> = <b>Q</b>=<b>A</b><b>F</b>.</td></tr></table>
+</td><td width="1%">(9.9)</td></tr></table>
+
+
+The N<sub>G</sub>&times;N<sub>G</sub> matrices <b>L</b>, &#931;<sub>t</sub> and <b>V</b> are
+diagonal<a
+id="matrix_diagonal93554"></a>, and their gth diagonal elements are &#8711;. D<sub>g</sub>&#8711;,
+&#931;<sub>tg</sub>, and v<sub>g</sub>, respectively. Matrix <b>A</b>, which
+multiplies <b>F</b> to provide the source term <b>Q</b>, is not
+diagonal. It couples together the different rows of the matrix
+equation, the different groups. The crucial point is that the
+collision matrices &#931;<sub>t</sub> and <b>A</b> can be calculated at any
+position <b><i>x</i></b> by performing appropriate integrals over speed v
+and then sums over different nuclear species. These require extensive
+information about the cross-sections for different types of
+collisions, but the velocity integrals only have to be done once.
+
+</p><p>
+
+<b>Spatially Uniform Problem&nbsp;&nbsp;</b> If we are treating an idealized
+"infinite homogeneous" reactor, then all the coefficients of the
+"leakage operator"<a
+id="leakage_operator93555"></a> <b>L</b> are zero:
+&#8711;. D<sub>g</sub>&#8711; = 0. The spatial derivative terms are
+negligible. We need not represent more than one position in space, so
+the multiple group fluxes represent the only different dependent
+variable components we need to solve for. We have a first order
+ordinary differential vector equation with time as the only
+independent variable<a href="footnote.html#tthFtNtAFB" id="tthFrefAFB"><sup>51</sup></a>.  In such a situation one might use a large
+number of speed groups N<sub>G</sub>. The system can be solved by the methods
+of chapter <a href="chap2.html#ODEChap">2</a>.
+
+</p><p>
+
+<b>Non-uniform Problem&nbsp;&nbsp;</b> In an inhomogeneous or finite sized
+reactor<a
+id="nuclear_reactor93556"></a>, the diffusive
+transport<a
+id="diffusion93557"></a> terms cannot be ignored. In principle, we
+can then discretize the reactor in space, producing a total of (say)
+N<sub>S</sub> elements. Of course for a stuctured two dimensional mesh
+N<sub>S</sub>=N<sub>1</sub>&times;N<sub>2</sub> or three dimensional N<sub>S</sub>=N<sub>1</sub>&times;N<sub>2</sub>&times;N<sub>3</sub>. At each of the N<sub>S</sub> spatial elements there are N<sub>G</sub> groups,
+each of which has a speed-distribution component F<sub>g</sub>. So there are a
+total of N<sub>S</sub>&times;N<sub>G</sub> F<sub>g</sub>(<b><i>x</i></b>)-values to solve
+for<a href="footnote.html#tthFtNtAFC" id="tthFrefAFC"><sup>52</sup></a>. In
+principle, we can line all these values up into a single column
+vector, then we can express the diffusion term (<b>L</b><b>F</b>) as
+finite differences between components adjacent in space. So it becomes
+a true multiplicative matrix rather than a matrix of differential
+operators.
+
+</p><p>
+We can in principle then advance the diffusion equation in time using
+an explicit scheme. In this situation the stability of our numerical
+scheme depends upon the diffusive nature of the D term. We need to
+recall the considerations for parabolic diffusion equations from
+Chapter <a href="chap5.html#DiffusionChap">5</a>.  An explicit FTCS scheme, requires us to
+satisfy the stability condition &#8710;t  &#8804; &#8710;x<sup>2</sup>/2N<sub>d</sub>D
+where N<sub>d</sub> is the number of space dimensions. Now D &#8776; <sup>1</sup>/<sub>3</sub>v<i>l</i><sub>c</sub>, where <i>l</i><sub>c</sub> is the collision
+mean-free-path. Consequently the stability condition can be considered
+to be
+<a id="neutdiffstab">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  &#8710;<i>l</i> &#8801; v &#8710;t  &#8804; </td><td nowrap="nowrap" align="center">
+3
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>2N<sub>d</sub><br /></td><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+&#8710;x
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div><i>l</i><sub>c</sub><br /></td><td nowrap="nowrap" align="center">
+&#8710;x.</td></tr></table>
+</td><td width="1%">(9.10)</td></tr></table>
+
+
+The distance a neutron travels during the timestep must be less than
+&#8710;x times a factor 3&#8710;x/2N<sub>d</sub> <i>l</i><sub>c</sub>, for stability.
+Superthermal neutrons are liable to be the most limiting of &#8710;t, because their speed v is greater (higher energy), and their
+<i>l</i><sub>c</sub> is longer (smaller collision cross-section).
+
+</p><p>
+     <a id="tth_sEc9.3.2"></a><h3>
+9.3.2&nbsp;&nbsp;Steady State Eigenvalue</h3>
+
+</p><p>
+The most significant aspect of the neutron diffusion equation, as
+applied to a fission reactor, is that it is a homogeneous
+equation<a href="footnote.html#tthFtNtAFD" id="tthFrefAFD"><sup>53</sup></a>,
+meaning that every term in eq.&nbsp;(<a href="chap9.html#multigroupdiffvec">9.9</a>) is
+proportional to <b>F</b>. That is because in a reactor essentially all
+the neutrons are generated by the fission reactions caused by the
+neutron flux itself.  The steady state solution of a homogeneous equation is
+identically zero unless the multiplying matrix happens to be
+singular; in other words unless its determinant is zero. So the
+condition for there to be a non-trivial steady solution, representing
+a steadily operating reactor, to the multigroup diffusion equations
+is:
+<a id="mgsteady">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+det<br />
+</td><td nowrap="nowrap">(<b>L</b>&#8722;&#931;<b>V</b>+<b>A</b>) = 0.</td></tr></table>
+</td><td width="1%">(9.11)</td></tr></table>
+
+
+Such a condition does not come about by luck. It must be carefully
+arranged by adjusting the reactivity of the reactor using control
+rods<a
+id="control_rod93558"></a>
+and so on. If this condition of "criticality"<a
+id="criticality93559"></a> is
+not satisfied, then the solution is <em>not steady</em>, the power is
+either increasing or decreasing with time. The way the condition is
+generally represented in the mathematics is by the idealized
+supposition that one has a way to adjust the effective neutron yield
+of all fission reactions; in particular, that they can be multiplied
+by a reactivity factor 1/k. Remember that Q(v) arose from two
+terms: scattering and fission. Write them separately as
+&#931;<sub>s</sub><b>V</b><b>F</b> and &#957;&#931;<sub>f</sub><b>V</b><b>F</b>
+respectively, where the diagonal matrix &#957; has coefficients
+&#957;<sub>g</sub> which represent the number of neutrons (per fission reaction)
+that arise with speed in the range of group g.  Introduce the
+multiplicative reactivity factor<a
+id="reactivity_factor93560"></a> k so that
+<a id="splitQ">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>Q</b> = <b>A</b><b>F</b>=&#931;<sub>s</sub><b>V</b><b>F</b>+ </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>k<br /></td><td nowrap="nowrap" align="center">
+&#957;&#931;<sub>f</sub><b>V</b><b>F</b></td></tr></table>
+</td><td width="1%">(9.12)</td></tr></table>
+
+
+Then the steady diffusion equation becomes a (generalized) eigenvalue problem:
+<a id="eigensteady">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+(&#8722;<b>L</b>+&#931;<sub>t</sub><b>V</b>&#8722;&#931;<sub>s</sub><b>V</b>) &#8722; </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>k<br /></td><td nowrap="nowrap" align="center">
+&#957;&#931;<sub>f</sub><b>V</b></td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+<b>F</b> = 0 .</td></tr></table>
+</td><td width="1%">(9.13)</td></tr></table>
+
+
+which can also be written in terms of neutron flux
+&#934; &#8801; <b>V</b><b>F</b> as
+<a id="eigenflux">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td align="left" class="cl">&#x23A1;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+(&#8722;<b>L</b><b>V</b><sup>&#8722;1</sup>+&#931;<sub>t</sub>&#8722;&#931;<sub>s</sub>) &#8722; </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>k<br /></td><td nowrap="nowrap" align="center">
+&#957;&#931;<sub>f</sub></td><td align="left" class="cl">&#x23A4;<br />&#x23A6;
+</td><td nowrap="nowrap" align="center">
+&#934;=0 ,</td></tr></table>
+</td><td width="1%">(9.14)</td></tr></table>
+
+
+
+</p><p>
+In general there are <em>some</em> values of k for which the
+determinant of this matrix equation is zero. They are
+the<a
+id="eigenvalue_reactor93561"></a> eigenvalues<a href="footnote.html#tthFtNtAFE" id="tthFrefAFE"><sup>54</sup></a>. Actually
+we want only the eigensolution with the largest value of k. That
+corresponds to the mode that would be fastest growing (or slowest
+decaying) in the original time-dependent equation
+(<a href="chap9.html#multigroupdiffvec">9.9</a>). If this largest k is greater than 1, then
+we had to <em>reduce</em> the neutron production rate by this factor
+relative to the original diffusion equation to get steady state. In
+other words there were too many reactions originally before we
+introduced k. A reactor with eigenvalue k greater than one is
+supercritical<a
+id="supercritical_eigenvalue93562"></a>; the neutron flux will increase as
+a function of time. By the same argument an eigenvalue less than 1 is
+subcritical<a
+id="subcritical_eigenvalue93563"></a>; neutrons decrease as a function of time.
+
+</p><p>
+How do we find the eigenvalue? Well, one way is simply to use a
+library routine designed to find generalized
+eigenvalues<a href="footnote.html#tthFtNtAFF" id="tthFrefAFF"><sup>55</sup></a><a
+id="eigenvalue_generalized93564"></a><a
+id="generalized_eigenvalue93565"></a>,
+ and plug in
+the matrices. However, this is liable to be a very inefficient
+approach unless that routine can use the fact that all the matrices
+are sparse. Even the collision matrices &#931;<sub>s</sub> and
+&#931;<sub>f</sub> are very sparse. They are full matrices <em>locally</em>,
+in the sense that they couple all the different speed groups
+together. But they have no cross terms between different spatial
+locations. Consequently they are diagonal with respect to the spatial
+indices. Another way of saying the same thing is that, if we arrange
+the order of indices in the giant vector <b>F</b> such that all the
+groups at a particular position are adjacent to one another, then we
+can consider each matrix to be an N<sub>S</sub>&times;N<sub>S</sub> matrix of blocks
+that are each N<sub>G</sub>&times;N<sub>G</sub> submatrices. The form is illustrated in
+eq.&nbsp;(<a href="chap9.html#neutmat">9.15</a>).
+<a id="neutmat">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ &#931;<sub>s</sub> =  </td><td align="left" class="cl">&#x23A1;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />
+&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A2;<br />&#x23A3;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td align="left" class="cl">&#x23AB;<br />&#x23AA;<br />&#x23AA;<br />&#x23AC;<br />
+&#x23AA;<br />&#x23AA;<br />&#x23AD;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<span class="roman">Block</span> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<span class="roman">size</span> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+N<sub>G</sub> </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<span class="roman">Diagonal</span></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<span class="roman">Blocks</span></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8592; <span class="roman">Filled</span></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8595;</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<span class="roman">Off</span>&#8722;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<span class="roman">diagonal</span></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<span class="roman">Blocks</span></td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+<span class="roman">Zero</span></td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8226;</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+ </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x23A4;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />
+&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A5;<br />&#x23A6;
+</td><td align="left" class="cl">&#x23AB;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AC;<br />
+&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AA;<br />&#x23AD;
+</td><td nowrap="nowrap" align="center">
+N<sub>S</sub> <span class="roman">blocks</span>.</td></tr></table>
+</td><td width="1%">(9.15)</td></tr></table>
+
+
+In respect of the N<sub>S</sub>&times;N<sub>S</sub> structure, &#931;<sub>s</sub>, &#931;<sub>f</sub>, and
+&#931;<sub>t</sub> have diagonal arrangements of blocks. And &#931;<sub>t</sub> is
+diagonal even within its N<sub>G</sub>&times;N<sub>G</sub> blocks. By contrast, <b>L</b>
+is an arrangement of blocks that is tridiagonal, with
+additional subdiagonals in multiple space dimensions; like
+eq. (<a href="chap5.html#triplusfringes">5.18</a>) with each of the letter entries there
+representing a (diagonal) block<a
+id="matrix_block93566"></a>.
+
+</p><p>
+Because of the sparseness, for a problem of any significant size, it
+is most efficient to use an
+<em>iterative</em><a
+id="iterative_eigensolution93567"></a> technique to find the
+eigenvalue, in which we need only to <em>multiply</em> by the original
+matrices, not to invert them. In this respect the problem is very
+similar to the challenge of solving large elliptic problems.
+
+</p><p>
+The fact that we are only interested in the largest eigenvalue is a
+big help<a href="footnote.html#tthFtNtAFG" id="tthFrefAFG"><sup>56</sup></a><a
+id="power_method_eigensolution93568"></a>. Practically any
+iterative scheme that leads to the dominance of the corresponding
+eigenmode will work. Defining
+&#8722;<b>L</b>+&#931;<sub>t</sub><b>V</b>&#8722;&#931;<sub>s</sub><b>V</b>=<b>M</b> and &#957;&#931;<sub>f</sub><b>V</b>=<b>G</b> for  brevity, a typical
+approach is to solve [<b>M</b> &#8722; <b>G</b>/k]<b>F</b>=0 using the scheme
+<a id="eigschem">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  <b>M</b> <b>F</b><sup>(n+1)</sup> = </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>k<sup>(n)</sup><br /></td><td nowrap="nowrap" align="center">
+<b>G</b><b>F</b><sup>(n)</sup>.</td></tr></table>
+</td><td width="1%">(9.16)</td></tr></table>
+
+
+At each outer step, n, an iterative solver<a href="footnote.html#tthFtNtAFH" id="tthFrefAFH"><sup>57</sup></a> is
+used to find  <b>F</b><sup>(n+1)</sup> given  <b>F</b><sup>(n)</sup> (equivalent to
+inverting <b>M</b> but without actually forming <b>M</b><sup>&#8722;1</sup>). Then
+the eigenvalue estimate is updated using a weighted ratio such as
+<a id="eigweight">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  k<sup>(n+1)</sup> = </td><td nowrap="nowrap" align="center">
+(<b>G</b><b>F</b><sup>(n+1)</sup>)<sup>T</sup><b>G</b><b>F</b><sup>(n+1)</sup>
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>(<b>G</b><b>F</b><sup>(n+1)</sup>)<sup>T</sup> <b>M</b><b>F</b><sup>(n+1)</sup><br /></td><td nowrap="nowrap" align="center">
+,</td></tr></table>
+</td><td width="1%">(9.17)</td></tr></table>
+
+
+and the step process is repeated<a href="footnote.html#tthFtNtAFI" id="tthFrefAFI"><sup>58</sup></a>. As was discussed in respect of
+nonlinear solvers, it might be advantageous to use only a very small
+number of loops of the inner iteration.
+
+</p><p>
+
+<h2>Worked Example: Bare Homogeneous Reactor</h2>
+
+</p><p>
+Treat a reactor<a
+id="nuclear_reactor_homogeneous93569"></a> as having three
+neutron speed groups, whose material-interaction properties are
+uniform over the cuboid 0 &lt; x &lt; L<sub>x</sub>, 0 &lt; y &lt; L<sub>y</sub>, 0 &lt; z &lt; L<sub>z</sub>, with neutron
+density F(v)=0 on the boundaries.  The non-zero terms of the inverse
+collision length matrices (expressed in m<sup>&#8722;1</sup>) may be taken
+as<a href="footnote.html#tthFtNtAFJ" id="tthFrefAFJ"><sup>59</sup></a>:
+
+</p><p>
+
+<table align="center" border="0"><tr><td>
+
+<table border="1" class="tabular">
+<tr><td align="left">Group (g)</td><td align="center">1 </td><td align="center">2 </td><td align="center">3 </td></tr>
+<tr><td align="left">Energy</td><td align="center">10keV - 10MeV</td><td align="center">0.4eV - 10keV</td><td align="center">0 - 0.4eV</td></tr>
+<tr><td align="left">&#931;<sub>tg</sub>=v<sub>g</sub>/3D<sub>g</sub></td><td align="center">20 </td><td align="center">53 </td><td align="center">94 </td></tr>
+<tr><td align="left">(&#931;<sub>t</sub>&#8722;&#931;<sub>s</sub>)<sub>gg</sub></td><td align="center">6.4 </td><td align="center">9.5  </td><td align="center">12</td></tr>
+<tr><td align="left">(&#931;<sub>s</sub>)<sub>g+1,g</sub> </td><td align="center">6.0 </td><td align="center">6.5 </td><td align="center">0 </td></tr>
+<tr><td align="left">(&#957;&#931;<sub>f</sub>)<sub>1,g</sub></td><td align="center">0.9 </td><td align="center">1.8 </td><td align="center">18</td></tr></table>
+</td></tr></table><!--hboxt-->
+
+</p><p>
+So
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+<b>D</b><b>V</b><sup>&#8722;1</sup> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.015 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.0063 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+.0035 </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<span class="roman">m</span>,&nbsp;&nbsp;&nbsp; &#931;<sub>t</sub>&#8722;&#931;<sub>s</sub> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+6.4 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;6.0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+9.5 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&#8722;6.5</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+12 </td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<span class="roman">m</span><sup>&#8722;1</sup>,</td></tr></table>
+</td></tr></table>
+
+
+<a id="wk9eq0">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ <span class="roman">and</span>&nbsp;&nbsp;&nbsp; &#957;&#931;<sub>f</sub> = </td><td align="left" class="cl">&#x239B;<br />&#x239C;<br />&#x239C;<br />
+&#x239C;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0.9 </td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+1.8</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+18</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr>
+<tr><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td><td align="center"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0</td></tr></table></td></tr></table>
+</td><td align="left" class="cl">&#x239E;<br />&#x239F;<br />&#x239F;<br />
+&#x239F;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<span class="roman">m</span><sup>&#8722;1</sup>.</td></tr></table>
+</td><td width="1%">(9.18)</td></tr></table>
+
+
+Find the reactivity eigenvalue and eigenmode for (a) a very large
+reactor, i.e.&nbsp;for L<sub>x</sub>,L<sub>y</sub>,L<sub>z</sub>&#8594;&#8734;, and (b) L<sub>x</sub>=L<sub>y</sub>=L<sub>z</sub>=1 m.
+
+</p><p>
+<br /> Although we could construct a large finite difference block
+matrix and then numerically find its eigenvalue, spatially uniform
+material-interaction properties (collision lengths) constitute a very
+special case. They allow us to deduce the spatial variation of the
+eigenmode independently of its velocity dependence. The
+velocity-dependence and spatial-dependence of the eigenmodes become
+<em>separable</em><a
+id="separable_solution93570"></a>, giving rise to a distribution
+function of the form
+<a id="wk9eq1">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  F(<b><i>x</i></b>,v)=h(<b><i>x</i></b>) &#934;(v)/v,</td></tr></table>
+</td><td width="1%">(9.19)</td></tr></table>
+
+
+where here h is independent of v and &#934; is independent of
+space. This allows an enormous reduction in computational effort,
+because instead of one giant combined eigenvalue calculation, we need
+solve only two <em>separate</em>, much smaller, eigenvalue problems.
+The separate functions must satisfy the equation
+<a id="wk9eq2">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>h<br /></td><td nowrap="nowrap" align="center">
+&#8711;<sup>2</sup> h = B<sup>2</sup> = </td><td nowrap="nowrap" align="center">
+v
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>D(v)&#934;(v)<br /></td><td nowrap="nowrap" align="center">
+[&#8722;&#931;<sub>t</sub>&#934;(v) + Q<sup>(k)</sup>(v)].</td></tr></table>
+</td><td width="1%">(9.20)</td></tr></table>
+
+
+where B<sup>2</sup> is the separation
+constant<a
+id="separation_constant93571"></a><a
+id="buckling93572"></a><a href="footnote.html#tthFtNtAGA" id="tthFrefAGA"><sup>60</sup></a>; independent of both <b><i>x</i></b> and v.
+Q<sup>(k)</sup> denotes the source term modified by replacing the fission
+yield &#957; with &#957;/k.
+
+</p><p>
+For any specified reactor shape
+there is a set of eigenmodes that satisfy the boundary conditions and
+&#8711;<sup>2</sup> h = B<sup>2</sup> h. This is a spatial eigenvalue problem for which
+B<sup>2</sup> is the eigenvalue. For a complicated shape of domain, it
+requires numerical solution, finding the eigenvalue of the finite
+difference matrix form of the &#8711;<sup>2</sup> operator.  In our simple
+cuboidal case, the spatial eigenmodes have simple analytic form
+<a
+id="Laplacian_eigenmode93573"></a>
+<a id="wk9eq3">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  h(<b><i>x</i></b>)=sin(&#960;n<sub>x</sub>x/L<sub>x</sub>)sin(&#960;n<sub>y</sub>y/L<sub>y</sub>)sin(&#960;n<sub>z</sub>z/L<sub>z</sub>),</td></tr></table>
+</td><td width="1%">(9.21)</td></tr></table>
+
+
+with n<sub>x</sub>,n<sub>y</sub>,n<sub>z</sub> positive integers. For the mode with
+the longest wavelength (n<sub>x</sub>=n<sub>y</sub>=n<sub>z</sub>=1),
+<a id="wk9eq4">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+  B<sup>2</sup>=</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#960;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>L<sub>x</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
++</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#960;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>L<sub>y</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
++</td><td align="left" class="cl">&#x239B;<br />&#x239D;
+</td><td nowrap="nowrap" align="center">
+&#960;
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>L<sub>z</sub><br /></td><td align="left" class="cl">&#x239E;<br />&#x23A0;
+</td><td nowrap="nowrap" align="center">
+<small>2</small><!--sup
+--><br /><br />
+<small></small>&nbsp;<br /></td><td nowrap="nowrap" align="center">
+.</td></tr></table>
+</td><td width="1%">(9.22)</td></tr></table>
+
+
+When we know B<sup>2</sup>, the velocity-distribution eigenmode is then the solution of
+<a id="wk9eq5">
+</a>
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ </td><td nowrap="nowrap" align="center">
+<table class="tabular">
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+0 = </td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;B<sup>2</sup> (D(v)/v)&#934;(v)+&#931;<sub>t</sub> &#934;(v) &#8722; Q<sup>(k)</sup>(v)</td></tr></table></td></tr>
+<tr><td align="right"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+=</td></tr></table></td><td align="left"><table border="0" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap" align="center">
+&nbsp;&nbsp;(B<sup>2</sup> <b>D</b><b>V</b><sup>&#8722;1</sup>+&#931;<sub>t</sub>&#8722;&#931;<sub>s</sub> &#8722; </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>k<br /></td><td nowrap="nowrap" align="center">
+&#957;&#931;<sub>f</sub> )&#934;,</td></tr></table></td></tr></table>
+</td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td><td width="1%">(9.23)</td></tr></table>
+
+
+where the final form is the multigroup approximation expressed
+in terms of the size-N<sub>G</sub> collision matrices.
+
+</p><p>
+For the large reactor, B<sup>2</sup>&#8594; 0. Therefore the multigroup eigenvalue
+problem is simply [&#931;<sub>t</sub>&#8722;&#931;<sub>s</sub>]&#934;
+= <sup>1</sup>/<sub>k</sub>[&#957;&#931;<sub>f</sub>] &#934;
+=0. Because of the special form of the
+matrices, one can quickly solve the equations by hand. They become
+&#934;<sub>2</sub>=(12/6.5)&#934;<sub>3</sub>, &#934;<sub>1</sub>=(9.5/6.0)&#934;<sub>2</sub> and
+6.4&#934;<sub>1</sub>&#8722;<sup>1</sup>/<sub>k</sub>[0.9&#934;<sub>1</sub>+1.8&#934;<sub>2</sub>+18&#934;<sub>3</sub>]=0. Choosing to
+set &#934;<sub>1</sub>=1, the eigenmode is then &#934;<sup>T</sup>=(1,0.632,0.342), and
+the eigenvalue is k<sub>&#8734;</sub>=k=(0.9+1.8&times;0.632+18&times;0.342)/6.4 = 1.28.  This k<sub>&#8734;</sub> is the eigenvalue for an infinite sized
+reactor.  These values are confirmed if I enter the matrices into
+Octave and call the <tt>eig</tt> function. It tries to find 3
+eigenmodes, but actually there is only one that is non-singular. It
+must be chosen correctly: a warning for the unwary.
+
+</p><p>
+For the 1 m reactor, B<sup>2</sup>=3&#960;<sup>2</sup>, and we must add
+B<sup>2</sup><b>D</b><b>V</b><sup>&#8722;1</sup> to the matrix &#931;<sub>t</sub>&#8722;&#931;<sub>s</sub>. This
+does not change any of the zeroes, it just changes its diagonal
+entries somewhat, to (6.84,9.69,12.1). Reevaluating the result we
+obtain eigenmode &#934;<sup>T</sup>=(1,0.619,0.333), and eigenvalue k=1.20.
+Thus, the finite domain size in this case introduces only very small
+changes in the energy spectrum of the reactor (the eigenmode), and
+reduces the the eigenvalue only a small amount. It is a general rule
+that increasing B<sup>2</sup> decreases k. Therefore shorter-scale spatial
+modes (e.g.&nbsp;n &gt; 1), for which B<sup>2</sup> is larger, always have less gain
+in a uniform reactor. To make this reactor operate at steady power, we
+would have to introduce control rods or make other adjustments to
+reduce the reactivity by the factor 1/k=1/1.20.
+
+</p><p>
+
+<h2>Exercise 9. Neutron Transport.</h2>
+
+</p><p>
+<br /><br />1. Consider a one-group representation of neutron transport in a
+slab, one-dimensional, reactor of length 2L. The reactor has uniform
+material properties; so that the steady diffusion equation becomes
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+&#8722;D &#8711;<sup>2</sup>F + (&#931;<sub>t</sub>&#8722;S)F &#8722; </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>k<br /></td><td nowrap="nowrap" align="center">
+G F = 0</td></tr></table>
+</td></tr></table>
+
+
+where the diffusion coefficient (divided by velocity) D, the total attenuation
+"macroscopic cross-section" &#931;<sub>t</sub>, the scattering and fission
+source terms S, G, are simply scalar constants. F is the total neutron
+density, because there's only one group. For convenience,
+write &#931;<sub>t</sub>&#8722;S=&#931;. The eigenvalue k
+must be found for this equation.
+
+</p><p>
+The boundary conditions at x=&#177;L are that the neutron density satisfy
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+F = &#8722;2D</td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b>n</b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+. &#8711;F = &#177;2D </td><td nowrap="nowrap" align="center">
+&#8706; F
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>&#8706;x<br /></td><td nowrap="nowrap" align="center">
+</td></tr></table>
+</td></tr></table>
+
+
+where <br clear="all" /><table border="0" align="left" cellspacing="0" cellpadding="0"><tr><td nowrap="nowrap"></td><td nowrap="nowrap" align="center">
+<div class="comp">^<br /></div>
+<div class="norm"><b>n</b><br /></div>
+<div class="comb">&nbsp;</div>
+</td><td nowrap="nowrap" align="center">
+
+</td></tr></table><br /> is the outward normal at the boundary. This is
+essentially a non-reflective condition. It says there are no
+neutrons entering the reactor from outside.
+
+</p><p>
+Formulate the finite-difference diffusion equation on a uniform mesh
+of N<sub>x</sub> nodes; node spacing &#8710;x=2L/(N<sub>x</sub>&#8722;1). Exhibit it in the
+form of a matrix equation
+
+<br clear="all" /><table border="0" width="100%"><tr><td>
+<table align="center" cellspacing="0"  cellpadding="2"><tr><td nowrap="nowrap" align="center">
+ [<b>M</b> &#8722; </td><td nowrap="nowrap" align="center">
+1
+<div class="hrcomp"><hr noshade="noshade" size="1"/></div>k<br /></td><td nowrap="nowrap" align="center">
+<b>G</b> ]<b><i>F</i></b> = 0</td></tr></table>
+</td></tr></table>
+
+
+And write out the matrix <b>M</b> explicitly for the case N<sub>x</sub>=5 (so
+<b>M</b> is 5&times;5), carefully considering the incorporation of
+the finite-difference boundary condition.
+
+</p><p>
+The first and last rows of <b>M</b> that correspond to the
+boundary positions, are not part of the eigensolution equation. In other
+words, the matrix <b>G</b> has zero first and last rows. Therefore,
+use the boundary conditions to <em>eliminate</em> F<sub>1</sub> and
+F<sub>N<sub>x</sub></sub>, reducing the matrix dimension by 2. Finally arrive at
+a 3&times;3 eigenvalue equation [<b>M</b>&#8242;&#8722;G/k]<b><i>F</i></b> = 0, where
+<b>M</b>&#8242; is the 3&times;3 matrix adjusted to accommodate the
+boundary information, and G is just a scalar (equivalent to a factor
+times the unit matrix).
+
+</p><p>
+<br /><br /> 2. Implement this finite difference
+scheme and (using some library function) find the eigenvalue, k, when
+D=1, &#931; = 1, G=1, and L=2 or L=10. Use large enough
+N<sub>x</sub> in your code that the solution is reasonably converged.
+
+</p><p>
+<br /><br /> [Octave/Matlab hint. There are (in Octave) two
+routines for calculating eigenvalues: <tt>eig()</tt> and <tt>eigs()</tt>. Calling
+<tt>eigs(M,K)</tt>  returns the largest <tt>K</tt> eigenvalues of the
+matrix <tt>M</tt>.  Don't forget that the eigenvalue returned is
+&#955; solving [<b>M</b>&#8722;&#955;]&#934;=0, in other words it is
+the inverse of k.  We want just the <em>smallest</em> &#955;, which
+corresponds to the largest k.  We can trick this routine into giving
+it by using the generalized eigenvalue form <b>I</b>&#8722; k <b>M</b>=0, so
+calling <tt>eigs(eye(Nx),M,1)</tt>. The <tt>eigs()</tt> routine uses an
+iterative technique. The <tt>eig()</tt> routine returns all the eigenvalues. It
+uses a direct solution technique. One then has to find the smallest,
+and invert it to give k.]
+
+</p><p>
+
+
+<hr /><table width="100%"><tr><td>
+ <a href="index.html">HEAD</a></td><td align="right">
+<a href="chap10.html">NEXT
+</a></td></tr></table>
+</div></body></html>
