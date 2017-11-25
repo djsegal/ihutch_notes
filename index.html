@@ -3,467 +3,791 @@
            "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html class="jumbotron"><body class="container"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"><link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'><style>
     img {     max-width: 100%;
-    max-height: 40vh; } p { line-height: 1.5em; font-size: 18px !important; } body {
+    max-height: 40vh; } p { line-height: 1.5em; font-size: 18px !important; } hr { min-height: 0.1em; } body {
       font-family: 'Roboto', sans-serif !important;
       font-size: 18px;
     }
+    .row .col-sm-6:first-child {
+      border-right: solid 1px lightgrey;
+    }
+    .row .col-sm-6:last-child {
+      border-left: solid 1px lightgrey;
+    }
   </style>
-<
 
+<div class="row">
 
+<div class="col-sm-6">
 
 <title> Essential Numerical Methods</title>
 
 <h1 align="center">Essential Numerical Methods </h1>
 
-<h3 align="center">I H Hutchinson<br />Massachusetts Institute of Technology </h3>
+<h3 align="center">I H Hutchinson</h3>
 
 <h3 align="center">&#169; 2014 </h3>
 
-</p><p>
-  <table align="left" border="1"><tr><td width="0" align="center">
-The book based on these lectures is <a href="http://www.cambridge.org/us/academic/subjects/physics/computational-science-and-modelling/students-guide-numerical-methods"><em>A Student's Guide to
- Numerical
- Methods</em></a><br />
-published by Cambridge University Press, 2015. And available from
- <a href="http://www.amazon.com/Students-Guide-Numerical-Methods/dp/1107479509/">Amazon.com</a>.</td></tr></table><!--hbox-->
-<br clear="all" /> <table align="left" border="1"><tr><td width="0" align="center">
-For web reading guidance follow <a href="guidance.html">this
- link</a>.<br /></td></tr></table><!--hbox-->
+  <span class="huge">
+
+  </p><p>
+
+  </p><p>
+
+  <hr>
+
+  <h1>Contents </h1>
+  <a href="chap1.html#tth_chAp1"
+  >1&nbsp; Fitting Functions to Data</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.1"
+  >1.1&nbsp; Exact fitting</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.1.1"
+  >1.1.1&nbsp; Introduction</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.1.2"
+  >1.1.2&nbsp; Representing an exact fitting function linearly</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.1.3"
+  >1.1.3&nbsp; Solving for the coefficients</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.2"
+  >1.2&nbsp; Approximate Fitting</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.2.1"
+  >1.2.1&nbsp; Linear Least Squares</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.2.2"
+  >1.2.2&nbsp; SVD and the Moore-Penrose Pseudo-inverse</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.2.3"
+  >1.2.3&nbsp; Smoothing and Regularization</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.3"
+  >1.3&nbsp; Tomographic Image Reconstruction</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.4"
+  >1.4&nbsp; Efficiency and Nonlinearity</a><br />
+  <a href="chap2.html#tth_chAp2"
+  >2&nbsp; Ordinary Differential Equations</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap2.html#tth_sEc2.1"
+  >2.1&nbsp; Reduction to first-order</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap2.html#tth_sEc2.2"
+  >2.2&nbsp; Numerical Integration of Initial Value Problem</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap2.html#tth_sEc2.2.1"
+  >2.2.1&nbsp; Explicit Integration</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap2.html#tth_sEc2.2.2"
+  >2.2.2&nbsp; Accuracy and Runge-Kutta Schemes</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap2.html#tth_sEc2.2.3"
+  >2.2.3&nbsp; Stability</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap2.html#tth_sEc2.3"
+  >2.3&nbsp; Multidimensional Stiff Equations: Implicit Schemes</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap2.html#tth_sEc2.4"
+  >2.4&nbsp; Leap-Frog Schemes</a><br />
+
+  <a href="chap3.html#tth_chAp3"
+  >3&nbsp; Two-point Boundary Conditions</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.1"
+  >3.1&nbsp; Examples of Two-Point Problems</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.2"
+  >3.2&nbsp; Shooting</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.2.1"
+  >3.2.1&nbsp; Solving two-point problems by initial-value iteration</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.2.2"
+  >3.2.2&nbsp; Bisection</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.3"
+  >3.3&nbsp; Direct Solution</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.3.1"
+  >3.3.1&nbsp; Second-order finite differences</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.3.2"
+  >3.3.2&nbsp; Boundary Conditions</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.4"
+  >3.4&nbsp; Conservative Differences, Finite Volumes</a><br />
+  <a href="chap4.html#tth_chAp4"
+  >4&nbsp; Partial Differential Equations</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap4.html#tth_sEc4.1"
+  >4.1&nbsp; Examples of Partial Differential Equations</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap4.html#tth_sEc4.1.1"
+  >4.1.1&nbsp; Fluid Flow</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap4.html#tth_sEc4.1.2"
+  >4.1.2&nbsp; Diffusion</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap4.html#tth_sEc4.1.3"
+  >4.1.3&nbsp; Waves</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap4.html#tth_sEc4.1.4"
+  >4.1.4&nbsp; Electromagnetism</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap4.html#tth_sEc4.2"
+  >4.2&nbsp; Classification of Partial Differential Equations</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap4.html#tth_sEc4.3"
+  >4.3&nbsp; Finite Difference Partial Derivatives</a><br />
+  <a href="chap5.html#tth_chAp5"
+  >5&nbsp; Diffusion. Parabolic Partial Differential Equations</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.1"
+  >5.1&nbsp; Diffusion</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.2"
+  >5.2&nbsp; Time Advance Choices and Stability</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.2.1"
+  >5.2.1&nbsp; Forward Time, Centered Space</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.2.2"
+  >5.2.2&nbsp; Backward Time, Centered Space. Implicit Scheme.</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.2.3"
+  >5.2.3&nbsp; Partially implicit, Crank-Nicholson schemes.</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.3"
+  >5.3&nbsp; Implicit Advancing Matrix Method</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.4"
+  >5.4&nbsp; Multiple Space Dimensions</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.5"
+  >5.5&nbsp; Estimating Computational Cost</a><br />
+  <a href="chap6.html#tth_chAp6"
+  >6&nbsp; Elliptic Problems and Iterative Matrix Solution</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap6.html#tth_sEc6.1"
+  >6.1&nbsp; Elliptic Equations and Matrix Inversion</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap6.html#tth_sEc6.2"
+  >6.2&nbsp; Convergence Rate</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap6.html#tth_sEc6.3"
+  >6.3&nbsp; Successive Over-Relaxation</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap6.html#tth_sEc6.4"
+  >6.4&nbsp; Iteration and Nonlinear Equations</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap6.html#tth_sEc6.4.1"
+  >6.4.1&nbsp; Linearization</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap6.html#tth_sEc6.4.2"
+  >6.4.2&nbsp; Combining linear and nonlinear iteration</a><br />
+  <a href="chap7.html#tth_chAp7"
+  >7&nbsp; Fluid Dynamics and Hyperbolic Equations</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap7.html#tth_sEc7.1"
+  >7.1&nbsp; The fluid momentum equation</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap7.html#tth_sEc7.2"
+  >7.2&nbsp; Hyperbolic Equations</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap7.html#tth_sEc7.3"
+  >7.3&nbsp; Finite Differences and Stability</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap7.html#tth_sEc7.3.1"
+  >7.3.1&nbsp; FTCS is unstable</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap7.html#tth_sEc7.3.2"
+  >7.3.2&nbsp; Lax-Friedrichs and the CFL condition</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap7.html#tth_sEc7.3.3"
+  >7.3.3&nbsp; Lax-Wendroff achieves second order accuracy</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap7.html#tth_sEc7.4"
+  >7.4&nbsp; Worked Example: Three-dimensional fluids</a><br />
+  <a href="chap8.html#tth_chAp8"
+  >8&nbsp; Boltzmann's Equation and its solution</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.1"
+  >8.1&nbsp; The Distribution Function</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.2"
+  >8.2&nbsp; Conservation of Particles in Phase-Space</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.3"
+  >8.3&nbsp; Solving the Hyperbolic Boltzmann Equation</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.3.1"
+  >8.3.1&nbsp; Integration along orbits</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.3.2"
+  >8.3.2&nbsp; Orbits are Characteristics</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.4"
+  >8.4&nbsp; Collision Term</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.4.1"
+  >8.4.1&nbsp; Self-scattering</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.4.2"
+  >8.4.2&nbsp; No self-scattering</a><br />
+  <a href="chap9.html#tth_chAp9"
+  >9&nbsp; Energy-Resolved Diffusive Transport</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap9.html#tth_sEc9.1"
+  >9.1&nbsp; Collisions of Neutrons</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap9.html#tth_sEc9.2"
+  >9.2&nbsp; Reduction to multigroup diffusion equations</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap9.html#tth_sEc9.3"
+  >9.3&nbsp; Numerical Representation of Multigroup Equations</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap9.html#tth_sEc9.3.1"
+  >9.3.1&nbsp; Groups</a><br />
 
 
-</p><p>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap9.html#tth_sEc9.3.2"
+  >9.3.2&nbsp; Steady State Eigenvalue</a><br />
+  <a href="chap10.html#tth_chAp10"
+  >10&nbsp; Atomistic and Particle-in-Cell Simulation</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap10.html#tth_sEc10.1"
+  >10.1&nbsp; Atomistic Simulation</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap10.html#tth_sEc10.1.1"
+  >10.1.1&nbsp; Atomic/Molecular Forces and Potentials</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap10.html#tth_sEc10.1.2"
+  >10.1.2&nbsp; Computational requirements</a><br />
 
 
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap10.html#tth_sEc10.2"
+  >10.2&nbsp; Particle in Cell Codes</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap10.html#tth_sEc10.2.1"
+  >10.2.1&nbsp; Boltzmann Equation Pseudoparticle Representation</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap10.html#tth_sEc10.2.2"
+  >10.2.2&nbsp; Direct Simulation Monte Carlo treatment of gas</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap10.html#tth_sEc10.2.3"
+  >10.2.3&nbsp; Particle Boundary Conditions</a><br />
+  <a href="chap11.html#tth_chAp11"
+  >11&nbsp; Monte Carlo Techniques</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap11.html#tth_sEc11.1"
+  >11.1&nbsp; Probability and Statistics</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap11.html#tth_sEc11.1.1"
+  >11.1.1&nbsp; Probability and Probability Distribution</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap11.html#tth_sEc11.1.2"
+  >11.1.2&nbsp; Mean, Variance, Standard Deviation, and Standard Error</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap11.html#tth_sEc11.2"
+  >11.2&nbsp; Computational random selection</a><br />
 
-<br /><br />
-<span class="huge">
 
-<div style="text-align:center">
-S.D.G.
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap11.html#tth_sEc11.3"
+  >11.3&nbsp; Flux integration and injection choice.</a><br />
+
+  <a href="chap12.html#tth_chAp12"
+  >12&nbsp; Monte Carlo Radiation Transport</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap12.html#tth_sEc12.1"
+  >12.1&nbsp; Transport and Collisions</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap12.html#tth_sEc12.1.1"
+  >12.1.1&nbsp; Random walk step length</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap12.html#tth_sEc12.1.2"
+  >12.1.2&nbsp; Collision type and parameters</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap12.html#tth_sEc12.1.3"
+  >12.1.3&nbsp; Iteration and New Particles</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap12.html#tth_sEc12.2"
+  >12.2&nbsp; Tracking, Tallying and Statistical Uncertainty</a><br />
+
+
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap12.html#tth_sEc12.3"
+  >12.3&nbsp; Worked Example: Density and Flux Tallies</a><br />
+  <a href="chap13.html#tth_chAp13"
+  >13&nbsp; Next Steps</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap13.html#tth_sEc13.1"
+  >13.1&nbsp; Finite Element Methods</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap13.html#tth_sEc13.2"
+  >13.2&nbsp; Discrete Fourier Analysis and Spectral Methods</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap13.html#tth_sEc13.3"
+  >13.3&nbsp; Sparse Matrix Iterative Krylov Solution</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chap13.html#tth_sEc13.4"
+  >13.4&nbsp; Fluid Evolution Schemes</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap13.html#tth_sEc13.4.1"
+  >13.4.1&nbsp; Incompressible fluids and pressure correction</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap13.html#tth_sEc13.4.2"
+  >13.4.2&nbsp; Nonlinearities, shocks, upwind and limiter differencing</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap13.html#tth_sEc13.4.3"
+  >13.4.3&nbsp; Turbulence</a><br />
+  <a href="chapA.html#tth_chApA"
+  >A&nbsp; Summary of Matrix Algebra</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapA.html#tth_sEcA.1"
+  >A.1&nbsp; Vector and Matrix Multiplication</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapA.html#tth_sEcA.2"
+  >A.2&nbsp; Determinants</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapA.html#tth_sEcA.3"
+  >A.3&nbsp; Inverses</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapA.html#tth_sEcA.4"
+  >A.4&nbsp; Eigenanalysis</a><br />
+  <a href="docindex.html#tth_sEcindex">Index</a><br />
+
+  </p><p>
+
+  <h2>Preface</h2>
+
+  </p><p>
+  This book presents what every graduate-level physicist
+  and engineer should know about solving physical problems by
+  computer.
+
+  </p><p>
+  Hardly any research engineer or scientist, whatever their speciality,
+  can do without at least minimal competence in computational and
+  numerical methods. It helps the practitioner greatly to appreciate the
+  big picture of how computational techniques are applied.  A book like
+  this that covers the breadth of the methods, with a minimum of fuss,
+  serves the purpose of acquiring the essential knowledge.  It is
+  derived from an accelerated short course for entering graduate
+  students in the MIT Department of Nuclear Science and
+  Engineering. That's why some examples used to illustrate the numerical
+  techniques are drawn from Nuclear Science and Engineering. But no
+  specific background nuclear knowledge is required. The mathematical
+  and computational techniques explained are applicable throughout a
+  whole range of engineering and physical science disciplines, because
+  the underlying numerical methods are essentially common.
+
+  </p><p>
+  For so short a course, a great deal of background must be taken for
+  granted, and a lot of relevant topics omitted. The brevity is not a
+  fault though; it is an intention. And while there is an enormous range
+  of material that <em>could</em> be added, I see the deliberate selection
+  as a merit. This approach, I believe, enables a student to read the
+  text sequentially, experience rapid progress, and work to
+  <em>master</em> the content. Of course the present approach contrasts
+  strongly both with comprehensive textbooks and with
+  handbooks. Massive teaching <em>textbooks</em> in addition to
+  providing vastly more detail, cover topics such as standard matrix
+  inversion or decomposition, and elementary quadrature. Those can
+  mostly be taken for granted today, I believe, because of widespread
+  use of mathematical computing systems.  Large textbooks also often
+  approach the topics by a round-about set of examples and develop the
+  mathematics in more elementary and drawn out style. Doubtless that
+  approach has merit, but it requires much more time to get to the heart
+  of the matter. Students with good preparation appreciate a more
+  accelerated approach than slogging through many hundreds of pages of
+  textbook. That's especially so, since such textbooks often stop just
+  when the techniques are getting useful for science and engineering,
+  that is, with partial differential equations. This book gets to
+  partial differential equations by the second quarter of its material,
+  and continues into discussion of particle and Monte Carlo methods that
+  are essential for modern computational science and engineering, but
+  rarely treated in general numerical methods text books.  There are
+  several excellent numerical methods <em>handbooks</em>; and I often use
+  them. They cover so much material, though, that the reader can and
+  should only dip into it, and use it for reference. Benefitting from
+  such comprehensive treatments requires an understanding of the
+  framework of the subject. The present book aims to provide that
+  framework in as compact a form as is reasonable.
+
+  </p><p>
+  Even having deliberately chosen to keep it short, there are some
+  places where additional explanation or details seem really
+  valuable. To maintain the continuity and brevity of the main text, the
+  additional material has been placed in <em>enrichment</em> sections.  Enrichment material
+  can safely be omitted (and is omitted from the lectures and the
+  expectations of the half-term course as I teach it) but its presence gives
+  additional background and allows an interested reader to see, still
+  briefly, where the cited results come from. The main material
+  (excluding the footnotes, enrichment, worked examples, or exercises)
+  of each chapter except the last is designed to be covered in a one and a
+  half hour lecture. But most students then need to spend time reviewing
+  the material of that lecture including the worked examples.
+
+  </p><p>
+  Although the course includes mathematical and computational exercises,
+  which implement the algorithms that are discussed, it does not teach
+  programming. A student who wants to master the material must tackle
+  the exercises. To do so, the student must already have, or develop as
+  they go, sufficient familiarity with a chosen language or
+  computational system. The exercises have been tested with the use of
+  Octave, which is an open source alternative with practically the same
+  syntax and capability as Matlab. Many students will find these systems
+  appropriate, because they have built-in graphics and matrix variable
+  types and routines, but many other language choices are
+  possible. Elementary familiarity with matrices and the terms of linear
+  algebra is presumed. That knowledge is reviewed in highly abbreviated
+  form in the appendix. A principle of the development is that routine
+  matrix algebra and functions are just used; standard direct matrix
+  algorithms are not explained or programmed. However, iterative matrix
+  techniques that are specific to solving differential equations are
+  introduced on the basis of physical intuition as part of the main
+  development, and a brief introduction to modern iterative sparse
+  matrix solution techniques is given in the final chapter.
+
+  </p><p>
+  Many, perhaps most, problems encountered in physical science and
+  engineering are expressed in terms of ordinary or partial differential
+  equations.  Familiarity with vector calculus is therefore an absolute
+  prerequisite. As much as is needed of the general theory of partial
+  differential equations is developed within the course, but it is the
+  merest outline. While a serious effort is made to provide
+  self-consistent accuracy of expression and mathematics, no pretence
+  whatever is made to mathematical rigor. There are no theorems
+  here. The purpose is not to teach mathematical proofs; it is to equip
+  students with the mathematical insights and tools to understand and
+  use computational techniques. This outlook permits us to approach
+  topics in a sequence that is intuitive, but would be ruled out by
+  insistence on mathematical rigor.
+
+  </p><p>
+  Understanding how to solve the equations that govern common physical
+  systems comes partly from knowing how they arise. Therefore some are
+  derived from first principles. The majority of students will have seen
+  some comparable derivation in their earlier education. Therefore the
+  derivations here are terse. And while the text is mostly
+  self-contained, the learning curve for students without any prior
+  background in diffusion, fluid flow, collisions, or the kinetic theory
+  of gases, will be rather steep. It may be advisable for them to
+  supplement the treatment with wider reading.
+
+  </p><p>
+  Students that complete this book including the exercises will
+
+  <ul>
+  <li> Become familiar with computational engineering and its mathematical
+  foundations, at an elementary level.
+  </p><p>
+  </li>
+
+  <li> Deepen their understanding of the basic equations governing the
+    physical phenomena.
+  </p><p>
+  </li>
+
+  <li> Understand the methods by which problems can be solved using
+    computation.
+  </p><p>
+  </li>
+
+  <li> Develop experience, confidence, and good critical judgement in
+    the application of numerical methods to the solution of physical
+    problems.
+  </p><p>
+  </li>
+
+  <li> Strengthen their ability to use computation in theoretical
+    analysis and experimental data interpretation.
+  </p><p>
+  </li>
+  </ul>
+  The idea behind these objectives is that for students who do not
+  specialize in computational engineering or science, this might be the
+  <em>last</em> course they take in numerical techniques.
+
+  </p><p>
+  Though the aim
+  is to provide what <em>every</em> physicist and engineer should know
+  about computational problem solving, it is not to provide
+  <em>everything</em> they should know. Graduate students who undertake
+  computationally based research or other professional activities in
+  science or engineering will certainly eventually need more than is
+  covered here.  For them, however, this might be a useful <em>first</em>
+  course, because it rapidly surveys a wide range of algorithms, thus
+  quickly providing a broad perspective on computational science
+  technique.
+
+  </p><p>
+  <br /><br />
+  <b>Acknowledgements&nbsp;&nbsp;</b> This book owes a great deal to students
+  in the course Essential Numerical Methods, who by their interest,
+  questions, corrections, and occasional puzzlement have helped me identify and
+  explain the key conceptual challenges of learning computational
+  physics and engineering. I am grateful to MIT for support in
+  developing the material of this book; and always to my wife Fran, for
+  her endless love and care, without which this work would not have happened.
+
+  </p><p>
+
+
+  </p><p>
+
+
+  </p><p>
+
+  <hr /><table width="100%"><tr><td>
+   <a href="index.html">HEAD</a></td><td align="right">
+  <a href="chap1.html">NEXT
+  </a></td></tr></table>
+
 </div>
-</span>
 
-</p><p>
+<div class="col-sm-6">
 
-</p><p>
+  <title> Introduction to Plasma Physics</title>
 
-<h1>Contents </h1>
-<a href="chap1.html#tth_chAp1"
->1&nbsp; Fitting Functions to Data</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.1"
->1.1&nbsp; Exact fitting</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.1.1"
->1.1.1&nbsp; Introduction</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.1.2"
->1.1.2&nbsp; Representing an exact fitting function linearly</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.1.3"
->1.1.3&nbsp; Solving for the coefficients</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.2"
->1.2&nbsp; Approximate Fitting</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.2.1"
->1.2.1&nbsp; Linear Least Squares</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.2.2"
->1.2.2&nbsp; SVD and the Moore-Penrose Pseudo-inverse</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.2.3"
->1.2.3&nbsp; Smoothing and Regularization</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.3"
->1.3&nbsp; Tomographic Image Reconstruction</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap1.html#tth_sEc1.4"
->1.4&nbsp; Efficiency and Nonlinearity</a><br />
-<a href="chap2.html#tth_chAp2"
->2&nbsp; Ordinary Differential Equations</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap2.html#tth_sEc2.1"
->2.1&nbsp; Reduction to first-order</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap2.html#tth_sEc2.2"
->2.2&nbsp; Numerical Integration of Initial Value Problem</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap2.html#tth_sEc2.2.1"
->2.2.1&nbsp; Explicit Integration</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap2.html#tth_sEc2.2.2"
->2.2.2&nbsp; Accuracy and Runge-Kutta Schemes</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap2.html#tth_sEc2.2.3"
->2.2.3&nbsp; Stability</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap2.html#tth_sEc2.3"
->2.3&nbsp; Multidimensional Stiff Equations: Implicit Schemes</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap2.html#tth_sEc2.4"
->2.4&nbsp; Leap-Frog Schemes</a><br />
+  <h1 align="center">Introduction to Plasma Physics </h1>
 
-<a href="chap3.html#tth_chAp3"
->3&nbsp; Two-point Boundary Conditions</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.1"
->3.1&nbsp; Examples of Two-Point Problems</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.2"
->3.2&nbsp; Shooting</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.2.1"
->3.2.1&nbsp; Solving two-point problems by initial-value iteration</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.2.2"
->3.2.2&nbsp; Bisection</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.3"
->3.3&nbsp; Direct Solution</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.3.1"
->3.3.1&nbsp; Second-order finite differences</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.3.2"
->3.3.2&nbsp; Boundary Conditions</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap3.html#tth_sEc3.4"
->3.4&nbsp; Conservative Differences, Finite Volumes</a><br />
-<a href="chap4.html#tth_chAp4"
->4&nbsp; Partial Differential Equations</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap4.html#tth_sEc4.1"
->4.1&nbsp; Examples of Partial Differential Equations</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap4.html#tth_sEc4.1.1"
->4.1.1&nbsp; Fluid Flow</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap4.html#tth_sEc4.1.2"
->4.1.2&nbsp; Diffusion</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap4.html#tth_sEc4.1.3"
->4.1.3&nbsp; Waves</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap4.html#tth_sEc4.1.4"
->4.1.4&nbsp; Electromagnetism</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap4.html#tth_sEc4.2"
->4.2&nbsp; Classification of Partial Differential Equations</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap4.html#tth_sEc4.3"
->4.3&nbsp; Finite Difference Partial Derivatives</a><br />
-<a href="chap5.html#tth_chAp5"
->5&nbsp; Diffusion. Parabolic Partial Differential Equations</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.1"
->5.1&nbsp; Diffusion</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.2"
->5.2&nbsp; Time Advance Choices and Stability</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.2.1"
->5.2.1&nbsp; Forward Time, Centered Space</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.2.2"
->5.2.2&nbsp; Backward Time, Centered Space. Implicit Scheme.</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.2.3"
->5.2.3&nbsp; Partially implicit, Crank-Nicholson schemes.</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.3"
->5.3&nbsp; Implicit Advancing Matrix Method</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.4"
->5.4&nbsp; Multiple Space Dimensions</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap5.html#tth_sEc5.5"
->5.5&nbsp; Estimating Computational Cost</a><br />
-<a href="chap6.html#tth_chAp6"
->6&nbsp; Elliptic Problems and Iterative Matrix Solution</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap6.html#tth_sEc6.1"
->6.1&nbsp; Elliptic Equations and Matrix Inversion</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap6.html#tth_sEc6.2"
->6.2&nbsp; Convergence Rate</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap6.html#tth_sEc6.3"
->6.3&nbsp; Successive Over-Relaxation</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap6.html#tth_sEc6.4"
->6.4&nbsp; Iteration and Nonlinear Equations</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap6.html#tth_sEc6.4.1"
->6.4.1&nbsp; Linearization</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap6.html#tth_sEc6.4.2"
->6.4.2&nbsp; Combining linear and nonlinear iteration</a><br />
-<a href="chap7.html#tth_chAp7"
->7&nbsp; Fluid Dynamics and Hyperbolic Equations</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap7.html#tth_sEc7.1"
->7.1&nbsp; The fluid momentum equation</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap7.html#tth_sEc7.2"
->7.2&nbsp; Hyperbolic Equations</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap7.html#tth_sEc7.3"
->7.3&nbsp; Finite Differences and Stability</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap7.html#tth_sEc7.3.1"
->7.3.1&nbsp; FTCS is unstable</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap7.html#tth_sEc7.3.2"
->7.3.2&nbsp; Lax-Friedrichs and the CFL condition</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap7.html#tth_sEc7.3.3"
->7.3.3&nbsp; Lax-Wendroff achieves second order accuracy</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap7.html#tth_sEc7.4"
->7.4&nbsp; Worked Example: Three-dimensional fluids</a><br />
-<a href="chap8.html#tth_chAp8"
->8&nbsp; Boltzmann's Equation and its solution</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.1"
->8.1&nbsp; The Distribution Function</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.2"
->8.2&nbsp; Conservation of Particles in Phase-Space</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.3"
->8.3&nbsp; Solving the Hyperbolic Boltzmann Equation</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.3.1"
->8.3.1&nbsp; Integration along orbits</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.3.2"
->8.3.2&nbsp; Orbits are Characteristics</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.4"
->8.4&nbsp; Collision Term</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.4.1"
->8.4.1&nbsp; Self-scattering</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap8.html#tth_sEc8.4.2"
->8.4.2&nbsp; No self-scattering</a><br />
-<a href="chap9.html#tth_chAp9"
->9&nbsp; Energy-Resolved Diffusive Transport</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap9.html#tth_sEc9.1"
->9.1&nbsp; Collisions of Neutrons</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap9.html#tth_sEc9.2"
->9.2&nbsp; Reduction to multigroup diffusion equations</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap9.html#tth_sEc9.3"
->9.3&nbsp; Numerical Representation of Multigroup Equations</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap9.html#tth_sEc9.3.1"
->9.3.1&nbsp; Groups</a><br />
+  <h3 align="center">I.H.Hutchinson </h3>
+
+  <h3 align="center">&#169; 2001 </h3>
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap9.html#tth_sEc9.3.2"
->9.3.2&nbsp; Steady State Eigenvalue</a><br />
-<a href="chap10.html#tth_chAp10"
->10&nbsp; Atomistic and Particle-in-Cell Simulation</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap10.html#tth_sEc10.1"
->10.1&nbsp; Atomistic Simulation</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap10.html#tth_sEc10.1.1"
->10.1.1&nbsp; Atomic/Molecular Forces and Potentials</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap10.html#tth_sEc10.1.2"
->10.1.2&nbsp; Computational requirements</a><br />
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap10.html#tth_sEc10.2"
->10.2&nbsp; Particle in Cell Codes</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap10.html#tth_sEc10.2.1"
->10.2.1&nbsp; Boltzmann Equation Pseudoparticle Representation</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap10.html#tth_sEc10.2.2"
->10.2.2&nbsp; Direct Simulation Monte Carlo treatment of gas</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap10.html#tth_sEc10.2.3"
->10.2.3&nbsp; Particle Boundary Conditions</a><br />
-<a href="chap11.html#tth_chAp11"
->11&nbsp; Monte Carlo Techniques</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap11.html#tth_sEc11.1"
->11.1&nbsp; Probability and Statistics</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap11.html#tth_sEc11.1.1"
->11.1.1&nbsp; Probability and Probability Distribution</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap11.html#tth_sEc11.1.2"
->11.1.2&nbsp; Mean, Variance, Standard Deviation, and Standard Error</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap11.html#tth_sEc11.2"
->11.2&nbsp; Computational random selection</a><br />
+  </p><p>
+
+  </p><p>
+
+  <hr>
+
+  <h1>Contents </h1><a href="chapter1.html#tth_chAp1"
+  >1&nbsp; Introduction</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.1"
+  >1.1&nbsp; What is a Plasma?</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.1.1"
+  >1.1.1&nbsp; An ionized gas</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.1.2"
+  >1.1.2&nbsp; Plasmas are Quasi-Neutral</a><br />
+
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.2"
+  >1.2&nbsp; Plasma Shielding</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.2.1"
+  >1.2.1&nbsp; Elementary Derivation of the Boltzmann Distribution</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.2.2"
+  >1.2.2&nbsp; Plasma Density in Electrostatic Potential</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.2.3"
+  >1.2.3&nbsp; Debye Shielding</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.2.4"
+  >1.2.4&nbsp; Plasma-Solid Boundaries&nbsp;&nbsp;(Elementary)</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.2.5"
+  >1.2.5&nbsp; Thickness of the sheath</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.3"
+  >1.3&nbsp; The `Plasma Parameter'</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.4"
+  >1.4&nbsp; Summary</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.5"
+  >1.5&nbsp; Occurrence of Plasmas</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.6"
+  >1.6&nbsp; Different Descriptions of Plasma</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.6.1"
+  >1.6.1&nbsp; Equations of Plasma Physics</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter1.html#tth_sEc1.6.2"
+  >1.6.2&nbsp; Self Consistency</a><br />
+  <a href="chapter2.html#tth_chAp2"
+  >2&nbsp; Motion of Charged Particles in Fields</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.1"
+  >2.1&nbsp; Uniform <b>B</b>&nbsp;field, <b>E</b> = 0.</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.1.1"
+  >2.1.1&nbsp; Qualitatively</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.1.2"
+  >2.1.2&nbsp; By Vector Algebra</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.2"
+  >2.2&nbsp; Uniform <b>B</b>&nbsp;and non-zero <b>E</b></a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.2.1"
+  >2.2.1&nbsp; Drift due to Gravity or other Forces</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.3"
+  >2.3&nbsp; Non-Uniform B Field</a><br />
+
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.4"
+  >2.4&nbsp; Curvature Drift</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.4.1"
+  >2.4.1&nbsp; Vacuum Fields</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.5"
+  >2.5&nbsp; Interlude: Toroidal Confinement of Single Particles</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.5.1"
+  >2.5.1&nbsp; How to solve this problem?</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.5.2"
+  >2.5.2&nbsp; The Solution: Rotational Transform</a><br />
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap11.html#tth_sEc11.3"
->11.3&nbsp; Flux integration and injection choice.</a><br />
-
-<a href="chap12.html#tth_chAp12"
->12&nbsp; Monte Carlo Radiation Transport</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap12.html#tth_sEc12.1"
->12.1&nbsp; Transport and Collisions</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap12.html#tth_sEc12.1.1"
->12.1.1&nbsp; Random walk step length</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap12.html#tth_sEc12.1.2"
->12.1.2&nbsp; Collision type and parameters</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap12.html#tth_sEc12.1.3"
->12.1.3&nbsp; Iteration and New Particles</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap12.html#tth_sEc12.2"
->12.2&nbsp; Tracking, Tallying and Statistical Uncertainty</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.6"
+  >2.6&nbsp; The Mirror Effect of Parallel Field Gradients: <b>E</b> = 0, &#8711;B &#124;&#124;<b>B</b></a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.6.1"
+  >2.6.1&nbsp; Force on an Elementary Magnetic Moment Circuit</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.6.2"
+  >2.6.2&nbsp; &#956; is a constant of the motion</a><br />
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap12.html#tth_sEc12.3"
->12.3&nbsp; Worked Example: Density and Flux Tallies</a><br />
-<a href="chap13.html#tth_chAp13"
->13&nbsp; Next Steps</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap13.html#tth_sEc13.1"
->13.1&nbsp; Finite Element Methods</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap13.html#tth_sEc13.2"
->13.2&nbsp; Discrete Fourier Analysis and Spectral Methods</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap13.html#tth_sEc13.3"
->13.3&nbsp; Sparse Matrix Iterative Krylov Solution</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap13.html#tth_sEc13.4"
->13.4&nbsp; Fluid Evolution Schemes</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap13.html#tth_sEc13.4.1"
->13.4.1&nbsp; Incompressible fluids and pressure correction</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap13.html#tth_sEc13.4.2"
->13.4.2&nbsp; Nonlinearities, shocks, upwind and limiter differencing</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chap13.html#tth_sEc13.4.3"
->13.4.3&nbsp; Turbulence</a><br />
-<a href="chapA.html#tth_chApA"
->A&nbsp; Summary of Matrix Algebra</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapA.html#tth_sEcA.1"
->A.1&nbsp; Vector and Matrix Multiplication</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapA.html#tth_sEcA.2"
->A.2&nbsp; Determinants</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapA.html#tth_sEcA.3"
->A.3&nbsp; Inverses</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapA.html#tth_sEcA.4"
->A.4&nbsp; Eigenanalysis</a><br />
-<a href="docindex.html#tth_sEcindex">Index</a><br />
 
-</p><p>
-
-<h1>Preface</h1>
-
-</p><p>
-This book presents what every graduate-level physicist
-and engineer should know about solving physical problems by
-computer.
-
-</p><p>
-Hardly any research engineer or scientist, whatever their speciality,
-can do without at least minimal competence in computational and
-numerical methods. It helps the practitioner greatly to appreciate the
-big picture of how computational techniques are applied.  A book like
-this that covers the breadth of the methods, with a minimum of fuss,
-serves the purpose of acquiring the essential knowledge.  It is
-derived from an accelerated short course for entering graduate
-students in the MIT Department of Nuclear Science and
-Engineering. That's why some examples used to illustrate the numerical
-techniques are drawn from Nuclear Science and Engineering. But no
-specific background nuclear knowledge is required. The mathematical
-and computational techniques explained are applicable throughout a
-whole range of engineering and physical science disciplines, because
-the underlying numerical methods are essentially common.
-
-</p><p>
-For so short a course, a great deal of background must be taken for
-granted, and a lot of relevant topics omitted. The brevity is not a
-fault though; it is an intention. And while there is an enormous range
-of material that <em>could</em> be added, I see the deliberate selection
-as a merit. This approach, I believe, enables a student to read the
-text sequentially, experience rapid progress, and work to
-<em>master</em> the content. Of course the present approach contrasts
-strongly both with comprehensive textbooks and with
-handbooks. Massive teaching <em>textbooks</em> in addition to
-providing vastly more detail, cover topics such as standard matrix
-inversion or decomposition, and elementary quadrature. Those can
-mostly be taken for granted today, I believe, because of widespread
-use of mathematical computing systems.  Large textbooks also often
-approach the topics by a round-about set of examples and develop the
-mathematics in more elementary and drawn out style. Doubtless that
-approach has merit, but it requires much more time to get to the heart
-of the matter. Students with good preparation appreciate a more
-accelerated approach than slogging through many hundreds of pages of
-textbook. That's especially so, since such textbooks often stop just
-when the techniques are getting useful for science and engineering,
-that is, with partial differential equations. This book gets to
-partial differential equations by the second quarter of its material,
-and continues into discussion of particle and Monte Carlo methods that
-are essential for modern computational science and engineering, but
-rarely treated in general numerical methods text books.  There are
-several excellent numerical methods <em>handbooks</em>; and I often use
-them. They cover so much material, though, that the reader can and
-should only dip into it, and use it for reference. Benefitting from
-such comprehensive treatments requires an understanding of the
-framework of the subject. The present book aims to provide that
-framework in as compact a form as is reasonable.
-
-</p><p>
-Even having deliberately chosen to keep it short, there are some
-places where additional explanation or details seem really
-valuable. To maintain the continuity and brevity of the main text, the
-additional material has been placed in <em>enrichment</em> sections.  Enrichment material
-can safely be omitted (and is omitted from the lectures and the
-expectations of the half-term course as I teach it) but its presence gives
-additional background and allows an interested reader to see, still
-briefly, where the cited results come from. The main material
-(excluding the footnotes, enrichment, worked examples, or exercises)
-of each chapter except the last is designed to be covered in a one and a
-half hour lecture. But most students then need to spend time reviewing
-the material of that lecture including the worked examples.
-
-</p><p>
-Although the course includes mathematical and computational exercises,
-which implement the algorithms that are discussed, it does not teach
-programming. A student who wants to master the material must tackle
-the exercises. To do so, the student must already have, or develop as
-they go, sufficient familiarity with a chosen language or
-computational system. The exercises have been tested with the use of
-Octave, which is an open source alternative with practically the same
-syntax and capability as Matlab. Many students will find these systems
-appropriate, because they have built-in graphics and matrix variable
-types and routines, but many other language choices are
-possible. Elementary familiarity with matrices and the terms of linear
-algebra is presumed. That knowledge is reviewed in highly abbreviated
-form in the appendix. A principle of the development is that routine
-matrix algebra and functions are just used; standard direct matrix
-algorithms are not explained or programmed. However, iterative matrix
-techniques that are specific to solving differential equations are
-introduced on the basis of physical intuition as part of the main
-development, and a brief introduction to modern iterative sparse
-matrix solution techniques is given in the final chapter.
-
-</p><p>
-Many, perhaps most, problems encountered in physical science and
-engineering are expressed in terms of ordinary or partial differential
-equations.  Familiarity with vector calculus is therefore an absolute
-prerequisite. As much as is needed of the general theory of partial
-differential equations is developed within the course, but it is the
-merest outline. While a serious effort is made to provide
-self-consistent accuracy of expression and mathematics, no pretence
-whatever is made to mathematical rigor. There are no theorems
-here. The purpose is not to teach mathematical proofs; it is to equip
-students with the mathematical insights and tools to understand and
-use computational techniques. This outlook permits us to approach
-topics in a sequence that is intuitive, but would be ruled out by
-insistence on mathematical rigor.
-
-</p><p>
-Understanding how to solve the equations that govern common physical
-systems comes partly from knowing how they arise. Therefore some are
-derived from first principles. The majority of students will have seen
-some comparable derivation in their earlier education. Therefore the
-derivations here are terse. And while the text is mostly
-self-contained, the learning curve for students without any prior
-background in diffusion, fluid flow, collisions, or the kinetic theory
-of gases, will be rather steep. It may be advisable for them to
-supplement the treatment with wider reading.
-
-</p><p>
-Students that complete this book including the exercises will
-
-<ul>
-<li> Become familiar with computational engineering and its mathematical
-foundations, at an elementary level.
-</p><p>
-</li>
-
-<li> Deepen their understanding of the basic equations governing the
-  physical phenomena.
-</p><p>
-</li>
-
-<li> Understand the methods by which problems can be solved using
-  computation.
-</p><p>
-</li>
-
-<li> Develop experience, confidence, and good critical judgement in
-  the application of numerical methods to the solution of physical
-  problems.
-</p><p>
-</li>
-
-<li> Strengthen their ability to use computation in theoretical
-  analysis and experimental data interpretation.
-</p><p>
-</li>
-</ul>
-The idea behind these objectives is that for students who do not
-specialize in computational engineering or science, this might be the
-<em>last</em> course they take in numerical techniques.
-
-</p><p>
-Though the aim
-is to provide what <em>every</em> physicist and engineer should know
-about computational problem solving, it is not to provide
-<em>everything</em> they should know. Graduate students who undertake
-computationally based research or other professional activities in
-science or engineering will certainly eventually need more than is
-covered here.  For them, however, this might be a useful <em>first</em>
-course, because it rapidly surveys a wide range of algorithms, thus
-quickly providing a broad perspective on computational science
-technique.
-
-</p><p>
-<br /><br />
-<b>Acknowledgements&nbsp;&nbsp;</b> This book owes a great deal to students
-in the course Essential Numerical Methods, who by their interest,
-questions, corrections, and occasional puzzlement have helped me identify and
-explain the key conceptual challenges of learning computational
-physics and engineering. I am grateful to MIT for support in
-developing the material of this book; and always to my wife Fran, for
-her endless love and care, without which this work would not have happened.
-
-</p><p>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.6.3"
+  >2.6.3&nbsp; Mirror Trapping</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.6.4"
+  >2.6.4&nbsp; Other Features of Mirror Motions</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.7"
+  >2.7&nbsp; Time Varying B Field&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(E inductive)</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.8"
+  >2.8&nbsp; Time Varying E-field &nbsp;&nbsp;&nbsp;&nbsp;(<b>E</b>, <b>B</b>&nbsp;uniform)</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.8.1"
+  >2.8.1&nbsp; Direct Derivation of [(d<b>E</b>)/dt] effect: `Polarization Drift'</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.9"
+  >2.9&nbsp; Non Uniform E &nbsp;&nbsp;&nbsp;(Finite Larmor Radius)</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter2.html#tth_sEc2.10"
+  >2.10&nbsp; Summary of Drifts</a><br />
+  <a href="chapter3.html#tth_chAp3"
+  >3&nbsp; Collisions in Plasmas</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.1"
+  >3.1&nbsp; Binary collisions between charged particles</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.1.1"
+  >3.1.1&nbsp; Frames of Reference</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.1.2"
+  >3.1.2&nbsp; Scattering Angle</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.2"
+  >3.2&nbsp; Differential Cross-Section for Scattering by Angle</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.3"
+  >3.3&nbsp; Relaxation Processes</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.3.1"
+  >3.3.1&nbsp; Energy Loss</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.3.2"
+  >3.3.2&nbsp; Cut-offs Estimates</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.3.3"
+  >3.3.3&nbsp; Momentum Loss</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.3.4"
+  >3.3.4&nbsp; `Random Walk' in angle</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.3.5"
+  >3.3.5&nbsp; Summary of different types of collision</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.4"
+  >3.4&nbsp; Thermal Distribution Collisions</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.4.1"
+  >3.4.1&nbsp; e &#8594; i</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.4.2"
+  >3.4.2&nbsp; i &#8594; e</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.4.3"
+  >3.4.3&nbsp; i &#8594; i</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.4.4"
+  >3.4.4&nbsp; e &#8594; e</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.4.5"
+  >3.4.5&nbsp; Summary of Thermal Collision Frequencies</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.5"
+  >3.5&nbsp; Applications of Collision Analysis</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.5.1"
+  >3.5.1&nbsp; Energetic (`Runaway') Electrons</a><br />
 
 
-</p><p>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.5.2"
+  >3.5.2&nbsp; Plasma Resistivity (DC)</a><br />
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.5.3"
+  >3.5.3&nbsp; Diffusion</a><br />
 
 
-</p><p>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.5.4"
+  >3.5.4&nbsp; Energy Equilibration</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter3.html#tth_sEc3.6"
+  >3.6&nbsp; Some Orders of Magnitude</a><br />
 
-<hr /><table width="100%"><tr><td>
- <a href="index.html">HEAD</a></td><td align="right">
-<a href="chap1.html">NEXT
-</a></td></tr></table>
-</div></body></html>
+
+  <a href="chapter4.html#tth_chAp4"
+  >4&nbsp; Fluid Description of Plasma</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.1"
+  >4.1&nbsp; Particle Conservation (In 3-d Space) </a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.2"
+  >4.2&nbsp; Fluid Motion</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.2.1"
+  >4.2.1&nbsp; Lagrangian &amp; Eulerian Viewpoints</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.2.2"
+  >4.2.2&nbsp; Momentum (Conservation) Equation</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.2.3"
+  >4.2.3&nbsp; Pressure Force</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.2.4"
+  >4.2.4&nbsp; Momentum Equation: Eulerian Viewpoint</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.2.5"
+  >4.2.5&nbsp; Effect of Collisions</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.3"
+  >4.3&nbsp; The Key Question for Momentum Equation:</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.4"
+  >4.4&nbsp; Summary of Two-Fluid Equations</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.5"
+  >4.5&nbsp; Two-Fluid Equilibrium: Diamagnetic Current</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.6"
+  >4.6&nbsp; Reduction of Fluid Approach to the Single Fluid Equations</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.6.1"
+  >4.6.1&nbsp; Summary of Single Fluid Equations: M.H.D.</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.6.2"
+  >4.6.2&nbsp; Heuristic Derivation/Explanation</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.6.3"
+  >4.6.3&nbsp; Maxwell's Equations for MHD Use</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.7"
+  >4.7&nbsp; MHD Equilibria</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.7.1"
+  >4.7.1&nbsp; &#952;-pinch</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.7.2"
+  >4.7.2&nbsp; Z-pinch</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.7.3"
+  >4.7.3&nbsp; `Stabilized Z-pinch'</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.8"
+  >4.8&nbsp; Some General Properties of MHD Equilibria</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.8.1"
+  >4.8.1&nbsp; Pressure &amp; Tension</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.8.2"
+  >4.8.2&nbsp; Magnetic Surfaces</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.8.3"
+  >4.8.3&nbsp; `Current Surfaces'</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.8.4"
+  >4.8.4&nbsp; Low &#946; equilibria: Force-Free Plasmas</a><br />
+
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.9"
+  >4.9&nbsp; Toroidal Equilibrium</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.10"
+  >4.10&nbsp; Plasma Dynamics (MHD)</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.11"
+  >4.11&nbsp; Flux Conservation</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.12"
+  >4.12&nbsp; Field Line Motion</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.13"
+  >4.13&nbsp; MHD Stability</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.14"
+  >4.14&nbsp; General Perturbations of Cylindrical Equil.</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.15"
+  >4.15&nbsp; General Principles Governing Instabilities</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.16"
+  >4.16&nbsp; Quick and Simple Analysis of Pinches</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter4.html#tth_sEc4.17"
+  >4.17&nbsp; Rayleigh Taylor Instability Analysis</a><br />
+  <a href="chapter5.html#tth_chAp5"
+  >5&nbsp; Electromagnetic Waves in Plasmas</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.1"
+  >5.1&nbsp; General Treatment of Linear Waves in Anisotropic Medium</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.1.1"
+  >5.1.1&nbsp; Simple Case. Isotropic Medium</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.1.2"
+  >5.1.2&nbsp; General Case &nbsp;&nbsp;&nbsp;&nbsp;(<b>k</b> in z-direction)</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.2"
+  >5.2&nbsp; High Frequency Plasma Conductivity</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.2.1"
+  >5.2.1&nbsp; Zero B-field case</a><br />
+
+
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.2.2"
+  >5.2.2&nbsp; Meaning of Negative N<sup>2</sup>: Cut Off</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.3"
+  >5.3&nbsp; Cold Plasma Waves &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Magnetized Plasma)</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.3.1"
+  >5.3.1&nbsp; Derivation of Dispersion Relation</a><br />
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.3.2"
+  >5.3.2&nbsp; Hybrid Resonances &nbsp;&nbsp;&nbsp;Perpendicular Propagation</a><br />
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.3.3"
+  >5.3.3&nbsp; Whistlers</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.4"
+  >5.4&nbsp; Thermal Effects on Plasma Waves</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.4.1"
+  >5.4.1&nbsp; Refractive Index Plot</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.4.2"
+  >5.4.2&nbsp; Including the ion response</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.5"
+  >5.5&nbsp; Electrostatic Approximation for (Plasma) Waves</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.6"
+  >5.6&nbsp; Simple Example of MHD Dynamics: Alfven Waves</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.7"
+  >5.7&nbsp; Non-Uniform Plasmas and wave propagation</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.8"
+  >5.8&nbsp; Two Stream Instability</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.9"
+  >5.9&nbsp; Kinetic Theory of Plasma Waves</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.9.1"
+  >5.9.1&nbsp; Vlasov Equation</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.9.2"
+  >5.9.2&nbsp; Linearized Wave Solution of Vlasov Equation</a><br />
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.9.3"
+  >5.9.3&nbsp; Landau's original approach. &nbsp;&nbsp;&nbsp;(1946)</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.9.4"
+  >5.9.4&nbsp; Solution of Dispersion Relation</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.9.5"
+  >5.9.5&nbsp; Direct Calculation of Collisionless Particle Heating</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.9.6"
+  >5.9.6&nbsp; Physical Picture</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.9.7"
+  >5.9.7&nbsp; Damping Mechanisms</a><br />
+
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.9.8"
+  >5.9.8&nbsp; Ion Acoustic Waves and Landau Damping</a><br />
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.9.9"
+  >5.9.9&nbsp; Alternative expressions of Dielectric Tensor Elements</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.9.10"
+  >5.9.10&nbsp; Electromagnetic Waves in unmagnetized Vlasov Plasma</a><br />
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="chapter5.html#tth_sEc5.10"
+  >5.10&nbsp; Experimental Verification of Landau Damping</a><br />
+
+
+  </p><p>
+
+  </p><p>
+
+  <h2>Preface</h2>
+
+  </p><p>
+  These are transcriptions of the notes from which I teach the single
+  semester course "Introduction to Plasma Physics". Despite the heroic
+  efforts of Valerie Censabella (for which I am very grateful) to
+  translate my hand-written materials into LaTeX, and extensive editing
+  on my part, I don't doubt that there are many typographical
+  errors. Moreover, since they are only notes, don't look for limpid
+  prose, and realize that the detailed explanations are in my mind and
+  orally in class, not all here.
+
+  </p><p>
+  The course is intended only as a first plasma physics course, but includes
+  what I take to be the critical concepts needed for a foundation for
+  further study. A solid undergraduate background in classical physics,
+  electromagnetic theory including Maxwell's equations, and mathematical
+  familiarity with partial differential equations and complex analysis
+  are prerequisites.
+
+  </p><p>
+  Ian Hutchinson.
+
+  </p><p>
+
+
+  </p><p>
+
+  <hr /><table width="100%"><tr><td>
+   <a href="index.html">HEAD</a></td><td align="right">
+  <a href="chapter1.html">NEXT
+  </a></td></tr></table>
+  </div>
+
+</div>
+
+
+</body></html>
